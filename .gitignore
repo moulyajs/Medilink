@@ -1,0 +1,24 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environment (VERY IMPORTANT)
+venv/
+
+# VS Code
+.vscode/
+
+# Environment variables
+.env
+.env.*
+
+# Backend data (OCR inputs/outputs)
+backend/data/*
+!backend/data/.gitkeep
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
