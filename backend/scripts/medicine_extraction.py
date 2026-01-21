@@ -1,38 +1,52 @@
-# scripts/medicine_extraction.py
 import re
 
 def extract_medicines(text):
-    """
-    Phase-1 safe dynamic medicine extraction.
-    Works even if OCR text is one long block.
-    """
     medicine_list = []
 
-    # Step 1: Split text by medicine indicators
     indicators = ["Inj.", "Tab.", "Cap.", "Syp.", "Tablet", "Syrup"]
     pattern_split = "(" + "|".join(re.escape(ind) for ind in indicators) + ")"
     chunks = re.split(pattern_split, text)
 
-    # Step 2: Process each chunk that looks like a medicine entry
     for i in range(1, len(chunks), 2):
-        # Combine indicator + text
         chunk = chunks[i] + " " + chunks[i+1] if i+1 < len(chunks) else chunks[i]
-        chunk = chunk.strip()
+        chunk = re.sub(r"\s+", " ", chunk.strip())
 
-        # Skip non-medicine chunks
-        skip_words = ["Dr", "Hospital", "IP", "UHID", "EICU", "Managed", "Tel", "www"]
-        if any(skip in chunk for skip in skip_words):
-            continue
+        # ✂️ CUT OFF admin text instead of skipping
+        chunk = re.split(
+            r"\b(Dr\.|Hospital|Tel|www|Managed|UHID|IP No)\b",
+            chunk,
+            flags=re.I
+        )[0]
 
-        # Regex to extract name, dosage, frequency
-        match = re.search(
-            r'(?P<name>[A-Za-z\s]{3,})\s*(?P<dosage>\d+mg|\d+g)?\s*(?P<freq>TDS|BD|OD|/day|per day|once daily|twice daily)?',
+        # -------- Dosage (anywhere) --------
+        dosage_match = re.search(r"\d+\s*(mg|g|ml|IU)", chunk, re.I)
+        dosage = dosage_match.group(0) if dosage_match else ""
+
+        # -------- Frequency (OCR tolerant) --------
+        freq_match = re.search(
+            r"(?:b?vials?/day|/day|OD|BD|TDS|once daily|twice daily)",
+            chunk,
+            re.I
+        )
+        frequency = freq_match.group(0) if freq_match else ""
+
+        # -------- Medicine name --------
+        name_match = re.search(
+            r"(Inj\.|Tab\.|Cap\.|Syp\.)\s*([A-Za-z][A-Za-z\s\-]{5,})",
             chunk
         )
-        if match:
-            name = match.group("name").strip()
-            dosage = match.group("dosage") if match.group("dosage") else ""
-            freq = match.group("freq") if match.group("freq") else ""
-            medicine_list.append({"name": name, "dosage": dosage, "frequency": freq})
+
+        if name_match:
+            name = name_match.group(2)
+
+            # Clean OCR garbage
+            name = re.sub(r"\b(song|dose|daily)\b", "", name, flags=re.I)
+            name = re.sub(r"\s+", " ", name).strip()
+
+            medicine_list.append({
+                "name": name,
+                "dosage": dosage,
+                "frequency": frequency
+            })
 
     return medicine_list
