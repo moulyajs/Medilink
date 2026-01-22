@@ -1,42 +1,41 @@
 import re
 from paddocr import run_ocr
 
-def clean_text_with_lines(texts, scores, threshold=0.7):
-    """
-    Returns:
-    - full_clean_text
-    - top_lines (for hospital extraction)
-    """
-
-    # Step 1: Confidence filtering
-    lines = [
-        text.strip()
-        for text, score in zip(texts, scores)
-        if score >= threshold and len(text.strip()) > 2
-    ]
-
-    # Step 2: Remove duplicates but keep order
+def clean_text_with_lines(texts, scores, threshold=0.6):
+    structured_lines = []
     seen = set()
-    unique_lines = []
-    for line in lines:
-        if line not in seen:
-            seen.add(line)
-            unique_lines.append(line)
+    line_no = 1
 
-    # Step 3: Clean characters
-    cleaned_lines = []
-    for line in unique_lines:
-        line = re.sub(r"[^a-zA-Z0-9:/.,\- ]+", " ", line)
-        line = re.sub(r"\s+", " ", line)
-        cleaned_lines.append(line.strip())
+    for text, score in zip(texts, scores):
+        if score < threshold:
+            continue
 
-    # Step 4: Top 5 lines (usually hospital info)
-    top_lines = cleaned_lines[:5]
+        text = text.strip()
+        if len(text) <= 2:
+            continue
 
-    full_text = " ".join(cleaned_lines)
+        # VERY LIGHT CLEANING (do NOT destroy symbols)
+        text = re.sub(r"\s+", " ", text)
 
-    return full_text, top_lines
+        if text in seen:
+            continue
+        seen.add(text)
 
+        structured_lines.append({
+            "line_no": line_no,
+            "text": text,
+            "score": round(float(score), 2)
+        })
+        line_no += 1
+
+    top_lines = [l["text"] for l in structured_lines[:5]]
+    raw_text = " ".join([l["text"] for l in structured_lines])
+
+    return {
+        "lines": structured_lines,
+        "raw_text": raw_text,
+        "top_lines": top_lines
+    }
 
 def ocr_process(image_path):
     texts, scores = run_ocr(image_path)
