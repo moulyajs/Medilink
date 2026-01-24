@@ -32,9 +32,10 @@ def extract_medicines(text):
 
         # -------- Medicine name --------
         name_match = re.search(
-            r"(Inj\.|Tab\.|Cap\.|Syp\.)\s*([A-Za-z][A-Za-z\s\-]{5,})",
-            chunk
-        )
+            r"(Tablet|Tab\.|Capsule|Cap\.|Injection|Inj\.|Syrup|Syp\.|Cough Syrup)\s+([A-Za-z][A-Za-z\s\+\-]{3,})",
+                chunk,
+                re.I
+            )
 
         if name_match:
             name = name_match.group(2)

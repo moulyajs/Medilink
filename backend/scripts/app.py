@@ -9,9 +9,19 @@ from clinical_summary import generate_summary
 # -----------------------------
 # Step 1: OCR + Cleaning
 # -----------------------------
-image_path = "data/cleannavyatri.jpg"
-text, top_lines = ocr_process(image_path)
+image_path = "data/pdf2.pdf"
+
+text, top_lines, doc_type = ocr_process(image_path)
+
+print("DOCUMENT TYPE:", doc_type)
 print("\nCLEANED TEXT:\n", text)
+
+# 🚨 STOP EARLY FOR LAB REPORTS
+if doc_type == "lab_report":
+    print("\nLAB REPORT DETECTED")
+    print("SUMMARY: Laboratory investigation report. No medications prescribed.")
+    print("FINAL ENTITIES: {}")
+    exit()
 
 # -----------------------------
 # Step 2: Rule-based extraction
@@ -20,19 +30,20 @@ entities = extract_entities(text, top_lines)
 print("\nRULE-BASED ENTITIES:\n", entities)
 
 # -----------------------------
-# Step 3: NER refinement (hybrid)
+# Step 3: NER refinement (SAFE HYBRID)
 # -----------------------------
 ner = ner_entities(text)
 print("\nNER OUTPUT:\n", ner)
 
-# Update hospital if NER gives better name
-if ner["organizations"]:
-    ner_hospital = ner["organizations"][0]
-    if "hospital" not in entities or len(ner_hospital) > len(entities.get("hospital", "")):
-        entities["hospital"] = ner_hospital
+# ✅ DO NOT override rule-based hospital
+if "hospital" not in entities and ner["organizations"]:
+    for org in ner["organizations"]:
+        if "hospital" in org.lower() or "clinic" in org.lower() or "medical" in org.lower():
+            entities["hospital"] = org
+            break
 
 # -----------------------------
-# Step 4: Dynamic Medicine Extraction
+# Step 4: Medicine Extraction (Prescription only)
 # -----------------------------
 medicines = extract_medicines(text)
 print("\nMEDICINES:\n", medicines)

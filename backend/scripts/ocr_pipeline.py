@@ -1,5 +1,17 @@
 import re
 from paddocr import run_ocr
+def detect_document_type(text):
+    if re.search(r"(SGPT|SGOT|CRP|Procalcitonin|Biochemistry|Reference Range)", text, re.I):
+        return "lab_report"
+
+    elif re.search(r"(Tab\.|Inj\.|Cap\.|Syp\.|Prescription|Rx)", text, re.I):
+        return "prescription"
+
+    elif re.search(r"(Discharge Summary|Diagnosis|Hospital Course)", text, re.I):
+        return "discharge_summary"
+
+    else:
+        return "unknown"
 
 def clean_text_with_lines(texts, scores, threshold=0.7):
     """
@@ -37,7 +49,8 @@ def clean_text_with_lines(texts, scores, threshold=0.7):
 
     return full_text, top_lines
 
-
 def ocr_process(image_path):
     texts, scores = run_ocr(image_path)
-    return clean_text_with_lines(texts, scores)
+    full_text, top_lines = clean_text_with_lines(texts, scores)
+    doc_type = detect_document_type(full_text)
+    return full_text, top_lines, doc_type
