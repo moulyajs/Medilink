@@ -30,7 +30,7 @@ def classify_document(ocr_lines):
 
     # --- PRESCRIPTION SIGNALS (lowest priority) ---
     prescription_keywords = [
-        "inj.", "inj ", "tab.", "cap.", "syp.", "tablet", "capsule"
+        "inj.", "inj ", "tab.", "cap.", "syp.", "tablet", "capsule",
     ]
 
     if any(k in text for k in lab_keywords):

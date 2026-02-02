@@ -10,12 +10,13 @@ from demographics_extraction import extract_demographics
 from prescription_extraction import extract_prescriptions
 from lab_extraction import extract_lab_results
 from lab_normalizer import normalize_lab_results
-from prescription_validator import validate_prescriptions
+from user_review import review_prescriptions
+
 
 # -----------------------------
 # Step 1: OCR + Cleaning
 # -----------------------------
-image_path = "../data/image2.png"
+image_path = "../data/nanavati.png"
 ocr_output = ocr_process(image_path)
 
 lines = ocr_output["lines"]
@@ -42,11 +43,18 @@ if doc_type == "PRESCRIPTION":
 else:
     medicines = []
 
-print("\nPRESCRIPTIONS:", medicines)
+print("\nPRESCRIPTIONS (RAW EXTRACTION):", medicines)
 
-validated_prescriptions = validate_prescriptions(medicines)
-print("\nVALIDATED PRESCRIPTIONS:\n", validated_prescriptions)
+# -----------------------------
+# USER REVIEW STEP (HUMAN-IN-THE-LOOP)
+# -----------------------------
+reviewed_medicines = review_prescriptions(medicines)
 
+print("\nPRESCRIPTIONS (AFTER USER REVIEW):")
+for m in reviewed_medicines:
+    print(m)
+# Step 3: Lab extraction 
+# -----------------------------
 if doc_type == "LAB_REPORT":
     lab_results = extract_lab_results(lines)
 else:
@@ -64,7 +72,7 @@ for r in normalized_lab_results:
     print(r)
 
 # -----------------------------
-# Step 3: NER refinement (hybrid)
+# Step 4: NER refinement (hybrid)
 # -----------------------------
 ner = ner_entities(text)
 print("\nNER OUTPUT:\n", ner)
@@ -76,15 +84,15 @@ if ner["organizations"]:
         entities["hospital"] = ner_hospital
 
 # -----------------------------
-# Step 4: Dynamic Medicine Extraction
-# -----------------------------
-#medicines = extract_medicines(text)
-#print("\nMEDICINES:\n", medicines)
-
-# -----------------------------
 # Step 5: Clinical Summary
 # -----------------------------
-summary = generate_summary(entities, validated_prescriptions,normalized_lab_results)
+# Now summary uses RAW medicines, not validated ones
+summary = generate_summary(
+    entities,
+    reviewed_medicines,                  # raw extracted prescriptions
+    normalized_lab_results
+)
+
 print("\nCLINICAL SUMMARY:\n", summary)
 
 # -----------------------------

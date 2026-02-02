@@ -1,4 +1,4 @@
-def generate_summary(entities, validated_prescriptions=None, lab_results=None):
+def generate_summary(entities, prescriptions=None, lab_results=None):
     summary = []
 
     # ---- Patient identity ----
@@ -11,36 +11,34 @@ def generate_summary(entities, validated_prescriptions=None, lab_results=None):
     if "hospital" in entities:
         summary.append(f"treated at {entities['hospital']}.")
 
-    # ---- Medication summary (SAFETY-AWARE) ----
-    if validated_prescriptions:
-        safe_meds = []
-        warnings = []
+    # ---- Medication summary (RAW, USER-REVIEW MODE) ----
+    if prescriptions:
+        meds = []
 
-        for p in validated_prescriptions:
-            status = p.get("status")
+        for p in prescriptions:
+            drug = p.get("drug")
+            dose = p.get("dose")
+            freq = p.get("frequency")
 
-            if status == "ok":
-                safe_meds.append(p.get("drug_normalized"))
+            parts = []
 
-            elif status == "unsafe_ocr":
-                warnings.append(
-                    "A medication was detected, but the dosage appears unsafe and needs verification."
-                )
+            if drug:
+                parts.append(drug)
 
-            elif status in ("uncertain_drug", "unknown_drug"):
-                warnings.append(
-                    "A medication was detected, but it could not be confidently identified."
-                )
+            if dose:
+                parts.append(dose)
 
-        if safe_meds:
-            meds_text = ", ".join(set(safe_meds))
+            if freq:
+                parts.append(freq)
+
+            if parts:
+                meds.append(" ".join(parts))
+
+        if meds:
+            meds_text = "; ".join(meds)
             summary.append(f"Prescribed medications include {meds_text}.")
 
-        # Show warnings LAST (very important)
-        if warnings:
-            summary.append(" ".join(set(warnings)))
-
-    # ---- Lab summary ----
+    # ---- Lab summary (unchanged) ----
     if lab_results:
         abnormal = []
         normal = []
