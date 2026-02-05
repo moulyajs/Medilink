@@ -9,7 +9,7 @@ from clinical_summary import generate_summary
 # -----------------------------
 # Step 1: OCR + Cleaning
 # -----------------------------
-image_path = "data/pdf2.pdf"
+image_path = "data/sample1.jpg"
 
 text, top_lines, doc_type = ocr_process(image_path)
 

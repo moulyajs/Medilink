@@ -6,9 +6,15 @@ ocr = PaddleOCR(
 )
 
 def run_ocr(image_path):
-    result = ocr.predict(image_path)
+    result = ocr.ocr(image_path, cls=False)
 
-    texts = result[0]["rec_texts"]
-    scores = result[0]["rec_scores"]
+    texts = []
+    scores = []
+
+    for line in result[0]:
+        text = line[1][0]
+        score = line[1][1]
+        texts.append(text)
+        scores.append(score)
 
     return texts, scores
