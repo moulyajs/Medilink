@@ -1,60 +1,112 @@
 # scripts/app.py
 
 from ocr_pipeline import ocr_process
-from entity_extraction import extract_entities
-from ner_extraction import ner_entities
+from demographics_extraction import extract_demographics
 from medicine_extraction import extract_medicines
+from lab_extraction import extract_lab_results
+from lab_normalizer import normalize_lab_results
+from user_review import review_prescriptions
+from ner_extraction import ner_entities
 from clinical_summary import generate_summary
 
 # -----------------------------
-# Step 1: OCR + Cleaning
+# Step 0: Input File
 # -----------------------------
-image_path = "data/sample1.jpg"
-
-text, top_lines, doc_type = ocr_process(image_path)
-
-print("DOCUMENT TYPE:", doc_type)
-print("\nCLEANED TEXT:\n", text)
-
-# 🚨 STOP EARLY FOR LAB REPORTS
-if doc_type == "lab_report":
-    print("\nLAB REPORT DETECTED")
-    print("SUMMARY: Laboratory investigation report. No medications prescribed.")
-    print("FINAL ENTITIES: {}")
-    exit()
+file_path = "data/max_lab_report.pdf"  # Supports .jpg, .png, .pdf
+lines, top_lines, doc_type = ocr_process(file_path)
+print("DEBUG → doc_type =", doc_type)
 
 # -----------------------------
-# Step 2: Rule-based extraction
+# Step 1: OCR Output
 # -----------------------------
-entities = extract_entities(text, top_lines)
-print("\nRULE-BASED ENTITIES:\n", entities)
+print("\n=== OCR STRUCTURED LINES ===")
+for l in lines:
+    print(f"[Line {l['line_no']}] {l['text']}")
+
+print("\n=== TOP 5 LINES ===")
+for l in top_lines:
+    print(l)
+
+print("\n=== DOCUMENT TYPE DETECTED ===")
+print(doc_type)
 
 # -----------------------------
-# Step 3: NER refinement (SAFE HYBRID)
+# Step 2: Demographics Extraction
 # -----------------------------
-ner = ner_entities(text)
-print("\nNER OUTPUT:\n", ner)
+entities = extract_demographics(lines, doc_type)
+print("\n=== DEMOGRAPHICS ===")
+print(entities)
 
-# ✅ DO NOT override rule-based hospital
-if "hospital" not in entities and ner["organizations"]:
+# -----------------------------
+# Step 3: Prescription / Medicines Extraction
+# -----------------------------
+if doc_type.lower() == "prescription":
+    medicines = extract_medicines(lines)
+else:
+    medicines = []
+
+print("\n=== PRESCRIPTIONS (RAW EXTRACTION) ===")
+for m in medicines:
+    print(m)
+
+# -----------------------------
+# Step 4: Human-in-the-loop Review
+# -----------------------------
+reviewed_medicines = review_prescriptions(medicines)
+print("\n=== PRESCRIPTIONS (AFTER USER REVIEW) ===")
+for m in reviewed_medicines:
+    print(m)
+
+# -----------------------------
+# Step 5: Lab Extraction & Normalization
+# -----------------------------
+lab_results = []
+
+if doc_type.lower() == "lab_report":
+    # Extract numeric lab results
+    lab_results = extract_lab_results(lines)
+elif doc_type.lower() == "prescription":
+    lab_results = []  # no lab extraction from prescription
+
+
+print("\n=== LAB RESULTS (RAW) ===")
+for r in lab_results:
+    print(r)
+
+# Normalize lab values if numeric
+normalized_lab_results = normalize_lab_results(lab_results) if lab_results else []
+print("\n=== NORMALIZED LAB RESULTS (CLINICAL FACTS) ===")
+for r in normalized_lab_results:
+    print(r)
+
+# -----------------------------
+# Step 6: NER Refinement (Hybrid)
+# -----------------------------
+full_text = " ".join([l["text"] for l in lines])
+ner = ner_entities(full_text)
+print("\n=== NER OUTPUT ===")
+print(ner)
+
+# Add hospital info if missing
+if "hospital" not in entities and ner.get("organizations"):
     for org in ner["organizations"]:
-        if "hospital" in org.lower() or "clinic" in org.lower() or "medical" in org.lower():
+        if any(x in org.lower() for x in ["hospital", "clinic", "medical"]):
             entities["hospital"] = org
             break
 
 # -----------------------------
-# Step 4: Medicine Extraction (Prescription only)
+# Step 7: Clinical Summary
 # -----------------------------
-medicines = extract_medicines(text)
-print("\nMEDICINES:\n", medicines)
+summary = generate_summary(
+    entities,
+    reviewed_medicines,
+    normalized_lab_results
+)
+print("\n=== CLINICAL SUMMARY ===")
+print(summary)
 
 # -----------------------------
-# Step 5: Clinical Summary
+# Step 8: Final Entities
 # -----------------------------
-summary = generate_summary(entities, medicines)
-print("\nCLINICAL SUMMARY:\n", summary)
-
-# -----------------------------
-# Step 6: Final Entities
-# -----------------------------
-print("\nFINAL ENTITIES:\n", entities)
+print("\n=== FINAL ENTITIES ===")
+print(entities)

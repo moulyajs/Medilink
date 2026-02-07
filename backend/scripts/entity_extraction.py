@@ -1,3 +1,4 @@
+#entity_extraction.py
 import re
 
 def extract_entities(text, top_lines):
@@ -16,7 +17,7 @@ def extract_entities(text, top_lines):
     )
     if age_gender:
         data["age"] = age_gender.group(1)
-        data["gender"] = age_gender.group(2)
+        data["gender"] = age_gender.group(2) 
 
     # -------- Patient ID --------
     pid = re.search(
