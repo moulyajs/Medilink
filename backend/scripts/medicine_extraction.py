@@ -1,48 +1,46 @@
 # medicine_extraction.py
+
 import re
 
-def extract_medicines(ocr_lines):
-    """
-    Extract medicines from OCR lines of prescription documents.
-    Returns a list of dicts: {"drug": ..., "dose": ..., "frequency": ...}
-    """
-    medicine_list = []
+DOSAGE_PATTERN = re.compile(
+    r"(?P<drug>(tablet|tab|capsule|cap|syrup)?\s*[A-Za-z][A-Za-z\s\+\-]{2,})"
+    r"\s+(?P<dose>\d+(\.\d+)?\s*(mg|ml|mcg|g|iu))",
+    re.IGNORECASE
+)
 
-    # Combine all lines into one text
-    text = " ".join([l["text"] for l in ocr_lines])
+BLACKLIST = [
+    "hospital", "clinic", "address", "phone", "doctor",
+    "registration", "patient", "date", "age", "gender",
+    "diagnosis", "investigation", "advice", "instruction",
+    "warning", "follow", "signature"
+]
 
-    # Indicators for medicines
-    indicators = ["Inj.", "Tab.", "Cap.", "Syp.", "Tablet", "Syrup", "Cough Syrup"]
-    pattern_split = "(" + "|".join(re.escape(ind) for ind in indicators) + ")"
-    chunks = re.split(pattern_split, text)
 
-    for i in range(1, len(chunks), 2):
-        chunk = chunks[i] + " " + chunks[i+1] if i+1 < len(chunks) else chunks[i]
-        chunk = re.sub(r"\s+", " ", chunk.strip())
+def extract_medicines(lines):
+    medicines = []
 
-        # Remove admin text
-        chunk = re.split(r"\b(Dr\.|Hospital|Tel|www|Managed|UHID|IP No|Address|Date)\b", chunk, flags=re.I)[0]
+    for line in lines:
+        text = line["text"].strip()
 
-        # Dosage
-        dosage_match = re.search(r"\d+\s*(mg|g|ml|IU)", chunk, re.I)
-        dosage = dosage_match.group(0) if dosage_match else ""
+        lower = text.lower()
+        if any(b in lower for b in BLACKLIST):
+            continue
 
-        # Frequency
-        freq_match = re.search(r"(?:b?vials?/day|/day|OD|BD|TDS|once daily|twice daily|three times daily|night)", chunk, re.I)
-        frequency = freq_match.group(0) if freq_match else ""
+        match = DOSAGE_PATTERN.search(text)
+        if not match:
+            continue
 
-        # Medicine name
-        name_match = re.search(r"(Tablet|Tab\.|Capsule|Cap\.|Injection|Inj\.|Syrup|Syp\.|Cough Syrup)\s+([A-Za-z][A-Za-z\s\+\-]{3,})", chunk, re.I)
+        drug = match.group("drug")
+        dose = match.group("dose")
 
-        if name_match:
-            name = name_match.group(2)
-            name = re.sub(r"\b(song|dose|daily)\b", "", name, flags=re.I)
-            name = re.sub(r"\s+", " ", name).strip()
+        # Clean drug name
+        drug = re.sub(r"^(tablet|tab|capsule|cap|syrup)\s*", "", drug, flags=re.I)
+        drug = re.sub(r"\s+", " ", drug).strip().title()
 
-            medicine_list.append({
-                "drug": name,
-                "dose": dosage,
-                "frequency": frequency
-            })
+        medicines.append({
+            "drug": drug,
+            "dose": dose,
+            "frequency": None
+        })
 
-    return medicine_list
+    return medicines

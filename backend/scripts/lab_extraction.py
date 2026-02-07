@@ -1,125 +1,82 @@
-# lab_extraction.py
+# scripts/lab_extraction.py
 import re
 
-UNIT_REGEX = r"(mg/dl|g/dl|iu/l|u/l|mmol/l|mill/cumm|cumm|%|ng/ml|pg/ml)"
+UNIT_REGEX = r"(mg/dl|g/dl|mmol/l|iu/l|u/l|%|ng/ml|pg/ml)"
+HEADER_WORDS = {
+    "test", "result", "unit", "units",
+    "normal", "normal values", "reference"
+}
 
-def normalize_text(t):
-    t = t.lower()
-    t = t.replace(" ", "")
-    t = t.replace("di", "dl")
-    t = t.replace("d1", "dl")
-    t = t.replace("mg/di", "mg/dl")
-    t = t.replace("mg/d1", "mg/dl")
+def clean_unit(text):
+    t = text.lower().replace(" ", "")
+    t = t.replace("di", "dl").replace("d1", "dl")
     return t
 
+def is_junk(text):
+    t = text.lower()
+    return any(x in t for x in [
+        "www", "http", "email", "phone", "technician",
+        "report", "end of report", "sample", "lab"
+    ])
 
-def looks_like_test_name(text):
-    t = text.strip()
-    t_low = t.lower()
-
-    # ❌ URLs, emails, phones
-    if re.search(r"(www\.|http|\.com|@|\+91|\d{3}[- ]\d{3})", t_low):
-        return False
-
-    # ❌ units only
-    if re.fullmatch(r"(mg|g|iu|mmol|dl|ml|%)\s*/?\s*(dl|l)?", t_low):
-        return False
-
-    # ❌ reference / explanatory text
-    if re.search(r"(upto|normal|low|high|moderate|risk|factor)", t_low):
-        return False
-
-    # ❌ admin / footer junk
-    if any(w in t_low for w in [
-        "lab", "technician", "doctor", "mbbs", "md",
-        "email", "mobile", "phone", "address",
-        "india", "pvt", "ltd", "software"
-    ]):
-        return False
-
-    # ❌ table headers
-    if t_low in {"test", "result", "unit", "units", "normal values"}:
-        return False
-
-    # must contain alphabets
-    if not re.search(r"[a-zA-Z]", t):
-        return False
-
-    # overly long junk lines
-    if len(t) > 40:
-        return False
-
-    return True
-
-
-def extract_lab_results(ocr_lines):
+def extract_lab_results(lines):
     results = []
-    used_indices = set()
+    in_table = False
 
-    for i in range(len(ocr_lines)):
-        if i in used_indices:
+    i = 0
+    while i < len(lines):
+        text = lines[i]["text"].strip()
+
+        # Enter table
+        if any(h in text.lower() for h in HEADER_WORDS):
+            in_table = True
+            i += 1
             continue
 
-        text = ocr_lines[i]["text"].strip()
-
-        if not looks_like_test_name(text):
+        if not in_table or is_junk(text):
+            i += 1
             continue
 
-        # 🔍 find numeric value near the test
-        value = None
-        value_line = None
-
-        for j in range(i + 1, min(i + 6, len(ocr_lines))):
-            candidate = ocr_lines[j]["text"]
-            m = re.search(r"(<|>)?\s*\d+(\.\d+)?", candidate)
-            if m:
-                value = m.group().strip()
-                value_line = j
-                break
-
-        # ❌ no value → skip
-        if not value:
+        # ---- Test name ----
+        if not re.fullmatch(r"[A-Za-z][A-Za-z\s\/\-\(\)]{3,40}", text):
+            i += 1
             continue
 
-        # ❌ skip reference-only values like <130
-        if value.startswith("<") or value.startswith(">"):
-            continue
+        test = text
+        value = unit = ref = None
 
-        unit = None
-        ref_range = None
-        flag = None
+        # Look ahead safely
+        for j in range(i + 1, min(i + 6, len(lines))):
+            nxt = lines[j]["text"]
 
-        for k in range(value_line + 1, min(value_line + 7, len(ocr_lines))):
-            follow = ocr_lines[k]["text"]
-            norm = normalize_text(follow)
+            if value is None:
+                m = re.search(r"(<|>)?\s*\d+(\.\d+)?", nxt)
+                if m:
+                    value = m.group().strip()
+                    continue
 
-            # unit (skip ratios like LDL/HDL)
-            if unit is None and "/" not in text:
-                u = re.search(UNIT_REGEX, norm)
+            if unit is None:
+                u = re.search(UNIT_REGEX, clean_unit(nxt))
                 if u:
                     unit = u.group(1)
 
-            # reference range
-            if ref_range is None:
-                r1 = re.search(r"\d+(\.\d+)?\s*-\s*\d+(\.\d+)?", follow)
-                r2 = re.search(r"(upto|<|>)\s*\d+(\.\d+)?", follow, re.I)
+            if ref is None:
+                r1 = re.search(r"\d+(\.\d+)?\s*-\s*\d+(\.\d+)?", nxt)
+                r2 = re.search(r"(upto|<|>)\s*\d+(\.\d+)?", nxt, re.I)
                 if r1:
-                    ref_range = r1.group()
+                    ref = r1.group()
                 elif r2:
-                    ref_range = r2.group()
+                    ref = r2.group()
 
-            # abnormal flag
-            if any(w in follow.lower() for w in ["high", "low", "borderline"]):
-                flag = follow.strip()
+        if value:
+            results.append({
+                "test": test,
+                "value": value,
+                "unit": unit,
+                "reference_range": ref,
+                "flag": None
+            })
 
-        results.append({
-            "test": text,
-            "value": value,
-            "unit": unit,
-            "reference_range": ref_range,
-            "flag": flag
-        })
-
-        used_indices.update(range(i, value_line + 1))
+        i += 1
 
     return results
