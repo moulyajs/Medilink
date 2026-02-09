@@ -1,81 +1,123 @@
-# scripts/lab_extraction.py
+#lab_extraction.py
+#lab_extraction.py
+# lab_extraction.py
 import re
 
-UNIT_REGEX = r"(mg/dl|g/dl|mmol/l|iu/l|u/l|%|ng/ml|pg/ml)"
-HEADER_WORDS = {
-    "test", "result", "unit", "units",
-    "normal", "normal values", "reference"
+
+NUMBER = re.compile(r"^\d+(\.\d+)?$")
+RANGE = re.compile(r"^(\d+(\.\d+)?)\s*[-–]\s*(\d+(\.\d+)?)$")
+LT = re.compile(r"^<\s*(\d+(\.\d+)?)$")
+UNIT = re.compile(
+    r"(g/dl|mg/dl|mmol/l|ng/ml|%|/cmm|iu/l|u/l|pg|fl)",
+    re.I
+)
+
+# words that should NEVER appear in test names
+BAD_WORDS = {
+    "process", "method", "calculated", "derived",
+    "impedance", "colorimetric", "chemiluminescence",
+    "electrical", "binding", "reaction",
+    "page", "report", "final", "status",
+    "laboratory", "pathology", "immunoassay",
+    "test", "unit", "result", "range", "interval",
+    "serum", "plasma", "blood", "urine"
 }
 
-def clean_unit(text):
-    t = text.lower().replace(" ", "")
-    t = t.replace("di", "dl").replace("d1", "dl")
-    return t
+# words that SHOULD appear in real tests
+GOOD_HINTS = {
+    "hemoglobin", "rbc", "wbc", "platelet",
+    "neutrophil", "lymphocyte", "monocyte", "eosinophil",
+    "bilirubin", "sgpt", "sgot", "alt", "ast",
+    "urea", "creatinine", "uric", "calcium",
+    "cholesterol", "hdl", "ldl", "vldl",
+    "triglyceride", "protein", "albumin", "globulin",
+    "tsh", "thyroid", "vitamin", "iron", "ferritin",
+    "glucose", "hba1c", "microalbumin", "psa"
+}
 
-def is_junk(text):
-    t = text.lower()
-    return any(x in t for x in [
-        "www", "http", "email", "phone", "technician",
-        "report", "end of report", "sample", "lab"
-    ])
+
+def clean(t):
+    return re.sub(r"\s+", " ", t).strip()
+
+
+def looks_like_real_test(name):
+    lname = name.lower()
+
+    # block bad words anywhere
+    for b in BAD_WORDS:
+        if b in lname:
+            return False
+
+    # must contain at least one medical hint
+    return any(h in lname for h in GOOD_HINTS)
+
+
+def reference_is_reasonable(value, ref):
+    if not ref:
+        return True
+
+    try:
+        val = float(value)
+    except:
+        return False
+
+    m = RANGE.match(ref)
+    if m:
+        low, high = float(m.group(1)), float(m.group(3))
+
+        # % reference but absolute value
+        if high <= 100 and val > 500:
+            return False
+
+    return True
+
 
 def extract_lab_results(lines):
+
+    tokens = [clean(l["text"]) for l in lines]
     results = []
-    in_table = False
 
     i = 0
-    while i < len(lines):
-        text = lines[i]["text"].strip()
+    n = len(tokens)
 
-        # Enter table
-        if any(h in text.lower() for h in HEADER_WORDS):
-            in_table = True
-            i += 1
-            continue
+    while i < n:
 
-        if not in_table or is_junk(text):
-            i += 1
-            continue
+        t = tokens[i]
 
-        # ---- Test name ----
-        if not re.fullmatch(r"[A-Za-z][A-Za-z\s\/\-\(\)]{3,40}", text):
-            i += 1
-            continue
+        # candidate test name
+        if (
+            len(t) >= 4
+            and re.match(r"^[A-Za-z][A-Za-z ()/-]+$", t)
+            and looks_like_real_test(t)
+        ):
 
-        test = text
-        value = unit = ref = None
+            test = t
+            value = None
+            unit = None
+            ref = None
 
-        # Look ahead safely
-        for j in range(i + 1, min(i + 6, len(lines))):
-            nxt = lines[j]["text"]
+            for j in range(i + 1, min(i + 8, n)):
+                w = tokens[j]
 
-            if value is None:
-                m = re.search(r"(<|>)?\s*\d+(\.\d+)?", nxt)
-                if m:
-                    value = m.group().strip()
+                if not value and NUMBER.match(w):
+                    value = w
                     continue
 
-            if unit is None:
-                u = re.search(UNIT_REGEX, clean_unit(nxt))
-                if u:
-                    unit = u.group(1)
+                if not unit and UNIT.search(w):
+                    unit = w
+                    continue
 
-            if ref is None:
-                r1 = re.search(r"\d+(\.\d+)?\s*-\s*\d+(\.\d+)?", nxt)
-                r2 = re.search(r"(upto|<|>)\s*\d+(\.\d+)?", nxt, re.I)
-                if r1:
-                    ref = r1.group()
-                elif r2:
-                    ref = r2.group()
+                if not ref and (RANGE.match(w) or LT.match(w)):
+                    ref = w
+                    continue
 
-        if value:
-            results.append({
-                "test": test,
-                "value": value,
-                "unit": unit,
-                "reference_range": ref,
-                "flag": None
-            })
+            if value and reference_is_reasonable(value, ref):
+                results.append({
+                    "test": test,
+                    "value": float(value),
+                    "unit": unit,
+                    "reference_range": ref
+                })
 
         i += 1
 

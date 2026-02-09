@@ -1,48 +1,55 @@
 # clinical_summary.py
+# clinical_summary.py
+# scripts/clinical_summary.py
+from phi3_summarizer import generate_phi3_summary
+
 
 def generate_summary(demographics, medicines, labs, clinical_facts):
-    parts = []
+    """
+    Generate a grounded clinical summary using Phi-3.
+    """
 
-    age = demographics.get("age")
-    gender = demographics.get("gender")
+    patient_block = {
+        "Name": demographics.get("patient_name", "Unknown"),
+        "Age": demographics.get("age", "Unknown"),
+        "Gender": demographics.get("gender", "Unknown"),
+        "Hospital": demographics.get("hospital", "Unknown")
+    }
 
-    if age and gender:
-        parts.append(f"Patient is a {age}-year-old {gender}.")
-    else:
-        parts.append("Patient details were not fully available.")
-
-    # Symptoms
-    symptoms = clinical_facts.get("symptoms", [])
-    clean_symptoms = [
-        s for s in symptoms
-        if len(s) < 80 and not s.lower().startswith(("report", "follow", "investigation"))
+    meds_block = [
+        f"{m.get('drug')} | Dose: {m.get('dose','N/A')} | Frequency: {m.get('frequency','N/A')}"
+        for m in medicines
     ]
 
-    if clean_symptoms:
-        parts.append(
-            "Reported symptoms include " +
-            ", ".join({s.lstrip('- ').strip() for s in clean_symptoms}) + "."
-        )
+    abnormal_labs = [
+        f"{l.get('test')} = {l.get('value')} {l.get('unit','')} (Ref: {l.get('reference_range','N/A')})"
+        for l in labs
+        if l.get("abnormal") or l.get("status") in ("High", "Low")
+    ]
 
-    # Diagnosis
-    diagnoses = clinical_facts.get("diagnoses", [])
-    if diagnoses:
-        parts.append("Provisional diagnosis is " + "; ".join(diagnoses) + ".")
+    facts_block = clinical_facts.get("abnormal_findings", [])
 
-    # Medicines
-    if medicines:
-        meds = []
-        for m in medicines:
-            meds.append(f"{m['drug']} ({m['dose']})")
-        parts.append("Prescribed medications include " + ", ".join(meds) + ".")
+    prompt = f"""
+You are a clinical documentation assistant.
 
-    # Labs
-    if labs:
-        abnormal = [l for l in labs if l.get("flag") == "abnormal"]
-        if abnormal:
-            parts.append("Some laboratory values were abnormal and require follow-up.")
+Write a clear, factual, patient-safe clinical summary using ONLY the data provided below.
+DO NOT invent diseases, symptoms, or diagnoses.
+If information is missing, state it as unavailable.
 
-    if not medicines and not diagnoses:
-        parts.append("Clinical correlation and follow-up are advised.")
+PATIENT DETAILS:
+{patient_block}
 
-    return " ".join(parts)
+PRESCRIBED MEDICINES:
+{meds_block if meds_block else "None"}
+
+ABNORMAL LAB RESULTS:
+{abnormal_labs if abnormal_labs else "None"}
+
+CLINICAL FACTS:
+{facts_block if facts_block else "None"}
+
+Write the summary in 5–7 sentences.
+Avoid speculative language.
+"""
+
+    return generate_phi3_summary(prompt)

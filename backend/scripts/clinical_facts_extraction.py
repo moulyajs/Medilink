@@ -1,49 +1,50 @@
 # scripts/clinical_facts_extraction.py
 import re
 
-DIAGNOSIS_KEYWORDS = [
-    "syndrome", "disease", "arthritis", "lupus", "anemia",
-    "leukopenia", "lymphoma", "sjogren", "sle"
+ABNORMAL_MARKERS = [
+    "high", "low", "positive", "negative", "reactive", "non reactive", "abnormal"
 ]
 
-SYMPTOM_KEYWORDS = [
-    "pain", "weakness", "fatigue", "headache", "nausea",
-    "vomiting", "weight loss", "night sweats", "fever",
-    "dry mouth", "dry eye", "lightheadedness"
+IGNORE_PHRASES = [
+    "reference", "range", "interpretation",
+    "associated with", "may be", "can be",
+    "recommended", "should be", "used to",
+    "patients with", "studies suggest",
+    "evaluation of", "treatment of"
 ]
 
-ABNORMAL_KEYWORDS = [
-    "decreased", "elevated", "low", "high", "positive", "negative"
-]
+
+def is_patient_specific(line):
+    """
+    Filters out textbook explanations and lab methodology text.
+    """
+    if len(line) > 120:
+        return False
+
+    l = line.lower()
+
+    if any(p in l for p in IGNORE_PHRASES):
+        return False
+
+    # must contain a number OR explicit result
+    return bool(re.search(r"\d", l) or any(k in l for k in ABNORMAL_MARKERS))
+
 
 def extract_clinical_facts(text):
-    text_lower = text.lower()
-    lines = text.split("\n")
+    lines = [l.strip() for l in text.split("\n") if l.strip()]
 
-    diagnoses = set()
-    symptoms = set()
-    abnormalities = set()
+    abnormal_findings = set()
 
     for line in lines:
         l = line.lower()
 
-        # ---- Diagnoses ----
-        for d in DIAGNOSIS_KEYWORDS:
-            if d in l:
-                diagnoses.add(line.strip())
-
-        # ---- Symptoms ----
-        for s in SYMPTOM_KEYWORDS:
-            if s in l:
-                symptoms.add(line.strip())
-
-        # ---- Abnormal findings ----
-        if any(k in l for k in ABNORMAL_KEYWORDS):
-            if re.search(r"\d", l):
-                abnormalities.add(line.strip())
+        if any(k in l for k in ABNORMAL_MARKERS):
+            if is_patient_specific(line):
+                abnormal_findings.add(line)
 
     return {
-        "diagnoses": list(diagnoses),
-        "symptoms": list(symptoms),
-        "abnormal_findings": list(abnormalities)
+        # lab reports should NOT infer diagnoses or symptoms
+        "diagnoses": [],
+        "symptoms": [],
+        "abnormal_findings": sorted(abnormal_findings)
     }

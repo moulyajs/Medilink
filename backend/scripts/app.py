@@ -1,6 +1,9 @@
 # scripts/app.py
+# scripts/app.py
 
 from ocr_pipeline import ocr_process
+from visit_grouper import group_by_date
+
 from demographics_extraction import extract_demographics
 from medicine_extraction import extract_medicines
 from lab_extraction import extract_lab_results
@@ -9,114 +12,153 @@ from user_review import review_prescriptions
 from ner_extraction import ner_entities
 from clinical_summary import generate_summary
 from clinical_facts_extraction import extract_clinical_facts
+from ecg_extraction import extract_ecg_findings
 
+def looks_like_ecg(lines):
+    text = " ".join(l["text"].lower() for l in lines)
+    ecg_keywords = [
+        "ecg", "hr", "bpm", "qrs", "qt", "tachycardia",
+        "bundle branch", "axis deviation", "st", "t wave"
+    ]
+    return sum(k in text for k in ecg_keywords) >= 3
 
 # -----------------------------
 # Step 0: Input File
 # -----------------------------
-file_path = "data/labrec.png"
-lines, top_lines, doc_type = ocr_process(file_path)
-print("DEBUG → doc_type =", doc_type)
+file_path = "data/sterling_labReport.pdf"
 
-# 🔥 Robust fallback for handwritten prescriptions
-if doc_type.lower() == "unknown":
-    doc_type = "prescription"
-    print("⚠️ doc_type overridden to PRESCRIPTION (handwritten fallback)")
+pages = ocr_process(file_path)
+visits = group_by_date(pages)
 
-
-# -----------------------------
-# Step 1: OCR Output
-# -----------------------------
-print("\n=== OCR STRUCTURED LINES ===")
-for l in lines:
-    print(f"[Line {l['line_no']}] {l['text']}")
+print(f"\nTOTAL PAGES: {len(pages)}")
+print(f"TOTAL VISITS DETECTED: {len(visits)}")
 
 
 # -----------------------------
-# Step 2: Demographics
+# Step 1: Process VISIT-WISE
 # -----------------------------
-entities = extract_demographics(lines, doc_type)
-print("\n=== DEMOGRAPHICS ===")
-print(entities)
+for visit_date, visit_pages in visits.items():
 
-patient_name = entities.get("patient_name", "").lower()
-doctor_name = entities.get("doctor_name", "").lower()
+    print("\n" + "=" * 60)
+    print(f"VISIT DATE: {visit_date}")
+    print("=" * 60)
 
+    # ---------------------------------
+    # Combine lines for this visit
+    # ---------------------------------
+    visit_lines = []
+    doc_types = set()
 
-# -----------------------------
-# Step 3: Medicines (FINAL SAFE MODE)
-# -----------------------------
-medicines = extract_medicines(lines)
+    for p in visit_pages:
+        visit_lines.extend(p["lines"])
+        doc_types.add(p["doc_type"])
 
-# 🚫 FINAL HARD FILTER — NEVER allow human names as drugs
-filtered_medicines = []
-for m in medicines:
-    drug_lower = m["drug"].lower()
+    # ---------------------------------
+    # OCR DEBUG
+    # ---------------------------------
+    print("\n=== OCR STRUCTURED LINES ===")
+    for l in visit_lines:
+        print(f"[Line {l['line_no']}] {l['text']}")
 
-    if patient_name and patient_name in drug_lower:
-        continue
-    if doctor_name and doctor_name in drug_lower:
-        continue
+    # ---------------------------------
+    # Step 2: Demographics
+    # ---------------------------------
+    primary_doc_type = "lab_report" if "lab_report" in doc_types else list(doc_types)[0]
 
-    filtered_medicines.append(m)
+    entities = extract_demographics(visit_lines, primary_doc_type)
 
-print("\n=== PRESCRIPTIONS (RAW) ===")
-for m in filtered_medicines:
-    print(m)
+    print("\n=== DEMOGRAPHICS ===")
+    print(entities)
 
-reviewed_medicines = review_prescriptions(filtered_medicines)
+    patient_name = entities.get("patient_name", "").lower()
+    doctor_name = entities.get("doctor_name", "").lower()
 
-print("\n=== PRESCRIPTIONS (AFTER REVIEW) ===")
-for m in reviewed_medicines:
-    print(m)
+    # ---------------------------------
+    # Step 3: Medicines (VISIT SAFE)
+    # ---------------------------------
+    medicines = []
+    if "prescription" in doc_types:
+        medicines = extract_medicines(visit_lines)
 
+        # 🚫 HARD FILTER: human names ≠ drugs
+        filtered_medicines = []
+        for m in medicines:
+            drug_lower = m["drug"].lower()
+            if patient_name and patient_name in drug_lower:
+                continue
+            if doctor_name and doctor_name in drug_lower:
+                continue
+            filtered_medicines.append(m)
 
-# -----------------------------
-# Step 4: Lab Extraction
-# -----------------------------
-lab_results = extract_lab_results(lines) if doc_type == "lab_report" else []
+        medicines = review_prescriptions(filtered_medicines)
 
-print("\n=== LAB RESULTS (RAW) ===")
-for r in lab_results:
-    print(r)
+    print("\n=== PRESCRIPTIONS ===")
+    for m in medicines:
+        print(m)
 
-normalized_lab_results = normalize_lab_results(lab_results) if lab_results else []
+    # ---------------------------------
+    # Step 4: Lab Extraction (VISIT SAFE)
+    # ---------------------------------
+    labs = []
+    if "lab_report" in doc_types:
+        raw_labs = extract_lab_results(visit_lines)
+        labs = normalize_lab_results(raw_labs)
 
+    print("\n=== LAB RESULTS ===")
+    for l in labs:
+        print(l)
 
-# -----------------------------
-# Step 5: Clinical Facts
-# -----------------------------
-full_text = "\n".join(l["text"] for l in lines)
-clinical_facts = extract_clinical_facts(full_text)
+    abnormal_labs = [l for l in labs if l.get("abnormal", False)]
 
-print("\n=== CLINICAL FACTS ===")
-print(clinical_facts)
+    print("\n=== ABNORMAL LABS ===")
+    for l in abnormal_labs:
+        print(l)
 
+    # ---------------------------------
+    # Step 4B: ECG Extraction (VISIT SAFE)
+    # ---------------------------------
+    ecg = None
+    if looks_like_ecg(visit_lines):
+        ecg = extract_ecg_findings(visit_lines)
 
-# -----------------------------
-# Step 6: NER
-# -----------------------------
-ner = ner_entities(full_text)
-print("\n=== NER OUTPUT ===")
-print(ner)
+    print("\n=== ECG FINDINGS ===")
+    if ecg:
+        print(ecg)
+    else:
+        print("No ECG data detected")
 
+    # ---------------------------------
+    # Step 5: Clinical Facts
+    # ---------------------------------
+    full_text = "\n".join(l["text"] for l in visit_lines)
+    clinical_facts = extract_clinical_facts(full_text)
 
-# -----------------------------
-# Step 7: Clinical Summary
-# -----------------------------
-summary = generate_summary(
-    entities,
-    reviewed_medicines,
-    normalized_lab_results,
-    clinical_facts
-)
+    print("\n=== CLINICAL FACTS ===")
+    print(clinical_facts)
 
-print("\n=== CLINICAL SUMMARY ===")
-print(summary)
+    # ---------------------------------
+    # Step 6: NER
+    # ---------------------------------
+    # ner = ner_entities(full_text)
 
+    # print("\n=== NER OUTPUT ===")
+    # print(ner)
 
-# -----------------------------
-# Step 8: Final Entities
-# -----------------------------
-print("\n=== FINAL ENTITIES ===")
-print(entities)
+    # ---------------------------------
+    # Step 7: Summary (VISIT-WISE)
+    # ---------------------------------
+    # summary = generate_summary(
+    #     demographics=entities,
+    #     medicines=medicines,
+    #     labs=labs,
+    #     clinical_facts=clinical_facts
+    # )
+
+    # print("\n=== CLINICAL SUMMARY ===")
+    # print(summary)
+
+    # ---------------------------------
+    # Step 8: Final Entities
+    # ---------------------------------
+    print("\n=== FINAL ENTITIES ===")
+    print(entities)
