@@ -1,117 +1,95 @@
-import re
+# lab_extraction.py
 
-def extract_lab_results(ocr_lines):
-    results = []
-    i = 0
-    in_lab_section = False
+from semantic_parser import parse_row
+from learning_memory import log_failed
 
-    lab_section_headers = [
+
+def extract_result_section(lines):
+
+    start_keywords = [
         "investigation",
         "result",
         "reference",
-        "reference value",
-        "unit"
+        "complete blood count",
+        "cbc"
     ]
 
-    lab_section_ends = [
+    end_keywords = [
+        "instrument",
         "interpretation",
         "end of report",
-        "verified by",
-        "signed by",
         "thanks",
-        "generated on",
-        "page"
+        "method"
     ]
 
-    while i < len(ocr_lines):
-        text = ocr_lines[i]["text"].strip()
-        text_lower = text.lower()
+    start = None
+    end = None
 
-        # --- ENTER / EXIT LAB SECTION ---
-        if any(h in text_lower for h in lab_section_headers):
-            in_lab_section = True
-            i += 1
-            continue
+    for i, l in enumerate(lines):
 
-        if any(e in text_lower for e in lab_section_ends):
-            in_lab_section = False
-            i += 1
-            continue
+        text = l["text"].lower()
 
-        if not in_lab_section:
-            i += 1
-            continue
-
-        # --- SKIP KNOWN NON-TEST LINES ---
-        skip_contains = [
-            "count",
-            "indices",
-            "differential",
-            "sample type",
-            "blood"
-        ]
-
-        if any(s in text_lower for s in skip_contains):
-            i += 1
-            continue
-
-        # --- TEST NAME CANDIDATE ---
-        test_candidate = re.match(r"^[A-Za-z][A-Za-z\s\(\)\/\-]{3,}$", text)
-
-        if test_candidate:
-            test_name = text
-
-            # 🔑 CRITICAL CHECK:
-            # Next line MUST contain a numeric value
-            if i + 1 >= len(ocr_lines):
-                i += 1
+        if start is None:
+            if any(k in text for k in start_keywords):
+                start = i
                 continue
 
-            next_text = ocr_lines[i + 1]["text"]
+        if start is not None and end is None:
+            if any(k in text for k in end_keywords):
+                end = i
+                break
 
-            value_match = re.search(r"\b\d+(\.\d+)?\b", next_text)
-            if not value_match:
-                i += 1
-                continue
+    if start is None:
+        return lines
 
-            value = value_match.group()
-            unit = None
-            ref_range = None
-            flag = None
+    return lines[start:end]
 
-            # Look further for unit and reference range
-            for j in range(i + 2, min(i + 6, len(ocr_lines))):
-                follow_text = ocr_lines[j]["text"]
 
-                rng = re.search(
-                    r"(low|high|borderline)?\s*(\d+(\.\d+)?\s*-\s*\d+(\.\d+)?)",
-                    follow_text,
-                    re.I
-                )
-                if rng and ref_range is None:
-                    ref_range = rng.group(2)
-                    if rng.group(1):
-                        flag = rng.group(1).capitalize()
+def is_metadata(text):
 
-                u = re.search(
-                    r"(g\/dl|mg\/dl|mill\/cumm|cumm|%)",
-                    follow_text,
-                    re.I
-                )
-                if u and unit is None:
-                    unit = u.group(1)
+    bad = [
+        "drlogy", "pathology", "mumbai", "phone",
+        "page", "pm", "am", "years", "age", "sex",
+        "pid", "sample", "barcode", "mindray",
+        "instrument", "address", "road", "email"
+    ]
 
-            results.append({
-                "test": test_name,
-                "value": value,
-                "unit": unit,
-                "reference_range": ref_range,
-                "flag": flag
-            })
+    t = text.lower()
 
-            i += 4
+    return any(b in t for b in bad)
+
+
+def extract_lab_results(lines):
+
+    results = []
+
+    section = extract_result_section(lines)
+
+    for l in section:
+
+        text = l["text"]
+
+        if is_metadata(text):
             continue
 
-        i += 1
+        parsed = parse_row(text)
+
+        if not parsed:
+            log_failed(text)
+            continue
+
+        try:
+            value = float(parsed["value"])
+        except:
+            log_failed(text)
+            continue
+
+        results.append({
+            "test": parsed["test"],
+            "value": value,
+            "unit": parsed.get("unit"),
+            "reference_range": parsed.get("range"),
+            "raw_text": text
+        })
 
     return results

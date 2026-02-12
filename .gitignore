@@ -22,3 +22,6 @@ backend/data/*
 # OS files
 .DS_Store
 Thumbs.db
+
+# Ignore AI model files
+models/*.gguf
