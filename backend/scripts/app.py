@@ -1,6 +1,3 @@
-# scripts/app.py
-# scripts/app.py
-
 from ocr_pipeline import ocr_process
 from visit_grouper import group_by_date
 
@@ -9,43 +6,78 @@ from medicine_extraction import extract_medicines
 from lab_extraction import extract_lab_results
 from lab_normalizer import normalize_lab_results
 from user_review import review_prescriptions
-from ner_extraction import ner_entities
-from clinical_summary import generate_summary
 from clinical_facts_extraction import extract_clinical_facts
 from ecg_extraction import extract_ecg_findings
 
+# ✅ NEW: DICOM imports
+from dicom_viewer import load_dicom, show_dicom_image, extract_dicom_metadata
+
+
+# ---------------------------------
+# ECG detector
+# ---------------------------------
 def looks_like_ecg(lines):
     text = " ".join(l["text"].lower() for l in lines)
-    ecg_keywords = [
-        "ecg", "hr", "bpm", "qrs", "qt", "tachycardia",
-        "bundle branch", "axis deviation", "st", "t wave"
+    keywords = [
+        "ecg", "hr", "bpm", "qrs", "qt",
+        "tachycardia", "bundle branch",
+        "axis deviation", "st", "t wave"
     ]
-    return sum(k in text for k in ecg_keywords) >= 3
+    return sum(k in text for k in keywords) >= 3
 
-# -----------------------------
-# Step 0: Input File
-# -----------------------------
-file_path = "data/sterling_labReport.pdf"
 
-pages = ocr_process(file_path)
-visits = group_by_date(pages)
+# ---------------------------------
+# Step 0: INPUT
+# ---------------------------------
+file_path = "data/0002.dcm"
 
-print(f"\nTOTAL PAGES: {len(pages)}")
+is_pdf = file_path.lower().endswith(".pdf")
+is_dicom = file_path.lower().endswith(".dcm")
+
+
+# ---------------------------------
+# ✅ NEW: DICOM HANDLING
+# ---------------------------------
+if is_dicom:
+    print("\nINPUT TYPE: DICOM")
+
+    ds = load_dicom(file_path)
+
+    metadata = extract_dicom_metadata(ds)
+
+    print("\n=== DICOM METADATA ===")
+    print(metadata)
+
+    print("\nDisplaying DICOM image...")
+    show_dicom_image(ds)
+
+    # Stop further processing
+    exit()
+
+
+# ---------------------------------
+# Step 1: OCR (only for images)
+# ---------------------------------
+pages = []
+if not is_pdf:
+    pages = ocr_process(file_path)
+    visits = group_by_date(pages)
+else:
+    visits = {"PDF_VISIT": []}
+
+print(f"\nINPUT TYPE: {'PDF' if is_pdf else 'IMAGE'}")
 print(f"TOTAL VISITS DETECTED: {len(visits)}")
 
 
-# -----------------------------
-# Step 1: Process VISIT-WISE
-# -----------------------------
+# ---------------------------------
+# Step 2: VISIT-WISE PROCESSING
+# ---------------------------------
 for visit_date, visit_pages in visits.items():
 
     print("\n" + "=" * 60)
     print(f"VISIT DATE: {visit_date}")
     print("=" * 60)
 
-    # ---------------------------------
-    # Combine lines for this visit
-    # ---------------------------------
     visit_lines = []
     doc_types = set()
 
@@ -54,18 +86,16 @@ for visit_date, visit_pages in visits.items():
         doc_types.add(p["doc_type"])
 
     # ---------------------------------
-    # OCR DEBUG
+    # DEMOGRAPHICS (OCR based)
     # ---------------------------------
-    print("\n=== OCR STRUCTURED LINES ===")
-    for l in visit_lines:
-        print(f"[Line {l['line_no']}] {l['text']}")
-
-    # ---------------------------------
-    # Step 2: Demographics
-    # ---------------------------------
-    primary_doc_type = "lab_report" if "lab_report" in doc_types else list(doc_types)[0]
-
-    entities = extract_demographics(visit_lines, primary_doc_type)
+    entities = {}
+    if visit_lines:
+        primary_doc_type = (
+            "lab_report"
+            if "lab_report" in doc_types
+            else list(doc_types)[0]
+        )
+        entities = extract_demographics(visit_lines, primary_doc_type)
 
     print("\n=== DEMOGRAPHICS ===")
     print(entities)
@@ -74,91 +104,76 @@ for visit_date, visit_pages in visits.items():
     doctor_name = entities.get("doctor_name", "").lower()
 
     # ---------------------------------
-    # Step 3: Medicines (VISIT SAFE)
+    # PRESCRIPTIONS (IMAGE ONLY)
     # ---------------------------------
     medicines = []
     if "prescription" in doc_types:
         medicines = extract_medicines(visit_lines)
 
-        # 🚫 HARD FILTER: human names ≠ drugs
-        filtered_medicines = []
+        filtered = []
         for m in medicines:
-            drug_lower = m["drug"].lower()
-            if patient_name and patient_name in drug_lower:
+            drug = m["drug"].lower()
+            if patient_name and patient_name in drug:
                 continue
-            if doctor_name and doctor_name in drug_lower:
+            if doctor_name and doctor_name in drug:
                 continue
-            filtered_medicines.append(m)
+            filtered.append(m)
 
-        medicines = review_prescriptions(filtered_medicines)
+        medicines = review_prescriptions(filtered)
 
     print("\n=== PRESCRIPTIONS ===")
     for m in medicines:
         print(m)
 
     # ---------------------------------
-    # Step 4: Lab Extraction (VISIT SAFE)
+    # LAB EXTRACTION
     # ---------------------------------
     labs = []
-    if "lab_report" in doc_types:
-        raw_labs = extract_lab_results(visit_lines)
-        labs = normalize_lab_results(raw_labs)
+
+    if is_pdf:
+        raw_labs = extract_lab_results(file_path, source="pdf")
+    else:
+        if "lab_report" in doc_types:
+            raw_labs = extract_lab_results(visit_lines, source="image")
+        else:
+            raw_labs = []
+
+    labs = normalize_lab_results(raw_labs)
 
     print("\n=== LAB RESULTS ===")
     for l in labs:
         print(l)
 
-    abnormal_labs = [l for l in labs if l.get("abnormal", False)]
+    abnormal_labs = [l for l in labs if l.get("abnormal")]
 
     print("\n=== ABNORMAL LABS ===")
     for l in abnormal_labs:
         print(l)
 
     # ---------------------------------
-    # Step 4B: ECG Extraction (VISIT SAFE)
+    # ECG EXTRACTION (IMAGE ONLY)
     # ---------------------------------
     ecg = None
-    if looks_like_ecg(visit_lines):
+    if visit_lines and looks_like_ecg(visit_lines):
         ecg = extract_ecg_findings(visit_lines)
 
     print("\n=== ECG FINDINGS ===")
-    if ecg:
-        print(ecg)
-    else:
-        print("No ECG data detected")
+    print(ecg if ecg else "No ECG data detected")
 
     # ---------------------------------
-    # Step 5: Clinical Facts
+    # CLINICAL FACTS (OCR TEXT ONLY)
     # ---------------------------------
-    full_text = "\n".join(l["text"] for l in visit_lines)
-    clinical_facts = extract_clinical_facts(full_text)
+    if visit_lines:
+        full_text = "\n".join(l["text"] for l in visit_lines)
+        clinical_facts = extract_clinical_facts(full_text)
+    else:
+        clinical_facts = {}
 
     print("\n=== CLINICAL FACTS ===")
     print(clinical_facts)
 
     # ---------------------------------
-    # Step 6: NER
-    # ---------------------------------
-    # ner = ner_entities(full_text)
-
-    # print("\n=== NER OUTPUT ===")
-    # print(ner)
-
-    # ---------------------------------
-    # Step 7: Summary (VISIT-WISE)
-    # ---------------------------------
-    # summary = generate_summary(
-    #     demographics=entities,
-    #     medicines=medicines,
-    #     labs=labs,
-    #     clinical_facts=clinical_facts
-    # )
-
-    # print("\n=== CLINICAL SUMMARY ===")
-    # print(summary)
-
-    # ---------------------------------
-    # Step 8: Final Entities
+    # FINAL ENTITIES
     # ---------------------------------
     print("\n=== FINAL ENTITIES ===")
     print(entities)

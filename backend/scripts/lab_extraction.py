@@ -1,124 +1,167 @@
-#lab_extraction.py
-#lab_extraction.py
-# lab_extraction.py
 import re
+import pdfplumber
 
-
-NUMBER = re.compile(r"^\d+(\.\d+)?$")
-RANGE = re.compile(r"^(\d+(\.\d+)?)\s*[-–]\s*(\d+(\.\d+)?)$")
-LT = re.compile(r"^<\s*(\d+(\.\d+)?)$")
-UNIT = re.compile(
-    r"(g/dl|mg/dl|mmol/l|ng/ml|%|/cmm|iu/l|u/l|pg|fl)",
+# ===============================
+# REGEX CONFIG
+# ===============================
+UNIT_PATTERN = re.compile(
+    r"(mg/dl|g/dl|iu/ml|µmol|mmol|%|fl|pg|ng/ml|/cmm|cells|u/l)",
     re.I
 )
 
-# words that should NEVER appear in test names
-BAD_WORDS = {
-    "process", "method", "calculated", "derived",
-    "impedance", "colorimetric", "chemiluminescence",
-    "electrical", "binding", "reaction",
-    "page", "report", "final", "status",
-    "laboratory", "pathology", "immunoassay",
-    "test", "unit", "result", "range", "interval",
-    "serum", "plasma", "blood", "urine"
+VALUE_PATTERN = re.compile(r"<\s*\d+\.?\d*|\d+\.?\d*")
+RANGE_PATTERN = re.compile(r"(\d+\.?\d*)\s*-\s*(\d+\.?\d*)")
+LESS_PATTERN = re.compile(r"<\s*(\d+\.?\d*)")
+GREATER_PATTERN = re.compile(r">\s*(\d+\.?\d*)")
+UPTO_PATTERN = re.compile(r"upto\s*(\d+\.?\d*)", re.I)
+
+BLOCK_WORDS = {
+    "interpretation", "reference", "guideline",
+    "journal", "method", "explanation"
 }
 
-# words that SHOULD appear in real tests
-GOOD_HINTS = {
-    "hemoglobin", "rbc", "wbc", "platelet",
-    "neutrophil", "lymphocyte", "monocyte", "eosinophil",
-    "bilirubin", "sgpt", "sgot", "alt", "ast",
-    "urea", "creatinine", "uric", "calcium",
-    "cholesterol", "hdl", "ldl", "vldl",
-    "triglyceride", "protein", "albumin", "globulin",
-    "tsh", "thyroid", "vitamin", "iron", "ferritin",
-    "glucose", "hba1c", "microalbumin", "psa"
-}
+# ===============================
+# PDF UTILITIES
+# ===============================
+def extract_pdf_pages(pdf_path):
+    with pdfplumber.open(pdf_path) as pdf:
+        return [(i + 1, p.extract_text() or "") for i, p in enumerate(pdf.pages)]
 
 
-def clean(t):
-    return re.sub(r"\s+", " ", t).strip()
+def parse_reference(text):
+    if m := RANGE_PATTERN.search(text):
+        return float(m.group(1)), float(m.group(2))
+    if m := UPTO_PATTERN.search(text):
+        return None, float(m.group(1))
+    if m := LESS_PATTERN.search(text):
+        return None, float(m.group(1))
+    if m := GREATER_PATTERN.search(text):
+        return float(m.group(1)), None
+    return None, None
 
 
-def looks_like_real_test(name):
-    lname = name.lower()
-
-    # block bad words anywhere
-    for b in BAD_WORDS:
-        if b in lname:
-            return False
-
-    # must contain at least one medical hint
-    return any(h in lname for h in GOOD_HINTS)
-
-
-def reference_is_reasonable(value, ref):
-    if not ref:
-        return True
-
-    try:
-        val = float(value)
-    except:
-        return False
-
-    m = RANGE.match(ref)
-    if m:
-        low, high = float(m.group(1)), float(m.group(3))
-
-        # % reference but absolute value
-        if high <= 100 and val > 500:
-            return False
-
-    return True
-
-
-def extract_lab_results(lines):
-
-    tokens = [clean(l["text"]) for l in lines]
+# ===============================
+# PDF LAB EXTRACTION
+# ===============================
+def extract_labs_from_pdf(pdf_path):
+    pages = extract_pdf_pages(pdf_path)
     results = []
 
-    i = 0
-    n = len(tokens)
+    for page_no, text in pages:
+        lines = [l.strip() for l in text.split("\n") if l.strip()]
 
-    while i < n:
+        for i, line in enumerate(lines):
 
-        t = tokens[i]
+            if any(w in line.lower() for w in BLOCK_WORDS):
+                continue
 
-        # candidate test name
-        if (
-            len(t) >= 4
-            and re.match(r"^[A-Za-z][A-Za-z ()/-]+$", t)
-            and looks_like_real_test(t)
-        ):
+            value_match = VALUE_PATTERN.search(line)
+            if not value_match:
+                continue
 
-            test = t
-            value = None
-            unit = None
-            ref = None
+            value = float(value_match.group().replace("<", ""))
 
-            for j in range(i + 1, min(i + 8, n)):
-                w = tokens[j]
+            has_unit = UNIT_PATTERN.search(line)
+            is_ratio = "/" in line
+            if not has_unit and not is_ratio:
+                continue
 
-                if not value and NUMBER.match(w):
-                    value = w
-                    continue
+            test_name = line
+            if i > 0 and not any(c.isdigit() for c in lines[i - 1]):
+                test_name = lines[i - 1] + " " + line
 
-                if not unit and UNIT.search(w):
-                    unit = w
-                    continue
+            context = " ".join(lines[i:i + 4])
+            low, high = parse_reference(context)
 
-                if not ref and (RANGE.match(w) or LT.match(w)):
-                    ref = w
-                    continue
+            if low is None and high is None:
+                continue
 
-            if value and reference_is_reasonable(value, ref):
-                results.append({
-                    "test": test,
-                    "value": float(value),
-                    "unit": unit,
-                    "reference_range": ref
-                })
+            status = None
+            if low is not None and value < low:
+                status = "LOW"
+            elif high is not None and value > high:
+                status = "HIGH"
 
-        i += 1
+            if not status:
+                continue
+
+            clean_test = re.split(VALUE_PATTERN, test_name)[0].strip(" :-")
+
+            results.append({
+                "test": clean_test,
+                "value": value,
+                "reference_range": (low, high),
+                "status": status,
+                "abnormal": True,
+                "page": page_no
+            })
 
     return results
+
+
+# ===============================
+# IMAGE (OCR) LAB EXTRACTION
+# ===============================
+def extract_labs_from_ocr(lines):
+    """
+    lines = [
+      {"text": "...", "line_no": 1},
+      ...
+    ]
+    """
+    results = []
+
+    for i, l in enumerate(lines):
+        text = l["text"]
+
+        value_match = VALUE_PATTERN.search(text)
+        if not value_match:
+            continue
+
+        value = float(value_match.group().replace("<", ""))
+        if not UNIT_PATTERN.search(text):
+            continue
+
+        test_name = text
+        if i > 0 and not any(c.isdigit() for c in lines[i - 1]["text"]):
+            test_name = lines[i - 1]["text"] + " " + text
+
+        context = " ".join(x["text"] for x in lines[i:i + 3])
+        low, high = parse_reference(context)
+
+        if low is None and high is None:
+            continue
+
+        status = None
+        if low is not None and value < low:
+            status = "LOW"
+        elif high is not None and value > high:
+            status = "HIGH"
+
+        if not status:
+            continue
+
+        clean_test = re.split(VALUE_PATTERN, test_name)[0].strip(" :-")
+
+        results.append({
+            "test": clean_test,
+            "value": value,
+            "reference_range": (low, high),
+            "status": status,
+            "abnormal": True
+        })
+
+    return results
+
+
+# ===============================
+# PUBLIC API (USED BY app.py)
+# ===============================
+def extract_lab_results(input_data, source="image"):
+    """
+    source = 'pdf' or 'image'
+    """
+    if source == "pdf":
+        return extract_labs_from_pdf(input_data)
+
+    return extract_labs_from_ocr(input_data)
