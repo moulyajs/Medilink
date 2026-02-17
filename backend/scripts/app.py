@@ -1,11 +1,13 @@
 # scripts/app.py
-
+import os
 import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from sqlalchemy import text
+from database import SessionLocal
 
 from document_ocr import run_document_ocr
-
 from entity_extraction import extract_entities
-from ner_extraction import ner_entities
+#from ner_extraction import ner_entities
 from medicine_extraction import extract_medicines
 from clinical_summary import generate_summary
 from document_classifier import classify_document
@@ -15,6 +17,10 @@ from lab_extraction import extract_lab_results
 from lab_normalizer import normalize_lab_results
 from user_review import review_prescriptions
 from simple_explainer import explain_simple
+
+from uploader import upload_file
+from records_saver import save_medical_record
+from timeline_saver import add_timeline_event
 
 
 # -----------------------------
@@ -40,44 +46,56 @@ def merge_pages(pages):
 
 
 # -----------------------------
-# Main
+# Argument Handling
 # -----------------------------
 
-if len(sys.argv) < 2:
-    print("Usage: python app.py <file_path>")
+if len(sys.argv) < 3:
+    print("Usage: python app.py <file_path> <patient_id>")
     sys.exit(1)
 
 file_path = sys.argv[1]
+patient_id = int(sys.argv[2])
+
+print("\n======================================")
+print("🚀 STARTING MEDICAL AI PIPELINE")
+print("======================================\n")
 
 
 # -----------------------------
-# Step 1: OCR (Image + PDF)
+# Step 0: Upload File
 # -----------------------------
+
+print("📤 Uploading file to MinIO + DB...")
+
+file_db_id, stored_name = upload_file(file_path, patient_id)
+
+print("✅ File stored as:", stored_name)
+
+
+# -----------------------------
+# Step 1: OCR
+# -----------------------------
+
+print("\n🔎 Running OCR...")
 
 pages = run_document_ocr(file_path)
 
-print("\nPAGES PROCESSED:", len(pages))
+print("PAGES PROCESSED:", len(pages))
 for p in pages:
     print(f"Page {p['page']} -> {len(p['lines'])} lines")
 
-
 lines, text = merge_pages(pages)
 
-print("\nOCR STRUCTURED LINES:")
-for l in lines:
-    print(f"[P{l['page']}] {l['text']}")
-
-
-print("\nRAW TEXT (Preview):\n", text[:1000])
+print("\nOCR TEXT PREVIEW:\n", text[:800])
 
 
 # -----------------------------
-# Step 2: Document Type
+# Step 2: Document Classification
 # -----------------------------
 
 doc_type = classify_document(lines)
 
-print("\nDOCUMENT TYPE:", doc_type)
+print("\n📄 DOCUMENT TYPE:", doc_type)
 
 
 # -----------------------------
@@ -86,11 +104,11 @@ print("\nDOCUMENT TYPE:", doc_type)
 
 entities = extract_demographics(lines, doc_type)
 
-print("\nDEMOGRAPHICS:", entities)
+print("\n👤 DEMOGRAPHICS:", entities)
 
 
 # -----------------------------
-# Step 4: Prescriptions
+# Step 4: Prescription Extraction
 # -----------------------------
 
 if doc_type == "PRESCRIPTION":
@@ -98,72 +116,45 @@ if doc_type == "PRESCRIPTION":
 else:
     medicines = []
 
-print("\nPRESCRIPTIONS (RAW):", medicines)
-
-
-# Human review
 reviewed_medicines = review_prescriptions(medicines)
 
-print("\nPRESCRIPTIONS (REVIEWED):")
-for m in reviewed_medicines:
-    print(m)
+print("\n💊 PRESCRIPTIONS:", reviewed_medicines)
 
 
 # -----------------------------
 # Step 5: Lab Extraction
 # -----------------------------
 
-# Step 5: Lab Extraction (Page-wise)
-from collections import defaultdict
-
 if doc_type == "LAB_REPORT":
-
     lab_results = extract_lab_results(lines)
-
-else:
-    lab_results = []
-
-
-print("\nLAB RESULTS:", lab_results)
-
-
-if doc_type == "LAB_REPORT":
     normalized_lab_results = normalize_lab_results(lab_results)
 else:
+    lab_results = []
     normalized_lab_results = []
 
-print("\nNORMALIZED LAB RESULTS:")
+print("\n🧪 LAB RESULTS:", normalized_lab_results)
 
-for r in normalized_lab_results:
-    print(r)
-
-
-# Confidence check
 if doc_type == "LAB_REPORT" and len(normalized_lab_results) < 2:
-    print("⚠️ Warning: Low confidence extraction. Consider LLM fallback.")
+    print("⚠️ Low confidence extraction detected.")
 
 
 # -----------------------------
 # Step 6: NER
 # -----------------------------
 
-ner = ner_entities(text)
+#ner = ner_entities(text)
 
-print("\nNER OUTPUT:\n", ner)
+#print("\n🧠 NER OUTPUT:", ner)
 
-
-# Improve hospital name
-if ner.get("organizations"):
-
-    for org in ner["organizations"]:
-
-        if "accuris" in org.lower():
-            entities["hospital"] = org
-            break
+#if ner.get("organizations"):
+#    for org in ner["organizations"]:
+#        if "accuris" in org.lower():
+#            entities["hospital"] = org
+#            break
 
 
 # -----------------------------
-# Step 7: Summary
+# Step 7: Clinical Summary
 # -----------------------------
 
 summary = generate_summary(
@@ -172,19 +163,81 @@ summary = generate_summary(
     normalized_lab_results
 )
 
-print("\nCLINICAL SUMMARY:\n", summary)
+print("\n📋 CLINICAL SUMMARY:\n", summary)
+
 
 # -----------------------------
-# Step 9: Simple Explanation
+# Step 8: Patient Explanation
 # -----------------------------
 
 simple_text = explain_simple(summary)
 
-print("\nPATIENT-FRIENDLY EXPLANATION:\n")
-print(simple_text)
+print("\n🗣️ PATIENT EXPLANATION:\n", simple_text)
+
 
 # -----------------------------
-# Step 8: Final Output
+# Step 9: Save Medical Record
 # -----------------------------
 
-print("\nFINAL ENTITIES:\n", entities)
+print("\n💾 Saving medical record to database...")
+
+clinical_facts = {
+    #"ner": ner,
+    "doc_type": doc_type
+}
+
+record_id = save_medical_record(
+    patient_id=patient_id,
+    file_id=file_db_id,
+    doc_type=doc_type,
+
+    demographics=entities,
+    prescriptions=reviewed_medicines,
+    labs=normalized_lab_results,
+    clinical_facts=clinical_facts,
+
+    summary=summary,
+    explanation=simple_text
+)
+
+print("✅ Medical record saved with ID:", record_id)
+
+
+# -----------------------------
+# Step 10: Add Timeline Event
+# -----------------------------
+
+add_timeline_event(
+    patient_id=patient_id,
+    record_id=record_id,
+    event_type=doc_type,
+    short_summary=summary
+)
+
+print("📅 Timeline updated")
+
+
+# -----------------------------
+# Step 11: Update File Status
+# -----------------------------
+
+db = SessionLocal()
+
+db.execute(
+    text("UPDATE files SET status='processed' WHERE id=:id"),
+    {"id": file_db_id}
+)
+
+db.commit()
+db.close()
+
+print("📁 File status updated to 'processed'")
+
+
+# -----------------------------
+# DONE
+# -----------------------------
+
+print("\n======================================")
+print("🎉 PIPELINE COMPLETED SUCCESSFULLY")
+print("======================================\n")

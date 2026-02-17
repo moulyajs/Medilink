@@ -1,146 +1,82 @@
-# lab_normalizer.py
-from test_normalizer import normalize_test
-
 import re
 
+STATUS_WORDS = {"low", "high", "borderline", "normal"}
 
-def clean_name(name):
-
+def normalize_test_name(name):
     name = name.strip()
-
-    name = re.sub(r"\s{2,}", " ", name)
-
-    return name.title()
-
-def detect_status(value, ref):
-
-    if value is None or not ref:
-        return None
-
-    low, high = ref
-
-    margin = (high - low) * 0.05
-
-    if value < low:
-        return "low"
-
-    if value > high:
-        return "high"
-
-    if abs(value - low) <= margin or abs(value - high) <= margin:
-        return "borderline"
-
-    return "normal"
-
-
-
+    name = re.sub(r"\([^)]*\)", "", name)  # remove (Hb)
+    name = name.title()
+    return name
 def parse_range(text):
-
     if not text:
         return None
-
-    # <130
-    m1 = re.search(r"<\s*(\d+(\.\d+)?)", text)
-
-    if m1:
-        return [0.0, float(m1.group(1))]
-
-    # >200
-    m2 = re.search(r">\s*(\d+(\.\d+)?)", text)
-
-    if m2:
-        return [float(m2.group(1)), float("inf")]
-
-    # 150 - 250
-    m = re.search(r"(\d+(\.\d+)?)\s*[-–]\s*(\d+(\.\d+)?)", text)
-
+    m = re.search(r"(\d+(\.\d+)?)\s*-\s*(\d+(\.\d+)?)", text)
     if not m:
         return None
+    return [float(m.group(1)), float(m.group(3))]
+def infer_unit(value, ref_range, unit):
+    if unit:
+        return unit
 
-    return [
-        float(m.group(1)),
-        float(m.group(3))
-    ]
-
-
-def normalize_unit(unit):
-
-    if not unit:
+    try:
+        v = float(value)
+    except:
         return None
 
-    u = unit.lower().replace(" ", "")
-
-    m = re.search(
-    r"(mg/dl|g/dl|mmol/l|%|ng/ml|fl|pg|/cmm|million/cmm|microlu/ml)",
-    u
-)
-
-
-    if m:
-        return m.group(1)
-
+    if ref_range and ref_range[1] <= 100:
+        return "%"
     return None
+def detect_status(value, ref_range, flag):
+    if flag:
+        return flag.lower()
 
+    if not ref_range:
+        return None
 
+    try:
+        v = float(value)
+    except:
+        return None
 
-
-
-
-
+    if v < ref_range[0]:
+        return "low"
+    if v > ref_range[1]:
+        return "high"
+    return "normal"
 def normalize_lab_results(raw_results):
-
     normalized = []
+    pending_parent = None
 
     for r in raw_results:
+        test = r["test"].strip().lower()
 
-        test = normalize_test(r.get("test"))
-        value = float(r.get("value"))
+        # ❌ Skip pure labels
+        if test in STATUS_WORDS:
+            continue
 
-        raw_text = r.get("raw_text", "").lower()
+        test_name = normalize_test_name(r["test"])
+        ref_range = parse_range(r.get("reference_range"))
+        unit = infer_unit(r.get("value"), ref_range, r.get("unit"))
+        status = detect_status(r.get("value"), ref_range, r.get("flag"))
 
-        # ✅ Initialize ref FIRST
-        ref = None
-
-        # 1️⃣ Explicit H/L/Borderline
-        status = detect_flag_from_text(raw_text)
-
-        # 2️⃣ Range-based fallback
-        if status is None:
-
-            ref = parse_range(
-                r.get("reference_range") or raw_text
-            )
-
-            status = detect_status(value, ref)
-
-        # 3️⃣ Still unknown
-        if status is None:
-            status = "unknown"
-
-        normalized.append({
-            "test": test,
-            "value": value,
-            "unit": r.get("unit"),
-            "reference_range": ref,
+        result = {
+            "test": test_name,
+            "value": float(r["value"]) if r.get("value") else None,
+            "unit": unit,
+            "reference_range": ref_range,
             "status": status
-        })
+        }
+
+        # 🧠 Hierarchy detection
+        if result["value"] is None:
+            pending_parent = {
+                "test": test_name,
+                "children": []
+            }
+            normalized.append(pending_parent)
+        elif pending_parent and unit == "%":
+            pending_parent["children"].append(result)
+        else:
+            normalized.append(result)
 
     return normalized
-
-
-
-def detect_flag_from_text(text):
-
-    t = text.lower()
-
-    if any(x in t for x in [" low", "(low)", " l "]):
-        return "low"
-
-    if any(x in t for x in [" high", "(high)", " h "]):
-        return "high"
-
-    if "borderline" in t:
-        return "borderline"
-
-    return None
-
