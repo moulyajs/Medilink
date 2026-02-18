@@ -1,6 +1,8 @@
+# clinical_summary.py
+
+
 def generate_summary(entities, prescriptions=None, lab_results=None):
     summary = []
-
     # ---- Patient identity (robust) ----
     identity = []
 
@@ -48,7 +50,7 @@ def generate_summary(entities, prescriptions=None, lab_results=None):
             test = r.get("test")
             value = r.get("value")
             unit = r.get("unit")
-            status = r.get("status")
+            status = r.get("status","").lower()
 
             if not test or value is None:
                 continue

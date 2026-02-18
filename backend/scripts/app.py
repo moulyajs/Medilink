@@ -1,243 +1,361 @@
-# scripts/app.py
+# ============================================================
+# SYSTEM PATH SETUP
+# ============================================================
+
 import os
 import sys
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+sys.path.append(
+    os.path.dirname(
+        os.path.dirname(
+            os.path.abspath(__file__)
+        )
+    )
+)
+
+# ============================================================
+# IMPORTS
+# ============================================================
+
 from sqlalchemy import text
 from database import SessionLocal
 
-from document_ocr import run_document_ocr
-from entity_extraction import extract_entities
-#from ner_extraction import ner_entities
-from medicine_extraction import extract_medicines
-from clinical_summary import generate_summary
-from document_classifier import classify_document
+# OCR + Grouping
+from ocr_pipeline import ocr_process
+from visit_grouper import group_by_date
+
+# Classification + Extraction
 from demographics_extraction import extract_demographics
 from prescription_extraction import extract_prescriptions
 from lab_extraction import extract_lab_results
 from lab_normalizer import normalize_lab_results
+from clinical_facts_extraction import extract_clinical_facts
+from ecg_extraction import extract_ecg_findings
+
+# Review + Summary
 from user_review import review_prescriptions
+from clinical_summary import generate_summary
 from simple_explainer import explain_simple
 
+# Storage
 from uploader import upload_file
 from records_saver import save_medical_record
 from timeline_saver import add_timeline_event
 
-
-# -----------------------------
-# Utils
-# -----------------------------
-
-def merge_pages(pages):
-
-    all_lines = []
-    all_text = []
-
-    for p in pages:
-
-        all_text.append(f"\n=== PAGE {p['page']} ===\n")
-
-        for l in p["lines"]:
-            l["page"] = p["page"]
-            all_lines.append(l)
-
-        all_text.append(p["raw_text"])
-
-    return all_lines, "\n".join(all_text)
+# DICOM
+from dicom_viewer import (
+    load_dicom,
+    show_dicom_image,
+    extract_dicom_metadata
+)
 
 
-# -----------------------------
-# Argument Handling
-# -----------------------------
+# ============================================================
+# ECG DETECTOR
+# ============================================================
+
+def looks_like_ecg(lines):
+
+    text = " ".join(l["text"].lower() for l in lines)
+
+    keywords = [
+        "ecg", "hr", "bpm", "qrs", "qt",
+        "tachycardia", "bundle branch",
+        "axis deviation", "st", "t wave"
+    ]
+
+    return sum(k in text for k in keywords) >= 3
+
+
+# ============================================================
+# ARGUMENT HANDLING
+# ============================================================
 
 if len(sys.argv) < 3:
+
     print("Usage: python app.py <file_path> <patient_id>")
     sys.exit(1)
 
+
 file_path = sys.argv[1]
 patient_id = int(sys.argv[2])
+
+
+is_pdf = file_path.lower().endswith(".pdf")
+is_dicom = file_path.lower().endswith(".dcm")
+
 
 print("\n======================================")
 print("🚀 STARTING MEDICAL AI PIPELINE")
 print("======================================\n")
 
 
-# -----------------------------
-# Step 0: Upload File
-# -----------------------------
+# ============================================================
+# STEP 0: UPLOAD FILE
+# ============================================================
 
-print("📤 Uploading file to MinIO + DB...")
+print("📤 Uploading file...")
 
 file_db_id, stored_name = upload_file(file_path, patient_id)
 
-print("✅ File stored as:", stored_name)
+print("✅ Stored as:", stored_name)
 
 
-# -----------------------------
-# Step 1: OCR
-# -----------------------------
+# ============================================================
+# STEP 1: DICOM HANDLING (PRIORITY)
+# ============================================================
 
-print("\n🔎 Running OCR...")
+if is_dicom:
 
-pages = run_document_ocr(file_path)
+    print("\n🩻 INPUT TYPE: DICOM")
 
-print("PAGES PROCESSED:", len(pages))
-for p in pages:
-    print(f"Page {p['page']} -> {len(p['lines'])} lines")
+    ds = load_dicom(file_path)
 
-lines, text = merge_pages(pages)
+    metadata = extract_dicom_metadata(ds)
 
-print("\nOCR TEXT PREVIEW:\n", text[:800])
+    print("\n=== DICOM METADATA ===")
+    print(metadata)
+
+    print("\nDisplaying image...")
+    show_dicom_image(ds)
+
+    record_id = save_medical_record(
+
+        patient_id=patient_id,
+        file_id=file_db_id,
+        doc_type="DICOM",
+
+        demographics={},
+        prescriptions=[],
+        labs=[],
+
+        clinical_facts=metadata,
+
+        summary="DICOM imaging file uploaded",
+        explanation="Medical image stored successfully"
+    )
 
 
-# -----------------------------
-# Step 2: Document Classification
-# -----------------------------
+    add_timeline_event(
 
-doc_type = classify_document(lines)
+        patient_id=patient_id,
+        record_id=record_id,
 
-print("\n📄 DOCUMENT TYPE:", doc_type)
+        event_type="DICOM",
 
-
-# -----------------------------
-# Step 3: Demographics
-# -----------------------------
-
-entities = extract_demographics(lines, doc_type)
-
-print("\n👤 DEMOGRAPHICS:", entities)
+        short_summary="DICOM record added"
+    )
 
 
-# -----------------------------
-# Step 4: Prescription Extraction
-# -----------------------------
+    print("🎉 DICOM PROCESSING COMPLETED")
+    sys.exit(0)
 
-if doc_type == "PRESCRIPTION":
-    medicines = extract_prescriptions(lines)
+
+# ============================================================
+# STEP 2: OCR (IMAGE ONLY)
+# ============================================================
+
+pages = []
+
+if not is_pdf:
+
+    print("🔍 Running OCR...")
+
+    pages = ocr_process(file_path)
+
+    visits = group_by_date(pages)
+
 else:
+
+    visits = {"PDF_VISIT": []}
+
+
+print(f"\nINPUT TYPE: {'PDF' if is_pdf else 'IMAGE'}")
+print(f"TOTAL VISITS: {len(visits)}")
+
+
+# ============================================================
+# STEP 3: VISIT-WISE PROCESSING
+# ============================================================
+
+for visit_date, visit_pages in visits.items():
+
+    print("\n" + "=" * 60)
+    print("VISIT DATE:", visit_date)
+    print("=" * 60)
+
+    visit_lines = []
+    doc_types = set()
+
+    # ----------------------------------------
+    # IMAGE FLOW
+    # ----------------------------------------
+    if not is_pdf:
+
+        for p in visit_pages:
+            visit_lines.extend(p["lines"])
+            doc_types.add(p["doc_type"])
+
+        if not doc_types:
+            print("⚠ No document types detected. Skipping.")
+            continue
+
+        # Decide primary type
+        if "LAB_REPORT" in doc_types:
+            primary_doc_type = "LAB_REPORT"
+        elif "PRESCRIPTION" in doc_types:
+            primary_doc_type = "PRESCRIPTION"
+        else:
+            primary_doc_type = list(doc_types)[0]
+
+        # Demographics
+        entities = extract_demographics(visit_lines, primary_doc_type)
+
+    # ----------------------------------------
+    # PDF FLOW
+    # ----------------------------------------
+    else:
+
+        primary_doc_type = "LAB_REPORT"
+        visit_lines = []
+        entities = {}
+
+    print("\n👤 DEMOGRAPHICS")
+    print(entities)
+
+    # ----------------------------------------
+    # PRESCRIPTIONS (IMAGE ONLY)
+    # ----------------------------------------
     medicines = []
 
-reviewed_medicines = review_prescriptions(medicines)
+    if not is_pdf and "PRESCRIPTION" in doc_types:
+        medicines = extract_prescriptions(visit_lines)
 
-print("\n💊 PRESCRIPTIONS:", reviewed_medicines)
+    reviewed_medicines = review_prescriptions(medicines)
 
+    print("\n💊 PRESCRIPTIONS")
+    print(reviewed_medicines)
 
-# -----------------------------
-# Step 5: Lab Extraction
-# -----------------------------
+    # ----------------------------------------
+    # LABS
+    # ----------------------------------------
+    normalized_labs = []
 
-if doc_type == "LAB_REPORT":
-    lab_results = extract_lab_results(lines)
-    normalized_lab_results = normalize_lab_results(lab_results)
-else:
-    lab_results = []
-    normalized_lab_results = []
+    if is_pdf:
 
-print("\n🧪 LAB RESULTS:", normalized_lab_results)
+        raw_labs = extract_lab_results(file_path, is_pdf=True)
 
-if doc_type == "LAB_REPORT" and len(normalized_lab_results) < 2:
-    print("⚠️ Low confidence extraction detected.")
+    elif "LAB_REPORT" in doc_types:
 
+        raw_labs = extract_lab_results(visit_lines, is_pdf=False)
 
-# -----------------------------
-# Step 6: NER
-# -----------------------------
+    else:
 
-#ner = ner_entities(text)
+        raw_labs = []
 
-#print("\n🧠 NER OUTPUT:", ner)
+    normalized_labs = normalize_lab_results(raw_labs)
 
-#if ner.get("organizations"):
-#    for org in ner["organizations"]:
-#        if "accuris" in org.lower():
-#            entities["hospital"] = org
-#            break
+    print("\n🧪 LAB RESULTS")
+    print(normalized_labs)
 
+    # ----------------------------------------
+    # ECG (IMAGE ONLY)
+    # ----------------------------------------
+    ecg_data = None
 
-# -----------------------------
-# Step 7: Clinical Summary
-# -----------------------------
+    if not is_pdf and visit_lines and looks_like_ecg(visit_lines):
+        ecg_data = extract_ecg_findings(visit_lines)
 
-summary = generate_summary(
-    entities,
-    reviewed_medicines,
-    normalized_lab_results
-)
+    print("\n🫀 ECG FINDINGS")
+    print(ecg_data)
 
-print("\n📋 CLINICAL SUMMARY:\n", summary)
+    # ----------------------------------------
+    # CLINICAL FACTS
+    # ----------------------------------------
+    if visit_lines:
+        full_text = "\n".join(l["text"] for l in visit_lines)
+        clinical_facts = extract_clinical_facts(full_text)
+    else:
+        clinical_facts = {}
 
+    print("\n🧠 CLINICAL FACTS")
+    print(clinical_facts)
 
-# -----------------------------
-# Step 8: Patient Explanation
-# -----------------------------
+    # ----------------------------------------
+    # SUMMARY
+    # ----------------------------------------
+    summary = generate_summary(
+        entities,
+        reviewed_medicines,
+        normalized_labs
+    )
+    print("----------------------------")
+    print("SUMMARY:\n",summary)
+    print("----------------------------")
 
-simple_text = explain_simple(summary)
+    explanation = explain_simple(summary)
+    print("----------------------------")
+    print("EXPLANATION:\n",explanation)
+    print("----------------------------")
 
-print("\n🗣️ PATIENT EXPLANATION:\n", simple_text)
+    # ----------------------------------------
+    # SAVE
+    # ----------------------------------------
+    record_id = save_medical_record(
+        patient_id=patient_id,
+        file_id=file_db_id,
+        doc_type=primary_doc_type,
+        demographics=entities,
+        prescriptions=reviewed_medicines,
+        labs=normalized_labs,
+        clinical_facts={
+            "visit_date": visit_date,
+            "ecg": ecg_data,
+            "extracted_facts": clinical_facts
+        },
+        summary=summary,
+        explanation=explanation
+    )
 
-
-# -----------------------------
-# Step 9: Save Medical Record
-# -----------------------------
-
-print("\n💾 Saving medical record to database...")
-
-clinical_facts = {
-    #"ner": ner,
-    "doc_type": doc_type
-}
-
-record_id = save_medical_record(
-    patient_id=patient_id,
-    file_id=file_db_id,
-    doc_type=doc_type,
-
-    demographics=entities,
-    prescriptions=reviewed_medicines,
-    labs=normalized_lab_results,
-    clinical_facts=clinical_facts,
-
-    summary=summary,
-    explanation=simple_text
-)
-
-print("✅ Medical record saved with ID:", record_id)
-
-
-# -----------------------------
-# Step 10: Add Timeline Event
-# -----------------------------
-
-add_timeline_event(
-    patient_id=patient_id,
-    record_id=record_id,
-    event_type=doc_type,
-    short_summary=summary
-)
-
-print("📅 Timeline updated")
+    print("✅ Record saved:", record_id)
 
 
-# -----------------------------
-# Step 11: Update File Status
-# -----------------------------
+
+    add_timeline_event(
+
+        patient_id=patient_id,
+        record_id=record_id,
+
+        event_type=primary_doc_type,
+
+        short_summary=summary
+    )
+
+
+    print("📅 Timeline updated")
+
+
+# ============================================================
+# STEP 4: UPDATE FILE STATUS
+# ============================================================
 
 db = SessionLocal()
 
+
 db.execute(
+
     text("UPDATE files SET status='processed' WHERE id=:id"),
+
     {"id": file_db_id}
 )
+
 
 db.commit()
 db.close()
 
-print("📁 File status updated to 'processed'")
 
-
-# -----------------------------
-# DONE
-# -----------------------------
+print("\n📁 File marked as processed")
 
 print("\n======================================")
-print("🎉 PIPELINE COMPLETED SUCCESSFULLY")
+print("🎉 PIPELINE COMPLETED")
 print("======================================\n")

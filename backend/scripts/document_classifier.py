@@ -1,45 +1,36 @@
 def classify_document(ocr_lines):
     """
-    Robust medical document classification using strong signals.
+    STRICT medical document classification.
+    Lab reports REQUIRE table-like structure.
     """
-    text = " ".join([l["text"].lower() for l in ocr_lines])
 
-    # --- STRONG LAB SIGNALS (highest priority) ---
-    lab_keywords = [
-        "reference value",
-        "investigation",
-        "result",
-        "unit",
-        "cbc",
-        "complete blood count",
-        "platelet",
-        "hemoglobin",
-        "wbc",
-        "rbc",
-        "differential"
-    ]
+    lines = [l["text"].lower() for l in ocr_lines]
+    text = " ".join(lines)
 
-    # --- STRONG DISCHARGE SIGNALS ---
-    discharge_keywords = [
-        "discharge summary",
-        "final diagnosis",
-        "hospital course",
-        "admitted on",
-        "discharged on"
-    ]
+    # ---- STRONG STRUCTURAL LAB SIGNAL ----
+    table_headers = {"test", "result", "unit", "units", "normal values", "reference range"}
+    header_hits = sum(1 for l in lines if l.strip() in table_headers)
 
-    # --- PRESCRIPTION SIGNALS (lowest priority) ---
-    prescription_keywords = [
-        "inj.", "inj ", "tab.", "cap.", "syp.", "tablet", "capsule",
-    ]
+    numeric_rows = 0
+    for i in range(len(lines) - 1):
+        if any(c.isdigit() for c in lines[i]) and any(u in lines[i+1] for u in ["mg", "dl", "mmol", "%"]):
+            numeric_rows += 1
 
-    if any(k in text for k in lab_keywords):
+    if header_hits >= 2 and numeric_rows >= 2:
         return "LAB_REPORT"
 
-    if any(k in text for k in discharge_keywords):
-        return "DISCHARGE_SUMMARY"
+    # ---- DISCHARGE / H&P ----
+    if any(k in text for k in [
+        "history of present illness",
+        "physical exam",
+        "assessment and plan",
+        "review of systems",
+        "problem list"
+    ]):
+        return "CLINICAL_NOTE"
 
-    if any(k in text for k in prescription_keywords):
+    # ---- PRESCRIPTION ----
+    if any(k in text for k in ["tab.", "cap.", "inj.", "rx", "tablet", "capsule"]):
         return "PRESCRIPTION"
 
     return "UNKNOWN"

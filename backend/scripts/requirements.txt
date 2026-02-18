@@ -1,0 +1,7 @@
+paddleocr==2.7.0
+numpy==1.26.4
+opencv-python==4.6.0.66
+opencv-contrib-python==4.6.0.66
+torch
+transformers
+pillow

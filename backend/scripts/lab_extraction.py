@@ -1,117 +1,169 @@
 import re
+import pdfplumber
 
-def extract_lab_results(ocr_lines):
+# ===============================
+# REGEX CONFIG
+# ===============================
+UNIT_PATTERN = re.compile(
+    r"(mg/dl|g/dl|iu/ml|µmol|mmol|%|fl|pg|ng/ml|/cmm|cells|u/l)",
+    re.I
+)
+
+VALUE_PATTERN = re.compile(r"<\s*\d+\.?\d*|\d+\.?\d*")
+RANGE_PATTERN = re.compile(r"(\d+\.?\d*)\s*-\s*(\d+\.?\d*)")
+LESS_PATTERN = re.compile(r"<\s*(\d+\.?\d*)")
+GREATER_PATTERN = re.compile(r">\s*(\d+\.?\d*)")
+UPTO_PATTERN = re.compile(r"upto\s*(\d+\.?\d*)", re.I)
+
+BLOCK_WORDS = {
+    "interpretation", "reference", "guideline",
+    "journal", "method", "explanation"
+}
+
+# ===============================
+# PDF UTILITIES
+# ===============================
+def extract_pdf_pages(pdf_path):
+    with pdfplumber.open(pdf_path) as pdf:
+        return [(i + 1, p.extract_text() or "") for i, p in enumerate(pdf.pages)]
+
+
+def parse_reference(text):
+    if m := RANGE_PATTERN.search(text):
+        return float(m.group(1)), float(m.group(2))
+    if m := UPTO_PATTERN.search(text):
+        return None, float(m.group(1))
+    if m := LESS_PATTERN.search(text):
+        return None, float(m.group(1))
+    if m := GREATER_PATTERN.search(text):
+        return float(m.group(1)), None
+    return None, None
+
+
+# ===============================
+# PDF LAB EXTRACTION
+# ===============================
+def extract_labs_from_pdf(pdf_path):
+    pages = extract_pdf_pages(pdf_path)
     results = []
-    i = 0
-    in_lab_section = False
 
-    lab_section_headers = [
-        "investigation",
-        "result",
-        "reference",
-        "reference value",
-        "unit"
-    ]
+    for page_no, text in pages:
+        lines = [l.strip() for l in text.split("\n") if l.strip()]
 
-    lab_section_ends = [
-        "interpretation",
-        "end of report",
-        "verified by",
-        "signed by",
-        "thanks",
-        "generated on",
-        "page"
-    ]
+        for i, line in enumerate(lines):
 
-    while i < len(ocr_lines):
-        text = ocr_lines[i]["text"].strip()
-        text_lower = text.lower()
-
-        # --- ENTER / EXIT LAB SECTION ---
-        if any(h in text_lower for h in lab_section_headers):
-            in_lab_section = True
-            i += 1
-            continue
-
-        if any(e in text_lower for e in lab_section_ends):
-            in_lab_section = False
-            i += 1
-            continue
-
-        if not in_lab_section:
-            i += 1
-            continue
-
-        # --- SKIP KNOWN NON-TEST LINES ---
-        skip_contains = [
-            "count",
-            "indices",
-            "differential",
-            "sample type",
-            "blood"
-        ]
-
-        if any(s in text_lower for s in skip_contains):
-            i += 1
-            continue
-
-        # --- TEST NAME CANDIDATE ---
-        test_candidate = re.match(r"^[A-Za-z][A-Za-z\s\(\)\/\-]{3,}$", text)
-
-        if test_candidate:
-            test_name = text
-
-            # 🔑 CRITICAL CHECK:
-            # Next line MUST contain a numeric value
-            if i + 1 >= len(ocr_lines):
-                i += 1
+            if any(w in line.lower() for w in BLOCK_WORDS):
                 continue
 
-            next_text = ocr_lines[i + 1]["text"]
-
-            value_match = re.search(r"\b\d+(\.\d+)?\b", next_text)
+            value_match = VALUE_PATTERN.search(line)
             if not value_match:
-                i += 1
                 continue
 
-            value = value_match.group()
-            unit = None
-            ref_range = None
-            flag = None
+            value = float(value_match.group().replace("<", ""))
 
-            # Look further for unit and reference range
-            for j in range(i + 2, min(i + 6, len(ocr_lines))):
-                follow_text = ocr_lines[j]["text"]
+            has_unit = UNIT_PATTERN.search(line)
+            is_ratio = "/" in line
+            if not has_unit and not is_ratio:
+                continue
 
-                rng = re.search(
-                    r"(low|high|borderline)?\s*(\d+(\.\d+)?\s*-\s*\d+(\.\d+)?)",
-                    follow_text,
-                    re.I
-                )
-                if rng and ref_range is None:
-                    ref_range = rng.group(2)
-                    if rng.group(1):
-                        flag = rng.group(1).capitalize()
+            test_name = line
+            if i > 0 and not any(c.isdigit() for c in lines[i - 1]):
+                test_name = lines[i - 1] + " " + line
 
-                u = re.search(
-                    r"(g\/dl|mg\/dl|mill\/cumm|cumm|%)",
-                    follow_text,
-                    re.I
-                )
-                if u and unit is None:
-                    unit = u.group(1)
+            context = " ".join(lines[i:i + 4])
+            low, high = parse_reference(context)
+
+            if low is None and high is None:
+                continue
+
+            status = None
+            if low is not None and value < low:
+                status = "LOW"
+            elif high is not None and value > high:
+                status = "HIGH"
+
+            if not status:
+                continue
+
+            clean_test = re.split(VALUE_PATTERN, test_name)[0].strip(" :-")
 
             results.append({
-                "test": test_name,
+                "test": clean_test,
                 "value": value,
-                "unit": unit,
-                "reference_range": ref_range,
-                "flag": flag
+                "reference_range": (low, high),
+                "status": status,
+                "abnormal": True,
+                "page": page_no
             })
 
-            i += 4
+    return results
+
+
+# ===============================
+# IMAGE (OCR) LAB EXTRACTION
+# ===============================
+def extract_labs_from_ocr(lines):
+    """
+    lines = [
+      {"text": "...", "line_no": 1},
+      ...
+    ]
+    """
+    results = []
+
+    for i, l in enumerate(lines):
+        text = l["text"]
+
+        value_match = VALUE_PATTERN.search(text)
+        if not value_match:
             continue
 
-        i += 1
+        value = float(value_match.group().replace("<", ""))
+        if not UNIT_PATTERN.search(text):
+            continue
+
+        test_name = text
+        if i > 0 and not any(c.isdigit() for c in lines[i - 1]["text"]):
+            test_name = lines[i - 1]["text"] + " " + text
+
+        context = " ".join(x["text"] for x in lines[i:i + 3])
+        low, high = parse_reference(context)
+
+        if low is None and high is None:
+            continue
+
+        status = None
+        if low is not None and value < low:
+            status = "LOW"
+        elif high is not None and value > high:
+            status = "HIGH"
+
+        if not status:
+            continue
+
+        clean_test = re.split(VALUE_PATTERN, test_name)[0].strip(" :-")
+
+        results.append({
+            "test": clean_test,
+            "value": value,
+            "reference_range": (low, high),
+            "status": status,
+            "abnormal": True
+        })
+
 
     return results
+
+def extract_lab_results(source, is_pdf=False):
+    """
+    Unified lab extractor.
+    - If PDF → uses pdfplumber
+    - If OCR → uses OCR lines
+    """
+
+    if is_pdf:
+        return extract_labs_from_pdf(source)
+
+    # OCR case
+    return extract_labs_from_ocr(source)
+

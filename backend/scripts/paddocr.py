@@ -1,74 +1,34 @@
 from paddleocr import PaddleOCR
 
 ocr = PaddleOCR(
-    lang="en",
-    use_angle_cls=True
+    use_textline_orientation=True,
+    lang="en"
 )
 
-
 def run_ocr(image_path):
-    
+
     result = ocr.ocr(image_path)
 
-    blocks = []
+    texts = []
+    scores = []
 
     if not result:
-        return blocks
+        return [], []
 
-    # NEW FORMAT (PaddleOCR v5 / PaddleX style)
-    if isinstance(result, list) and isinstance(result[0], dict):
+    # New PaddleOCR structure
+    if isinstance(result[0], dict):
 
-        data = result[0]
+        texts = result[0].get("rec_texts", [])
+        scores = result[0].get("rec_scores", [])
 
-        texts = data.get("rec_texts", [])
-        scores = data.get("rec_scores", [])
-        boxes = data.get("rec_polys", [])
+    # Old PaddleOCR structure (fallback)
+    elif isinstance(result[0], list):
 
-        for i in range(len(texts)):
-
-            text = texts[i]
-            score = float(scores[i]) if i < len(scores) else 1.0
-            bbox = boxes[i] if i < len(boxes) else None
-
-            blocks.append({
-                "text": str(text).strip(),
-                "confidence": score,
-                "bbox": bbox
-            })
-
-        return blocks
-
-
-    # OLD FORMAT (fallback)
-    for page in result:
-
-        for line in page:
-
-            bbox = line[0]
-
-            text = ""
-            score = 1.0
-
-            if len(line) >= 2 and isinstance(line[1], (list, tuple)):
+        for line in result[0]:
+            if len(line) >= 2:
                 text = line[1][0]
-                try:
-                    score = float(line[1][1])
-                except:
-                    pass
-            else:
-                if len(line) >= 2:
-                    text = line[1]
+                score = line[1][1]
+                texts.append(text)
+                scores.append(score)
 
-                if len(line) >= 3:
-                    try:
-                        score = float(line[2])
-                    except:
-                        pass
-
-            blocks.append({
-                "text": str(text).strip(),
-                "confidence": score,
-                "bbox": bbox
-            })
-
-    return blocks
+    return texts, scores
