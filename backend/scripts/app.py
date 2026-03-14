@@ -29,7 +29,7 @@ def looks_like_ecg(lines):
 # ---------------------------------
 # Step 0: INPUT
 # ---------------------------------
-file_path = "data/0002.dcm"
+file_path = "data/knee1.dcm"
 
 is_pdf = file_path.lower().endswith(".pdf")
 is_dicom = file_path.lower().endswith(".dcm")
