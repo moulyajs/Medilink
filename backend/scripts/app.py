@@ -1,45 +1,107 @@
+# ============================================================
+# SYSTEM PATH SETUP
+# ============================================================
+
+import os
+import sys
+import uuid
+
+sys.path.append(
+    os.path.dirname(
+        os.path.dirname(
+            os.path.abspath(__file__)
+        )
+    )
+)
+
+# ============================================================
+# IMPORTS
+# ============================================================
+
+from sqlalchemy import text
+from database import SessionLocal
+
 from ocr_pipeline import ocr_process
 from visit_grouper import group_by_date
 
 from demographics_extraction import extract_demographics
-from medicine_extraction import extract_medicines
+from prescription_extraction import extract_prescriptions
 from lab_extraction import extract_lab_results
 from lab_normalizer import normalize_lab_results
-from user_review import review_prescriptions
 from clinical_facts_extraction import extract_clinical_facts
 from ecg_extraction import extract_ecg_findings
 
-# ✅ NEW: DICOM imports
-from dicom_viewer import load_dicom, show_dicom_image, extract_dicom_metadata
+from user_review import review_prescriptions
+from clinical_summary import generate_summary
 
+from uploader import upload_file
 
-# ---------------------------------
-# ECG detector
-# ---------------------------------
+from record_saver import save_patient, save_lab_results
+from timeline_saver import add_timeline_event
+
+from dicom_viewer import (
+    load_dicom,
+    show_dicom_image,
+    extract_dicom_metadata
+)
+
+# ============================================================
+# ECG DETECTOR
+# ============================================================
+
 def looks_like_ecg(lines):
+
     text = " ".join(l["text"].lower() for l in lines)
+
     keywords = [
-        "ecg", "hr", "bpm", "qrs", "qt",
-        "tachycardia", "bundle branch",
-        "axis deviation", "st", "t wave"
+        "ecg","hr","bpm","qrs","qt",
+        "tachycardia","bundle branch",
+        "axis deviation","st","t wave"
     ]
+
     return sum(k in text for k in keywords) >= 3
 
 
-# ---------------------------------
-# Step 0: INPUT
-# ---------------------------------
-file_path = "data/knee1.dcm"
+# ============================================================
+# ARGUMENT HANDLING
+# ============================================================
+
+if len(sys.argv) < 3:
+    print("Usage: python app.py <file_path> <patient_id>")
+    sys.exit(1)
+
+file_path = sys.argv[1]
+
+try:
+    patient_id = str(uuid.UUID(sys.argv[2]))
+except ValueError:
+    print("❌ Invalid patient_id. Must be a valid UUID.")
+    sys.exit(1)
 
 is_pdf = file_path.lower().endswith(".pdf")
 is_dicom = file_path.lower().endswith(".dcm")
 
+print("\n======================================")
+print("🚀 STARTING MEDICAL AI PIPELINE")
+print("======================================\n")
 
-# ---------------------------------
-# ✅ NEW: DICOM HANDLING
-# ---------------------------------
+# ============================================================
+# STEP 0: UPLOAD FILE
+# ============================================================
+
+print("📤 Uploading file...")
+
+document_id, stored_name = upload_file(file_path, patient_id)
+
+print("✅ Document stored:", document_id)
+
+# ============================================================
+# STEP 1: DICOM HANDLING
+# ============================================================
+
 if is_dicom:
-    print("\nINPUT TYPE: DICOM")
+
+    print("\n🩻 INPUT TYPE: DICOM")
 
     ds = load_dicom(file_path)
 
@@ -48,132 +110,188 @@ if is_dicom:
     print("\n=== DICOM METADATA ===")
     print(metadata)
 
-    print("\nDisplaying DICOM image...")
+    print("\nDisplaying image...")
     show_dicom_image(ds)
 
-    # Stop further processing
-    exit()
+    add_timeline_event(
+        patient_id,
+        document_id,
+        "DICOM",
+        "DICOM imaging file uploaded",
+        None
+    )
 
+    print("🎉 DICOM PROCESSING COMPLETED")
+    sys.exit(0)
 
-# ---------------------------------
-# Step 1: OCR (only for images)
-# ---------------------------------
+# ============================================================
+# STEP 2: OCR
+# ============================================================
+
 pages = []
+
 if not is_pdf:
+
+    print("🔍 Running OCR...")
+
     pages = ocr_process(file_path)
+
     visits = group_by_date(pages)
+
 else:
+
     visits = {"PDF_VISIT": []}
 
 print(f"\nINPUT TYPE: {'PDF' if is_pdf else 'IMAGE'}")
-print(f"TOTAL VISITS DETECTED: {len(visits)}")
+print(f"TOTAL VISITS: {len(visits)}")
 
+# ============================================================
+# STEP 3: VISIT-WISE PROCESSING
+# ============================================================
 
-# ---------------------------------
-# Step 2: VISIT-WISE PROCESSING
-# ---------------------------------
 for visit_date, visit_pages in visits.items():
 
     print("\n" + "=" * 60)
-    print(f"VISIT DATE: {visit_date}")
+    print("VISIT DATE:", visit_date)
     print("=" * 60)
 
     visit_lines = []
     doc_types = set()
 
-    for p in visit_pages:
-        visit_lines.extend(p["lines"])
-        doc_types.add(p["doc_type"])
+    # ----------------------------------------
+    # IMAGE FLOW
+    # ----------------------------------------
 
-    # ---------------------------------
-    # DEMOGRAPHICS (OCR based)
-    # ---------------------------------
-    entities = {}
-    if visit_lines:
-        primary_doc_type = (
-            "lab_report"
-            if "lab_report" in doc_types
-            else list(doc_types)[0]
-        )
+    if not is_pdf:
+
+        for p in visit_pages:
+            visit_lines.extend(p["lines"])
+            doc_types.add(p["doc_type"])
+
+        if not doc_types:
+            print("⚠ No document types detected. Skipping.")
+            continue
+
+        if "LAB_REPORT" in doc_types:
+            primary_doc_type = "LAB_REPORT"
+        elif "PRESCRIPTION" in doc_types:
+            primary_doc_type = "PRESCRIPTION"
+        else:
+            primary_doc_type = list(doc_types)[0]
+
         entities = extract_demographics(visit_lines, primary_doc_type)
 
-    print("\n=== DEMOGRAPHICS ===")
+    else:
+
+        primary_doc_type = "LAB_REPORT"
+        visit_lines = []
+        entities = {}
+
+    print("\n👤 DEMOGRAPHICS")
     print(entities)
 
-    patient_name = entities.get("patient_name", "").lower()
-    doctor_name = entities.get("doctor_name", "").lower()
+    save_patient(
+        patient_id,
+        entities.get("dob"),
+        entities.get("gender")
+    )
 
-    # ---------------------------------
-    # PRESCRIPTIONS (IMAGE ONLY)
-    # ---------------------------------
+    # ----------------------------------------
+    # PRESCRIPTIONS
+    # ----------------------------------------
+
     medicines = []
-    if "prescription" in doc_types:
-        medicines = extract_medicines(visit_lines)
 
-        filtered = []
-        for m in medicines:
-            drug = m["drug"].lower()
-            if patient_name and patient_name in drug:
-                continue
-            if doctor_name and doctor_name in drug:
-                continue
-            filtered.append(m)
+    if not is_pdf and "PRESCRIPTION" in doc_types:
+        medicines = extract_prescriptions(visit_lines)
 
-        medicines = review_prescriptions(filtered)
+    reviewed_medicines = review_prescriptions(medicines)
 
-    print("\n=== PRESCRIPTIONS ===")
-    for m in medicines:
-        print(m)
+    print("\n💊 PRESCRIPTIONS")
+    print(reviewed_medicines)
 
-    # ---------------------------------
-    # LAB EXTRACTION
-    # ---------------------------------
-    labs = []
+    # ----------------------------------------
+    # LAB RESULTS
+    # ----------------------------------------
+
+    normalized_labs = []
 
     if is_pdf:
+
+        print("📄 Extracting labs directly from PDF...")
+
         raw_labs = extract_lab_results(file_path, source="pdf")
+
+    elif "LAB_REPORT" in doc_types:
+
+        raw_labs = extract_lab_results(visit_lines)
+
     else:
-        if "lab_report" in doc_types:
-            raw_labs = extract_lab_results(visit_lines, source="image")
-        else:
-            raw_labs = []
 
-    labs = normalize_lab_results(raw_labs)
+        raw_labs = []
 
-    print("\n=== LAB RESULTS ===")
-    for l in labs:
-        print(l)
+    normalized_labs = normalize_lab_results(raw_labs)
 
-    abnormal_labs = [l for l in labs if l.get("abnormal")]
+    print("\n🧪 LAB RESULTS")
+    print(normalized_labs)
 
-    print("\n=== ABNORMAL LABS ===")
-    for l in abnormal_labs:
-        print(l)
+    save_lab_results(
+        patient_id,
+        document_id,
+        normalized_labs
+    )
 
-    # ---------------------------------
-    # ECG EXTRACTION (IMAGE ONLY)
-    # ---------------------------------
-    ecg = None
-    if visit_lines and looks_like_ecg(visit_lines):
-        ecg = extract_ecg_findings(visit_lines)
+    # ----------------------------------------
+    # ECG
+    # ----------------------------------------
 
-    print("\n=== ECG FINDINGS ===")
-    print(ecg if ecg else "No ECG data detected")
+    ecg_data = None
 
-    # ---------------------------------
-    # CLINICAL FACTS (OCR TEXT ONLY)
-    # ---------------------------------
+    if not is_pdf and visit_lines and looks_like_ecg(visit_lines):
+        ecg_data = extract_ecg_findings(visit_lines)
+
+    print("\n🫀 ECG FINDINGS")
+    print(ecg_data)
+
+    # ----------------------------------------
+    # CLINICAL FACTS
+    # ----------------------------------------
+
     if visit_lines:
         full_text = "\n".join(l["text"] for l in visit_lines)
         clinical_facts = extract_clinical_facts(full_text)
     else:
         clinical_facts = {}
 
-    print("\n=== CLINICAL FACTS ===")
+    print("\n🧠 CLINICAL FACTS")
     print(clinical_facts)
 
-    # ---------------------------------
-    # FINAL ENTITIES
-    # ---------------------------------
-    print("\n=== FINAL ENTITIES ===")
-    print(entities)
+    # ----------------------------------------
+    # SUMMARY (LEFT COMMENTED)
+    # ----------------------------------------
+
+    # summary = generate_summary(
+    #     entities,
+    #     reviewed_medicines,
+    #     normalized_labs
+    # )
+
+    # print("\nSUMMARY:")
+    # print(summary)
+
+    # ----------------------------------------
+    # TIMELINE
+    # ----------------------------------------
+
+    add_timeline_event(
+        patient_id,
+        document_id,
+        primary_doc_type,
+        visit_date
+    )
+
+    print("📅 Timeline updated")
+
+print("\n======================================")
+print("🎉 PIPELINE COMPLETED")
+print("======================================\n")

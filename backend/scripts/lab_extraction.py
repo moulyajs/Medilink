@@ -16,8 +16,16 @@ GREATER_PATTERN = re.compile(r">\s*(\d+\.?\d*)")
 UPTO_PATTERN = re.compile(r"upto\s*(\d+\.?\d*)", re.I)
 
 BLOCK_WORDS = {
-    "interpretation", "reference", "guideline",
-    "journal", "method", "explanation"
+    "interpretation",
+    "reference",
+    "guideline",
+    "journal",
+    "method",
+    "explanation",
+    "sample",
+    "sex",
+    "age",
+    "coll"
 }
 
 # ===============================
@@ -61,9 +69,11 @@ def extract_labs_from_pdf(pdf_path):
 
             value = float(value_match.group().replace("<", ""))
 
-            has_unit = UNIT_PATTERN.search(line)
+            unit_match = UNIT_PATTERN.search(line)
+            unit = unit_match.group().lower() if unit_match else None
+
             is_ratio = "/" in line
-            if not has_unit and not is_ratio:
+            if not unit and not is_ratio:
                 continue
 
             test_name = line
@@ -88,13 +98,14 @@ def extract_labs_from_pdf(pdf_path):
             clean_test = re.split(VALUE_PATTERN, test_name)[0].strip(" :-")
 
             results.append({
-                "test": clean_test,
-                "value": value,
-                "reference_range": (low, high),
-                "status": status,
-                "abnormal": True,
-                "page": page_no
-            })
+            "test": clean_test,
+            "value": value,
+            "unit": unit,
+            "reference_range": (low, high),
+            "status": status,
+            "abnormal": True,
+            "page": page_no
+        })
 
     return results
 
