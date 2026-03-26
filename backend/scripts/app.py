@@ -32,7 +32,7 @@ from clinical_facts_extraction import extract_clinical_facts
 from ecg_extraction import extract_ecg_findings
 
 from user_review import review_prescriptions
-from clinical_summary import generate_summary
+#from clinical_summary import generate_summary
 
 from uploader import upload_file
 
@@ -291,7 +291,49 @@ for visit_date, visit_pages in visits.items():
     )
 
     print("📅 Timeline updated")
+# ============================================================
+# 🔥 RAG INGESTION (ADD THIS)
+# ============================================================
 
+from chunking import create_chunks
+from embedding import embed_chunks
+from vector_store import insert_chunks
+
+if normalized_labs:
+
+    print("\n📦 Creating RAG chunks...")
+
+    parsed_data = {
+        "lab_results": [
+            {
+                "test_name": lab.get("test"),
+                "value": lab.get("value"),
+                "unit": lab.get("unit"),
+                "reference_range": lab.get("reference_range"),
+            }
+            for lab in normalized_labs
+        ]
+    }
+
+    chunks = create_chunks(
+        parsed_data,
+        patient_id=patient_id,
+        document_id=document_id,
+        report_date=str(visit_date)
+    )
+
+    print(f"🧩 Chunks created: {len(chunks)}")
+
+    embeddings = embed_chunks(chunks)
+
+    print("📡 Storing in Qdrant...")
+
+    insert_chunks(chunks, embeddings)
+
+    print("✅ RAG ingestion completed")
+
+else:
+    print("⚠ No labs → skipping RAG ingestion")
 print("\n======================================")
 print("🎉 PIPELINE COMPLETED")
 print("======================================\n")
