@@ -10,7 +10,8 @@ def normalize_lab_results(raw_results):
             "unit": r.get("unit"),
             "reference_range": r.get("reference_range"),
             "status": r.get("status"),
-            "abnormal": r.get("abnormal", False)
+            "abnormal": r.get("abnormal", False),
+            "date": r.get("date")
         })
 
     return normalized

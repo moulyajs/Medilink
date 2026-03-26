@@ -1,4 +1,3 @@
-#ner_extraction.py
 import spacy
 
 nlp = spacy.load("en_core_web_sm")
@@ -8,7 +7,8 @@ def ner_entities(text):
 
     ner_data = {
         "persons": [],
-        "organizations": []
+        "organizations": [],
+        "dates": []
     }
 
     for ent in doc.ents:
@@ -16,5 +16,7 @@ def ner_entities(text):
             ner_data["persons"].append(ent.text)
         elif ent.label_ == "ORG":
             ner_data["organizations"].append(ent.text)
+        elif ent.label_ == "DATE":
+            ner_data["dates"].append(ent.text)
 
     return ner_data

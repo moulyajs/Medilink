@@ -3,6 +3,9 @@ from sqlalchemy import text
 from database import SessionLocal
 
 
+# ===============================
+# SAVE PATIENT
+# ===============================
 def save_patient(patient_id, dob=None, gender=None):
 
     db = SessionLocal()
@@ -24,25 +27,25 @@ def save_patient(patient_id, dob=None, gender=None):
     db.close()
 
 
+# ===============================
+# SAVE LAB RESULTS
+# ===============================
 def save_lab_results(patient_id, document_id, labs):
 
     db = SessionLocal()
 
     for lab in labs:
 
-        # Handle both formats (test_name or test)
         test_name = lab.get("test_name") or lab.get("test")
 
-        # Skip invalid OCR rows
         if not test_name or lab.get("value") is None:
-            print("⚠ Skipping invalid lab row:", lab)
+            print("⚠ Skipping:", lab)
             continue
 
         result_id = str(uuid.uuid4())
 
-        # Handle reference ranges
-        ref_low = lab.get("ref_low")
-        ref_high = lab.get("ref_high")
+        ref_low = None
+        ref_high = None
 
         if "reference_range" in lab and lab["reference_range"]:
             ref_low, ref_high = lab["reference_range"]
@@ -83,13 +86,13 @@ def save_lab_results(patient_id, document_id, labs):
                 "pid": patient_id,
                 "doc": document_id,
                 "name": test_name,
-                "cat": lab.get("category", "lab"),
+                "cat": "lab",
                 "value": lab.get("value"),
                 "unit": lab.get("unit"),
                 "low": ref_low,
                 "high": ref_high,
                 "flag": lab.get("abnormal"),
-                "date": lab.get("date")
+                "date": lab.get("date")   # ✅ now properly filled
             }
         )
 
