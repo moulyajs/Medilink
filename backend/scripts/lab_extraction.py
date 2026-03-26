@@ -36,35 +36,47 @@ BLOCK_WORDS = {
 def extract_date(text):
     lines = text.split("\n")
 
-    report_date = None
-    sample_date = None
-    reg_date = None
+    # 🔥 All possible keywords (expand anytime)
+    DATE_KEYWORDS = {
+        "report": 3,
+        "reported": 3,
+        "result": 3,
+        "sample": 2,
+        "collected": 2,
+        "collection": 2,
+        "reg": 1,
+        "registered": 1,
+        "printed": 0,
+        "billing": -1   # ⚠ ignore low priority
+    }
+
+    best_date = None
+    best_score = -999
 
     for i, line in enumerate(lines):
         lower = line.lower()
 
-        if "report date" in lower:
-            if m := DATE_PATTERN.search(line):
-                report_date = m.group(0)
-            elif i + 1 < len(lines):
-                if m := DATE_PATTERN.search(lines[i + 1]):
-                    report_date = m.group(0)
+        # normalize spacing
+        clean_line = re.sub(r"\s+", " ", lower)
 
-        elif "sample date" in lower:
-            if m := DATE_PATTERN.search(line):
-                sample_date = m.group(0)
-            elif i + 1 < len(lines):
-                if m := DATE_PATTERN.search(lines[i + 1]):
-                    sample_date = m.group(0)
+        # check if line contains ANY keyword
+        for key, score in DATE_KEYWORDS.items():
+            if key in clean_line:
 
-        elif "reg date" in lower:
-            if m := DATE_PATTERN.search(line):
-                reg_date = m.group(0)
-            elif i + 1 < len(lines):
-                if m := DATE_PATTERN.search(lines[i + 1]):
-                    reg_date = m.group(0)
+                # try same line
+                if m := DATE_PATTERN.search(line):
+                    if score > best_score:
+                        best_score = score
+                        best_date = m.group(0)
 
-    return report_date or sample_date or reg_date
+                # try next line (VERY IMPORTANT)
+                elif i + 1 < len(lines):
+                    if m := DATE_PATTERN.search(lines[i + 1]):
+                        if score > best_score:
+                            best_score = score
+                            best_date = m.group(0)
+
+    return best_date
 
 
 def normalize_date(date_str):
