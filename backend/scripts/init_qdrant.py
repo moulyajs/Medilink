@@ -9,7 +9,6 @@ client = QdrantClient(
     url=os.getenv("QDRANT_URL"),
     api_key=os.getenv("QDRANT_API_KEY")
 )
-
 COLLECTION_NAME = "lab_report_chunks"
 
 # 🔥 Step 1: Recreate collection

@@ -8,7 +8,7 @@ sys.path.append(BASE_DIR)
 
 from chatbot.rag.pipeline import rag_pipeline
 
-patient_id = "f61c1794-5f1a-4dff-9ae9-9d8bcb367c07"
+patient_id = "fcc28785-edbb-4398-aa82-ad453de58ad2"
 
 chat_history = []
 

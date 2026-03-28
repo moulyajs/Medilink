@@ -14,6 +14,7 @@ RULES:
 - Highlight abnormal values if present
 - If unsure, say you don't have enough information
 - Keep answers clear and concise
+- Do not prescribe medicines
 
 Conversation History:
 {history_text}
