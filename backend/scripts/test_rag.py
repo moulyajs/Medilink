@@ -12,7 +12,7 @@ patient_id = "fcc28785-edbb-4398-aa82-ad453de58ad2"
 
 chat_history = []
 
-print("🧠 Interactive Medical Chatbot (type 'exit' to quit)\n")
+print(" Interactive Medical Chatbot (type 'exit' to quit)\n")
 
 while True:
 
@@ -23,7 +23,7 @@ while True:
 
     response = rag_pipeline(query, patient_id, chat_history)
 
-    print("\n🤖:", response["answer"], "\n")
+    print("\nchatbot:", response["answer"], "\n")
 
     # Update history
     chat_history.append({"role": "user", "content": query})

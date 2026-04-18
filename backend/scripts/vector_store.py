@@ -4,10 +4,8 @@ import uuid
 from dotenv import load_dotenv
 import os
 load_dotenv()
-client = QdrantClient(
-    url=os.getenv("QDRANT_URL"),
-    api_key=os.getenv("QDRANT_API_KEY")
-)
+
+client = QdrantClient(url="http://localhost:6333")
 COLLECTION_NAME = "lab_report_chunks"
 
 
