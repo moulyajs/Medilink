@@ -1,16 +1,49 @@
-# lab_normalizer.py
+# ===============================
+# CLEAN + NORMALIZE LAB RESULTS
+# ===============================
 
-def normalize_lab_results(raw_results):
-    normalized = []
+IGNORE_TESTS = {
+    "age", "age/sex", "sex", "pat id", "patient id",
+    "bill no", "bill date", "name"
+}
 
-    for r in raw_results:
-        normalized.append({
-            "test": r.get("test"),
-            "value": r.get("value"),
-            "unit": r.get("unit"),
-            "reference_range": r.get("reference_range"),
-            "status": r.get("status"),
-            "abnormal": r.get("abnormal", False)
+
+def normalize_lab_results(labs):
+    cleaned = []
+    seen = set()
+
+    for lab in labs:
+        test = lab.get("test", "").strip().lower()
+
+        # --------------------------
+        # ❌ REMOVE NON-LAB ROWS
+        # --------------------------
+        if not test:
+            continue
+
+        if any(x in test for x in IGNORE_TESTS):
+            continue
+
+        # --------------------------
+        # (same test + same value)
+        # --------------------------
+        key = (test, lab.get("value"))
+
+        if key in seen:
+            continue
+
+        seen.add(key)
+
+        # --------------------------
+        # ✅ STANDARDIZE OUTPUT
+        # --------------------------
+        cleaned.append({
+            "test": lab.get("test"),
+            "value": lab.get("value"),
+            "unit": lab.get("unit"),
+            "reference_range": lab.get("reference_range"),
+            "status": lab.get("status"),
+            "abnormal": lab.get("abnormal")
         })
 
-    return normalized
+    return cleaned

@@ -9,7 +9,7 @@ from user_review import review_prescriptions
 from clinical_facts_extraction import extract_clinical_facts
 from ecg_extraction import extract_ecg_findings
 
-# ✅ NEW: DICOM imports
+# ✅ DICOM
 from dicom_viewer import load_dicom, show_dicom_image, extract_dicom_metadata
 
 
@@ -27,22 +27,21 @@ def looks_like_ecg(lines):
 
 
 # ---------------------------------
-# Step 0: INPUT
+# INPUT FILE
 # ---------------------------------
-file_path = "data/knee1.dcm"
+file_path = "Dataset_Medilink/user015/labReport1.jpeg"
 
 is_pdf = file_path.lower().endswith(".pdf")
 is_dicom = file_path.lower().endswith(".dcm")
 
 
 # ---------------------------------
-# ✅ NEW: DICOM HANDLING
+# DICOM HANDLING
 # ---------------------------------
 if is_dicom:
     print("\nINPUT TYPE: DICOM")
 
     ds = load_dicom(file_path)
-
     metadata = extract_dicom_metadata(ds)
 
     print("\n=== DICOM METADATA ===")
@@ -51,14 +50,12 @@ if is_dicom:
     print("\nDisplaying DICOM image...")
     show_dicom_image(ds)
 
-    # Stop further processing
     exit()
 
 
 # ---------------------------------
-# Step 1: OCR (only for images)
+# OCR / PAGE LOADING
 # ---------------------------------
-pages = []
 if not is_pdf:
     pages = ocr_process(file_path)
     visits = group_by_date(pages)
@@ -70,7 +67,7 @@ print(f"TOTAL VISITS DETECTED: {len(visits)}")
 
 
 # ---------------------------------
-# Step 2: VISIT-WISE PROCESSING
+# VISIT LOOP
 # ---------------------------------
 for visit_date, visit_pages in visits.items():
 
@@ -85,15 +82,16 @@ for visit_date, visit_pages in visits.items():
         visit_lines.extend(p["lines"])
         doc_types.add(p["doc_type"])
 
+    print("\nDEBUG DOC TYPES:", doc_types)
+
     # ---------------------------------
-    # DEMOGRAPHICS (OCR based)
+    # DEMOGRAPHICS
     # ---------------------------------
     entities = {}
+
     if visit_lines:
         primary_doc_type = (
-            "lab_report"
-            if "lab_report" in doc_types
-            else list(doc_types)[0]
+            "lab_report" if "lab_report" in doc_types else list(doc_types)[0]
         )
         entities = extract_demographics(visit_lines, primary_doc_type)
 
@@ -104,19 +102,22 @@ for visit_date, visit_pages in visits.items():
     doctor_name = entities.get("doctor_name", "").lower()
 
     # ---------------------------------
-    # PRESCRIPTIONS (IMAGE ONLY)
+    # PRESCRIPTIONS
     # ---------------------------------
     medicines = []
+
     if "prescription" in doc_types:
         medicines = extract_medicines(visit_lines)
 
         filtered = []
         for m in medicines:
             drug = m["drug"].lower()
+
             if patient_name and patient_name in drug:
                 continue
             if doctor_name and doctor_name in drug:
                 continue
+
             filtered.append(m)
 
         medicines = review_prescriptions(filtered)
@@ -126,17 +127,35 @@ for visit_date, visit_pages in visits.items():
         print(m)
 
     # ---------------------------------
-    # LAB EXTRACTION
+    # 🔥 LAB EXTRACTION (FINAL FIX)
     # ---------------------------------
-    labs = []
+    raw_labs = []
 
     if is_pdf:
         raw_labs = extract_lab_results(file_path, source="pdf")
+
     else:
-        if "lab_report" in doc_types:
-            raw_labs = extract_lab_results(visit_lines, source="image")
-        else:
-            raw_labs = []
+        raw_rows = []
+
+        for p in visit_pages:
+
+            # ✅ CASE 1: structured rows exist
+            if "raw_rows" in p and p["raw_rows"]:
+                raw_rows.extend(p["raw_rows"])
+
+            # ✅ CASE 2: fallback → build rows from lines
+            else:
+                for line in p["lines"]:
+                    if "columns" in line:
+                        raw_rows.append({
+                            "columns": line["columns"]
+                        })
+
+        print("\nDEBUG RAW ROWS COUNT:", len(raw_rows))
+
+        raw_labs = extract_lab_results(raw_rows, source="image")
+
+    print("\nDEBUG RAW LABS:", raw_labs)
 
     labs = normalize_lab_results(raw_labs)
 
@@ -151,9 +170,10 @@ for visit_date, visit_pages in visits.items():
         print(l)
 
     # ---------------------------------
-    # ECG EXTRACTION (IMAGE ONLY)
+    # ECG
     # ---------------------------------
     ecg = None
+
     if visit_lines and looks_like_ecg(visit_lines):
         ecg = extract_ecg_findings(visit_lines)
 
@@ -161,7 +181,7 @@ for visit_date, visit_pages in visits.items():
     print(ecg if ecg else "No ECG data detected")
 
     # ---------------------------------
-    # CLINICAL FACTS (OCR TEXT ONLY)
+    # CLINICAL FACTS
     # ---------------------------------
     if visit_lines:
         full_text = "\n".join(l["text"] for l in visit_lines)
@@ -173,7 +193,7 @@ for visit_date, visit_pages in visits.items():
     print(clinical_facts)
 
     # ---------------------------------
-    # FINAL ENTITIES
+    # FINAL OUTPUT
     # ---------------------------------
     print("\n=== FINAL ENTITIES ===")
     print(entities)

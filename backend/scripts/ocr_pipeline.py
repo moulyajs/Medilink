@@ -7,58 +7,33 @@ import tempfile
 import re
 import sys
 
-DOSE_REGEX = r"\b\d{1,4}\s*(mg|ml|g|mcg|iu)\b"
-FREQ_REGEX = r"\b(od|bd|tds|qid|hs|once|twice|daily|day|vial|vials)\b"
-FORM_REGEX = r"\b(inj|tab|cap|iv|syp|syr|vial|amp)\b"
+from layout_parser import parse_table_from_ocr
 
 
-# --------------------------------------------------
-# Clean OCR text
-# --------------------------------------------------
-def clean_text_with_lines(texts, scores, threshold=0.6):
-    lines = []
+def clean_text_with_lines(lines):
+    cleaned = []
     seen = set()
     line_no = 1
 
-    for t, s in zip(texts, scores):
-        if s < threshold:
-            continue
-
-        t = re.sub(r"\s+", " ", t.strip())
+    for l in lines:
+        t = re.sub(r"\s+", " ", l["text"].strip())
 
         if len(t) < 3 or t in seen:
             continue
 
         seen.add(t)
-        lines.append({
+
+        cleaned.append({
             "line_no": line_no,
             "text": t,
-            "score": round(float(s), 2)
+            "score": 1.0
         })
+
         line_no += 1
 
-    return lines, [l["text"] for l in lines[:5]]
+    return cleaned, [l["text"] for l in cleaned[:5]]
 
 
-# --------------------------------------------------
-# Prescription inference (unchanged)
-# --------------------------------------------------
-def infer_prescription(lines):
-    score = 0
-    for l in lines:
-        t = l["text"].lower()
-        if re.search(DOSE_REGEX, t):
-            score += 1
-        if re.search(FORM_REGEX, t):
-            score += 1
-        if re.search(FREQ_REGEX, t):
-            score += 1
-    return score >= 2
-
-
-# --------------------------------------------------
-# 🔥 FIXED OCR PROCESS (PAGE-WISE)
-# --------------------------------------------------
 def ocr_process(file_path):
     poppler_path = None
     if sys.platform.startswith("win"):
@@ -66,49 +41,89 @@ def ocr_process(file_path):
 
     pages_data = []
 
-    # -------- PDF INPUT --------
-    if file_path.lower().endswith(".pdf"):
-        pages = convert_from_path(file_path, poppler_path=poppler_path)
+    # -------- IMAGE INPUT --------
+    if not file_path.lower().endswith(".pdf"):
 
-        for i, page in enumerate(pages):
-            tmp = Path(tempfile.gettempdir()) / f"page_{i}.png"
-            page.save(tmp, "PNG")
+        # ---------------------------------
+        # STEP 1: Initial OCR (NO preprocessing)
+        # ---------------------------------
+        texts, scores, raw = run_ocr(file_path, return_raw=True)
 
-            texts, scores = run_ocr(str(tmp))
-            lines, top_lines = clean_text_with_lines(texts, scores)
+        box_count = len(raw[0]) if raw and raw[0] else 0
+        print(f"\nInitial OCR boxes: {box_count}")
 
-            doc_type = classify_document(lines).lower()
-            date = extract_date(lines)
+        # ---------------------------------
+        # STEP 2: Choose preprocessing
+        # ---------------------------------
+        if box_count < 10:
+            print("📝 Handwritten / low-quality detected")
 
-            # Handwritten prescription fallback
-            if doc_type == "unknown" and infer_prescription(lines):
-                print(f"⚠️ Page {i+1}: overridden to PRESCRIPTION (handwritten)")
-                doc_type = "prescription"
+            from image_preprocessing import preprocess_handwritten
+            processed_img = preprocess_handwritten(file_path)
 
-            pages_data.append({
-                "page_no": i + 1,
-                "lines": lines,
-                "top_lines": top_lines,
-                "doc_type": doc_type,
-                "date": date
+        else:
+            print("📄 Printed document detected")
+
+            from image_preprocessing import preprocess_printed
+            processed_img = preprocess_printed(file_path)
+
+        # ---------------------------------
+        # STEP 3: OCR again (processed)
+        # ---------------------------------
+        texts, scores, raw = run_ocr(processed_img, return_raw=True)
+
+        # 🔥 FALLBACK if preprocessing ruined it
+        new_box_count = len(raw[0]) if raw and raw[0] else 0
+        print(f"After preprocessing OCR boxes: {new_box_count}")
+
+        if new_box_count < 10:
+            print("⚠️ Fallback to original image")
+            texts, scores, raw = run_ocr(file_path, return_raw=True)
+
+        # ---------------------------------
+        # STEP 4: Layout parsing
+        # ---------------------------------
+        structured_lines = parse_table_from_ocr(raw)
+        print("\n=== RAW STRUCTURED OUTPUT ===")
+        for row in structured_lines[:30]:
+             print(row)
+        # ---------------------------------
+        # STEP 5: Clean lines (FIXED INDENT)
+        # ---------------------------------
+        cleaned = []
+        line_no = 1
+
+        for row in structured_lines:
+            cols = row.get("columns", [])
+
+            if not cols:
+                continue
+
+            cleaned.append({
+                "line_no": line_no,
+                "text": " ".join(cols),   # combined text
+                "columns": cols           # 🔥 keep structured columns
             })
 
-            tmp.unlink(missing_ok=True)
+            line_no += 1
 
-    # -------- IMAGE INPUT --------
-    else:
-        texts, scores = run_ocr(file_path)
-        lines, top_lines = clean_text_with_lines(texts, scores)
+        lines = cleaned
+        top_lines = [l["text"] for l in lines[:5]]
 
+        print("\n=== DEBUG: FINAL LINES ===")
+        for l in lines[:10]:
+            print(l)
+
+        # ---------------------------------
+        # STEP 6: Classification
+        # ---------------------------------
         doc_type = classify_document(lines).lower()
         date = extract_date(lines)
-
-        if doc_type == "unknown" and infer_prescription(lines):
-            doc_type = "prescription"
 
         pages_data.append({
             "page_no": 1,
             "lines": lines,
+            "raw_rows": structured_lines,   # 🔥 ADD THIS LINE
             "top_lines": top_lines,
             "doc_type": doc_type,
             "date": date

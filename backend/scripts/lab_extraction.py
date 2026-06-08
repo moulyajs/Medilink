@@ -5,44 +5,127 @@ import pdfplumber
 # REGEX CONFIG
 # ===============================
 UNIT_PATTERN = re.compile(
-    r"(mg/dl|g/dl|iu/ml|µmol|mmol|%|fl|pg|ng/ml|/cmm|cells|u/l)",
+    r"(mg/dl|g/dl|iu/ml|µmol|mmol|%|fl|pg|ng/ml|cells|u/l|cu\.mm|lakh)",
     re.I
 )
 
-VALUE_PATTERN = re.compile(r"<\s*\d+\.?\d*|\d+\.?\d*")
-RANGE_PATTERN = re.compile(r"(\d+\.?\d*)\s*-\s*(\d+\.?\d*)")
+VALUE_PATTERN = re.compile(r"<\s*\d+\.?\d*|\d+[\d,]*\.?\d*")
+
+# 🔥 IMPROVED RANGE (handles merged text)
+RANGE_PATTERN = re.compile(r"(\d+\.?\d*)\s*[-–]\s*(\d+\.?\d*)")
+
 LESS_PATTERN = re.compile(r"<\s*(\d+\.?\d*)")
 GREATER_PATTERN = re.compile(r">\s*(\d+\.?\d*)")
-UPTO_PATTERN = re.compile(r"upto\s*(\d+\.?\d*)", re.I)
 
 BLOCK_WORDS = {
     "interpretation", "reference", "guideline",
     "journal", "method", "explanation"
 }
 
+
 # ===============================
-# PDF UTILITIES
+# PARSE RANGE (ROBUST)
+# ===============================
+def parse_reference(text):
+    if not text:
+        return None, None
+
+    text = text.replace(",", "")
+
+    if m := RANGE_PATTERN.search(text):
+        return float(m.group(1)), float(m.group(2))
+
+    if m := LESS_PATTERN.search(text):
+        return None, float(m.group(1))
+
+    if m := GREATER_PATTERN.search(text):
+        return float(m.group(1)), None
+
+    return None, None
+
+
+# ===============================
+# 🔥 IMAGE OCR EXTRACTION (FINAL FIX)
+# ===============================
+def extract_labs_from_ocr(rows):
+    results = []
+
+    for row in rows:
+        cols = row.get("columns", [])
+
+        if len(cols) < 2:
+            continue
+
+        test = cols[0].strip()
+
+        # skip headers
+        if any(x in test.lower() for x in ["testname", "result", "units", "range"]):
+            continue
+
+        # --------------------------
+        # VALUE
+        # --------------------------
+        value_match = VALUE_PATTERN.search(cols[1])
+        if not value_match:
+            continue
+
+        value_str = value_match.group().replace("<", "").replace(",", "")
+
+        try:
+            value = float(value_str)
+        except:
+            continue
+
+        # --------------------------
+        # 🔥 FULL TEXT (CRITICAL FIX)
+        # --------------------------
+        full_text = " ".join(cols)
+
+        # --------------------------
+        # RANGE
+        # --------------------------
+        low, high = parse_reference(full_text)
+
+        # --------------------------
+        # UNIT
+        # --------------------------
+        unit_match = UNIT_PATTERN.search(full_text)
+        unit = unit_match.group() if unit_match else ""
+
+        # --------------------------
+        # 🔥 DO NOT SKIP if no range
+        # --------------------------
+        # (THIS WAS YOUR MAIN BUG)
+        status = "UNKNOWN"
+
+        if low is not None or high is not None:
+            status = "NORMAL"
+
+            if low is not None and value < low:
+                status = "LOW"
+            elif high is not None and value > high:
+                status = "HIGH"
+
+        results.append({
+            "test": test,
+            "value": value,
+            "unit": unit,
+            "reference_range": (low, high),
+            "status": status,
+            "abnormal": status in ["LOW", "HIGH"]
+        })
+
+    return results
+
+
+# ===============================
+# PDF EXTRACTION
 # ===============================
 def extract_pdf_pages(pdf_path):
     with pdfplumber.open(pdf_path) as pdf:
         return [(i + 1, p.extract_text() or "") for i, p in enumerate(pdf.pages)]
 
 
-def parse_reference(text):
-    if m := RANGE_PATTERN.search(text):
-        return float(m.group(1)), float(m.group(2))
-    if m := UPTO_PATTERN.search(text):
-        return None, float(m.group(1))
-    if m := LESS_PATTERN.search(text):
-        return None, float(m.group(1))
-    if m := GREATER_PATTERN.search(text):
-        return float(m.group(1)), None
-    return None, None
-
-
-# ===============================
-# PDF LAB EXTRACTION
-# ===============================
 def extract_labs_from_pdf(pdf_path):
     pages = extract_pdf_pages(pdf_path)
     results = []
@@ -59,40 +142,36 @@ def extract_labs_from_pdf(pdf_path):
             if not value_match:
                 continue
 
-            value = float(value_match.group().replace("<", ""))
+            value_str = value_match.group().replace("<", "").replace(",", "")
 
-            has_unit = UNIT_PATTERN.search(line)
-            is_ratio = "/" in line
-            if not has_unit and not is_ratio:
+            try:
+                value = float(value_str)
+            except:
                 continue
-
-            test_name = line
-            if i > 0 and not any(c.isdigit() for c in lines[i - 1]):
-                test_name = lines[i - 1] + " " + line
 
             context = " ".join(lines[i:i + 4])
             low, high = parse_reference(context)
 
-            if low is None and high is None:
-                continue
+            unit_match = UNIT_PATTERN.search(line)
+            unit = unit_match.group() if unit_match else ""
 
-            status = None
-            if low is not None and value < low:
-                status = "LOW"
-            elif high is not None and value > high:
-                status = "HIGH"
+            status = "UNKNOWN"
 
-            if not status:
-                continue
+            if low is not None or high is not None:
+                status = "NORMAL"
 
-            clean_test = re.split(VALUE_PATTERN, test_name)[0].strip(" :-")
+                if low is not None and value < low:
+                    status = "LOW"
+                elif high is not None and value > high:
+                    status = "HIGH"
 
             results.append({
-                "test": clean_test,
+                "test": line,
                 "value": value,
+                "unit": unit,
                 "reference_range": (low, high),
                 "status": status,
-                "abnormal": True,
+                "abnormal": status in ["LOW", "HIGH"],
                 "page": page_no
             })
 
@@ -100,67 +179,9 @@ def extract_labs_from_pdf(pdf_path):
 
 
 # ===============================
-# IMAGE (OCR) LAB EXTRACTION
-# ===============================
-def extract_labs_from_ocr(lines):
-    """
-    lines = [
-      {"text": "...", "line_no": 1},
-      ...
-    ]
-    """
-    results = []
-
-    for i, l in enumerate(lines):
-        text = l["text"]
-
-        value_match = VALUE_PATTERN.search(text)
-        if not value_match:
-            continue
-
-        value = float(value_match.group().replace("<", ""))
-        if not UNIT_PATTERN.search(text):
-            continue
-
-        test_name = text
-        if i > 0 and not any(c.isdigit() for c in lines[i - 1]["text"]):
-            test_name = lines[i - 1]["text"] + " " + text
-
-        context = " ".join(x["text"] for x in lines[i:i + 3])
-        low, high = parse_reference(context)
-
-        if low is None and high is None:
-            continue
-
-        status = None
-        if low is not None and value < low:
-            status = "LOW"
-        elif high is not None and value > high:
-            status = "HIGH"
-
-        if not status:
-            continue
-
-        clean_test = re.split(VALUE_PATTERN, test_name)[0].strip(" :-")
-
-        results.append({
-            "test": clean_test,
-            "value": value,
-            "reference_range": (low, high),
-            "status": status,
-            "abnormal": True
-        })
-
-    return results
-
-
-# ===============================
-# PUBLIC API (USED BY app.py)
+# PUBLIC API
 # ===============================
 def extract_lab_results(input_data, source="image"):
-    """
-    source = 'pdf' or 'image'
-    """
     if source == "pdf":
         return extract_labs_from_pdf(input_data)
 
