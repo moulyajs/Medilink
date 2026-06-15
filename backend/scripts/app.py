@@ -32,7 +32,7 @@ from clinical_facts_extraction import extract_clinical_facts
 from ecg_extraction import extract_ecg_findings
 
 from user_review import review_prescriptions
-from clinical_summary import generate_summary
+#from clinical_summary import generate_summary
 
 from uploader import upload_file
 
@@ -73,9 +73,9 @@ if len(sys.argv) < 3:
 file_path = sys.argv[1]
 
 try:
-    patient_id = str(uuid.UUID(sys.argv[2]))
+    patient_id = int(sys.argv[2])
 except ValueError:
-    print("❌ Invalid patient_id. Must be a valid UUID.")
+    print("❌ Invalid patient_id. Must be an integer.")
     sys.exit(1)
 
 is_pdf = file_path.lower().endswith(".pdf")

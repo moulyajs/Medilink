@@ -1,10 +1,15 @@
+from fastapi.responses import StreamingResponse
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.responses import StreamingResponse
 from storage import client, BUCKET
 from database import SessionLocal
 from sqlalchemy import text
+from scripts.timeline_service import get_timeline
 import uuid
 import io
+from database import DB_URL
+
+print("MAIN DB URL =", DB_URL)
 
 app = FastAPI()
 
@@ -103,4 +108,126 @@ def view_file(file_path: str):
     except Exception:
         raise HTTPException(status_code=404, detail="File not found")
 
+@app.get("/timeline/{patient_id}")
+def timeline(patient_id: int):
+    return get_timeline(patient_id)
+
+@app.get("/document/{record_id}")
+def get_document(record_id: int):
+
+    db = SessionLocal()
+
+    result = db.execute(
+        text("""
+        SELECT
+            f.file_name,
+            f.file_path
+
+        FROM medical_records mr
+
+        JOIN files f
+            ON mr.file_id = f.id
+
+        WHERE mr.id = :rid
+        """),
+        {"rid": record_id}
+    )
+
+    row = result.fetchone()
+
+    db.close()
+
+    if not row:
+        raise HTTPException(
+            status_code=404,
+            detail="Document not found"
+        )
+
+    return {
+        "file_name": row.file_name,
+        "file_path": row.file_path
+    }
+
+@app.get("/document/view/{record_id}")
+def view_document(record_id: int):
+
+    db = SessionLocal()
+
+    result = db.execute(
+        text("""
+        SELECT
+            f.file_path
+
+        FROM medical_records mr
+
+        JOIN files f
+            ON mr.file_id = f.id
+
+        WHERE mr.id = :rid
+        """),
+        {"rid": record_id}
+    )
+
+    row = result.fetchone()
+
+    db.close()
+
+    if not row:
+        raise HTTPException(
+            status_code=404,
+            detail="Document not found"
+        )
+
+    try:
+        obj = client.get_object(
+            BUCKET,
+            row.file_path
+        )
+
+        return StreamingResponse(
+            obj,
+            media_type="application/pdf"
+        )
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=str(e)
+        )
+    
+@app.get("/document/view/{record_id}")
+def view_document(record_id: int):
+
+    db = SessionLocal()
+
+    result = db.execute(
+        text("""
+        SELECT f.file_path
+        FROM medical_records mr
+        JOIN files f
+            ON mr.file_id = f.id
+        WHERE mr.id = :rid
+        """),
+        {"rid": record_id}
+    )
+
+    row = result.fetchone()
+
+    db.close()
+
+    if not row:
+        raise HTTPException(
+            status_code=404,
+            detail="Document not found"
+        )
+
+    obj = client.get_object(
+        BUCKET,
+        row.file_path
+    )
+
+    return StreamingResponse(
+        obj,
+        media_type="application/pdf"
+    )   
 #main.py

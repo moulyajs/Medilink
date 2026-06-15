@@ -1,14 +1,26 @@
+import os
+import sys
+
+sys.path.append(
+    os.path.dirname(
+        os.path.dirname(
+            os.path.abspath(__file__)
+        )
+    )
+)
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
 from werkzeug.utils import secure_filename
+from timeline_service import get_timeline
 
 # Import your existing logic
 from ocr_pipeline import ocr_process
 from demographics_extraction import extract_demographics
 from medicine_extraction import extract_medicines
 from lab_extraction import extract_lab_results
-from clinical_summary import generate_summary
+#from clinical_summary import generate_summary
 from clinical_facts_extraction import extract_clinical_facts
 
 app = Flask(__name__)
@@ -35,8 +47,8 @@ def process_document():
     full_text = "\n".join(l["text"] for l in lines)
     clinical_facts = extract_clinical_facts(full_text)
     
-    summary = generate_summary(demographics, medicines, lab_results, clinical_facts)
-
+    #summary = generate_summary(demographics, medicines, lab_results, clinical_facts)
+    summary = "Summary generation disabled"
     return jsonify({
         "doc_type": doc_type,
         "demographics": demographics,
@@ -45,6 +57,17 @@ def process_document():
         "clinical_facts": clinical_facts,
         "summary": summary
     })
+
+@app.route('/timeline/<int:patient_id>', methods=['GET'])
+def timeline(patient_id):
+
+    data = get_timeline(patient_id)
+
+    return jsonify(data)
+
+@app.route('/')
+def home():
+    return "MediLink API Running"
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

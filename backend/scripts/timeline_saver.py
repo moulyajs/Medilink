@@ -13,32 +13,30 @@ def add_timeline_event(
 
     db.execute(
         text("""
-        INSERT INTO timeline_events
+        INSERT INTO timeline
         (
             patient_id,
-            event_type,
+            record_id,
             event_date,
-            source_document,
-            summary
+            event_type,
+            short_summary
         )
         VALUES
         (
             :pid,
-            :etype,
+            :rid,
             NOW(),
-            :doc,
+            :etype,
             :summary
         )
         """),
         {
             "pid": patient_id,
+            "rid": record_id,
             "etype": event_type,
-            "doc": record_id,
             "summary": short_summary
         }
     )
 
     db.commit()
     db.close()
-
-#timeline_saver.py

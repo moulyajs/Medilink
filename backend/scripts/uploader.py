@@ -1,15 +1,24 @@
 import io
+import os
 import uuid
+
 from storage import client, BUCKET
 from database import SessionLocal
 from sqlalchemy import text
 
 
 def upload_file(file_path, patient_id):
+    """
+    Upload file to MinIO and save metadata in PostgreSQL.
+    Returns:
+        file_id (int)
+        stored_name (str)
+    """
 
-    file_id = str(uuid.uuid4())
-    filename = file_path.split("/")[-1]
-    stored_name = f"{file_id}_{filename}"
+    # Generate unique file name
+    file_uuid = str(uuid.uuid4())
+    filename = os.path.basename(file_path)
+    stored_name = f"{file_uuid}_{filename}"
 
     # Read file
     with open(file_path, "rb") as f:
@@ -25,29 +34,44 @@ def upload_file(file_path, patient_id):
         length=len(content)
     )
 
+    # Save file metadata in PostgreSQL
     db = SessionLocal()
 
-    # Insert into documents table (FIXED)
     result = db.execute(
         text("""
-        INSERT INTO documents
-        (patient_id, document_type, upload_date, file_path)
+        INSERT INTO files
+        (
+            patient_id,
+            file_name,
+            file_path,
+            file_type,
+            status
+        )
         VALUES
-        (:pid, :dtype, NOW(), :path)
-        RETURNING document_id
+        (
+            :pid,
+            :fname,
+            :path,
+            :ftype,
+            :status
+        )
+        RETURNING id
         """),
         {
             "pid": patient_id,
-            "dtype": "lab_report",
-            "path": stored_name
+            "fname": filename,
+            "path": stored_name,
+            "ftype": "PDF",
+            "status": "uploaded"
         }
     )
 
-    document_id = result.fetchone()[0]
+    file_id = result.fetchone()[0]
 
     db.commit()
     db.close()
 
-    return document_id, stored_name
+    print(f"✅ File uploaded: {stored_name}")
+    print(f"✅ File ID: {file_id}")
 
-##uploader.py
+    return file_id, stored_name
