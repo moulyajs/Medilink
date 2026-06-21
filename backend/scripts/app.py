@@ -36,7 +36,13 @@ from user_review import review_prescriptions
 
 from uploader import upload_file
 
-from record_saver import save_patient, save_lab_results
+#from record_saver import save_patient, save_lab_results
+from record_saver import (
+    save_patient,
+    save_lab_results,
+    save_medical_record
+)
+
 from timeline_saver import add_timeline_event
 
 from dicom_viewer import (
@@ -190,11 +196,11 @@ for visit_date, visit_pages in visits.items():
     print("\n👤 DEMOGRAPHICS")
     print(entities)
 
-    save_patient(
-        patient_id,
-        entities.get("dob"),
-        entities.get("gender")
-    )
+    #save_patient(
+    #    patient_id,
+    #    entities.get("dob"),
+     #   entities.get("gender")
+    #)
 
     # ----------------------------------------
     # PRESCRIPTIONS
@@ -235,11 +241,11 @@ for visit_date, visit_pages in visits.items():
     print("\n🧪 LAB RESULTS")
     print(normalized_labs)
 
-    save_lab_results(
-        patient_id,
-        document_id,
-        normalized_labs
-    )
+    #save_lab_results(
+    #    patient_id,
+    #    document_id,
+    #    normalized_labs
+    #)
 
     # ----------------------------------------
     # ECG
@@ -266,6 +272,16 @@ for visit_date, visit_pages in visits.items():
     print("\n🧠 CLINICAL FACTS")
     print(clinical_facts)
 
+    medical_record_id = save_medical_record(
+        patient_id=patient_id,
+        file_id=document_id,
+        document_type=primary_doc_type,
+        labs=normalized_labs,
+        clinical_facts=clinical_facts
+    )
+
+    print("✅ Medical Record ID:", medical_record_id)
+
     # ----------------------------------------
     # SUMMARY (LEFT COMMENTED)
     # ----------------------------------------
@@ -285,7 +301,7 @@ for visit_date, visit_pages in visits.items():
 
     add_timeline_event(
         patient_id,
-        document_id,
+        medical_record_id,
         primary_doc_type,
         visit_date
     )
