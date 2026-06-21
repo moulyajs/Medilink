@@ -2,6 +2,8 @@ import json
 from sqlalchemy import text
 from database import SessionLocal
 
+from backend.scripts.trend_service import generate_patient_trends
+
 
 # ===============================
 # SAVE MEDICAL RECORD
@@ -49,6 +51,9 @@ def save_medical_record(
 
     db.commit()
     db.close()
+
+    # Recalculate patient trends
+    generate_patient_trends(patient_id)
 
     return medical_record_id
 

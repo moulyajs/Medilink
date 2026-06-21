@@ -229,5 +229,94 @@ def view_document(record_id: int):
     return StreamingResponse(
         obj,
         media_type="application/pdf"
-    )   
+    )  
+
+
+@app.get("/trend-analysis/{patient_id}")
+def get_trends(patient_id: int):
+
+    db = SessionLocal()
+
+    try:
+
+        rows = db.execute(
+            text("""
+                SELECT
+                    test_name,
+                    latest_value,
+                    status,
+                    delta,
+                    slope,
+                    trend,
+                    data_points,
+                    analysis_method
+                FROM lab_trends
+                WHERE patient_id = :patient_id
+                ORDER BY test_name
+            """),
+            {"patient_id": patient_id}
+        ).fetchall()
+
+        return [
+            {
+                "test_name": row.test_name,
+                "latest_value": float(row.latest_value),
+                "status": row.status,
+                "delta": float(row.delta),
+                "slope": float(row.slope),
+                "trend": row.trend,
+                "data_points": row.data_points,
+                "analysis_method": row.analysis_method
+            }
+            for row in rows
+        ]
+
+    finally:
+        db.close()
+
+
+@app.get("/trend-history/{patient_id}/{test_name}")
+def get_trend_history(patient_id: int, test_name: str):
+
+    db = SessionLocal()
+
+    try:
+
+        rows = db.execute(
+            text("""
+                SELECT lab_results
+                FROM medical_records
+                WHERE patient_id = :patient_id
+                AND document_type = 'LAB_REPORT'
+                ORDER BY id
+            """),
+            {"patient_id": patient_id}
+        ).fetchall()
+
+        history = []
+
+        report_no = 1
+
+        for row in rows:
+
+            labs = row[0]
+
+            if not labs:
+                continue
+
+            for lab in labs:
+
+                if lab.get("test") == test_name:
+
+                    history.append({
+                        "report": report_no,
+                        "value": float(lab["value"])
+                    })
+
+                    report_no += 1
+
+        return history
+
+    finally:
+        db.close()
 #main.py
