@@ -1,5 +1,4 @@
 import re
-import pdfplumber
 from datetime import datetime
 
 # ===============================
@@ -36,7 +35,6 @@ BLOCK_WORDS = {
 def extract_date(text):
     lines = text.split("\n")
 
-    # 🔥 All possible keywords (expand anytime)
     DATE_KEYWORDS = {
         "report": 3,
         "reported": 3,
@@ -47,7 +45,7 @@ def extract_date(text):
         "reg": 1,
         "registered": 1,
         "printed": 0,
-        "billing": -1   # ⚠ ignore low priority
+        "billing": -1
     }
 
     best_date = None
@@ -55,21 +53,14 @@ def extract_date(text):
 
     for i, line in enumerate(lines):
         lower = line.lower()
-
-        # normalize spacing
         clean_line = re.sub(r"\s+", " ", lower)
 
-        # check if line contains ANY keyword
         for key, score in DATE_KEYWORDS.items():
             if key in clean_line:
-
-                # try same line
                 if m := DATE_PATTERN.search(line):
                     if score > best_score:
                         best_score = score
                         best_date = m.group(0)
-
-                # try next line (VERY IMPORTANT)
                 elif i + 1 < len(lines):
                     if m := DATE_PATTERN.search(lines[i + 1]):
                         if score > best_score:
@@ -83,7 +74,11 @@ def normalize_date(date_str):
     if not date_str:
         return None
 
-    for fmt in ("%d-%b-%Y", "%d %b %Y", "%d/%m/%Y", "%d-%m-%Y"):
+    for fmt in (
+        "%d-%b-%Y", "%d %b %Y",
+        "%d/%m/%Y", "%d-%m-%Y",
+        "%Y-%m-%d", "%Y/%m/%d"
+    ):
         try:
             return datetime.strptime(date_str, fmt).date()
         except:
@@ -93,14 +88,12 @@ def normalize_date(date_str):
 
 
 # ===============================
-# PDF UTILS
+# REFERENCE PARSER
 # ===============================
-def extract_pdf_pages(pdf_path):
-    with pdfplumber.open(pdf_path) as pdf:
-        return [(i + 1, p.extract_text() or "") for i, p in enumerate(pdf.pages)]
-
-
 def parse_reference(text):
+    if not text:
+        return None, None
+
     if m := RANGE_PATTERN.search(text):
         return float(m.group(1)), float(m.group(2))
     if m := UPTO_PATTERN.search(text):
@@ -109,46 +102,143 @@ def parse_reference(text):
         return None, float(m.group(1))
     if m := GREATER_PATTERN.search(text):
         return float(m.group(1)), None
+
     return None, None
 
 
 # ===============================
-# PDF EXTRACTION
+# OCR / DOCLING LINE PARSER
 # ===============================
-def extract_labs_from_pdf(pdf_path):
-    pages = extract_pdf_pages(pdf_path)
+def extract_labs_from_lines(lines):
+    """
+    lines format:
+    [
+        {"text": "...", "page": 1},
+        ...
+    ]
+    """
+    if not lines:
+        return []
+
+    text_lines = []
+    for item in lines:
+        if isinstance(item, dict):
+            txt = item.get("text", "").strip()
+        else:
+            txt = str(item).strip()
+
+        if txt:
+            text_lines.append(txt)
+
+    if not text_lines:
+        return []
+
     results = []
 
-    for page_no, text in pages:
-        lines = [l.strip() for l in text.split("\n") if l.strip()]
+    date_raw = extract_date("\n".join(text_lines))
+    date_obj = normalize_date(date_raw)
 
-        date_raw = extract_date("\n".join(lines))
-        date_obj = normalize_date(date_raw)
+    for i, line in enumerate(text_lines):
 
-        for i, line in enumerate(lines):
+        if any(w in line.lower() for w in BLOCK_WORDS):
+            continue
 
-            if any(w in line.lower() for w in BLOCK_WORDS):
+        value_match = VALUE_PATTERN.search(line)
+        if not value_match:
+            continue
+
+        try:
+            value = float(value_match.group().replace("<", "").strip())
+        except:
+            continue
+
+        unit_match = UNIT_PATTERN.search(line)
+        unit = unit_match.group().lower() if unit_match else None
+
+        if not unit and "/" not in line:
+            continue
+
+        test_name = line
+        if i > 0 and not any(c.isdigit() for c in text_lines[i - 1]):
+            test_name = text_lines[i - 1] + " " + line
+
+        context_window = text_lines[i:i + 4]
+        context = " ".join(context_window)
+
+        low, high = parse_reference(context)
+
+        if low is None and high is None:
+            continue
+
+        status = None
+        if low is not None and value < low:
+            status = "LOW"
+        elif high is not None and value > high:
+            status = "HIGH"
+
+        if not status:
+            continue
+
+        clean_test = re.split(VALUE_PATTERN, test_name)[0].strip(" :-")
+
+        results.append({
+            "test": clean_test,
+            "value": value,
+            "unit": unit,
+            "reference_range": (low, high),
+            "status": status,
+            "abnormal": True,
+            "date": date_obj
+        })
+
+    return results
+
+
+# ===============================
+# TABLE PARSER FOR DOCLING TABLES
+# ===============================
+def extract_labs_from_docling_tables(tables):
+    """
+    tables format from docling.py:
+    [
+        {
+            "table_index": 0,
+            "rows": [
+                ["Test", "Value", "Unit", "Range"],
+                ...
+            ]
+        }
+    ]
+    """
+    results = []
+
+    if not tables:
+        return results
+
+    for table in tables:
+        rows = table.get("rows", [])
+        if not rows or len(rows) < 2:
+            continue
+
+        # skip header row
+        for row in rows[1:]:
+            row_text = " ".join(str(x) for x in row if x is not None).strip()
+            if not row_text:
                 continue
 
-            value_match = VALUE_PATTERN.search(line)
+            value_match = VALUE_PATTERN.search(row_text)
             if not value_match:
                 continue
 
-            value = float(value_match.group().replace("<", ""))
-
-            unit_match = UNIT_PATTERN.search(line)
-            unit = unit_match.group().lower() if unit_match else None
-
-            if not unit and "/" not in line:
+            try:
+                value = float(value_match.group().replace("<", "").strip())
+            except:
                 continue
 
-            test_name = line
-            if i > 0 and not any(c.isdigit() for c in lines[i - 1]):
-                test_name = lines[i - 1] + " " + line
+            unit_match = UNIT_PATTERN.search(row_text)
+            unit = unit_match.group().lower() if unit_match else None
 
-            context = " ".join(lines[i:i + 4])
-            low, high = parse_reference(context)
-
+            low, high = parse_reference(row_text)
             if low is None and high is None:
                 continue
 
@@ -161,23 +251,69 @@ def extract_labs_from_pdf(pdf_path):
             if not status:
                 continue
 
-            clean_test = re.split(VALUE_PATTERN, test_name)[0].strip(" :-")
+            # take first cell as test name if available
+            test_name = str(row[0]).strip() if row else "Unknown Test"
 
             results.append({
-                "test": clean_test,
+                "test": test_name,
                 "value": value,
                 "unit": unit,
                 "reference_range": (low, high),
                 "status": status,
                 "abnormal": True,
-                "date": date_obj
+                "date": None
             })
 
     return results
 
 
 # ===============================
-# PUBLIC API (IMPORTANT)
+# DOCLING PARSER
 # ===============================
-def extract_lab_results(input_data, source="pdf"):
-    return extract_labs_from_pdf(input_data)
+def extract_labs_from_docling(docling_data):
+    """
+    docling_data:
+    {
+        "full_text": str,
+        "lines": [...],
+        "tables": [...],
+        "doc_type": ...
+    }
+    """
+    if not isinstance(docling_data, dict):
+        return []
+
+    line_results = extract_labs_from_lines(docling_data.get("lines", []))
+    table_results = extract_labs_from_docling_tables(docling_data.get("tables", []))
+
+    # merge without obvious duplicates
+    merged = []
+    seen = set()
+
+    for item in line_results + table_results:
+        key = (
+            item.get("test"),
+            item.get("value"),
+            item.get("unit"),
+            item.get("reference_range")
+        )
+        if key not in seen:
+            seen.add(key)
+            merged.append(item)
+
+    return merged
+
+
+# ===============================
+# PUBLIC API
+# ===============================
+def extract_lab_results(input_data, source="ocr"):
+    """
+    source:
+      - "ocr"     -> input_data = visit_lines
+      - "docling" -> input_data = parse_pdf_with_docling(...) output
+    """
+    if source == "docling":
+        return extract_labs_from_docling(input_data)
+
+    return extract_labs_from_lines(input_data)

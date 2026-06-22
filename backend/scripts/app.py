@@ -21,7 +21,6 @@ sys.path.append(
 from sqlalchemy import text
 from database import SessionLocal
 
-from ocr_pipeline import ocr_process
 from visit_grouper import group_by_date
 
 from demographics_extraction import extract_demographics
@@ -32,7 +31,7 @@ from clinical_facts_extraction import extract_clinical_facts
 from ecg_extraction import extract_ecg_findings
 
 from user_review import review_prescriptions
-#from clinical_summary import generate_summary
+# from clinical_summary import generate_summary
 
 from uploader import upload_file
 
@@ -45,18 +44,26 @@ from dicom_viewer import (
     extract_dicom_metadata
 )
 
+# NEW: DOCLING PDF PARSER
+from docling_pipeline import parse_pdf_with_docling
+
+# RAG
+from chunking import create_chunks
+from embedding import embed_chunks
+from vector_store import insert_chunks
+
+
 # ============================================================
 # ECG DETECTOR
 # ============================================================
 
 def looks_like_ecg(lines):
-
     text = " ".join(l["text"].lower() for l in lines)
 
     keywords = [
-        "ecg","hr","bpm","qrs","qt",
-        "tachycardia","bundle branch",
-        "axis deviation","st","t wave"
+        "ecg", "hr", "bpm", "qrs", "qt",
+        "tachycardia", "bundle branch",
+        "axis deviation", "st", "t wave"
     ]
 
     return sum(k in text for k in keywords) >= 3
@@ -104,7 +111,6 @@ if is_dicom:
     print("\n🩻 INPUT TYPE: DICOM")
 
     ds = load_dicom(file_path)
-
     metadata = extract_dicom_metadata(ds)
 
     print("\n=== DICOM METADATA ===")
@@ -125,22 +131,34 @@ if is_dicom:
     sys.exit(0)
 
 # ============================================================
-# STEP 2: OCR
+# STEP 2: OCR / DOCLING
 # ============================================================
 
 pages = []
+pdf_data = None
 
 if not is_pdf:
 
     print("🔍 Running OCR...")
-
     pages = ocr_process(file_path)
-
     visits = group_by_date(pages)
 
 else:
 
-    visits = {"PDF_VISIT": []}
+    print("📄 Running Docling PDF parser...")
+    pdf_data = parse_pdf_with_docling(file_path)
+
+    # Make PDF look like a single "visit" so downstream code stays similar
+    visits = {
+        "PDF_VISIT": [
+            {
+                "lines": pdf_data.get("lines", []),
+                "doc_type": pdf_data.get("doc_type", "UNKNOWN"),
+                "tables": pdf_data.get("tables", []),
+                "full_text": pdf_data.get("full_text", "")
+            }
+        ]
+    }
 
 print(f"\nINPUT TYPE: {'PDF' if is_pdf else 'IMAGE'}")
 print(f"TOTAL VISITS: {len(visits)}")
@@ -149,7 +167,12 @@ print(f"TOTAL VISITS: {len(visits)}")
 # STEP 3: VISIT-WISE PROCESSING
 # ============================================================
 
+all_normalized_labs = []
+last_visit_date = None
+
 for visit_date, visit_pages in visits.items():
+
+    last_visit_date = visit_date
 
     print("\n" + "=" * 60)
     print("VISIT DATE:", visit_date)
@@ -158,10 +181,12 @@ for visit_date, visit_pages in visits.items():
     visit_lines = []
     doc_types = set()
 
+    pdf_tables = []
+    pdf_full_text = ""
+
     # ----------------------------------------
     # IMAGE FLOW
     # ----------------------------------------
-
     if not is_pdf:
 
         for p in visit_pages:
@@ -181,11 +206,18 @@ for visit_date, visit_pages in visits.items():
 
         entities = extract_demographics(visit_lines, primary_doc_type)
 
+    # ----------------------------------------
+    # PDF FLOW (DOCLING)
+    # ----------------------------------------
     else:
+        pdf_page = visit_pages[0] if visit_pages else {}
 
-        primary_doc_type = "LAB_REPORT"
-        visit_lines = []
-        entities = {}
+        visit_lines = pdf_page.get("lines", [])
+        pdf_tables = pdf_page.get("tables", [])
+        pdf_full_text = pdf_page.get("full_text", "")
+        primary_doc_type = pdf_page.get("doc_type", "UNKNOWN")
+
+        entities = extract_demographics(visit_lines, primary_doc_type)
 
     print("\n👤 DEMOGRAPHICS")
     print(entities)
@@ -199,10 +231,12 @@ for visit_date, visit_pages in visits.items():
     # ----------------------------------------
     # PRESCRIPTIONS
     # ----------------------------------------
-
     medicines = []
 
     if not is_pdf and "PRESCRIPTION" in doc_types:
+        medicines = extract_prescriptions(visit_lines)
+
+    elif is_pdf and primary_doc_type == "PRESCRIPTION":
         medicines = extract_prescriptions(visit_lines)
 
     reviewed_medicines = review_prescriptions(medicines)
@@ -213,21 +247,26 @@ for visit_date, visit_pages in visits.items():
     # ----------------------------------------
     # LAB RESULTS
     # ----------------------------------------
-
     normalized_labs = []
 
     if is_pdf:
 
-        print("📄 Extracting labs directly from PDF...")
+        print("📄 Extracting labs from Docling PDF output...")
 
-        raw_labs = extract_lab_results(file_path, source="pdf")
+        raw_labs = extract_lab_results(
+            {
+                "lines": visit_lines,
+                "tables": pdf_tables,
+                "full_text": pdf_full_text
+            },
+            source="docling"
+        )
 
     elif "LAB_REPORT" in doc_types:
 
         raw_labs = extract_lab_results(visit_lines)
 
     else:
-
         raw_labs = []
 
     normalized_labs = normalize_lab_results(raw_labs)
@@ -235,16 +274,17 @@ for visit_date, visit_pages in visits.items():
     print("\n🧪 LAB RESULTS")
     print(normalized_labs)
 
-    save_lab_results(
-        patient_id,
-        document_id,
-        normalized_labs
-    )
+    if normalized_labs:
+        save_lab_results(
+            patient_id,
+            document_id,
+            normalized_labs
+        )
+        all_normalized_labs.extend(normalized_labs)
 
     # ----------------------------------------
     # ECG
     # ----------------------------------------
-
     ecg_data = None
 
     if not is_pdf and visit_lines and looks_like_ecg(visit_lines):
@@ -256,9 +296,12 @@ for visit_date, visit_pages in visits.items():
     # ----------------------------------------
     # CLINICAL FACTS
     # ----------------------------------------
+    if is_pdf:
+        full_text = pdf_full_text.strip()
+    else:
+        full_text = "\n".join(l["text"] for l in visit_lines) if visit_lines else ""
 
-    if visit_lines:
-        full_text = "\n".join(l["text"] for l in visit_lines)
+    if full_text:
         clinical_facts = extract_clinical_facts(full_text)
     else:
         clinical_facts = {}
@@ -269,20 +312,18 @@ for visit_date, visit_pages in visits.items():
     # ----------------------------------------
     # SUMMARY (LEFT COMMENTED)
     # ----------------------------------------
-
     # summary = generate_summary(
     #     entities,
     #     reviewed_medicines,
     #     normalized_labs
     # )
-
+    #
     # print("\nSUMMARY:")
     # print(summary)
 
     # ----------------------------------------
     # TIMELINE
     # ----------------------------------------
-
     add_timeline_event(
         patient_id,
         document_id,
@@ -291,15 +332,12 @@ for visit_date, visit_pages in visits.items():
     )
 
     print("📅 Timeline updated")
+
 # ============================================================
-# 🔥 RAG INGESTION (ADD THIS)
+# STEP 4: RAG INGESTION
 # ============================================================
 
-from chunking import create_chunks
-from embedding import embed_chunks
-from vector_store import insert_chunks
-
-if normalized_labs:
+if all_normalized_labs:
 
     print("\n📦 Creating RAG chunks...")
 
@@ -311,7 +349,7 @@ if normalized_labs:
                 "unit": lab.get("unit"),
                 "reference_range": lab.get("reference_range"),
             }
-            for lab in normalized_labs
+            for lab in all_normalized_labs
         ]
     }
 
@@ -319,7 +357,7 @@ if normalized_labs:
         parsed_data,
         patient_id=patient_id,
         document_id=document_id,
-        report_date=str(visit_date)
+        report_date=str(last_visit_date) if last_visit_date else None
     )
 
     print(f"🧩 Chunks created: {len(chunks)}")
@@ -327,13 +365,13 @@ if normalized_labs:
     embeddings = embed_chunks(chunks)
 
     print("📡 Storing in Qdrant...")
-
     insert_chunks(chunks, embeddings)
 
     print("✅ RAG ingestion completed")
 
 else:
     print("⚠ No labs → skipping RAG ingestion")
+
 print("\n======================================")
 print("🎉 PIPELINE COMPLETED")
 print("======================================\n")
