@@ -1,7 +1,13 @@
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams
+from dotenv import load_dotenv
+import os
+QDRANT_URL = os.getenv(
+    "QDRANT_URL",
+    "http://qdrant:6333"
+)
 
-client = QdrantClient(url="http://localhost:6333")
+client = QdrantClient(url=QDRANT_URL)
 
 COLLECTION_NAME = "lab_report_chunks"
 

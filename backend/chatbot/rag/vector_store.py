@@ -3,8 +3,12 @@ from qdrant_client.models import Filter, FieldCondition, MatchValue
 from dotenv import load_dotenv
 import os
 load_dotenv()
+QDRANT_URL = os.getenv(
+    "QDRANT_URL",
+    "http://qdrant:6333"
+)
 
-client = QdrantClient(url="http://localhost:6333")
+client = QdrantClient(url=QDRANT_URL)
 COLLECTION_NAME = "lab_report_chunks"
 
 

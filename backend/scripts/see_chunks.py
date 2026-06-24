@@ -1,7 +1,15 @@
 #see_chunks.py
 from qdrant_client import QdrantClient
 
-client = QdrantClient(url="http://localhost:6333")
+from dotenv import load_dotenv
+import os
+load_dotenv()
+QDRANT_URL = os.getenv(
+    "QDRANT_URL",
+    "http://qdrant:6333"
+)
+
+client = QdrantClient(url=QDRANT_URL)
 
 points = client.scroll("lab_report_chunks")
 

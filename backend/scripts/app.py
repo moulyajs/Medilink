@@ -214,6 +214,7 @@ for visit_date, visit_pages in visits.items():
 
         visit_lines = pdf_page.get("lines", [])
         pdf_tables = pdf_page.get("tables", [])
+        print(pdf_tables)
         pdf_full_text = pdf_page.get("full_text", "")
         primary_doc_type = pdf_page.get("doc_type", "UNKNOWN")
 
@@ -275,6 +276,9 @@ for visit_date, visit_pages in visits.items():
     print(normalized_labs)
 
     if normalized_labs:
+        print("\n=== FINAL LABS ===")
+        for lab in normalized_labs:
+            print(lab)
         save_lab_results(
             patient_id,
             document_id,

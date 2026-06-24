@@ -7,7 +7,11 @@ from typing import List, Dict, Any
 
 from docling.document_converter import DocumentConverter
 
+from docling.datamodel.pipeline_options import PdfPipelineOptions
+from docling.document_converter import PdfFormatOption
 
+pipeline_options = PdfPipelineOptions()
+pipeline_options.do_ocr = False
 # ============================================================
 # HELPER: SPLIT TEXT INTO OCR-LIKE LINES
 # ============================================================
@@ -159,7 +163,13 @@ def parse_pdf_with_docling(file_path: str) -> Dict[str, Any]:
         "doc_type": str
     }
     """
-    converter = DocumentConverter()
+    converter = DocumentConverter(
+    format_options={
+        "pdf": PdfFormatOption(
+            pipeline_options=pipeline_options
+        )
+    }
+)
     result = converter.convert(file_path)
 
     # result.document is the Docling document in most standard flows

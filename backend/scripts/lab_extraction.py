@@ -5,10 +5,26 @@ from datetime import datetime
 # REGEX CONFIG
 # ===============================
 UNIT_PATTERN = re.compile(
-    r"(mg/dl|g/dl|iu/ml|µmol|mmol|%|fl|pg|ng/ml|/cmm|cells|u/l)",
-    re.I
+    r"""
+    (mg/dl|
+    g/dl|
+    gm/dl|
+    iu/ml|
+    uiu/ml|
+    µmol|
+    mmol|
+    %|
+    fl|
+    pg|
+    ng/ml|
+    cells/cu\.mm|
+    cells/cumm|
+    mill/cu\.mm|
+    cells|
+    u/l)
+    """,
+    re.I | re.X
 )
-
 VALUE_PATTERN = re.compile(r"<\s*\d+\.?\d*|\d+\.?\d*")
 RANGE_PATTERN = re.compile(r"(\d+\.?\d*)\s*-\s*(\d+\.?\d*)")
 LESS_PATTERN = re.compile(r"<\s*(\d+\.?\d*)")
@@ -86,6 +102,25 @@ def normalize_date(date_str):
 
     return None
 
+def extract_date_from_docling_tables(tables):
+
+    for table in tables:
+        rows = table.get("rows", [])
+
+        for row in rows:
+            row_text = " ".join(str(x) for x in row)
+
+            if "reported" in row_text.lower():
+
+                m = re.search(
+                    r"\b\d{1,2}/\d{1,2}/\d{4}",
+                    row_text
+                )
+
+                if m:
+                    return normalize_date(m.group(0))
+
+    return None
 
 # ===============================
 # REFERENCE PARSER
@@ -214,7 +249,7 @@ def extract_labs_from_docling_tables(tables):
 
     if not tables:
         return results
-
+    report_date = extract_date_from_docling_tables(tables)
     for table in tables:
         rows = table.get("rows", [])
         if not rows or len(rows) < 2:
@@ -242,14 +277,16 @@ def extract_labs_from_docling_tables(tables):
             if low is None and high is None:
                 continue
 
-            status = None
+            status = "NORMAL"
+            abnormal = False
+
             if low is not None and value < low:
                 status = "LOW"
+                abnormal = True
+
             elif high is not None and value > high:
                 status = "HIGH"
-
-            if not status:
-                continue
+                abnormal = True
 
             # take first cell as test name if available
             test_name = str(row[0]).strip() if row else "Unknown Test"
@@ -260,8 +297,8 @@ def extract_labs_from_docling_tables(tables):
                 "unit": unit,
                 "reference_range": (low, high),
                 "status": status,
-                "abnormal": True,
-                "date": None
+                "abnormal": abnormal,
+                "date": report_date
             })
 
     return results
@@ -283,25 +320,10 @@ def extract_labs_from_docling(docling_data):
     if not isinstance(docling_data, dict):
         return []
 
-    line_results = extract_labs_from_lines(docling_data.get("lines", []))
-    table_results = extract_labs_from_docling_tables(docling_data.get("tables", []))
-
-    # merge without obvious duplicates
-    merged = []
-    seen = set()
-
-    for item in line_results + table_results:
-        key = (
-            item.get("test"),
-            item.get("value"),
-            item.get("unit"),
-            item.get("reference_range")
-        )
-        if key not in seen:
-            seen.add(key)
-            merged.append(item)
-
-    return merged
+    # Use Docling tables only
+    return extract_labs_from_docling_tables(
+        docling_data.get("tables", [])
+    )
 
 
 # ===============================
