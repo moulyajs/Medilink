@@ -1,7 +1,7 @@
 import uuid
 from sqlalchemy import text
 from database import SessionLocal
-
+from baseline_engine import update_patient_baselines
 
 # ===============================
 # SAVE PATIENT
@@ -97,4 +97,5 @@ def save_lab_results(patient_id, document_id, labs):
         )
 
     db.commit()
+    update_patient_baselines(patient_id)
     db.close()
