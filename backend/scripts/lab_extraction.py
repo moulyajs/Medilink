@@ -249,7 +249,6 @@ def extract_labs_from_docling_tables(tables):
 
     if not tables:
         return results
-    report_date = extract_date_from_docling_tables(tables)
     for table in tables:
         rows = table.get("rows", [])
         if not rows or len(rows) < 2:
@@ -298,12 +297,15 @@ def extract_labs_from_docling_tables(tables):
                 "reference_range": (low, high),
                 "status": status,
                 "abnormal": abnormal,
-                "date": report_date
+                "date":None
             })
 
     return results
 
 
+# ===============================
+# DOCLING PARSER
+# ===============================
 # ===============================
 # DOCLING PARSER
 # ===============================
@@ -320,10 +322,21 @@ def extract_labs_from_docling(docling_data):
     if not isinstance(docling_data, dict):
         return []
 
-    # Use Docling tables only
-    return extract_labs_from_docling_tables(
-        docling_data.get("tables", [])
+    tables = docling_data.get("tables", [])
+    full_text = docling_data.get("full_text", "")
+
+    # Extract report date from the entire PDF text
+    report_date = normalize_date(
+        extract_date(full_text)
     )
+
+    results = extract_labs_from_docling_tables(tables)
+
+    # Assign the extracted date to every lab
+    for lab in results:
+        lab["date"] = report_date
+
+    return results
 
 
 # ===============================

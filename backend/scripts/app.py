@@ -25,11 +25,15 @@ from visit_grouper import group_by_date
 
 from demographics_extraction import extract_demographics
 from prescription_extraction import extract_prescriptions
-from lab_extraction import extract_lab_results
+from lab_extraction import (
+    extract_lab_results,
+    extract_date,
+    normalize_date
+)
 from lab_normalizer import normalize_lab_results
 from clinical_facts_extraction import extract_clinical_facts
 from ecg_extraction import extract_ecg_findings
-
+from anomaly_detection import detect_patient_anomalies
 #from user_review import review_prescriptions
 # from clinical_summary import generate_summary
 
@@ -214,7 +218,7 @@ for visit_date, visit_pages in visits.items():
 
         visit_lines = pdf_page.get("lines", [])
         pdf_tables = pdf_page.get("tables", [])
-        print(pdf_tables)
+        # print(pdf_tables)
         pdf_full_text = pdf_page.get("full_text", "")
         primary_doc_type = pdf_page.get("doc_type", "UNKNOWN")
 
@@ -253,7 +257,12 @@ for visit_date, visit_pages in visits.items():
     if is_pdf:
 
         print("📄 Extracting labs from Docling PDF output...")
+        print("\n========== PDF FULL TEXT ==========")
+        print(pdf_full_text[:1500])      # print first 1500 characters
+        print("==================================")
 
+        print("Extracted report date:",
+            normalize_date(extract_date(pdf_full_text)))
         raw_labs = extract_lab_results(
             {
                 "lines": visit_lines,
@@ -286,6 +295,34 @@ for visit_date, visit_pages in visits.items():
         )
         all_normalized_labs.extend(normalized_labs)
 
+    print("\n🔍 Checking historical lab trends...")
+
+    anomalies = detect_patient_anomalies(
+        patient_id,
+        normalized_labs
+    )
+
+    print("\n📈 PATIENT LAB TRENDS")
+
+    if not anomalies:
+        print("No significant trend detected.")
+
+    else:
+        for a in anomalies:
+
+            print("--------------------------------")
+
+            print("Test :", a["test_name"])
+
+            print("Current :", a["current_value"])
+
+            print("Baseline :", a["baseline"])
+
+            print("History :", a["history"])
+
+            print("% Change :", a["percent_change"])
+
+            print("Trend :", a["trend"])
     # ----------------------------------------
     # ECG
     # ----------------------------------------

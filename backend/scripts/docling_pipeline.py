@@ -2,28 +2,36 @@
 # DOCLING PDF PIPELINE
 # ============================================================
 
-import re
 from typing import List, Dict, Any
 
-from docling.document_converter import DocumentConverter
-
+from docling.document_converter import (
+    DocumentConverter,
+    PdfFormatOption
+)
 from docling.datamodel.pipeline_options import PdfPipelineOptions
-from docling.document_converter import PdfFormatOption
 
+
+# ------------------------------------------------------------
+# PDF OPTIONS
+# ------------------------------------------------------------
 pipeline_options = PdfPipelineOptions()
+
+# Keep OCR OFF for now.
+# Your Docker installation currently throws:
+# Unsupported configuration: torch.PP-OCRv6.det.small
 pipeline_options.do_ocr = False
+
+
 # ============================================================
 # HELPER: SPLIT TEXT INTO OCR-LIKE LINES
 # ============================================================
 
 def _text_to_lines(text: str, page_num: int = 1) -> List[Dict[str, Any]]:
-    """
-    Convert raw text into the same line format used by OCR pipeline.
-    """
     lines = []
 
     for raw_line in text.splitlines():
         line = raw_line.strip()
+
         if not line:
             continue
 
@@ -36,37 +44,54 @@ def _text_to_lines(text: str, page_num: int = 1) -> List[Dict[str, Any]]:
 
 
 # ============================================================
-# HELPER: SIMPLE DOC TYPE DETECTOR
+# DOC TYPE DETECTOR
 # ============================================================
 
 def detect_doc_type_from_text(full_text: str) -> str:
-    """
-    Basic heuristic doc-type detector for PDFs.
-    You can improve this later.
-    """
+
     text = full_text.lower()
 
     lab_keywords = [
-        "haemoglobin", "hemoglobin", "rbc", "wbc", "platelet",
-        "creatinine", "glucose", "cholesterol", "bilirubin",
-        "lab report", "investigation", "biochemistry"
+        "haemoglobin", "hemoglobin",
+        "rbc", "wbc",
+        "platelet",
+        "creatinine",
+        "glucose",
+        "cholesterol",
+        "bilirubin",
+        "lab report",
+        "investigation",
+        "biochemistry"
     ]
 
     prescription_keywords = [
-        "tablet", "capsule", "take once daily", "rx", "prescription",
-        "mg", "after food", "before food"
+        "tablet",
+        "capsule",
+        "take once daily",
+        "rx",
+        "prescription",
+        "after food",
+        "before food"
     ]
 
     discharge_keywords = [
-        "discharge summary", "admission", "diagnosis", "hospital course"
+        "discharge summary",
+        "admission",
+        "diagnosis",
+        "hospital course"
     ]
 
     ecg_keywords = [
-        "ecg", "heart rate", "bpm", "qrs", "qt", "tachycardia"
+        "ecg",
+        "heart rate",
+        "bpm",
+        "qrs",
+        "qt",
+        "tachycardia"
     ]
 
-    def score(keywords):
-        return sum(1 for k in keywords if k in text)
+    def score(words):
+        return sum(1 for w in words if w in text)
 
     scores = {
         "LAB_REPORT": score(lab_keywords),
@@ -75,117 +100,157 @@ def detect_doc_type_from_text(full_text: str) -> str:
         "ECG_REPORT": score(ecg_keywords),
     }
 
-    best_type = max(scores, key=scores.get)
+    best = max(scores, key=scores.get)
 
-    if scores[best_type] == 0:
+    if scores[best] == 0:
         return "UNKNOWN"
 
-    return best_type
+    return best
 
 
 # ============================================================
-# HELPER: TABLE NORMALIZATION
+# TABLE NORMALIZATION
 # ============================================================
 
-def _normalize_docling_tables(doc) -> List[Dict[str, Any]]:
-    """
-    Try to extract tables from a Docling document into a simple structure.
-    This is written defensively because Docling object structure can vary slightly
-    depending on version.
+def _normalize_docling_tables(doc):
 
-    Output format:
-    [
-        {
-            "table_index": 0,
-            "rows": [
-                ["Test", "Value", "Unit", "Range"],
-                ["Hemoglobin", "13.2", "g/dL", "12-15"]
-            ]
-        }
-    ]
-    """
     normalized_tables = []
 
-    # Try common docling table attributes
     possible_tables = []
 
     if hasattr(doc, "tables") and doc.tables:
         possible_tables = doc.tables
+
     elif hasattr(doc, "document") and hasattr(doc.document, "tables"):
         possible_tables = doc.document.tables
 
     for idx, table in enumerate(possible_tables):
+
         rows = []
 
-        # Case 1: table.export_to_dataframe() exists
+        # -------------------------------
+        # export_to_dataframe()
+        # -------------------------------
         if hasattr(table, "export_to_dataframe"):
             try:
                 df = table.export_to_dataframe()
-                rows = [list(df.columns)] + df.fillna("").astype(str).values.tolist()
+
+                rows = (
+                    [list(df.columns)]
+                    + df.fillna("").astype(str).values.tolist()
+                )
+
             except Exception:
                 pass
 
-        # Case 2: fallback to generic row/cell extraction
+        # -------------------------------
+        # table.data
+        # -------------------------------
         if not rows:
+
             if hasattr(table, "data") and table.data:
+
                 try:
+
                     for row in table.data:
+
                         if isinstance(row, list):
-                            rows.append([str(cell).strip() for cell in row])
+                            rows.append(
+                                [str(c).strip() for c in row]
+                            )
+
                         else:
                             rows.append([str(row).strip()])
+
                 except Exception:
                     pass
 
         if rows:
             normalized_tables.append({
+
                 "table_index": idx,
                 "rows": rows
+
             })
 
     return normalized_tables
 
 
 # ============================================================
-# MAIN DOCLING PARSER
+# MAIN PARSER
 # ============================================================
 
-def parse_pdf_with_docling(file_path: str) -> Dict[str, Any]:
-    """
-    Parse a PDF using Docling and return a structure that can plug into
-    the rest of the Medilink pipeline.
+def parse_pdf_with_docling(file_path: str):
 
-    Returns:
-    {
-        "full_text": str,
-        "lines": [ {"text": ..., "page": ...}, ... ],
-        "tables": [ {"table_index": ..., "rows": [...]}, ... ],
-        "doc_type": str
-    }
-    """
     converter = DocumentConverter(
-    format_options={
-        "pdf": PdfFormatOption(
-            pipeline_options=pipeline_options
-        )
-    }
-)
+        format_options={
+            "pdf": PdfFormatOption(
+                pipeline_options=pipeline_options
+            )
+        }
+    )
+
     result = converter.convert(file_path)
 
-    # result.document is the Docling document in most standard flows
     doc = result.document if hasattr(result, "document") else result
 
-    # ---------------------------
-    # FULL TEXT
-    # ---------------------------
-    full_text = ""
+    # =====================================================
+    # DEBUG
+    # =====================================================
+    # print("\n================ TABLE DEBUG ================\n")
 
-    # Best effort extraction
+    # if hasattr(doc, "tables"):
+
+    #     print("Number of tables:", len(doc.tables))
+
+    #     for i, table in enumerate(doc.tables):
+
+    #         print("\nTABLE", i)
+    #         print("TYPE :", type(table))
+    #         print("\nTABLE.DATA TYPE:")
+    #         print(type(table.data))
+
+    #         print("\nTABLE.DATA:")
+    #         print(table.data)
+
+    #         print("\nTABLE.JSON:")
+    #         try:
+    #             print(table.model_dump())
+    #         except Exception as e:
+    #             print(e)
+    #         print("\nATTRIBUTES:")
+    #         print(dir(table))
+
+    #         if hasattr(table, "export_to_dataframe"):
+    #             try:
+    #                 df = table.export_to_dataframe()
+
+    #                 print("\nDATAFRAME SHAPE:", df.shape)
+    #                 print(df.head())
+
+    #             except Exception as e:
+    #                 print("\nexport_to_dataframe FAILED:")
+    #                 print(e)
+
+    # else:
+
+    #     print("Document has NO tables attribute.")
+
+    # print("\n=============================================\n")
+
+    # =====================================================
+    # FULL TEXT
+    # =====================================================
+
+    full_text = ""
+    # print("\n========== FULL TEXT ==========")
+    # print(full_text[:5000])
+    # print("===============================\n")
     if hasattr(doc, "export_to_markdown"):
         try:
             full_text = doc.export_to_markdown()
         except Exception:
-            full_text = ""
+            pass
 
     if not full_text and hasattr(doc, "text"):
         full_text = str(doc.text)
@@ -193,24 +258,29 @@ def parse_pdf_with_docling(file_path: str) -> Dict[str, Any]:
     if not full_text:
         full_text = str(doc)
 
-    # ---------------------------
-    # OCR-LIKE LINES
-    # ---------------------------
-    lines = _text_to_lines(full_text, page_num=1)
+    # =====================================================
+    # LINES
+    # =====================================================
 
-    # ---------------------------
+    lines = _text_to_lines(full_text)
+
+    # =====================================================
     # TABLES
-    # ---------------------------
+    # =====================================================
+
     tables = _normalize_docling_tables(doc)
 
-    # ---------------------------
+    # =====================================================
     # DOC TYPE
-    # ---------------------------
+    # =====================================================
+
     doc_type = detect_doc_type_from_text(full_text)
 
     return {
+
         "full_text": full_text,
         "lines": lines,
         "tables": tables,
         "doc_type": doc_type
+
     }
