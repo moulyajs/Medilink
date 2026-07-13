@@ -16,6 +16,11 @@
       "predictiveBackGestureEnabled": false,
       "softwareKeyboardLayoutMode": "resize",
       "package": "com.anonymous.frontend"
-    }
+    
+      
+    },
+    "plugins": [
+      "expo-font"
+    ]
   }
 }

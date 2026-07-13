@@ -12,6 +12,7 @@ const Spacing = {
   xxl: 40,
 
   xxxl: 48,
+  
 };
 
 export default Spacing;
