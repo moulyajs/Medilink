@@ -22,7 +22,7 @@ from sqlalchemy import text
 from database import SessionLocal
 
 from visit_grouper import group_by_date
-
+from duplicate_detector import is_duplicate_report
 from demographics_extraction import extract_demographics
 from prescription_extraction import extract_prescriptions
 from lab_extraction import (
@@ -283,7 +283,12 @@ for visit_date, visit_pages in visits.items():
 
     print("\n🧪 LAB RESULTS")
     print(normalized_labs)
+    if is_duplicate_report(patient_id, normalized_labs):
 
+        print("\n⚠ Duplicate report detected.")
+        print("Skipping save...\n")
+
+        continue
     if normalized_labs:
         print("\n=== FINAL LABS ===")
         for lab in normalized_labs:
