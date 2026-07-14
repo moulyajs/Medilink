@@ -23,6 +23,7 @@ from database import SessionLocal
 
 from visit_grouper import group_by_date
 
+
 from demographics_extraction import extract_demographics
 from prescription_extraction import extract_prescriptions
 from lab_extraction import (
@@ -41,6 +42,8 @@ from uploader import upload_file
 
 from record_saver import save_patient, save_lab_results
 from timeline_saver import add_timeline_event
+
+from trend_engine import update_patient_trends
 
 from dicom_viewer import (
     load_dicom,
@@ -293,6 +296,8 @@ for visit_date, visit_pages in visits.items():
             document_id,
             normalized_labs
         )
+        update_patient_trends(patient_id)
+        
         all_normalized_labs.extend(normalized_labs)
 
     print("\n🔍 Checking historical lab trends...")

@@ -12,6 +12,8 @@ from scripts.lab_extraction import extract_lab_results
 from scripts.chunking import create_chunks
 from scripts.embedding import embed_chunks
 from scripts.vector_store import insert_chunks
+from sqlalchemy import text
+from database import SessionLocal
 
 app = FastAPI()
 
@@ -163,3 +165,46 @@ def view_file(file_path: str):
 
     except Exception:
         raise HTTPException(status_code=404, detail="File not found")
+    
+
+@app.get("/trend-analysis/{patient_id}")
+def get_trend_analysis(patient_id: str):
+
+    db = SessionLocal()
+
+    try:
+
+        result = db.execute(
+            text("""
+                SELECT
+                    test_name,
+                    latest_value,
+                    delta,
+                    slope,
+                    trend,
+                    status,
+                    data_points
+                FROM lab_trends
+                WHERE patient_id = :pid
+                ORDER BY test_name
+            """),
+            {"pid": patient_id}
+        )
+
+        trends = []
+
+        for row in result:
+            trends.append({
+                "test_name": row.test_name,
+                "latest_value": row.latest_value,
+                "delta": row.delta,
+                "slope": row.slope,
+                "trend": row.trend,
+                "status": row.status,
+                "data_points": row.data_points
+            })
+
+        return trends
+
+    finally:
+        db.close()
