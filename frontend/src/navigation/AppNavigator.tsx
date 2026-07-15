@@ -17,7 +17,7 @@ const Stack = createNativeStackNavigator();
 
 export default function AppNavigator() {
   return (
-    <Stack.Navigator
+   <Stack.Navigator
       initialRouteName="Splash"
       screenOptions={{
         headerShown: false,
@@ -27,11 +27,12 @@ export default function AppNavigator() {
         name="Profile"
         component={ProfileScreen}
       />
-      <Stack.Screen
+     <Stack.Screen
   name="EditProfile"
   component={EditProfileScreen}
 />
-      <Stack.Screen
+
+    <Stack.Screen
         name="Splash"
         component={SplashScreen}
       />
@@ -66,5 +67,6 @@ export default function AppNavigator() {
         component={ChatScreen}
       />
     </Stack.Navigator>
+    
   );
 }

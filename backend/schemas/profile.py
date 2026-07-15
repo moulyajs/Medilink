@@ -1,18 +1,25 @@
-from pydantic import BaseModel, EmailStr
-from typing import Optional
+from datetime import date
+from uuid import UUID
+
+from pydantic import BaseModel
 
 
 class ProfileBase(BaseModel):
     name: str
-    email: EmailStr
-    phone: str
-    gender: str
-    blood_group: str
 
-    dob: Optional[str] = None
-    address: Optional[str] = None
-    emergency_contact: Optional[str] = None
-    profile_image: Optional[str] = None
+    phone: str | None = None
+
+    dob: date | None = None
+
+    gender: str | None = None
+
+    blood_group: str | None = None
+
+    address: str | None = None
+
+    emergency_contact: str | None = None
+
+    profile_image: str | None = None
 
 
 class ProfileCreate(ProfileBase):
@@ -24,7 +31,7 @@ class ProfileUpdate(ProfileBase):
 
 
 class ProfileResponse(ProfileBase):
-    id: int
+    patient_id: UUID
 
     class Config:
         from_attributes = True

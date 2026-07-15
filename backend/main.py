@@ -1,8 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
+from models.patient import Patient
+from models.profile import Profile
+from models.otp import EmailOTP
 from database import Base, engine
 from routers.profile import router as profile_router
+from routers.auth import router as auth_router
 # Create database tables
 Base.metadata.create_all(bind=engine)
 app = FastAPI(
@@ -33,4 +36,5 @@ def health():
     return {
         "status": "healthy"
     }
+app.include_router(auth_router)
 app.include_router(profile_router)

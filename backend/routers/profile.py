@@ -1,13 +1,21 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from database import get_db
-from models.profile import Profile
+
+from models.patient import Patient
+
 from schemas.profile import (
-    ProfileCreate,
-    ProfileUpdate,
     ProfileResponse,
+    ProfileUpdate
 )
+
+from services.profile_service import (
+    get_profile_service,
+    update_profile_service
+)
+
+from utils.dependencies import get_current_patient
 
 router = APIRouter(
     prefix="/profile",
@@ -15,121 +23,31 @@ router = APIRouter(
 )
 
 
-# -----------------------------
-# Create Profile
-# -----------------------------
-@router.post("/", response_model=ProfileResponse)
-def create_profile(
-    profile: ProfileCreate,
-    db: Session = Depends(get_db)
-):
-
-    existing = (
-        db.query(Profile)
-        .filter(Profile.email == profile.email)
-        .first()
-    )
-
-    if existing:
-        raise HTTPException(
-            status_code=400,
-            detail="Profile already exists."
-        )
-
-    new_profile = Profile(**profile.model_dump())
-
-    db.add(new_profile)
-    db.commit()
-    db.refresh(new_profile)
-
-    return new_profile
-
-
-# -----------------------------
-# Get Profile
-# -----------------------------
 @router.get(
-    "/{profile_id}",
+    "/me",
     response_model=ProfileResponse
 )
 def get_profile(
-    profile_id: int,
+    current_patient: Patient = Depends(get_current_patient),
     db: Session = Depends(get_db)
 ):
-
-    profile = (
-        db.query(Profile)
-        .filter(Profile.id == profile_id)
-        .first()
+    return get_profile_service(
+        current_patient,
+        db
     )
 
-    if not profile:
-        raise HTTPException(
-            status_code=404,
-            detail="Profile not found."
-        )
 
-    return profile
-
-
-# -----------------------------
-# Update Profile
-# -----------------------------
 @router.put(
-    "/{profile_id}",
+    "/me",
     response_model=ProfileResponse
 )
 def update_profile(
-    profile_id: int,
-    updated: ProfileUpdate,
+    request: ProfileUpdate,
+    current_patient: Patient = Depends(get_current_patient),
     db: Session = Depends(get_db)
 ):
-
-    profile = (
-        db.query(Profile)
-        .filter(Profile.id == profile_id)
-        .first()
+    return update_profile_service(
+        current_patient,
+        request,
+        db
     )
-
-    if not profile:
-        raise HTTPException(
-            status_code=404,
-            detail="Profile not found."
-        )
-
-    for key, value in updated.model_dump().items():
-        setattr(profile, key, value)
-
-    db.commit()
-    db.refresh(profile)
-
-    return profile
-
-
-# -----------------------------
-# Delete Profile
-# -----------------------------
-@router.delete("/{profile_id}")
-def delete_profile(
-    profile_id: int,
-    db: Session = Depends(get_db)
-):
-
-    profile = (
-        db.query(Profile)
-        .filter(Profile.id == profile_id)
-        .first()
-    )
-
-    if not profile:
-        raise HTTPException(
-            status_code=404,
-            detail="Profile not found."
-        )
-
-    db.delete(profile)
-    db.commit()
-
-    return {
-        "message": "Profile deleted successfully."
-    }
