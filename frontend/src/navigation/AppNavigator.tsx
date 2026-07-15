@@ -11,17 +11,9 @@ import LoginScreen from "../screens/auth/LoginScreen";
 import ChatHome from "../screens/chatbot/ChatHome";
 import ChatScreen from "../screens/chatbot/ChatScreen";
 
-export type RootStackParamList = {
-  Splash: undefined;
-  Onboarding1: undefined;
-  Onboarding2: undefined;
-  Onboarding3: undefined;
-  Login: undefined;
-  ChatHome: undefined;
-  ChatScreen: undefined;
-};
-
-const Stack = createNativeStackNavigator<RootStackParamList>();
+import ProfileScreen from "../screens/profile/ProfileScreen";
+import EditProfileScreen from "../screens/profile/EditProfileScreen";
+const Stack = createNativeStackNavigator();
 
 export default function AppNavigator() {
   return (
@@ -31,6 +23,14 @@ export default function AppNavigator() {
         headerShown: false,
       }}
     >
+      <Stack.Screen
+        name="Profile"
+        component={ProfileScreen}
+      />
+      <Stack.Screen
+  name="EditProfile"
+  component={EditProfileScreen}
+/>
       <Stack.Screen
         name="Splash"
         component={SplashScreen}
@@ -50,7 +50,7 @@ export default function AppNavigator() {
         name="Onboarding3"
         component={Onboarding3}
       />
-
+      
       <Stack.Screen
         name="Login"
         component={LoginScreen}

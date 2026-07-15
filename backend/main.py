@@ -1,6 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from database import Base, engine
+from routers.profile import router as profile_router
+# Create database tables
+Base.metadata.create_all(bind=engine)
 app = FastAPI(
     title="Medilink API",
     description="Backend API for Medilink",
@@ -29,3 +33,4 @@ def health():
     return {
         "status": "healthy"
     }
+app.include_router(profile_router)
