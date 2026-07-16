@@ -5,6 +5,9 @@ services:
     container_name: health_postgres
     restart: always
 
+    ports:
+      - "8000:8000"
+
     env_file:
       - ../.env
 
@@ -18,7 +21,6 @@ services:
 
     volumes:
       - pgdata:/var/lib/postgresql/data
-
 
   minio:
     image: minio/minio
@@ -42,6 +44,15 @@ services:
       - miniodata:/data
 
 
+<<<<<<< Updated upstream
+=======
+    ports:
+      - "6333:6333"
+
+    volumes:
+      - qdrantdata:/qdrant/storage
+
+>>>>>>> Stashed changes
 volumes:
   pgdata:
   miniodata:

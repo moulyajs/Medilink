@@ -1,6 +1,7 @@
 from fastapi.responses import StreamingResponse
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.responses import StreamingResponse
+from fastapi.middleware.cors import CORSMiddleware
 from storage import client, BUCKET
 from database import SessionLocal
 from sqlalchemy import text
@@ -12,6 +13,14 @@ from database import DB_URL
 print("MAIN DB URL =", DB_URL)
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],      # For development
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.post("/upload/")
@@ -108,6 +117,7 @@ def view_file(file_path: str):
     except Exception:
         raise HTTPException(status_code=404, detail="File not found")
 
+<<<<<<< Updated upstream
 @app.get("/timeline/{patient_id}")
 def timeline(patient_id: int):
     return get_timeline(patient_id)
@@ -320,3 +330,88 @@ def get_trend_history(patient_id: int, test_name: str):
     finally:
         db.close()
 #main.py
+=======
+
+
+@app.get("/timeline/{patient_id}")
+def get_timeline(patient_id: str):
+
+    db = SessionLocal()
+
+    try:
+        result = db.execute(
+            text("""
+                SELECT
+                    event_id,
+                    patient_id,
+                    event_type,
+                    event_date,
+                    source_document,
+                    summary
+                FROM timeline_events
+                WHERE patient_id = :pid
+                ORDER BY event_date DESC
+            """),
+            {
+                "pid": patient_id
+            }
+        )
+
+        timeline = []
+
+        for row in result:
+            timeline.append({
+                "id": str(row.event_id),
+                "patient_id": row.patient_id,
+                "document_type": row.event_type,
+                "event_date": str(row.event_date),
+                "summary": row.summary,
+                "source_document": row.source_document
+            })
+
+        return timeline
+
+    finally:
+        db.close()
+
+
+@app.get("/document/{document_id}")
+def view_document(document_id: str):
+
+    db = SessionLocal()
+
+    try:
+
+        result = db.execute(
+            text("""
+                SELECT file_path
+                FROM documents
+                WHERE document_id = :id
+            """),
+            {"id": document_id},
+        ).fetchone()
+
+        if not result:
+            raise HTTPException(
+                status_code=404,
+                detail="Document not found"
+            )
+
+        file_path = result[0]
+
+        response = client.get_object(
+            BUCKET,
+            file_path
+        )
+
+        file_data = response.read()
+
+        return StreamingResponse(
+            io.BytesIO(file_data),
+            media_type="application/pdf"
+        )
+
+    finally:
+        db.close()
+
+>>>>>>> Stashed changes
