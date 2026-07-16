@@ -18,6 +18,8 @@ import ProfileAvatar from "../../components/profile/ProfileAvatar";
 import InfoCard from "../../components/profile/InfoCard";
 import PrimaryButton from "../../components/profile/PrimaryButton";
 import { useFocusEffect } from "@react-navigation/native";
+import { removeToken } from "../../utils/storage";
+import { Alert, Platform } from "react-native";
 import { useCallback } from "react";
 const { width } = Dimensions.get("window");
 
@@ -71,7 +73,47 @@ if (loading) {
   );
 
 }
+const handleLogout = async () => {
+  if (Platform.OS === "web") {
+    const confirmed = window.confirm(
+      "Are you sure you want to logout?"
+    );
 
+    if (!confirmed) return;
+
+    await removeToken();
+
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "Login" }],
+    });
+
+    return;
+  }
+
+  Alert.alert(
+    "Logout",
+    "Are you sure you want to logout?",
+    [
+      {
+        text: "Cancel",
+        style: "cancel",
+      },
+      {
+        text: "Logout",
+        style: "destructive",
+        onPress: async () => {
+          await removeToken();
+
+          navigation.reset({
+            index: 0,
+            routes: [{ name: "Login" }],
+          });
+        },
+      },
+    ]
+  );
+};
   return (
 
     <SafeAreaView style={styles.container}>
@@ -367,7 +409,10 @@ if (loading) {
 
 </View>
 
-<TouchableOpacity style={styles.logoutButton}>
+<TouchableOpacity
+  style={styles.logoutButton}
+  onPress={handleLogout}
+>
 
   <Ionicons
     name="log-out-outline"
