@@ -114,15 +114,17 @@ if (loading) {
               My Profile
             </Text>
 
-            <TouchableOpacity>
+            <TouchableOpacity
+  onPress={() => navigation.navigate("Settings")}
+>
 
-              <Ionicons
-                name="settings-outline"
-                size={24}
-                color="#FFFFFF"
-              />
+  <Ionicons
+    name="settings-outline"
+    size={24}
+    color="#FFFFFF"
+  />
 
-            </TouchableOpacity>
+</TouchableOpacity>
 
           </View>
 

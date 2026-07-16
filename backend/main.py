@@ -6,6 +6,8 @@ from models.otp import EmailOTP
 from database import Base, engine
 from routers.profile import router as profile_router
 from routers.auth import router as auth_router
+from routers.support import router as support_router
+from routers.report_issue import router as report_issue_router
 # Create database tables
 Base.metadata.create_all(bind=engine)
 app = FastAPI(
@@ -38,3 +40,5 @@ def health():
     }
 app.include_router(auth_router)
 app.include_router(profile_router)
+app.include_router(support_router)
+app.include_router(report_issue_router)

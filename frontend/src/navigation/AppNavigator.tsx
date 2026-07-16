@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
+import SettingsScreen from "../screens/settings/SettingsScreen";
 import SplashScreen from "../screens/SplashScreen";
 
 import Onboarding1 from "../screens/onboarding/Onboarding1";
@@ -10,7 +10,7 @@ import LoginScreen from "../screens/auth/LoginScreen";
 
 import ChatHome from "../screens/chatbot/ChatHome";
 import ChatScreen from "../screens/chatbot/ChatScreen";
-
+import ReportIssueScreen from "../screens/settings/ReportIssueScreen";
 import ProfileScreen from "../screens/profile/ProfileScreen";
 import EditProfileScreen from "../screens/profile/EditProfileScreen";
 import SignupScreen from "../screens/auth/SignupScreen";
@@ -18,6 +18,12 @@ import Dashboard from "../screens/dashboard/Dashboard";
 import ForgotPasswordScreen from "../screens/auth/ForgotPasswordScreen";
 import VerifyOTPScreen from "../screens/auth/VerifyOTPScreen";
 import ResetPasswordScreen from "../screens/auth/ResetPasswordScreen";
+import PrivacySettingsScreen from "../screens/settings/PrivacySettingsScreen";
+import HelpSupportScreen from "../screens/settings/HelpSupportScreen";
+import ContactSupportScreen from "../screens/settings/ContactSupportScreen";
+import FAQScreen from "../screens/settings/FAQScreen";
+import TermsScreen from "../screens/settings/TermsScreen";
+import PrivacyPolicyScreen from "../screens/settings/PrivacyPolicyScreen";
 const Stack = createNativeStackNavigator();
 
 export default function AppNavigator() {
@@ -36,7 +42,38 @@ export default function AppNavigator() {
   name="EditProfile"
   component={EditProfileScreen}
 />
-
+<Stack.Screen
+  name="Settings"
+  component={SettingsScreen}
+/>
+<Stack.Screen
+  name="Privacy"
+  component={PrivacySettingsScreen}
+/>
+<Stack.Screen
+  name="HelpSupport"
+  component={HelpSupportScreen}
+/>
+<Stack.Screen
+  name="FAQ"
+  component={FAQScreen}
+/>
+<Stack.Screen
+    name="ContactSupport"
+    component={ContactSupportScreen}
+/>
+<Stack.Screen
+  name="ReportIssue"
+  component={ReportIssueScreen}
+/>
+<Stack.Screen
+  name="Terms"
+  component={TermsScreen}
+/>
+<Stack.Screen
+  name="PrivacyPolicy"
+  component={PrivacyPolicyScreen}
+/>
     <Stack.Screen
         name="Splash"
         component={SplashScreen}
