@@ -9,6 +9,8 @@ import {
 import { useNavigation } from "@react-navigation/native";
 
 import AnimatedLogo from "../components/AnimatedLogo";
+import api from "../services/api";
+import { getToken, removeToken } from "../utils/storage";
 
 export default function SplashScreen() {
   const navigation = useNavigation<any>();
@@ -26,12 +28,29 @@ export default function SplashScreen() {
       setProgress(value);
 
       if (value >= 100) {
-        clearInterval(interval);
+  clearInterval(interval);
 
-        setTimeout(() => {
-          navigation.replace("Onboarding1");
-        }, 300);
-      }
+  setTimeout(async () => {
+  const token = await getToken();
+
+  if (!token) {
+    navigation.replace("Onboarding1");
+    return;
+  }
+
+  try {
+    // Verify that the token is still valid
+    await api.get("/auth/me");
+
+    navigation.replace("Dashboard");
+  } catch (error) {
+    // Token expired or invalid
+    await removeToken();
+
+    navigation.replace("Login");
+  }
+}, 300);
+}
     }, 50);
 
     return () => clearInterval(interval);

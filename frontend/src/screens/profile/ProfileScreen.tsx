@@ -37,7 +37,7 @@ const loadProfile = async () => {
 
   try {
 
-    const data = await getProfile(1);
+    const data = await getProfile();
 
     setProfile(data);
 
@@ -94,7 +94,13 @@ if (loading) {
 
           <View style={styles.header}>
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => {
+    if (navigation.canGoBack()) {
+      navigation.goBack();
+    } else {
+      navigation.navigate("Dashboard");
+    }
+  }}>
 
               <Ionicons
                 name="arrow-back"

@@ -4,6 +4,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -21,6 +22,7 @@ import { conversations, prompts } from "./dummyData";
 import { CHAT_PADDING, CHAT_WIDTH } from "./constants";
 
 import { Colors, Spacing, Typography } from "../../theme";
+import Ionicons from "@expo/vector-icons/build/Ionicons";
 
 export default function ChatHome() {
   const navigation = useNavigation<any>();
@@ -48,7 +50,17 @@ export default function ChatHome() {
         ]}
         showsVerticalScrollIndicator={false}
       >
+        
         <View style={styles.wrapper}>
+          <View style={styles.topRow}>
+  <TouchableOpacity onPress={() => navigation.goBack()}>
+    <Ionicons
+      name="arrow-back"
+      size={24}
+      color={Colors.text}
+    />
+  </TouchableOpacity>
+</View>
           <AppHeader
             title="Medilink AI"
             subtitle="Your personal AI assistant for understanding reports, trends and medications."
@@ -136,7 +148,9 @@ const styles = StyleSheet.create({
     color: Colors.text,
     marginBottom: Spacing.md,
   },
-
+  topRow: {
+  marginBottom: 16,
+},
   chips: {
     flexDirection: "row",
     flexWrap: "wrap",

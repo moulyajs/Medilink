@@ -8,37 +8,32 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import { saveToken } from "../../utils/storage";
+import { forgotPassword } from "../../services/authService";
 
-import { login } from "../../services/authService";
-
-
-export default function LoginScreen() {
+export default function ForgotPasswordScreen() {
   const navigation = useNavigation<any>();
 
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = async () => {
+  const handleSendOTP = async () => {
     try {
       setLoading(true);
 
-      const response = await login({
+      await forgotPassword({
         email,
-        password,
       });
 
-      await saveToken(response.data.access_token);
+      alert("OTP sent successfully.");
 
-      alert("Login Successful!");
+      navigation.navigate("VerifyOTP", {
+        email,
+      });
 
-      navigation.replace("Dashboard");
     } catch (error: any) {
       alert(
         error?.response?.data?.detail ||
-          "Invalid email or password."
+        "Failed to send OTP."
       );
     } finally {
       setLoading(false);
@@ -48,51 +43,30 @@ export default function LoginScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>
-        Welcome Back
+        Forgot Password
       </Text>
 
       <TextInput
-        placeholder="Email"
         style={styles.input}
+        placeholder="Email"
         value={email}
         onChangeText={setEmail}
       />
 
-      <TextInput
-        placeholder="Password"
-        style={styles.input}
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-      />
-
       <TouchableOpacity
         style={styles.button}
-        onPress={handleLogin}
-        disabled={loading}
+        onPress={handleSendOTP}
       >
         <Text style={styles.buttonText}>
-          {loading ? "Logging In..." : "Login"}
+          {loading ? "Sending..." : "Send OTP"}
         </Text>
       </TouchableOpacity>
 
       <TouchableOpacity
-        onPress={() =>
-          navigation.navigate("Signup")
-        }
+        onPress={() => navigation.goBack()}
       >
         <Text style={styles.link}>
-          Don't have an account? Sign Up
-        </Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        onPress={() =>
-          navigation.navigate("ForgotPassword")
-        }
-      >
-        <Text style={styles.link}>
-          Forgot Password?
+          Back to Login
         </Text>
       </TouchableOpacity>
     </View>
@@ -132,14 +106,14 @@ const styles = StyleSheet.create({
   },
 
   buttonText: {
-    color: "white",
-    fontSize: 16,
+    color: "#fff",
     fontWeight: "600",
+    fontSize: 16,
   },
 
   link: {
     marginTop: 20,
-    color: "#2563EB",
     textAlign: "center",
+    color: "#2563EB",
   },
 });

@@ -1,7 +1,7 @@
 from datetime import date
 from uuid import UUID
 
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 
 
 class ProfileBase(BaseModel):
@@ -32,6 +32,7 @@ class ProfileUpdate(ProfileBase):
 
 class ProfileResponse(ProfileBase):
     patient_id: UUID
+    email: EmailStr
 
     class Config:
         from_attributes = True

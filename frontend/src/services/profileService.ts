@@ -12,102 +12,36 @@ export interface Profile {
   emergency_contact: string;
   profile_image: string;
 }
-
+export interface UpdateProfileRequest {
+  name?: string;
+  phone?: string;
+  gender?: string;
+  blood_group?: string;
+  dob?: string;
+  address?: string;
+  emergency_contact?: string;
+  profile_image?: string;
+}
 /* ---------------- Get Profile ---------------- */
 
-export const getProfile = async (
-  id: number
-): Promise<Profile> => {
-
-  try {
-
-    const response = await api.get<Profile>(
-      `/profile/${id}`
-    );
-
-    return response.data;
-
-  } catch (error) {
-
-    console.error("Get Profile Error:", error);
-
-    throw error;
-
-  }
-
+export const getProfile = async (): Promise<Profile> => {
+  const response = await api.get<Profile>("/profile/me");
+  return response.data;
 };
 
-/* ---------------- Create Profile ---------------- */
 
-export const createProfile = async (
-  profile: Profile
-): Promise<Profile> => {
-
-  try {
-
-    const response = await api.post<Profile>(
-      "/profile/",
-      profile
-    );
-
-    return response.data;
-
-  } catch (error) {
-
-    console.error("Create Profile Error:", error);
-
-    throw error;
-
-  }
-
-};
 
 /* ---------------- Update Profile ---------------- */
 
 export const updateProfile = async (
-  id: number,
-  profile: Profile
+  profile: UpdateProfileRequest
 ): Promise<Profile> => {
 
-  try {
+  const response = await api.put<Profile>(
+    "/profile/me",
+    profile
+  );
 
-    const response = await api.put<Profile>(
-      `/profile/${id}`,
-      profile
-    );
-
-    return response.data;
-
-  } catch (error) {
-
-    console.error("Update Profile Error:", error);
-
-    throw error;
-
-  }
-
+  return response.data;
 };
 
-/* ---------------- Delete Profile ---------------- */
-
-export const deleteProfile = async (
-  id: number
-) => {
-
-  try {
-
-    const response = await api.delete(
-      `/profile/${id}`
-    );
-
-    return response.data;
-
-  } catch (error) {
-
-    console.error("Delete Profile Error:", error);
-
-    throw error;
-
-  }
-
-};

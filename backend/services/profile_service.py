@@ -23,8 +23,20 @@ def get_profile_service(
             status_code=404,
             detail="Profile not found."
         )
-
-    return profile
+    print(type(profile.dob))
+    print(repr(profile.dob))
+    return {
+    "patient_id": profile.patient_id,
+    "email": current_patient.email,
+    "name": profile.name,
+    "phone": profile.phone,
+    "dob": profile.dob,
+    "gender": profile.gender,
+    "blood_group": profile.blood_group,
+    "address": profile.address,
+    "emergency_contact": profile.emergency_contact,
+    "profile_image": profile.profile_image,
+}
 
 
 def update_profile_service(
@@ -53,5 +65,16 @@ def update_profile_service(
 
     db.commit()
     db.refresh(profile)
-
-    return profile
+    
+    return {
+    "patient_id": profile.patient_id,
+    "email": current_patient.email,
+    "name": profile.name,
+    "phone": profile.phone,
+    "dob": profile.dob,
+    "gender": profile.gender,
+    "blood_group": profile.blood_group,
+    "address": profile.address,
+    "emergency_contact": profile.emergency_contact,
+    "profile_image": profile.profile_image,
+}

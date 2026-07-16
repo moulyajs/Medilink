@@ -13,6 +13,11 @@ import ChatScreen from "../screens/chatbot/ChatScreen";
 
 import ProfileScreen from "../screens/profile/ProfileScreen";
 import EditProfileScreen from "../screens/profile/EditProfileScreen";
+import SignupScreen from "../screens/auth/SignupScreen";
+import Dashboard from "../screens/dashboard/Dashboard";
+import ForgotPasswordScreen from "../screens/auth/ForgotPasswordScreen";
+import VerifyOTPScreen from "../screens/auth/VerifyOTPScreen";
+import ResetPasswordScreen from "../screens/auth/ResetPasswordScreen";
 const Stack = createNativeStackNavigator();
 
 export default function AppNavigator() {
@@ -55,8 +60,31 @@ export default function AppNavigator() {
       <Stack.Screen
         name="Login"
         component={LoginScreen}
+        
       />
+      
+      <Stack.Screen
+  name="Signup"
+  component={SignupScreen}
+/>
+      <Stack.Screen
+  name="ForgotPassword"
+  component={ForgotPasswordScreen}
+/>
 
+<Stack.Screen
+  name="VerifyOTP"
+  component={VerifyOTPScreen}
+/>
+
+<Stack.Screen
+  name="ResetPassword"
+  component={ResetPasswordScreen}
+/>
+      <Stack.Screen
+  name="Dashboard"
+  component={Dashboard}
+/>
       <Stack.Screen
         name="ChatHome"
         component={ChatHome}
@@ -67,6 +95,8 @@ export default function AppNavigator() {
         component={ChatScreen}
       />
     </Stack.Navigator>
+    
+   
     
   );
 }

@@ -17,12 +17,14 @@ def get_current_patient(
 
     try:
         payload = decode_access_token(token)
-    except Exception:
+        print("JWT Payload:", payload)
+
+    except Exception as e:
+        print("JWT ERROR:", repr(e))
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid or expired token."
-        )
-
+            detail=str(e)
+    )
     patient_id = payload.get("sub")
 
     if patient_id is None:

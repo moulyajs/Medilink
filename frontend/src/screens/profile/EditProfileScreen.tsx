@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -21,7 +21,9 @@ import CustomInput from "../../components/profile/CustomInput";
 import CustomDropdown from "../../components/profile/CustomDropdown";
 import PrimaryButton from "../../components/profile/PrimaryButton";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { updateProfile } from "../../services/profileService";
+import { getProfile, updateProfile } from "../../services/profileService";
+import { useFocusEffect } from "@react-navigation/native";
+import { useCallback } from "react";
 const { width } = Dimensions.get("window");
 
 export default function EditProfileScreen() {
@@ -30,19 +32,43 @@ export default function EditProfileScreen() {
 
   const [image, setImage] = useState("");
 
-  const [name, setName] = useState("Zara Khatun");
-  const [email, setEmail] = useState("zara@gmail.com");
-  const [phone, setPhone] = useState("+91 9876543210");
-  const [dob, setDob] = useState("10 Aug 2004");
-  const [gender, setGender] = useState("Female");
-  const [blood, setBlood] = useState("O+");
-  const [address, setAddress] = useState("Kolkata, India");
-  const [emergency, setEmergency] = useState("+91 9123456780");
-  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [name, setName] = useState("");
+const [email, setEmail] = useState("");
+const [phone, setPhone] = useState("");
+const [dob, setDob] = useState("");
+const [gender, setGender] = useState("");
+const [blood, setBlood] = useState("");
+const [address, setAddress] = useState("");
+const [emergency, setEmergency] = useState("");
 
 const [showGenderMenu, setShowGenderMenu] = useState(false);
 
 const [showBloodMenu, setShowBloodMenu] = useState(false);
+const [showDatePicker, setShowDatePicker] = useState(false);
+
+const loadProfile = async () => {
+  try {
+    const profile = await getProfile();
+
+    setName(profile.name ?? "");
+    setEmail(profile.email ?? "");
+    setPhone(profile.phone ?? "");
+    setDob(profile.dob ?? "");
+    setGender(profile.gender ?? "");
+    setBlood(profile.blood_group ?? "");
+    setAddress(profile.address ?? "");
+    setEmergency(profile.emergency_contact ?? "");
+    setImage(profile.profile_image ?? "");
+
+  } catch (error) {
+    console.log(error);
+  }
+};
+useFocusEffect(
+  useCallback(() => {
+    loadProfile();
+  }, [])
+);
 
   async function pickImage() {
 
@@ -85,17 +111,16 @@ const [showBloodMenu, setShowBloodMenu] = useState(false);
 
   try {
 
-    await updateProfile(1, {
-      name,
-      email,
-      phone,
-      gender,
-      blood_group: blood,
-      dob,
-      address,
-      emergency_contact: emergency,
-      profile_image: image,
-    });
+    await updateProfile({
+  name,
+  phone,
+  gender,
+  blood_group: blood,
+  dob,
+  address,
+  emergency_contact: emergency,
+  profile_image: image,
+});
 
     Alert.alert(
       "Success",
@@ -211,13 +236,13 @@ const [showBloodMenu, setShowBloodMenu] = useState(false);
       />
 
       <CustomInput
-        label="Email"
-        value={email}
-        onChangeText={setEmail}
-        placeholder="Email Address"
-        keyboardType="email-address"
-        icon="mail-outline"
-      />
+  label="Email"
+  value={email}
+  placeholder="Email Address"
+  keyboardType="email-address"
+  icon="mail-outline"
+  editable={false}
+/>
 
       <CustomInput
         label="Phone Number"
@@ -522,7 +547,7 @@ const [showBloodMenu, setShowBloodMenu] = useState(false);
 
 <DateTimePicker
 
-value={new Date()}
+value={dob ? new Date(dob) : new Date()}
 
 mode="date"
 
