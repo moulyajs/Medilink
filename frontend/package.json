@@ -7,9 +7,10 @@
     "@react-native-picker/picker": "2.11.4",
     "expo": "~57.0.2",
     "expo-status-bar": "~57.0.0",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
-    "react-native": "0.86.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-native": "0.81.4",
+    "react-native-chart-kit": "^6.12.3",
     "react-native-svg": "15.15.4",
     "react-native-web": "^0.21.2"
   },

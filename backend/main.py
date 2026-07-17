@@ -1,5 +1,6 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.responses import StreamingResponse
+from fastapi.middleware.cors import CORSMiddleware
 from storage import client, BUCKET
 from database import SessionLocal
 from sqlalchemy import text
@@ -16,6 +17,17 @@ from sqlalchemy import text
 from database import SessionLocal
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:8081",
+        "http://127.0.0.1:8081",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.post("/upload/")
@@ -194,6 +206,31 @@ def get_trend_analysis(patient_id: str):
         trends = []
 
         for row in result:
+
+            history_result = db.execute(
+                text("""
+                    SELECT
+                        result_date,
+                        value
+                    FROM lab_results
+                    WHERE patient_id = :pid
+                      AND test_name = :test
+                    ORDER BY result_date
+                """),
+                {
+                    "pid": patient_id,
+                    "test": row.test_name
+                }
+            )
+
+            history = []
+
+            for h in history_result:
+                history.append({
+                    "date": str(h.result_date),
+                    "value": h.value
+                })
+
             trends.append({
                 "test_name": row.test_name,
                 "latest_value": row.latest_value,
@@ -201,7 +238,8 @@ def get_trend_analysis(patient_id: str):
                 "slope": row.slope,
                 "trend": row.trend,
                 "status": row.status,
-                "data_points": row.data_points
+                "data_points": row.data_points,
+                "history": history
             })
 
         return trends

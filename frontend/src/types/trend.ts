@@ -8,8 +8,8 @@ export interface TrendData {
   latest_value: number;
   delta: number | null;
   slope: number | null;
-  trend: "Increasing" | "Decreasing" | "Stable" | "Insufficient Data";
-  status: "HIGH" | "LOW" | "NORMAL";
+  trend: string;
+  status: string;
   data_points: number;
   history: TrendHistory[];
 }

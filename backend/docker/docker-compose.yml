@@ -12,13 +12,15 @@ services:
     volumes:
       - ..:/app
 
+    ports:
+      - "8000:8000"     # <-- Add this
+
     depends_on:
       - minio
       - qdrant
 
     stdin_open: true
     tty: true
-
 
   minio:
     image: minio/minio
@@ -47,10 +49,11 @@ services:
     restart: always
 
     ports:
-    - "6333:6333"
+      - "6333:6333"
 
     volumes:
-    - qdrantdata:/qdrant/storage
+      - qdrantdata:/qdrant/storage
+
 volumes:
   miniodata:
   qdrantdata:
