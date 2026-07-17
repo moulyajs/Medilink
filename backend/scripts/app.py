@@ -30,7 +30,7 @@ from lab_normalizer import normalize_lab_results
 from clinical_facts_extraction import extract_clinical_facts
 from ecg_extraction import extract_ecg_findings
 
-from user_review import review_prescriptions
+#from user_review import review_prescriptions
 # from clinical_summary import generate_summary
 
 from uploader import upload_file
@@ -240,7 +240,7 @@ for visit_date, visit_pages in visits.items():
     elif is_pdf and primary_doc_type == "PRESCRIPTION":
         medicines = extract_prescriptions(visit_lines)
 
-    reviewed_medicines = review_prescriptions(medicines)
+    reviewed_medicines = medicines
 
     print("\n💊 PRESCRIPTIONS")
     print(reviewed_medicines)
