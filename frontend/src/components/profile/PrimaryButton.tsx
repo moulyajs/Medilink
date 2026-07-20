@@ -8,6 +8,7 @@ import {
 
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
+import { useTheme } from "../../theme/ThemeContext";
 
 type Props = {
   title: string;
@@ -22,6 +23,8 @@ export default function PrimaryButton({
   icon,
   loading = false,
 }: Props) {
+  const { colors, darkMode } = useTheme();
+
   return (
     <TouchableOpacity
       activeOpacity={0.9}
@@ -29,10 +32,19 @@ export default function PrimaryButton({
       disabled={loading}
     >
       <LinearGradient
-        colors={["#2563EB", "#1D4ED8"]}
+        colors={
+          darkMode
+            ? ["#374151", "#1F2937"]
+            : [colors.primary, "#1D4ED8"]
+        }
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
-        style={styles.button}
+        style={[
+          styles.button,
+          {
+            shadowColor: colors.shadow,
+          },
+        ]}
       >
         {loading ? (
           <ActivityIndicator color="#FFFFFF" />
@@ -58,9 +70,7 @@ export default function PrimaryButton({
 }
 
 const styles = StyleSheet.create({
-
   button: {
-
     height: 54,
 
     borderRadius: 14,
@@ -69,8 +79,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
 
     flexDirection: "row",
-
-    shadowColor: "#2563EB",
 
     shadowOpacity: 0.25,
 
@@ -82,23 +90,17 @@ const styles = StyleSheet.create({
     },
 
     elevation: 6,
-
   },
 
   text: {
-
     color: "#FFFFFF",
 
     fontSize: 17,
 
     fontWeight: "700",
-
   },
 
   icon: {
-
     marginRight: 10,
-
   },
-
 });

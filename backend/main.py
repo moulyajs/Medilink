@@ -8,6 +8,8 @@ from routers.profile import router as profile_router
 from routers.auth import router as auth_router
 from routers.support import router as support_router
 from routers.report_issue import router as report_issue_router
+from routers.device import router as device_router
+from routers.notification import router as notification_router
 # Create database tables
 Base.metadata.create_all(bind=engine)
 app = FastAPI(
@@ -42,3 +44,5 @@ app.include_router(auth_router)
 app.include_router(profile_router)
 app.include_router(support_router)
 app.include_router(report_issue_router)
+app.include_router(device_router)
+app.include_router(notification_router)

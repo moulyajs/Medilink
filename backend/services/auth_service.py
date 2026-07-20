@@ -22,7 +22,8 @@ from utils.jwt import create_access_token
 from schemas.auth import ForgotPasswordRequest
 from schemas.auth import VerifyResetOTPRequest
 from schemas.auth import ResetPasswordRequest
-
+from models.device import Device
+import uuid
 def signup_service(
     request: SignupRequest,
     db: Session
@@ -70,7 +71,6 @@ def signup_service(
         db.rollback()
         raise
 
-
 def login_service(
     request: LoginRequest,
     db: Session
@@ -96,16 +96,44 @@ def login_service(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid email or password."
         )
+    session_id = uuid.uuid4()
+    # Mark all previous devices as not current
+    (
+        db.query(Device)
+        .filter(Device.patient_id == patient.patient_id)
+        .update({"is_current": False})
+    )
+    print("========== LOGIN REQUEST ==========")
+    print(request.model_dump())
+    print("device_name =", request.device_name)
+    print("device_os   =", request.device_os)
+    print("device_type =", request.device_type)
+    print("===================================")
+    # Create a new device entry
+    device = Device(
+         patient_id=patient.patient_id,
+         session_id=session_id,
+         device_name=request.device_name or "Unknown Device",
+         device_type=request.device_type or "Unknown",
+         device_os=request.device_os or "Unknown",
+         last_active=datetime.utcnow(),
+         is_current=True,
+         active=True,
+         created_at=datetime.utcnow(),
+    )
+
+    db.add(device)
+    db.commit()
 
     access_token = create_access_token(
         patient_id=str(patient.patient_id),
-        email=patient.email
+        email=patient.email,
+        session_id=str(session_id),
     )
 
     return TokenResponse(
         access_token=access_token
     )
-
 def forgot_password_service(
     request: ForgotPasswordRequest,
     db: Session

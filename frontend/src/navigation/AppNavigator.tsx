@@ -24,6 +24,13 @@ import ContactSupportScreen from "../screens/settings/ContactSupportScreen";
 import FAQScreen from "../screens/settings/FAQScreen";
 import TermsScreen from "../screens/settings/TermsScreen";
 import PrivacyPolicyScreen from "../screens/settings/PrivacyPolicyScreen";
+import CreatePinScreen from "../screens/settings/CreatePinScreen";
+import PinLoginScreen from "../screens/auth/PinLoginScreen";
+import AboutMedilinkScreen from "../screens/settings/AboutMedilinkScreen";
+import ConnectedDevicesScreen from "../screens/settings/ConnectedDevicesScreen";
+//import NotificationSettingsScreen from "../screens/settings/NotificationSettingsScreen";
+import PermissionsScreen from "../screens/settings/PermissionsScreen";
+import EncryptionStatusScreen from "../screens/settings/EncryptionStatusScreen";
 const Stack = createNativeStackNavigator();
 
 export default function AppNavigator() {
@@ -97,7 +104,6 @@ export default function AppNavigator() {
       <Stack.Screen
         name="Login"
         component={LoginScreen}
-        
       />
       
       <Stack.Screen
@@ -118,6 +124,19 @@ export default function AppNavigator() {
   name="ResetPassword"
   component={ResetPasswordScreen}
 />
+<Stack.Screen
+  name="CreatePin"
+  component={CreatePinScreen}
+/>
+<Stack.Screen
+    name="PinLogin"
+    component={PinLoginScreen}
+/>
+<Stack.Screen
+  name="ConnectedDevices"
+  component={ConnectedDevicesScreen}
+/>
+
       <Stack.Screen
   name="Dashboard"
   component={Dashboard}
@@ -126,11 +145,23 @@ export default function AppNavigator() {
         name="ChatHome"
         component={ChatHome}
       />
-
+<Stack.Screen
+  name="AboutMedilink"
+  component={AboutMedilinkScreen}
+/>
       <Stack.Screen
         name="ChatScreen"
         component={ChatScreen}
       />
+      <Stack.Screen
+  name="Permissions"
+  component={PermissionsScreen}
+/>
+
+<Stack.Screen
+  name="EncryptionStatus"
+  component={EncryptionStatusScreen}
+/>
     </Stack.Navigator>
     
    

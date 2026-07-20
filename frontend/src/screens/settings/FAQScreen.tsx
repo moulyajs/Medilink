@@ -11,6 +11,7 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { useTheme } from "../../theme/ThemeContext";
 
 const faqData = [
   {
@@ -41,56 +42,64 @@ const faqData = [
 ];
 
 export default function FAQScreen() {
-
   const navigation = useNavigation<any>();
+  const { colors, darkMode } = useTheme();
 
   const [expanded, setExpanded] = useState<number | null>(null);
 
   return (
-    <SafeAreaView style={styles.container}>
-
+    <SafeAreaView
+      style={[
+        styles.container,
+        { backgroundColor: colors.background },
+      ]}
+    >
       <LinearGradient
-        colors={["#5D9DFF", "#4E89B9", "#2563EB"]}
+        colors={
+          darkMode
+            ? ["#1E293B", "#111827", "#000000"]
+            : ["#5D9DFF", "#4E89B9", "#2563EB"]
+        }
         style={styles.header}
       >
-
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-        >
+        <TouchableOpacity onPress={() => navigation.goBack()}>
           <Ionicons
             name="arrow-back"
             size={24}
-            color="#FFF"
+            color="#FFFFFF"
           />
         </TouchableOpacity>
 
         <Text style={styles.headerTitle}>
           Frequently Asked Questions
         </Text>
-
       </LinearGradient>
 
-      <ScrollView
-        contentContainerStyle={styles.content}
-      >
-
+      <ScrollView contentContainerStyle={styles.content}>
         {faqData.map((item, index) => (
-
           <View
             key={index}
-            style={styles.card}
+            style={[
+              styles.card,
+              {
+                backgroundColor: colors.card,
+                shadowColor: colors.shadow,
+                borderColor: colors.border,
+              },
+            ]}
           >
-
             <TouchableOpacity
               style={styles.row}
               onPress={() =>
-                setExpanded(
-                  expanded === index ? null : index
-                )
+                setExpanded(expanded === index ? null : index)
               }
             >
-
-              <Text style={styles.question}>
+              <Text
+                style={[
+                  styles.question,
+                  { color: colors.text },
+                ]}
+              >
                 {item.question}
               </Text>
 
@@ -101,34 +110,30 @@ export default function FAQScreen() {
                     : "chevron-down"
                 }
                 size={22}
-                color="#2563EB"
+                color={colors.primary}
               />
-
             </TouchableOpacity>
 
             {expanded === index && (
-
-              <Text style={styles.answer}>
+              <Text
+                style={[
+                  styles.answer,
+                  { color: colors.subText },
+                ]}
+              >
                 {item.answer}
               </Text>
-
             )}
-
           </View>
-
         ))}
-
       </ScrollView>
-
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-
   container: {
     flex: 1,
-    backgroundColor: "#F5F8FC",
   },
 
   header: {
@@ -138,7 +143,7 @@ const styles = StyleSheet.create({
   },
 
   headerTitle: {
-    color: "#FFF",
+    color: "#FFFFFF",
     fontSize: 24,
     fontWeight: "700",
     marginTop: 20,
@@ -149,14 +154,19 @@ const styles = StyleSheet.create({
   },
 
   card: {
-    backgroundColor: "#FFF",
     borderRadius: 18,
     marginBottom: 15,
     padding: 18,
 
-    shadowColor: "#000",
+    borderWidth: 1,
+
     shadowOpacity: 0.05,
     shadowRadius: 10,
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+
     elevation: 4,
   },
 
@@ -170,13 +180,11 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 16,
     fontWeight: "700",
-    color: "#1E293B",
     marginRight: 10,
   },
 
   answer: {
     marginTop: 15,
-    color: "#64748B",
     lineHeight: 22,
     fontSize: 15,
   },

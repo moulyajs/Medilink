@@ -6,26 +6,50 @@ import {
   StyleSheet,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { useStyles } from "../../hooks/useStyles";
 
 export default function Dashboard() {
   const navigation = useNavigation<any>();
+  const { colors, globalStyles } = useStyles();
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Medilink Dashboard</Text>
+    <View
+      style={[
+        globalStyles.screen,
+        styles.container,
+      ]}
+    >
+      <Text
+        style={[
+          styles.title,
+          { color: colors.primary },
+        ]}
+      >
+        Medilink Dashboard
+      </Text>
 
       <TouchableOpacity
-        style={styles.button}
+        style={[
+          styles.button,
+          { backgroundColor: colors.primary },
+        ]}
         onPress={() => navigation.navigate("Profile")}
       >
-        <Text style={styles.buttonText}>Profile</Text>
+        <Text style={styles.buttonText}>
+          Profile
+        </Text>
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={styles.button}
+        style={[
+          styles.button,
+          { backgroundColor: colors.primary },
+        ]}
         onPress={() => navigation.navigate("ChatHome")}
       >
-        <Text style={styles.buttonText}>Chat Home</Text>
+        <Text style={styles.buttonText}>
+          Chat Home
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -36,7 +60,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#FFFFFF",
     padding: 24,
   },
 
@@ -44,13 +67,11 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: "700",
     marginBottom: 40,
-    color: "#2563EB",
   },
 
   button: {
     width: "100%",
     height: 52,
-    backgroundColor: "#2563EB",
     borderRadius: 12,
     justifyContent: "center",
     alignItems: "center",

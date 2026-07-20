@@ -8,6 +8,7 @@ import {
 } from "react-native";
 
 import { Ionicons } from "@expo/vector-icons";
+import { useTheme } from "../../theme/ThemeContext";
 
 type Props = {
   icon: keyof typeof Ionicons.glyphMap;
@@ -38,49 +39,66 @@ export default function SettingsItem({
   onSwitchChange,
   danger = false,
 }: Props) {
+  const { colors } = useTheme();
+
   return (
     <TouchableOpacity
       activeOpacity={0.8}
-      style={styles.container}
       onPress={onPress}
       disabled={showSwitch}
+      style={[
+        styles.container,
+        {
+          backgroundColor: colors.card,
+          shadowColor: colors.text,
+        },
+      ]}
     >
       {/* Left */}
 
       <View style={styles.leftSection}>
-
         <View
           style={[
             styles.iconContainer,
-            danger && styles.dangerIcon,
+            {
+              backgroundColor: danger
+                ? "#FEE2E2"
+                : colors.primary + "20",
+            },
           ]}
         >
           <Ionicons
             name={icon}
             size={22}
-            color={danger ? "#DC2626" : "#2563EB"}
+            color={danger ? "#DC2626" : colors.primary}
           />
         </View>
 
         <View style={styles.textContainer}>
-
           <Text
             style={[
               styles.title,
-              danger && styles.dangerText,
+              {
+                color: danger ? "#DC2626" : colors.text,
+              },
             ]}
           >
             {title}
           </Text>
 
           {subtitle && (
-            <Text style={styles.subtitle}>
+            <Text
+              style={[
+                styles.subtitle,
+                {
+                  color: colors.text,
+                },
+              ]}
+            >
               {subtitle}
             </Text>
           )}
-
         </View>
-
       </View>
 
       {/* Right */}
@@ -91,7 +109,7 @@ export default function SettingsItem({
           onValueChange={onSwitchChange}
           trackColor={{
             false: "#CBD5E1",
-            true: "#60A5FA",
+            true: colors.primary,
           }}
           thumbColor="#FFFFFF"
         />
@@ -100,7 +118,7 @@ export default function SettingsItem({
           <Ionicons
             name="chevron-forward"
             size={22}
-            color="#94A3B8"
+            color={colors.text}
           />
         )
       )}
@@ -109,29 +127,17 @@ export default function SettingsItem({
 }
 
 const styles = StyleSheet.create({
-
   container: {
-
     flexDirection: "row",
-
     justifyContent: "space-between",
-
     alignItems: "center",
 
-    backgroundColor: "#FFFFFF",
-
     padding: 18,
-
     borderRadius: 18,
-
     marginBottom: 14,
 
-    shadowColor: "#000",
-
     shadowOpacity: 0.05,
-
     shadowRadius: 12,
-
     shadowOffset: {
       width: 0,
       height: 4,
@@ -141,62 +147,32 @@ const styles = StyleSheet.create({
   },
 
   leftSection: {
-
     flexDirection: "row",
-
     alignItems: "center",
-
     flex: 1,
   },
 
   iconContainer: {
-
     width: 48,
-
     height: 48,
-
     borderRadius: 24,
 
-    backgroundColor: "#EFF6FF",
-
     justifyContent: "center",
-
     alignItems: "center",
   },
 
-  dangerIcon: {
-
-    backgroundColor: "#FEE2E2",
-  },
-
   textContainer: {
-
     marginLeft: 16,
-
     flex: 1,
   },
 
   title: {
-
     fontSize: 16,
-
     fontWeight: "700",
-
-    color: "#0F172A",
   },
 
   subtitle: {
-
     marginTop: 4,
-
-    color: "#64748B",
-
     fontSize: 13,
   },
-
-  dangerText: {
-
-    color: "#DC2626",
-  },
-
 });

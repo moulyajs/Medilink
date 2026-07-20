@@ -12,18 +12,35 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
 import SettingsItem from "../../components/settings/SettingsItem";
+import { useTheme } from "../../theme/ThemeContext";
 
 export default function HelpSupportScreen() {
   const navigation = useNavigation<any>();
 
+  const { colors, darkMode } = useTheme();
+
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+    <SafeAreaView
+      style={[
+        styles.container,
+        {
+          backgroundColor: colors.background,
+        },
+      ]}
+    >
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 30 }}
+      >
 
         {/* Header */}
 
         <LinearGradient
-          colors={["#5D9DFF", "#4E89B9", "#2563EB"]}
+          colors={
+            darkMode
+              ? ["#1E293B", "#111827", "#000000"]
+              : ["#5D9DFF", "#4E89B9", "#2563EB"]
+          }
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={styles.header}
@@ -47,7 +64,14 @@ export default function HelpSupportScreen() {
 
         {/* Help Center */}
 
-        <Text style={styles.sectionTitle}>
+        <Text
+          style={[
+            styles.sectionTitle,
+            {
+              color: colors.text,
+            },
+          ]}
+        >
           Help Center
         </Text>
 
@@ -74,7 +98,14 @@ export default function HelpSupportScreen() {
 
         {/* Legal */}
 
-        <Text style={styles.sectionTitle}>
+        <Text
+          style={[
+            styles.sectionTitle,
+            {
+              color: colors.text,
+            },
+          ]}
+        >
           Legal
         </Text>
 
@@ -94,22 +125,51 @@ export default function HelpSupportScreen() {
 
         {/* Version */}
 
-        <View style={styles.versionCard}>
+        <View
+          style={[
+            styles.versionCard,
+            {
+              backgroundColor: colors.card,
+              shadowColor: colors.text,
+            },
+          ]}
+        >
           <Ionicons
             name="information-circle-outline"
             size={30}
-            color="#2563EB"
+            color={colors.primary}
           />
 
-          <Text style={styles.versionTitle}>
+          <Text
+            style={[
+              styles.versionTitle,
+              {
+                color: colors.text,
+              },
+            ]}
+          >
             Medilink
           </Text>
 
-          <Text style={styles.versionText}>
+          <Text
+            style={[
+              styles.versionText,
+              {
+                color: colors.subText,
+              },
+            ]}
+          >
             Version 1.0.0
           </Text>
 
-          <Text style={styles.versionSub}>
+          <Text
+            style={[
+              styles.versionSub,
+              {
+                color: colors.subText,
+              },
+            ]}
+          >
             © 2026 Medilink. All Rights Reserved.
           </Text>
         </View>
@@ -120,15 +180,16 @@ export default function HelpSupportScreen() {
 }
 
 const styles = StyleSheet.create({
+
   container: {
     flex: 1,
-    backgroundColor: "#F5F8FC",
   },
 
   header: {
     paddingTop: 28,
     paddingBottom: 45,
     paddingHorizontal: 24,
+
     borderBottomLeftRadius: 35,
     borderBottomRightRadius: 35,
   },
@@ -155,21 +216,24 @@ const styles = StyleSheet.create({
     marginTop: 28,
     marginBottom: 12,
     marginLeft: 24,
+
     fontSize: 18,
     fontWeight: "700",
-    color: "#1E293B",
   },
 
   versionCard: {
-    backgroundColor: "#FFFFFF",
     margin: 24,
+
     borderRadius: 20,
+
     padding: 24,
+
     alignItems: "center",
 
-    shadowColor: "#000",
     shadowOpacity: 0.06,
+
     shadowRadius: 10,
+
     shadowOffset: {
       width: 0,
       height: 4,
@@ -180,20 +244,22 @@ const styles = StyleSheet.create({
 
   versionTitle: {
     marginTop: 12,
+
     fontSize: 20,
+
     fontWeight: "700",
-    color: "#0F172A",
   },
 
   versionText: {
     marginTop: 6,
-    color: "#64748B",
   },
 
   versionSub: {
     marginTop: 16,
+
     textAlign: "center",
-    color: "#94A3B8",
+
     fontSize: 12,
   },
+
 });

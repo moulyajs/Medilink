@@ -35,6 +35,11 @@ class LoginRequest(BaseModel):
 
     password: str
 
+    device_name: str | None = None
+
+    device_os: str | None = None
+
+    device_type: str | None = None
 
 # ----------------------------
 # Forgot Password

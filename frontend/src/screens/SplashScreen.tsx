@@ -7,11 +7,14 @@ import {
   View,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-
+import { isPinEnabled } from "../services/pinService";
 import AnimatedLogo from "../components/AnimatedLogo";
 import api from "../services/api";
 import { getToken, removeToken } from "../utils/storage";
-
+import {
+  isBiometricEnabled,
+  authenticateBiometric,
+} from "../services/biometricService";
 export default function SplashScreen() {
   const navigation = useNavigation<any>();
 
@@ -32,23 +35,71 @@ export default function SplashScreen() {
 
   setTimeout(async () => {
   const token = await getToken();
+  console.log("TOKEN =", token);
 
-  if (!token) {
-    navigation.replace("Onboarding1");
+/*
+ First app launch
+*/
+if (!token) {
+  console.log("NO TOKEN -> LOGIN");
+  navigation.replace("Login");
+  return;
+}
+console.log("JWT VALID");
+try {
+
+  /*
+   Verify JWT with backend
+  */
+ console.log("Checking JWT...");
+await api.get("/auth/me");
+console.log("JWT VALID");
+  await api.get("/auth/me");
+
+  /*
+   Check if biometric is enabled
+  */
+  const biometricEnabled =
+    await isBiometricEnabled();
+
+if (biometricEnabled) {
+
+    const authenticated =
+      await authenticateBiometric();
+
+    if (authenticated) {
+       console.log("BIOMETRIC SUCCESS");
+      navigation.replace("Dashboard");
+
+      return;
+
+    }
+
+}
+
+const pinEnabled =
+    await isPinEnabled();
+
+if (pinEnabled) {
+    console.log("PIN LOGIN");
+    navigation.replace("PinLogin");
+
     return;
-  }
 
-  try {
-    // Verify that the token is still valid
-    await api.get("/auth/me");
+}
+console.log("NORMAL DASHBOARD");
+navigation.replace("Dashboard");
 
-    navigation.replace("Dashboard");
-  } catch (error) {
-    // Token expired or invalid
-    await removeToken();
+} catch {
+  console.log("JWT INVALID");
+  /*
+   Token expired or invalid
+  */
+  await removeToken();
 
-    navigation.replace("Login");
-  }
+  navigation.replace("Login");
+
+}
 }, 300);
 }
     }, 50);

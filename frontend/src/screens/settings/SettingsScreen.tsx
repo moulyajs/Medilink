@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import { getProfile, Profile } from "../../services/profileService";
 import SettingsItem from "../../components/settings/SettingsItem";
 import React, { useState } from "react";
+import { useTheme } from "../../theme/ThemeContext";
 export default function SettingsScreen() {
 
   const navigation = useNavigation<any>();
@@ -31,24 +32,32 @@ const loadProfile = async () => {
     console.log(err);
   }
 };
+
   const [notifications, setNotifications] =
     useState(true);
 
-  const [darkMode, setDarkMode] =
-    useState(false);
-
+  const { darkMode, setDarkMode, colors } = useTheme();
   return (
 
-    <SafeAreaView style={styles.container}>
-
+   
+    <SafeAreaView
+  style={[
+    styles.container,
+    { backgroundColor: colors.background },
+  ]}>
       <ScrollView
-        showsVerticalScrollIndicator={false}
-      >
+  showsVerticalScrollIndicator={false}
+  contentContainerStyle={{ paddingBottom: 30 }}
+>
 
         {/* Header */}
 
         <LinearGradient
-          colors={["#5D9DFF", "#4E89B9", "#2563EB"]}
+           colors={
+    darkMode
+      ? ["#1E293B", "#111827", "#000000"]
+      : ["#5D9DFF", "#4E89B9", "#2563EB"]
+  }
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={styles.header}
@@ -76,9 +85,23 @@ const loadProfile = async () => {
 
         {/* Profile Card */}
 
-        <View style={styles.profileCard}>
-
-          <View style={styles.avatar}>
+        <View
+  style={[
+    styles.profileCard,
+    {
+      backgroundColor: colors.card,
+      shadowColor: colors.text,
+    },
+  ]}
+>
+<View
+  style={[
+    styles.avatar,
+    {
+      backgroundColor: colors.primary,
+    },
+  ]}
+>
 
             <Ionicons
               name="person"
@@ -90,11 +113,19 @@ const loadProfile = async () => {
 
           <View style={{ flex: 1 }}>
 
-           <Text style={styles.name}>
+           <Text
+  style={[
+    styles.name,
+    { color: colors.text },
+  ]}>
   {profile?.name}
 </Text>
 
-<Text style={styles.email}>
+<Text
+  style={[
+    styles.email,
+    { color: colors.text },
+  ]}>
   {profile?.email}
 </Text>
 
@@ -103,18 +134,22 @@ const loadProfile = async () => {
         </View>
                 {/* Preferences */}
 
-        <Text style={styles.sectionTitle}>
+        <Text
+  style={[
+    styles.sectionTitle,
+    { color: colors.text },
+  ]}>
           Preferences
         </Text>
 
-        <SettingsItem
-          icon="notifications-outline"
-          title="Notifications"
-          subtitle="Receive reminders and updates"
-          showSwitch
-          switchValue={notifications}
-          onSwitchChange={setNotifications}
-        />
+       <SettingsItem
+  icon="notifications-outline"
+  title="Notifications"
+  subtitle="Manage notification preferences"
+  onPress={() =>
+    navigation.navigate("NotificationSettings")
+  }
+/>
 
         <SettingsItem
           icon="moon-outline"
@@ -127,7 +162,11 @@ const loadProfile = async () => {
 
         {/* Security */}
 
-        <Text style={styles.sectionTitle}>
+        <Text
+  style={[
+    styles.sectionTitle,
+    { color: colors.text },
+  ]}>
           Security
         </Text>
 
@@ -142,7 +181,11 @@ const loadProfile = async () => {
 
         {/* Support */}
 
-        <Text style={styles.sectionTitle}>
+        <Text
+  style={[
+    styles.sectionTitle,
+    { color: colors.text },
+  ]}>
           Support
         </Text>
 
@@ -156,14 +199,21 @@ const loadProfile = async () => {
         />
 
         <SettingsItem
-          icon="information-circle-outline"
-          title="About Medilink"
-          subtitle="Version 1.0.0"
-        />
+  icon="information-circle-outline"
+  title="About Medilink"
+  subtitle="Version 1.0.0"
+  onPress={() =>
+    navigation.navigate("AboutMedilink")
+  }
+/>
 
         {/* Logout */}
 
-        <Text style={styles.sectionTitle}>
+        <Text
+  style={[
+    styles.sectionTitle,
+    { color: colors.text },
+  ]}>
           Account
         </Text>
 
@@ -173,7 +223,7 @@ const loadProfile = async () => {
           subtitle="Sign out from your account"
           danger
           onPress={() => {
-            // We'll connect logout later
+             
           }}
         />
               </ScrollView>
@@ -185,7 +235,6 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: "#F5F8FC",
   },
 
   /* ---------------- Header ---------------- */
@@ -222,26 +271,23 @@ const styles = StyleSheet.create({
 
   profileCard: {
     flexDirection: "row",
-    alignItems: "center",
+  alignItems: "center",
 
-    marginHorizontal: 20,
-    marginTop: -25,
+  marginHorizontal: 20,
+  marginTop: -25,
 
-    backgroundColor: "#FFFFFF",
+  padding: 18,
 
-    padding: 18,
+  borderRadius: 22,
 
-    borderRadius: 22,
+  shadowOpacity: 0.08,
+  shadowRadius: 14,
+  shadowOffset: {
+    width: 0,
+    height: 6,
+  },
 
-    shadowColor: "#000",
-    shadowOpacity: 0.08,
-    shadowRadius: 14,
-    shadowOffset: {
-      width: 0,
-      height: 6,
-    },
-
-    elevation: 6,
+  elevation: 6,
   },
 
   avatar: {
@@ -249,8 +295,6 @@ const styles = StyleSheet.create({
     height: 65,
 
     borderRadius: 32.5,
-
-    backgroundColor: "#2563EB",
 
     justifyContent: "center",
     alignItems: "center",
@@ -261,13 +305,11 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 20,
     fontWeight: "700",
-    color: "#0F172A",
   },
 
   email: {
     marginTop: 4,
     fontSize: 14,
-    color: "#64748B",
   },
 
   /* ---------------- Section ---------------- */
@@ -279,8 +321,6 @@ const styles = StyleSheet.create({
 
     fontSize: 18,
     fontWeight: "700",
-
-    color: "#1E293B",
   },
 
 });
