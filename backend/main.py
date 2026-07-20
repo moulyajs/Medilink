@@ -10,6 +10,8 @@ from routers.support import router as support_router
 from routers.report_issue import router as report_issue_router
 from routers.device import router as device_router
 from routers.notification import router as notification_router
+from routers.chat import router as chat_router
+from routers.upload import router as upload_router
 # Create database tables
 Base.metadata.create_all(bind=engine)
 app = FastAPI(
@@ -46,3 +48,5 @@ app.include_router(support_router)
 app.include_router(report_issue_router)
 app.include_router(device_router)
 app.include_router(notification_router)
+app.include_router(chat_router)
+app.include_router(upload_router)

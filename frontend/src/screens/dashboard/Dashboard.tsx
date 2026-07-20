@@ -51,6 +51,14 @@ export default function Dashboard() {
           Chat Home
         </Text>
       </TouchableOpacity>
+      <TouchableOpacity
+  style={styles.button}
+  onPress={() => navigation.navigate("UploadReport")}
+>
+  <Text style={styles.buttonText}>
+    Upload Report
+  </Text>
+</TouchableOpacity>
     </View>
   );
 }

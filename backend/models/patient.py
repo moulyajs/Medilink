@@ -49,3 +49,8 @@ class Patient(Base):
         back_populates="patient",
         cascade="all, delete-orphan"
     )
+    chat_sessions = relationship(
+    "ChatSession",
+    back_populates="patient",
+    cascade="all, delete-orphan",
+)
