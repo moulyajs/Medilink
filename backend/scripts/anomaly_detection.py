@@ -1,7 +1,7 @@
 from sqlalchemy import text
 from database import SessionLocal
 from rapidfuzz import fuzz
-from baseline_engine import calculate_baseline
+from scripts.baseline_engine import calculate_baseline
 
 
 def is_same_test(a, b):

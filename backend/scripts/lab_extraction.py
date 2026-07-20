@@ -1,7 +1,7 @@
 import re
 from datetime import datetime
-from date_extraction import extract_date
-from date_extraction import extract_date_from_docling_tables
+from scripts.date_extraction import extract_date
+from scripts.date_extraction import extract_date_from_docling_tables
 # ===============================
 # REGEX CONFIG
 # ===============================

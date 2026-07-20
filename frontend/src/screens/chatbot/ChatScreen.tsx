@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   StyleSheet,
   View,
@@ -6,7 +6,7 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -16,7 +16,11 @@ import TypingIndicator from "./components/TypingIndicator";
 
 import { CHAT_WIDTH, CHAT_PADDING } from "./constants";
 import { Colors, Typography } from "../../theme";
-import { sendMessage } from "../../services/chatService";
+
+import {
+  sendMessage,
+  getSession,
+} from "../../services/chatService";
 
 interface Message {
   id: string;
@@ -26,21 +30,57 @@ interface Message {
 
 export default function ChatScreen() {
   const navigation = useNavigation<any>();
+  const route = useRoute<any>();
+
+  const sessionId = route.params?.sessionId;
+  const autoPrompt = route.params?.autoPrompt;
 
   const flatListRef = useRef<FlatList>(null);
 
   const [typing, setTyping] = useState(false);
 
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: "1",
-      sender: "bot",
-      text:
-        "Hello 👋 I'm Medilink AI.\n\nI can help explain your reports, compare trends and answer questions about your medical history.",
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
+
+  const loadConversation = async () => {
+    if (!sessionId) return;
+
+    try {
+      const data = await getSession(sessionId);
+
+      if (data.messages.length === 0) {
+        setMessages([
+          {
+            id: "welcome",
+            sender: "bot",
+            text:
+              "Hello 👋 I'm Medilink AI.\n\nI can help explain your reports, compare trends and answer questions about your medical history.",
+          },
+        ]);
+      } else {
+        const mapped: Message[] = data.messages.map(
+          (m: any, index: number) => ({
+            id: index.toString(),
+            sender: m.role === "user" ? "user" : "bot",
+            text: m.content,
+          })
+        );
+
+        setMessages(mapped);
+      }
+
+      setTimeout(() => {
+        flatListRef.current?.scrollToEnd({
+          animated: false,
+        });
+      }, 100);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const handleSend = async (text: string) => {
+    if (!sessionId) return;
+
     const userMessage: Message = {
       id: Date.now().toString(),
       sender: "user",
@@ -51,16 +91,28 @@ export default function ChatScreen() {
 
     setTyping(true);
 
+    setTimeout(() => {
+      flatListRef.current?.scrollToEnd({
+        animated: true,
+      });
+    }, 100);
+
     try {
-      const response = await sendMessage(text);
+      const response = await sendMessage(
+        sessionId,
+        text
+      );
 
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
         sender: "bot",
-        text: response.response,
+        text: response.answer,
       };
 
-      setMessages((prev) => [...prev, botMessage]);
+      setMessages((prev) => [
+        ...prev,
+        botMessage,
+      ]);
     } catch (error) {
       setMessages((prev) => [
         ...prev,
@@ -81,10 +133,27 @@ export default function ChatScreen() {
     }
   };
 
+  useEffect(() => {
+    loadConversation();
+  }, [sessionId]);
+
+  useEffect(() => {
+    if (!autoPrompt) return;
+
+    const timer = setTimeout(() => {
+      handleSend(autoPrompt);
+
+      navigation.setParams({
+        autoPrompt: undefined,
+      });
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [autoPrompt]);
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.wrapper}>
-        {/* Header */}
         <View style={styles.header}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Ionicons
@@ -96,16 +165,15 @@ export default function ChatScreen() {
 
           <View style={styles.headerCenter}>
             <Text style={styles.title}>Medilink AI</Text>
+
             <Text style={styles.subtitle}>
               Personal Health Assistant
             </Text>
           </View>
 
-          {/* Spacer to balance the back button */}
           <View style={styles.headerSpacer} />
         </View>
 
-        {/* Messages */}
         <FlatList
           ref={flatListRef}
           data={messages}
@@ -123,8 +191,10 @@ export default function ChatScreen() {
           }
         />
 
-        {/* Input */}
-        <ChatInput onSend={handleSend} />
+        <ChatInput
+  onSend={handleSend}
+  disabled={typing}
+/>
       </View>
     </SafeAreaView>
   );

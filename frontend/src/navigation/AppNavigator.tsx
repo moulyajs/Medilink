@@ -18,6 +18,9 @@ import Dashboard from "../screens/dashboard/Dashboard";
 import ForgotPasswordScreen from "../screens/auth/ForgotPasswordScreen";
 import VerifyOTPScreen from "../screens/auth/VerifyOTPScreen";
 import ResetPasswordScreen from "../screens/auth/ResetPasswordScreen";
+import UploadReportScreen from "../screens/upload/UploadReportScreen";
+import UploadProgressScreen from "../screens/upload/UploadProgressScreen";
+import UploadCompletedScreen from "../screens/upload/UploadCompletedScreen";
 const Stack = createNativeStackNavigator();
 
 export default function AppNavigator() {
@@ -84,6 +87,19 @@ export default function AppNavigator() {
       <Stack.Screen
   name="Dashboard"
   component={Dashboard}
+/>
+<Stack.Screen
+  name="UploadReport"
+  component={UploadReportScreen}
+/>
+<Stack.Screen
+    name="UploadProgress"
+    component={UploadProgressScreen}
+/>
+
+<Stack.Screen
+    name="UploadCompleted"
+    component={UploadCompletedScreen}
 />
       <Stack.Screen
         name="ChatHome"

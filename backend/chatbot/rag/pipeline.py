@@ -3,7 +3,7 @@ from .reranker import rerank
 from .context_builder import build_context
 from .prompts import build_rag_prompt
 from .llm import generate_answer
-
+from .query_rewriter import rewrite_query
 # ✅ ONLY this agent
 # from chatbot.agents.prompt_guard_agent import PromptGuardAgent
 
@@ -33,17 +33,6 @@ def is_sensitive_output(answer: str) -> bool:
 """
 
 
-def rewrite_query(query, chat_history):
-
-    if not chat_history:
-        return query
-
-    history_text = " ".join(
-        [m["content"] for m in chat_history[-4:]]
-    )
-
-    return f"{history_text} {query}"
-
 
 def rag_pipeline(
     query: str,
@@ -61,17 +50,70 @@ def rag_pipeline(
     # ----------------------------------
     # STEP 0 : QUERY REWRITE
     # ----------------------------------
+    GREETINGS = {
+    "hi",
+    "hello",
+    "hey",
+    "good morning",
+    "good afternoon",
+    "good evening"
+}
 
+    THANKS = {
+    "thanks",
+    "thank you",
+    "thx"
+}
+
+    BYE = {
+    "bye",
+    "goodbye",
+    "see you"
+}
+    query_lower = query.strip().lower()
+
+    if query_lower in GREETINGS:
+        return {
+            "answer": (
+                "Hello! 👋 I'm Medilink AI. "
+                "How can I help you with your medical records today?"
+            ),
+            "chunks": []
+        }
+
+    if query_lower in THANKS:
+        return {
+            "answer": "You're welcome! Feel free to ask about your reports, lab results, or medical history.",
+            "chunks": []
+        }
+
+    if query_lower in BYE:
+        return {
+            "answer": "Take care! I'm here whenever you need help with your health records.",
+            "chunks": []
+        }
+
+    # Only now invoke the LLM
+    
     rewritten_query = rewrite_query(
         query,
         chat_history
     )
+    print("\n" + "=" * 80)
+    print("QUERY REWRITER")
+    print("=" * 80)
+    print("Original Query:")
+    print(query)
+
+    print("\nRewritten Query:")
+    print(rewritten_query)
+
 
     # ----------------------------------
     # STEP 1 : QUERY ANALYSIS
     # ----------------------------------
 
-    analysis = analyze_query(query)
+    analysis = analyze_query(rewritten_query)
     """
     print("\n" + "=" * 80)
     print("QUERY ANALYSIS")
@@ -168,8 +210,7 @@ def rag_pipeline(
 
         prompt = build_rag_prompt(
             context,
-            query,
-            chat_history
+            rewritten_query
         )
 
         answer = generate_answer(
@@ -184,7 +225,8 @@ def rag_pipeline(
     # ----------------------------------
     # GENERAL RAG
     # ----------------------------------
-
+    print("\nUsing Retrieval Query:")
+    print(rewritten_query)
     chunks = retrieve(
         rewritten_query,
         patient_id,
@@ -230,9 +272,10 @@ def rag_pipeline(
     # ----------------------------------
     # RERANK
     # ----------------------------------
-
+    print("\nCrossEncoder Query:")
+    print(rewritten_query)
     reranked_chunks = rerank(
-        query,
+        rewritten_query,
         chunks,
         top_k=5
     )
@@ -250,15 +293,17 @@ def rag_pipeline(
     # ----------------------------------
 
     prompt = build_rag_prompt(
-        context,
-        query,
-        chat_history
-    )
+    context,
+    rewritten_query
+)
 
     # ----------------------------------
     # GENERATE
     # ----------------------------------
-
+    print("\n" + "=" * 80)
+    print("FINAL PROMPT")
+    print("=" * 80)
+    print(prompt)
     answer = generate_answer(
         prompt
     )

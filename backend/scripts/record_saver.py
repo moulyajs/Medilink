@@ -1,30 +1,28 @@
 import uuid
 from sqlalchemy import text
 from database import SessionLocal
-from baseline_engine import update_patient_baselines
+from scripts.baseline_engine import update_patient_baselines
 
 # ===============================
 # SAVE PATIENT
 # ===============================
-def save_patient(patient_id, dob=None, gender=None):
 
+def verify_patient(patient_id):
     db = SessionLocal()
 
-    db.execute(
+    patient = db.execute(
         text("""
-        INSERT INTO patients (patient_id, dob, gender)
-        VALUES (:pid, :dob, :gender)
-        ON CONFLICT (patient_id) DO NOTHING
+            SELECT patient_id
+            FROM patients
+            WHERE patient_id = :pid
         """),
-        {
-            "pid": patient_id,
-            "dob": dob,
-            "gender": gender
-        }
-    )
+        {"pid": patient_id}
+    ).fetchone()
 
-    db.commit()
     db.close()
+
+    if patient is None:
+        raise Exception(f"Patient {patient_id} not found")
 
 
 # ===============================

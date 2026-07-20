@@ -12,36 +12,44 @@ import { Colors } from "../../../theme";
 
 interface Props {
   onSend: (text: string) => void;
+  disabled?: boolean;
 }
-
 export default function ChatInput({
   onSend,
+  disabled = false,
 }: Props) {
   const [text, setText] = useState("");
 
   const send = () => {
-    if (!text.trim()) return;
+  if (disabled) return;
 
-    onSend(text);
+  if (!text.trim()) return;
 
-    setText("");
-  };
+  onSend(text);
+
+  setText("");
+};
 
   return (
     <View style={styles.wrapper}>
       <View style={styles.container}>
         <TextInput
-          value={text}
-          onChangeText={setText}
-          placeholder="Ask Medilink AI anything..."
-          multiline
-          style={styles.input}
-        />
+  value={text}
+  onChangeText={setText}
+  placeholder="Ask Medilink AI anything..."
+  multiline
+  editable={!disabled}
+  style={styles.input}
+/>
 
         <TouchableOpacity
-          style={styles.button}
-          onPress={send}
-        >
+  style={[
+    styles.button,
+    disabled && styles.disabledButton,
+  ]}
+  onPress={send}
+  disabled={disabled}
+>
           <Ionicons
             name="send"
             size={20}
@@ -84,6 +92,9 @@ const styles = StyleSheet.create({
     maxHeight: 120,
     fontSize: 16,
   },
+  disabledButton: {
+  opacity: 0.5,
+},
 
   button: {
     width: 44,
