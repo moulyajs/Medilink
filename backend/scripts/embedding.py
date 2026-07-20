@@ -5,7 +5,7 @@ model = SentenceTransformer("BAAI/bge-base-en-v1.5")
 
 def embed_chunks(chunks):
     texts = [
-        "Represent this sentence for retrieval: " + c["text"]
+        "Represent this medical record for retrieval: " + c["text"]
         for c in chunks
     ]
 

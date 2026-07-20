@@ -1,4 +1,23 @@
 # date_extraction.py
+"""
+import re
+
+# =====================================================
+# OCR VERSION
+# =====================================================
+
+def extract_date(text):
+    print("SECOND extract_date CALLED") ##just for testing
+    return "03/07/2024"
+# =====================================================
+# DOCLING VERSION
+# =====================================================
+
+def extract_date_from_docling_tables(tables):
+    print("extract_labs_from_docling called")
+    return "03/07/2024"
+"""
+# date_extraction.py
 
 import re
 from datetime import datetime
@@ -8,16 +27,33 @@ DATE_PATTERNS = [
     r"\b\d{1,2}[-/]\d{1,2}[-/]\d{2,4}\s+\d{1,2}:\d{2}[APMapm]{2}\b"
 ]
 
-def extract_date(lines):
-    """
-    OCR version
-    """
-    for l in lines[:12]:
-        text = l["text"]
+def extract_date(data):
+
+    # OCR lines
+    if isinstance(data, list):
+
+        for l in data[:12]:
+
+            text = l.get("text", "")
+
+            for p in DATE_PATTERNS:
+                m = re.search(p, text)
+
+                if m:
+                    return m.group(0)
+
+        return None
+
+    # Plain text (Docling full_text)
+    if isinstance(data, str):
+
         for p in DATE_PATTERNS:
-            m = re.search(p, text)
+            m = re.search(p, data)
+
             if m:
                 return m.group(0)
+
+        return None
 
     return None
 

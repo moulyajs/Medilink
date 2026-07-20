@@ -31,7 +31,7 @@ from lab_extraction import (
     normalize_date
 )
 from lab_normalizer import normalize_lab_results
-from clinical_facts_extraction import extract_clinical_facts
+#from clinical_facts_extraction import extract_clinical_facts
 from ecg_extraction import extract_ecg_findings
 from anomaly_detection import detect_patient_anomalies
 #from user_review import review_prescriptions
@@ -52,7 +52,7 @@ from dicom_viewer import (
 from docling_pipeline import parse_pdf_with_docling
 
 # RAG
-from chunking import create_chunks
+from chunking.chunk_router import build_chunks
 from embedding import embed_chunks
 from vector_store import insert_chunks
 
@@ -144,6 +144,7 @@ pdf_data = None
 if not is_pdf:
 
     print("🔍 Running OCR...")
+    from ocr_pipeline import ocr_process
     pages = ocr_process(file_path)
     visits = group_by_date(pages)
 
@@ -171,7 +172,12 @@ print(f"TOTAL VISITS: {len(visits)}")
 # STEP 3: VISIT-WISE PROCESSING
 # ============================================================
 
-all_normalized_labs = []
+all_extracted_data = {
+    "LAB_REPORT": [],
+    "PRESCRIPTION": [],
+    "CLINICAL_NOTE": [],
+    "RADIOLOGY": []
+}
 last_visit_date = None
 
 for visit_date, visit_pages in visits.items():
@@ -236,25 +242,33 @@ for visit_date, visit_pages in visits.items():
     # ----------------------------------------
     # PRESCRIPTIONS
     # ----------------------------------------
+    """
     medicines = []
 
     if not is_pdf and "PRESCRIPTION" in doc_types:
         medicines = extract_prescriptions(visit_lines)
+        if medicines:
+            all_extracted_data["PRESCRIPTION"].extend(
+                medicines
+            )
 
     elif is_pdf and primary_doc_type == "PRESCRIPTION":
         medicines = extract_prescriptions(visit_lines)
-
+        if medicines:
+            all_extracted_data["PRESCRIPTION"].extend(
+                medicines
+            )
     #reviewed_medicines = review_prescriptions(medicines)
 
     print("\n💊 PRESCRIPTIONS")
-    #print(reviewed_medicines)
-
+    print(medicines)
+"""
     # ----------------------------------------
     # LAB RESULTS
     # ----------------------------------------
     normalized_labs = []
 
-    if is_pdf:
+    if is_pdf and primary_doc_type == "LAB_REPORT":
 
         print("📄 Extracting labs from Docling PDF output...")
         print("\n========== PDF FULL TEXT ==========")
@@ -298,7 +312,9 @@ for visit_date, visit_pages in visits.items():
             document_id,
             normalized_labs
         )
-        all_normalized_labs.extend(normalized_labs)
+        all_extracted_data["LAB_REPORT"].extend(
+    normalized_labs
+)
 
     print("\n🔍 Checking historical lab trends...")
 
@@ -342,6 +358,8 @@ for visit_date, visit_pages in visits.items():
     # ----------------------------------------
     # CLINICAL FACTS
     # ----------------------------------------
+    ## uncomment when u want to clinical notes
+    """
     if is_pdf:
         full_text = pdf_full_text.strip()
     else:
@@ -354,6 +372,15 @@ for visit_date, visit_pages in visits.items():
 
     print("\n🧠 CLINICAL FACTS")
     print(clinical_facts)
+
+    if clinical_facts:
+
+        all_extracted_data["CLINICAL_NOTE"].append(
+        {
+            "report_date": visit_date,
+            "facts": clinical_facts
+        }
+    )
 
     # ----------------------------------------
     # SUMMARY (LEFT COMMENTED)
@@ -378,45 +405,94 @@ for visit_date, visit_pages in visits.items():
     )
 
     print("📅 Timeline updated")
-
+"""
 # ============================================================
 # STEP 4: RAG INGESTION
 # ============================================================
 
-if all_normalized_labs:
+print("\n📦 Creating RAG chunks...")
 
-    print("\n📦 Creating RAG chunks...")
+all_chunks = []
 
-    parsed_data = {
-        "lab_results": [
-            {
-                "test_name": lab.get("test"),
-                "value": lab.get("value"),
-                "unit": lab.get("unit"),
-                "reference_range": lab.get("reference_range"),
-            }
-            for lab in all_normalized_labs
-        ]
-    }
+# ----------------------------------
+# LAB REPORTS
+# ----------------------------------
 
-    chunks = create_chunks(
-        parsed_data,
+if all_extracted_data["LAB_REPORT"]:
+
+    chunks = build_chunks(
+        doc_type="LAB_REPORT",
+        extracted_data=
+            all_extracted_data["LAB_REPORT"],
+
         patient_id=patient_id,
-        document_id=document_id,
-        report_date=str(last_visit_date) if last_visit_date else None
+        document_id=document_id
     )
 
-    print(f"🧩 Chunks created: {len(chunks)}")
+    all_chunks.extend(chunks)
 
-    embeddings = embed_chunks(chunks)
+# ----------------------------------
+# PRESCRIPTIONS
+# ----------------------------------
+"""
+if all_extracted_data["PRESCRIPTION"]:
 
-    print("📡 Storing in Qdrant...")
-    insert_chunks(chunks, embeddings)
+    chunks = build_chunks(
+        doc_type="PRESCRIPTION",
+        extracted_data=
+            all_extracted_data["PRESCRIPTION"],
 
-    print("✅ RAG ingestion completed")
+        patient_id=patient_id,
+        document_id=document_id
+    )
+
+    all_chunks.extend(chunks)
+    """
+# ----------------------------------
+# CLINICAL NOTES
+# ----------------------------------
+
+if all_extracted_data["CLINICAL_NOTE"]:
+
+    chunks = build_chunks(
+        doc_type="CLINICAL_NOTE",
+        extracted_data=
+            all_extracted_data["CLINICAL_NOTE"],
+        patient_id=patient_id,
+        document_id=document_id,
+        
+
+
+    )
+
+    all_chunks.extend(chunks)
+# ----------------------------------
+# STORE
+# ----------------------------------
+
+if all_chunks:
+
+    print(
+        f"🧩 Total chunks created: "
+        f"{len(all_chunks)}"
+    )
+
+    embeddings = embed_chunks(all_chunks)
+
+    insert_chunks(
+        all_chunks,
+        embeddings
+    )
+
+    print(
+        "✅ RAG ingestion completed"
+    )
 
 else:
-    print("⚠ No labs → skipping RAG ingestion")
+
+    print(
+        "⚠ No chunks created"
+    )
 
 print("\n======================================")
 print("🎉 PIPELINE COMPLETED")
