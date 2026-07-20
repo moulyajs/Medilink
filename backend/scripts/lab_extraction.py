@@ -1,9 +1,11 @@
 import re
 from datetime import datetime
-
+from scripts.date_extraction import extract_date
+from scripts.date_extraction import extract_date_from_docling_tables
 # ===============================
 # REGEX CONFIG
 # ===============================
+
 UNIT_PATTERN = re.compile(
     r"""
     (mg/dl|
@@ -48,42 +50,7 @@ BLOCK_WORDS = {
 # ===============================
 # DATE EXTRACTION
 # ===============================
-def extract_date(text):
-    lines = text.split("\n")
 
-    DATE_KEYWORDS = {
-        "report": 3,
-        "reported": 3,
-        "result": 3,
-        "sample": 2,
-        "collected": 2,
-        "collection": 2,
-        "reg": 1,
-        "registered": 1,
-        "printed": 0,
-        "billing": -1
-    }
-
-    best_date = None
-    best_score = -999
-
-    for i, line in enumerate(lines):
-        lower = line.lower()
-        clean_line = re.sub(r"\s+", " ", lower)
-
-        for key, score in DATE_KEYWORDS.items():
-            if key in clean_line:
-                if m := DATE_PATTERN.search(line):
-                    if score > best_score:
-                        best_score = score
-                        best_date = m.group(0)
-                elif i + 1 < len(lines):
-                    if m := DATE_PATTERN.search(lines[i + 1]):
-                        if score > best_score:
-                            best_score = score
-                            best_date = m.group(0)
-
-    return best_date
 
 
 def normalize_date(date_str):
@@ -102,25 +69,6 @@ def normalize_date(date_str):
 
     return None
 
-def extract_date_from_docling_tables(tables):
-
-    for table in tables:
-        rows = table.get("rows", [])
-
-        for row in rows:
-            row_text = " ".join(str(x) for x in row)
-
-            if "reported" in row_text.lower():
-
-                m = re.search(
-                    r"\b\d{1,2}/\d{1,2}/\d{4}",
-                    row_text
-                )
-
-                if m:
-                    return normalize_date(m.group(0))
-
-    return None
 
 # ===============================
 # REFERENCE PARSER
@@ -172,7 +120,7 @@ def extract_labs_from_lines(lines):
 
     date_raw = extract_date("\n".join(text_lines))
     date_obj = normalize_date(date_raw)
-
+    print("Date raw",date_raw)
     for i, line in enumerate(text_lines):
 
         if any(w in line.lower() for w in BLOCK_WORDS):
@@ -211,8 +159,7 @@ def extract_labs_from_lines(lines):
         elif high is not None and value > high:
             status = "HIGH"
 
-        if not status:
-            continue
+        
 
         clean_test = re.split(VALUE_PATTERN, test_name)[0].strip(" :-")
 
@@ -329,7 +276,7 @@ def extract_labs_from_docling(docling_data):
     report_date = normalize_date(
         extract_date(full_text)
     )
-
+    print("Report date",report_date)
     results = extract_labs_from_docling_tables(tables)
 
     # Assign the extracted date to every lab

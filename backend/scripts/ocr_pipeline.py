@@ -1,6 +1,6 @@
 from document_classifier import classify_document
 from date_extraction import extract_date
-from paddocr import run_ocr
+from tesseract_ocr import run_ocr
 from pdf2image import convert_from_path
 from pathlib import Path
 import tempfile
@@ -77,13 +77,13 @@ def ocr_process(file_path):
             texts, scores = run_ocr(str(tmp))
             lines, top_lines = clean_text_with_lines(texts, scores)
 
-            doc_type = classify_document(lines).lower()
+            doc_type = classify_document(lines)
             date = extract_date(lines)
 
             # Handwritten prescription fallback
             if doc_type == "unknown" and infer_prescription(lines):
                 print(f"⚠️ Page {i+1}: overridden to PRESCRIPTION (handwritten)")
-                doc_type = "prescription"
+                doc_type = "PRESCRIPTION"
 
             pages_data.append({
                 "page_no": i + 1,
@@ -98,13 +98,21 @@ def ocr_process(file_path):
     # -------- IMAGE INPUT --------
     else:
         texts, scores = run_ocr(file_path)
-        lines, top_lines = clean_text_with_lines(texts, scores)
+        print("\n===== RAW OCR =====")
+        for t, s in zip(texts, scores):
+            print(f"{s:.2f} -> {t}")
+        print("===================\n")
 
-        doc_type = classify_document(lines).lower()
+        lines, top_lines = clean_text_with_lines(texts, scores)
+        print("\n===== CLEANED OCR =====")
+        for l in lines:
+            print(l["text"])
+        print("=======================\n")
+        doc_type = classify_document(lines)
         date = extract_date(lines)
 
         if doc_type == "unknown" and infer_prescription(lines):
-            doc_type = "prescription"
+            doc_type = "PRESCRIPTION"
 
         pages_data.append({
             "page_no": 1,
