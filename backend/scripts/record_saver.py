@@ -2,7 +2,7 @@ import uuid
 from sqlalchemy import text
 from database import SessionLocal
 from scripts.baseline_engine import update_patient_baselines
-from trend_engine import update_patient_trends
+from scripts.trend_engine import update_patient_trends
 
 # ===============================
 # SAVE PATIENT
