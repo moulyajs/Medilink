@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Dimensions, StyleSheet } from "react-native";
+import { View, Text, Dimensions, StyleSheet, ScrollView } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 
 interface Props {
@@ -32,37 +32,36 @@ export default function TrendChart({
     <View style={styles.container}>
       <Text style={styles.title}>Trend Graph</Text>
 
-      <LineChart
-        data={{
-          labels: history.map(item =>
-            item.date.substring(5)
-          ),
-          datasets: [
-            {
-              data: history.map(item => item.value),
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        <LineChart
+          data={{
+            labels: history.map(item => item.date.substring(5)),
+            datasets: [
+              {
+                data: history.map(item => item.value),
+              },
+            ],
+          }}
+          width={Math.max(screenWidth, history.length * 70)}
+          height={220}
+          yAxisSuffix=""
+          bezier
+          chartConfig={{
+            backgroundColor: "#fff",
+            backgroundGradientFrom: "#fff",
+            backgroundGradientTo: "#fff",
+            decimalPlaces: 1,
+            color: (opacity = 1) => `rgba(37,99,235,${opacity})`,
+            labelColor: () => "#555",
+            propsForDots: {
+              r: "4",
             },
-          ],
-        }}
-        width={screenWidth}
-        height={220}
-        yAxisSuffix=""
-        bezier
-        chartConfig={{
-          backgroundColor: "#fff",
-          backgroundGradientFrom: "#fff",
-          backgroundGradientTo: "#fff",
-          decimalPlaces: 1,
-          color: (opacity = 1) =>
-            `rgba(37,99,235,${opacity})`,
-          labelColor: () => "#555",
-          propsForDots: {
-            r: "4",
-          },
-        }}
-        style={{
-          borderRadius: 16,
-        }}
-      />
+          }}
+          style={{
+            borderRadius: 16,
+          }}
+        />
+      </ScrollView>
     </View>
   );
 }

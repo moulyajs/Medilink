@@ -296,7 +296,6 @@ for visit_date, visit_pages in visits.items():
             document_id,
             normalized_labs
         )
-        update_patient_trends(patient_id)
         
         all_normalized_labs.extend(normalized_labs)
 

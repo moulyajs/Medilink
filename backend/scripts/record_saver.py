@@ -2,6 +2,7 @@ import uuid
 from sqlalchemy import text
 from database import SessionLocal
 from baseline_engine import update_patient_baselines
+from trend_engine import update_patient_trends
 
 # ===============================
 # SAVE PATIENT
@@ -12,20 +13,17 @@ def save_patient(patient_id, dob=None, gender=None):
 
     db.execute(
         text("""
-        INSERT INTO patients (patient_id, dob, gender)
-        VALUES (:pid, :dob, :gender)
+        INSERT INTO patients (patient_id)
+        VALUES (:pid)
         ON CONFLICT (patient_id) DO NOTHING
         """),
         {
-            "pid": patient_id,
-            "dob": dob,
-            "gender": gender
+            "pid": patient_id
         }
     )
 
     db.commit()
     db.close()
-
 
 # ===============================
 # SAVE LAB RESULTS
@@ -98,4 +96,5 @@ def save_lab_results(patient_id, document_id, labs):
 
     db.commit()
     update_patient_baselines(patient_id)
+    update_patient_trends(patient_id)
     db.close()
