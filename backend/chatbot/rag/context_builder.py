@@ -1,11 +1,19 @@
 def build_context(chunks):
+
     context_parts = []
 
     for c in chunks:
-        part = f"""
-[Date: {c.get('report_date')} | Doc: {c.get('document_id')}]
-{c.get('text')}
-"""
-        context_parts.append(part.strip())
 
-    return "\n\n".join(context_parts)
+        context_parts.append(
+            f"""
+Date: {c.get('report_date')}
+Chunk Type: {c.get('chunk_type')}
+Report Type: {c.get('report_type')}
+
+{c.get('text')}
+""".strip()
+        )
+
+    return "\n\n".join(
+        context_parts
+    )

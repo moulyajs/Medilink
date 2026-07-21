@@ -3,7 +3,7 @@ import { getToken } from "../utils/storage";
 
 const api = axios.create({
   baseURL: "http://localhost:8000",
-  timeout: 10000,
+  timeout: 60000,
   headers: {
     "Content-Type": "application/json",
   },
@@ -11,7 +11,6 @@ const api = axios.create({
 
 api.interceptors.request.use(
   async (config) => {
-
     const token = await getToken();
 
     if (token) {

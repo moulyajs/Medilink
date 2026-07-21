@@ -5,5 +5,5 @@ model = SentenceTransformer("BAAI/bge-base-en-v1.5")
 
 
 def get_embedding(text: str):
-    text = "Represent this sentence for retrieval: " + text
+    text = "Represent this medical record for retrieval: " + text
     return model.encode(text).tolist()
