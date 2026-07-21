@@ -19,3 +19,7 @@ pandas==3.0.3
 numpy==2.4.6
 
 rapidfuzz==3.14.1
+
+email-validator
+PyJWT
+bcrypt
