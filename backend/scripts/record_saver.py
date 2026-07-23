@@ -3,6 +3,7 @@ from sqlalchemy import text
 from database import SessionLocal
 from scripts.baseline_engine import update_patient_baselines
 from scripts.trend_engine import update_patient_trends
+from datetime import date
 
 # ===============================
 # SAVE PATIENT
@@ -35,7 +36,7 @@ def save_lab_results(patient_id, document_id, labs):
 
     for lab in labs:
 
-        test_name = lab.get("test_name") or lab.get("test")
+        test_name = (lab.get("test_name") or lab.get("test") or "").strip().upper()
 
         if not test_name or lab.get("value") is None:
             print("⚠ Skipping:", lab)
@@ -91,7 +92,7 @@ def save_lab_results(patient_id, document_id, labs):
                 "low": ref_low,
                 "high": ref_high,
                 "flag": lab.get("abnormal"),
-                "date": lab.get("date")   # ✅ now properly filled
+                "date": lab.get("date") or date.today()   # ✅ now properly filled
             }
         )
 

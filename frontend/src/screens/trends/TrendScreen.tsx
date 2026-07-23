@@ -17,8 +17,7 @@ import { styles } from "./styles";
 
 import { getTrendAnalysis } from "../../services/trendService";
 import { TrendData } from "../../types/trend";
-
-const PATIENT_ID = "fcc28785-edbb-4398-aa82-ad453de58ad2";
+import { getToken } from "../../utils/storage";
 
 export default function TrendScreen() {
   const [loading, setLoading] = useState(true);
@@ -34,20 +33,26 @@ export default function TrendScreen() {
   }, []);
 
   async function loadTrend() {
-    try {
-      setLoading(true);
+  try {
+    setLoading(true);
 
-      const data = await getTrendAnalysis(PATIENT_ID);
+    const token = await getToken();
 
-      setTrendData(data);
-
-      if (data.length > 0) {
-        setSelectedTest(data[0].test_name);
-      }
-    } finally {
-      setLoading(false);
+    if (!token) {
+      throw new Error("User not logged in");
     }
+
+    const data = await getTrendAnalysis(token);
+
+    setTrendData(data);
+
+    if (data.length > 0) {
+      setSelectedTest(data[0].test_name);
+    }
+  } finally {
+    setLoading(false);
   }
+}
 
   const selected = trendData.find(
     (t) => t.test_name === selectedTest

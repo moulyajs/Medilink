@@ -10,7 +10,7 @@ import LoginScreen from "../screens/auth/LoginScreen";
 
 import ChatHome from "../screens/chatbot/ChatHome";
 import ChatScreen from "../screens/chatbot/ChatScreen";
-
+import TrendScreen from "../screens/trends/TrendScreen";
 import ProfileScreen from "../screens/profile/ProfileScreen";
 import EditProfileScreen from "../screens/profile/EditProfileScreen";
 import SignupScreen from "../screens/auth/SignupScreen";
@@ -109,6 +109,11 @@ export default function AppNavigator() {
       <Stack.Screen
         name="ChatScreen"
         component={ChatScreen}
+      />
+
+      <Stack.Screen
+        name="Trend"
+        component={TrendScreen}
       />
     </Stack.Navigator>
     

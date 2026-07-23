@@ -2,31 +2,24 @@ import { TrendData } from "../types/trend";
 
 const BASE_URL = "http://127.0.0.1:8000";
 
-// If testing on Android Emulator use:
-// const BASE_URL = "http://10.0.2.2:8000";
-
-// If testing on physical phone use:
-// const BASE_URL = "http://YOUR_PC_IP:8000";
-
 export async function getTrendAnalysis(
-  patientId: string
+  token: string
 ): Promise<TrendData[]> {
   try {
     const response = await fetch(
-      `${BASE_URL}/trend-analysis/${patientId}`,
+      `${BASE_URL}/trend/trend-analysis`,
       {
         method: "GET",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
       }
     );
 
     if (!response.ok) {
-      throw new Error(
-        `Server returned ${response.status}`
-      );
+      throw new Error(`Server returned ${response.status}`);
     }
 
     const data: TrendData[] = await response.json();

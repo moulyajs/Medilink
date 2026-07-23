@@ -15,9 +15,6 @@ services:
     volumes:
       - ..:/app
 
-    ports:
-      - "8000:8000"     # <-- Add this
-
     depends_on:
       - minio
       - qdrant
