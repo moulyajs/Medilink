@@ -29,13 +29,14 @@ import CreatePinScreen from "../screens/settings/CreatePinScreen";
 import PinLoginScreen from "../screens/auth/PinLoginScreen";
 import AboutMedilinkScreen from "../screens/settings/AboutMedilinkScreen";
 import ConnectedDevicesScreen from "../screens/settings/ConnectedDevicesScreen";
-//import NotificationSettingsScreen from "../screens/settings/NotificationSettingsScreen";
+import NotificationSettingsScreen from "../screens/settings/NotificationSettingsScreen";
 import PermissionsScreen from "../screens/settings/PermissionsScreen";
 import EncryptionStatusScreen from "../screens/settings/EncryptionStatusScreen";
 import UploadReportScreen from "../screens/upload/UploadReportScreen";
 import UploadProgressScreen from "../screens/upload/UploadProgressScreen";
 import UploadCompletedScreen from "../screens/upload/UploadCompletedScreen";
 import AnomalyScreen from "../screens/anomalies/AnomalyScreen";
+import NotificationScreen from "../screens/notifications/NotificationScreen";
 const Stack = createNativeStackNavigator();
 
 export default function AppNavigator() {
@@ -179,6 +180,14 @@ export default function AppNavigator() {
 <Stack.Screen
   name="EncryptionStatus"
   component={EncryptionStatusScreen}
+/>
+<Stack.Screen
+  name="Notifications"
+  component={NotificationScreen}
+/>
+<Stack.Screen
+  name="NotificationSettings"
+  component={NotificationSettingsScreen}
 />
       <Stack.Screen
         name="Trend"

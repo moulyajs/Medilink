@@ -7,11 +7,33 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useStyles } from "../../hooks/useStyles";
+import { Ionicons } from "@expo/vector-icons";
+import {
+  getNotifications,
+} from "../../services/notificationService";
 
+import { useEffect, useState } from "react";
 export default function Dashboard() {
   const navigation = useNavigation<any>();
   const { colors, globalStyles } = useStyles();
+  const [unreadCount, setUnreadCount] = useState(0);
+  useEffect(() => {
+  loadUnreadCount();
+}, []);
 
+const loadUnreadCount = async () => {
+  try {
+    const notifications = await getNotifications();
+
+    const unread = notifications.filter(
+      (item: any) => !item.is_read
+    );
+
+    setUnreadCount(unread.length);
+  } catch (err) {
+    console.log(err);
+  }
+};
   return (
     <View
       style={[
@@ -19,14 +41,39 @@ export default function Dashboard() {
         styles.container,
       ]}
     >
-      <Text
-        style={[
-          styles.title,
-          { color: colors.primary },
-        ]}
-      >
-        Medilink Dashboard
-      </Text>
+      <View style={styles.header}>
+  <Text
+    style={[
+      styles.title,
+      { color: colors.primary },
+    ]}
+  >
+    Medilink Dashboard
+  </Text>
+
+  <TouchableOpacity
+    onPress={() =>
+      navigation.navigate("Notifications")
+    }
+  >
+    <View>
+      <Ionicons
+        name="notifications"
+        size={30}
+        color={colors.primary}
+      />
+
+      {/* Badge */}
+      {unreadCount > 0 && (
+  <View style={styles.badge}>
+    <Text style={styles.badgeText}>
+      {unreadCount}
+    </Text>
+  </View>
+)}
+    </View>
+  </TouchableOpacity>
+</View>
 
       <TouchableOpacity
         style={[
@@ -110,4 +157,33 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "600",
   },
+  header: {
+  width: "100%",
+  flexDirection: "row",
+  justifyContent: "space-between",
+  alignItems: "center",
+  marginBottom: 40,
+},
+
+badge: {
+  position: "absolute",
+  top: -5,
+  right: -6,
+
+  width: 18,
+  height: 18,
+
+  borderRadius: 9,
+
+  backgroundColor: "#EF4444",
+
+  justifyContent: "center",
+  alignItems: "center",
+},
+
+badgeText: {
+  color: "#FFFFFF",
+  fontSize: 10,
+  fontWeight: "700",
+},
 });

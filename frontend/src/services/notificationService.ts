@@ -1,53 +1,77 @@
-import * as Notifications from "expo-notifications";
-import * as Device from "expo-device";
-import { Platform } from "react-native";
+import api from "./api";
 
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowBanner: true,
-    shouldShowList: true,
-    shouldPlaySound: true,
-    shouldSetBadge: false,
-  }),
-});
+export interface Notification {
+  notification_id: string;
+  title: string;
+  message: string;
+  notification_type: string;
+  is_read: boolean;
+  created_at: string;
+}
 
-export async function registerForPushNotifications() {
-  if (!Device.isDevice) {
-    return null;
-  }
+export interface NotificationSettings {
+  push_notifications: boolean;
+  email_notifications: boolean;
+  appointment_reminders: boolean;
+  medication_reminders: boolean;
+  lab_report_notifications: boolean;
+  health_alerts: boolean;
+}
 
-  const { status: existingStatus } =
-    await Notifications.getPermissionsAsync();
+/* ---------- Notification History ---------- */
 
-  let finalStatus = existingStatus;
+export async function getNotifications() {
+  const response = await api.get(
+    "/notifications/history/"
+  );
 
-  if (existingStatus !== "granted") {
-    const { status } =
-      await Notifications.requestPermissionsAsync();
+  return response.data;
+}
 
-    finalStatus = status;
-  }
+export async function markNotificationRead(
+  notificationId: string
+) {
+  const response = await api.put(
+    `/notifications/history/${notificationId}/read`
+  );
 
-  if (finalStatus !== "granted") {
-    return null;
-  }
+  return response.data;
+}
 
-  const token = (
-    await Notifications.getExpoPushTokenAsync()
-  ).data;
+export async function createNotification(
+  title: string,
+  message: string,
+  notificationType: string
+) {
+  const response = await api.post(
+    "/notifications/history/",
+    {
+      title,
+      message,
+      notification_type: notificationType,
+    }
+  );
 
-  console.log("Expo Push Token:", token);
+  return response.data;
+}
 
-  if (Platform.OS === "android") {
-    await Notifications.setNotificationChannelAsync(
-      "default",
-      {
-        name: "default",
-        importance:
-          Notifications.AndroidImportance.MAX,
-      }
-    );
-  }
+/* ---------- Notification Settings ---------- */
 
-  return token;
+export async function getNotificationSettings() {
+  const response = await api.get(
+    "/notifications/"
+  );
+
+  return response.data;
+}
+
+export async function updateNotificationSettings(
+  settings: NotificationSettings
+) {
+  const response = await api.put(
+    "/notifications/",
+    settings
+  );
+
+  return response.data;
 }

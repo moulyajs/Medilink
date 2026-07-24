@@ -14,6 +14,11 @@ from routers.chat import router as chat_router
 from routers.upload import router as upload_router
 from routers.trend import router as trend_router
 from routers import anomaly
+from models.notification import Notification
+from models.notification_settings import NotificationSettings
+from routers.notification_history import (
+    router as notification_history_router,
+)
 # Create database tables
 Base.metadata.create_all(bind=engine)
 app = FastAPI(
@@ -54,3 +59,4 @@ app.include_router(chat_router)
 app.include_router(upload_router)
 app.include_router(trend_router)
 app.include_router(anomaly.router)
+app.include_router(notification_history_router)
