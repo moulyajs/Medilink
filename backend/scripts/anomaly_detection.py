@@ -1,17 +1,5 @@
 from sqlalchemy import text
 from database import SessionLocal
-from rapidfuzz import fuzz
-from scripts.baseline_engine import calculate_baseline
-
-
-def is_same_test(a, b):
-    if not a or not b:
-        return False
-
-    a = a.lower().strip()
-    b = b.lower().strip()
-
-    return fuzz.partial_ratio(a, b) >= 90
 
 
 def detect_patient_anomalies(patient_id, current_labs):
@@ -20,87 +8,71 @@ def detect_patient_anomalies(patient_id, current_labs):
 
     anomalies = []
 
-    for lab in current_labs:
+    try:
 
-        test_name = lab.get("test")
-        current_value = lab.get("value")
+        for lab in current_labs:
 
-        if test_name is None or current_value is None:
-            continue
+            test_name = (lab.get("test") or "").strip().upper()
+            current_value = lab.get("value")
 
-        # ---------------------------------------
-        # Fetch ALL historical values
-        # ---------------------------------------
-        all_rows = db.execute(
-            text("""
-                SELECT test_name, value, result_date
-                FROM lab_results
-                WHERE patient_id = :pid
-                AND value IS NOT NULL
-                ORDER BY result_date
-            """),
-            {
-                "pid": patient_id
-            }
-        ).fetchall()
+            if test_name is None or current_value is None:
+                continue
 
-        rows = []
+            # ---------------------------------------
+            # Fetch patient's baseline
+            # ---------------------------------------
+            baseline = db.execute(
+                text("""
+                    SELECT
+                        personal_average,
+                        personal_min,
+                        personal_max,
+                        personal_variability,
+                        sample_count
+                    FROM personal_baseline
+                    WHERE patient_id = :pid
+                      AND test_name = :test
+                """),
+                {
+                    "pid": patient_id,
+                    "test": test_name
+                }
+            ).fetchone()
 
-        for r in all_rows:
-            if is_same_test(test_name, r.test_name):
-                rows.append(r)
+            if baseline is None:
+                continue
 
-        print("\nSearching:", test_name)
-        print("Rows found:", len(rows))
+            # Need at least two previous reports
+            if baseline.sample_count < 2:
+                continue
 
-        for r in rows:
-            print(r.test_name, r.value, r.result_date)
+            deviation = current_value - baseline.personal_average
 
-        history = [r.value for r in rows]
+            pct_change = (
+                (deviation / baseline.personal_average) * 100
+                if baseline.personal_average != 0
+                else 0
+            )
 
-        # Ignore current upload if already inserted
-        if len(history) > 0:
-            history = history[:-1]
+            if abs(pct_change) >= 20:
 
-        # Need at least 2 previous reports
-        if len(history) < 2:
-            continue
+                trend = "UP" if deviation > 0 else "DOWN"
 
-        # ---------------------------------------
-        # Use baseline pipeline
-        # ---------------------------------------
-        baseline_data = calculate_baseline(history)
+                anomalies.append({
+                    "test_name": test_name,
+                    "current_value": current_value,
+                    "baseline": baseline.personal_average,
+                    "baseline_min": baseline.personal_min,
+                    "baseline_max": baseline.personal_max,
+                    "variability": baseline.personal_variability,
+                    "sample_count": baseline.sample_count,
+                    "deviation": round(deviation, 2),
+                    "percent_change": round(pct_change, 2),
+                    "trend": trend,
+                    "detected_at": lab.get("date")
+                })
 
-        if baseline_data is None:
-            continue
+        return anomalies
 
-        baseline = baseline_data["average"]
-
-        deviation = current_value - baseline
-
-        pct_change = (
-            (deviation / baseline) * 100
-            if baseline != 0
-            else 0
-        )
-
-        if abs(pct_change) >= 20:
-
-            trend = "UP" if deviation > 0 else "DOWN"
-
-            anomalies.append({
-                "test_name": test_name,
-                "current_value": current_value,
-                "baseline": baseline,
-                "baseline_min": baseline_data["minimum"],
-                "baseline_max": baseline_data["maximum"],
-                "variability": baseline_data["variability"],
-                "sample_count": baseline_data["sample_count"],
-                "percent_change": round(pct_change, 2),
-                "trend": trend,
-                "history": history
-            })
-
-    db.close()
-
-    return anomalies
+    finally:
+        db.close()

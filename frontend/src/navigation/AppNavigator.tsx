@@ -11,6 +11,7 @@ import LoginScreen from "../screens/auth/LoginScreen";
 import ChatHome from "../screens/chatbot/ChatHome";
 import ChatScreen from "../screens/chatbot/ChatScreen";
 import ReportIssueScreen from "../screens/settings/ReportIssueScreen";
+import TrendScreen from "../screens/trends/TrendScreen";
 import ProfileScreen from "../screens/profile/ProfileScreen";
 import EditProfileScreen from "../screens/profile/EditProfileScreen";
 import SignupScreen from "../screens/auth/SignupScreen";
@@ -34,6 +35,7 @@ import EncryptionStatusScreen from "../screens/settings/EncryptionStatusScreen";
 import UploadReportScreen from "../screens/upload/UploadReportScreen";
 import UploadProgressScreen from "../screens/upload/UploadProgressScreen";
 import UploadCompletedScreen from "../screens/upload/UploadCompletedScreen";
+import AnomalyScreen from "../screens/anomalies/AnomalyScreen";
 const Stack = createNativeStackNavigator();
 
 export default function AppNavigator() {
@@ -177,6 +179,14 @@ export default function AppNavigator() {
 <Stack.Screen
   name="EncryptionStatus"
   component={EncryptionStatusScreen}
+/>
+      <Stack.Screen
+        name="Trend"
+        component={TrendScreen}
+      />
+      <Stack.Screen
+  name="Anomaly"
+  component={AnomalyScreen}
 />
     </Stack.Navigator>
     

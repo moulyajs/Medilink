@@ -59,10 +59,29 @@ export default function Dashboard() {
     Upload Report
   </Text>
 </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate("Trend")}
+>
+        <Text style={styles.buttonText}>
+          Trend Analysis
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+  style={styles.button}
+  onPress={() => navigation.navigate("Anomaly")}
+>
+  <Text style={styles.buttonText}>
+    Personal Baseline & Anomalies
+  </Text>
+</TouchableOpacity>
+
     </View>
   );
-}
+} 
 
+      
 const styles = StyleSheet.create({
   container: {
     flex: 1,
