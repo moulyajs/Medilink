@@ -3,7 +3,8 @@ from sqlalchemy import text
 from database import SessionLocal
 from scripts.baseline_engine import update_patient_baselines
 from scripts.trend_engine import update_patient_trends
-from datetime import date
+from scripts.anomaly_detection import detect_patient_anomalies
+from scripts.anomaly_saver import save_patient_anomalies
 
 # ===============================
 # SAVE PATIENT
@@ -92,11 +93,29 @@ def save_lab_results(patient_id, document_id, labs):
                 "low": ref_low,
                 "high": ref_high,
                 "flag": lab.get("abnormal"),
-                "date": lab.get("date") or date.today()   # ✅ now properly filled
+                "date": lab.get("date")  # ✅ now properly filled
             }
         )
 
     db.commit()
+    # Ensure normalized names are used by anomaly detection
+    for lab in labs:
+        test_name = (lab.get("test_name") or lab.get("test") or "").strip().upper()
+        lab["test"] = test_name
+
+    # Detect anomalies using the previous baseline
+    anomalies = detect_patient_anomalies(
+        patient_id,
+        labs
+    )
+
+    save_patient_anomalies(
+        patient_id,
+        anomalies,
+        labs
+    )
+
+    # Now update baseline and trends to include the new report
     update_patient_baselines(patient_id)
     update_patient_trends(patient_id)
     db.close()

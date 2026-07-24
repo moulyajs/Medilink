@@ -27,7 +27,7 @@ export default function TrendChart({
       </View>
     );
   }
-
+  
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Trend Graph</Text>

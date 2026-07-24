@@ -13,12 +13,11 @@ export const styles = StyleSheet.create({
     padding: 20,
   },
 
-  heading: {
-    fontSize: 28,
-    fontWeight: "700",
-    color: "#0F172A",
-    marginBottom: 20,
-  },
+heading: {
+  fontSize: 32,
+  fontWeight: "700",
+  color: "#1E293B",
+},
 
   cardRow: {
     flexDirection: "row",
@@ -39,4 +38,14 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  header: {
+  flexDirection: "row",
+  alignItems: "center",
+  marginBottom: 20,
+},
+
+backButton: {
+  marginRight: 12,
+  padding: 4,
+},
 });

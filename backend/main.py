@@ -9,7 +9,7 @@ from routers.auth import router as auth_router
 from routers.chat import router as chat_router
 from routers.upload import router as upload_router
 from routers.trend import router as trend_router
-
+from routers import anomaly
 # Create database tables
 Base.metadata.create_all(bind=engine)
 app = FastAPI(
@@ -21,7 +21,7 @@ app = FastAPI(
 # Allow frontend to connect
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],      # Later replace with frontend URL
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -34,17 +34,6 @@ def home():
         "message": "Welcome to Medilink API 🚀"
     }
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[
-        "http://localhost:8081",
-        "http://127.0.0.1:8081",
-    ],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
 
 @app.get("/health")
 def health():
@@ -56,3 +45,4 @@ app.include_router(profile_router)
 app.include_router(chat_router)
 app.include_router(upload_router)
 app.include_router(trend_router)
+app.include_router(anomaly.router)

@@ -21,6 +21,7 @@ import ResetPasswordScreen from "../screens/auth/ResetPasswordScreen";
 import UploadReportScreen from "../screens/upload/UploadReportScreen";
 import UploadProgressScreen from "../screens/upload/UploadProgressScreen";
 import UploadCompletedScreen from "../screens/upload/UploadCompletedScreen";
+import AnomalyScreen from "../screens/anomalies/AnomalyScreen";
 const Stack = createNativeStackNavigator();
 
 export default function AppNavigator() {
@@ -115,6 +116,10 @@ export default function AppNavigator() {
         name="Trend"
         component={TrendScreen}
       />
+      <Stack.Screen
+  name="Anomaly"
+  component={AnomalyScreen}
+/>
     </Stack.Navigator>
     
    

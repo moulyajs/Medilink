@@ -5,6 +5,7 @@ import {
   Text,
   ScrollView,
   ActivityIndicator,
+  TouchableOpacity,
 } from "react-native";
 
 import SummaryCard from "./SummaryCard";
@@ -14,13 +15,15 @@ import AlertPanel from "./AlertPanel";
 import TimeFilter from "./TimeFilter";
 import KeyInsights from "./KeyInsights";
 import { styles } from "./styles";
-
+import { useNavigation } from "@react-navigation/native";
 import { getTrendAnalysis } from "../../services/trendService";
 import { TrendData } from "../../types/trend";
-import { getToken } from "../../utils/storage";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function TrendScreen() {
+  const navigation = useNavigation<any>();
   const [loading, setLoading] = useState(true);
+
 
   const [trendData, setTrendData] = useState<TrendData[]>([]);
 
@@ -36,13 +39,9 @@ export default function TrendScreen() {
   try {
     setLoading(true);
 
-    const token = await getToken();
+    
 
-    if (!token) {
-      throw new Error("User not logged in");
-    }
-
-    const data = await getTrendAnalysis(token);
+    const data = await getTrendAnalysis();
 
     setTrendData(data);
 
@@ -131,9 +130,22 @@ export default function TrendScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.content}>
-        <Text style={styles.heading}>
-          Trend Analysis
-        </Text>
+        <View style={styles.header}>
+  <TouchableOpacity
+    onPress={() => navigation.goBack()}
+    style={styles.backButton}
+  >
+    <Ionicons
+      name="arrow-back"
+      size={26}
+      color="#1E293B"
+    />
+  </TouchableOpacity>
+
+  <Text style={styles.heading}>
+    Trend Analysis
+  </Text>
+</View>
 
         <TimeFilter
           selected={selectedFilter}

@@ -44,6 +44,14 @@ export default function Dashboard() {
           Trend Analysis
         </Text>
       </TouchableOpacity>
+      <TouchableOpacity
+  style={styles.button}
+  onPress={() => navigation.navigate("Anomaly")}
+>
+  <Text style={styles.buttonText}>
+    Personal Baseline & Anomalies
+  </Text>
+</TouchableOpacity>
 
     </View>
   );
