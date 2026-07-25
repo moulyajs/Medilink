@@ -16,6 +16,8 @@ import { Text } from "react-native-paper";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { Pencil, Check, X, AlertCircle } from "lucide-react-native";
 import { Colors, Spacing, Typography } from "../../theme";
+import { Alert } from "react-native";
+import { confirmReport } from "../../services/reportService";
 
 // ---------- Types ----------
 
@@ -41,6 +43,8 @@ export default function OCRPreviewScreen({ onConfirm, onCancel }: OCRPreviewScre
   const route = useRoute<any>();
 
   const initialValues: ExtractedValue[] = route.params?.extractedValues ?? [];
+  console.log("OCR PARAMS:", route.params);
+  console.log("INITIAL VALUES:", initialValues);
   const reportTitle: string = route.params?.reportTitle ?? "New Report";
 
   const [values, setValues] = useState<ExtractedValue[]>(initialValues);
@@ -52,13 +56,29 @@ export default function OCRPreviewScreen({ onConfirm, onCancel }: OCRPreviewScre
     setValues((prev) => prev.map((v) => (v.id === id ? { ...v, [field]: text } : v)));
   };
 
-  const handleConfirm = () => {
-    if (onConfirm) {
-      onConfirm(values);
-    } else {
-      navigation.navigate("ReportsList");
-    }
-  };
+  const handleConfirm = async () => {
+  try {
+   navigation.navigate("UploadProgress", {
+      mode: "confirm",
+      tempFileId: route.params.tempFileId,
+      labValues: values.map(v => ({
+        test_name: v.testName,
+        value: Number(v.value),
+        unit: v.unit,
+        reference_range: [
+          v.referenceLow,
+          v.referenceHigh,
+        ],
+      })),
+    });
+
+    return;
+
+  } catch (err) {
+    console.error(err);
+    Alert.alert("Failed to save report");
+  }
+};
 
   const handleCancel = () => {
     if (onCancel) {

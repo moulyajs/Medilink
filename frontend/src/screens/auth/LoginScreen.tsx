@@ -26,12 +26,11 @@ export default function LoginScreen() {
       setLoading(true);
 
       const response = await login({
-        email,
-        password,
+          email,
+          password,
       });
 
-      await saveToken(response.data.access_token);
-
+        await saveToken(response.data.access_token);
       alert("Login Successful!");
 
       navigation.replace("Dashboard");

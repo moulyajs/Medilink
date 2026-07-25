@@ -24,6 +24,7 @@
     "react-native": "0.86.0",
     "react-native-date-picker": "^5.0.13",
     "react-native-gesture-handler": "~2.32.0",
+    "react-native-gifted-charts": "^1.4.77",
     "react-native-keyboard-controller": "1.21.9",
     "react-native-pager-view": "8.0.2",
     "react-native-paper": "^5.15.3",

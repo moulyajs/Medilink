@@ -1,5 +1,3 @@
-
-
 # ============================================================
 # IMPORTS
 # ============================================================
@@ -60,6 +58,17 @@ def looks_like_ecg(lines):
 
 
 def process_document(file_path: str, patient_id: str):
+    """
+    EXTRACT-ONLY step for the OCR Preview workflow.
+
+    Runs OCR/Docling, extracts lab values, normalizes them, checks
+    for duplicates, and returns the extracted values. Does NOT
+    upload to MinIO, create a document row, save lab results, run
+    trend analysis, update the timeline, or do any RAG ingestion.
+    All of that has been moved to save_confirmed_report() below,
+    which should be called after the user confirms/edits values on
+    the OCR Preview screen.
+    """
 
     patient_id = str(uuid.UUID(patient_id))
 
@@ -67,22 +76,15 @@ def process_document(file_path: str, patient_id: str):
     is_dicom = file_path.lower().endswith(".dcm")
 
     print("\n======================================")
-    print("🚀 STARTING MEDICAL AI PIPELINE")
+    print("🚀 STARTING MEDICAL AI PIPELINE (EXTRACT ONLY)")
     print("======================================\n")
-
-# ============================================================
-# STEP 0: UPLOAD FILE
-# ============================================================
-
-    print("📤 Uploading file...")
-
-    document_id, stored_name = upload_file(file_path, patient_id)
-
-    print("✅ Document stored:", document_id)
 
 # ============================================================
 # STEP 1: DICOM HANDLING
 # ============================================================
+# DICOM has no lab values to preview/edit, so it's left as-is —
+# unchanged from the original pipeline, including its own
+# upload/timeline calls. Not part of the OCR Preview split.
 
     if is_dicom:
 
@@ -97,6 +99,8 @@ def process_document(file_path: str, patient_id: str):
         print("\nDisplaying image...")
         show_dicom_image(ds)
 
+        document_id, stored_name = upload_file(file_path, patient_id)
+
         add_timeline_event(
             patient_id,
             document_id,
@@ -106,7 +110,10 @@ def process_document(file_path: str, patient_id: str):
         )
 
         print("🎉 DICOM PROCESSING COMPLETED")
-        sys.exit(0)
+        return {
+            "document_id": document_id,
+            "lab_values": [],
+        }
 
 # ============================================================
 # STEP 2: OCR / DOCLING
@@ -143,7 +150,7 @@ def process_document(file_path: str, patient_id: str):
     print(f"TOTAL VISITS: {len(visits)}")
 
     # ============================================================
-    # STEP 3: VISIT-WISE PROCESSING
+    # STEP 3: VISIT-WISE PROCESSING (extraction only, no saves)
     # ============================================================
 
     all_extracted_data = {
@@ -153,6 +160,7 @@ def process_document(file_path: str, patient_id: str):
         "RADIOLOGY": []
     }
     last_visit_date = None
+    is_duplicate = False
 
     for visit_date, visit_pages in visits.items():
 
@@ -209,7 +217,6 @@ def process_document(file_path: str, patient_id: str):
 
         verify_patient(patient_id)
 
-        
         # ----------------------------------------
         # LAB RESULTS
         # ----------------------------------------
@@ -244,53 +251,23 @@ def process_document(file_path: str, patient_id: str):
 
         print("\n🧪 LAB RESULTS")
         print(normalized_labs)
+
         if is_duplicate_report(patient_id, normalized_labs):
-
             print("\n⚠ Duplicate report detected.")
-            print("Skipping save...\n")
-
-            continue
-        if normalized_labs:
-            print("\n=== FINAL LABS ===")
-            for lab in normalized_labs:
-                print(lab)
-            save_lab_results(
-                patient_id,
-                document_id,
-                normalized_labs
-            )
-            all_extracted_data["LAB_REPORT"].extend(
-        normalized_labs
-    )
-
-        print("\n🔍 Checking historical lab trends...")
-
-        anomalies = detect_patient_anomalies(
-            patient_id,
-            normalized_labs
-        )
-
-        print("\n📈 PATIENT LAB TRENDS")
-
-        if not anomalies:
-            print("No significant trend detected.")
-
+            is_duplicate = True
+            # NOTE: previously this "continue"'d to skip saving.
+            # There is nothing to save here anymore (extract-only),
+            # so we just flag it and let the caller (API layer)
+            # decide whether to block the user from confirming.
         else:
-            for a in anomalies:
+            if normalized_labs:
+                print("\n=== FINAL LABS ===")
+                for lab in normalized_labs:
+                    print(lab)
+                all_extracted_data["LAB_REPORT"].extend(
+                    normalized_labs
+                )
 
-                print("--------------------------------")
-
-                print("Test :", a["test_name"])
-
-                print("Current :", a["current_value"])
-
-                print("Baseline :", a["baseline"])
-
-                print("History :", a["history"])
-
-                print("% Change :", a["percent_change"])
-
-                print("Trend :", a["trend"])
         # ----------------------------------------
         # ECG
         # ----------------------------------------
@@ -305,12 +282,6 @@ def process_document(file_path: str, patient_id: str):
         # ----------------------------------------
         # CLINICAL FACTS
         # ----------------------------------------
-        ## uncomment when u want to clinical notes
-        
-        # ----------------------------------------
-# CLINICAL FACTS
-# ----------------------------------------
-
         clinical_facts = {}
 
         if primary_doc_type != "LAB_REPORT":
@@ -336,105 +307,141 @@ def process_document(file_path: str, patient_id: str):
             "facts": clinical_facts,
         }
     )
-        """
-        
-        add_timeline_event(
-            patient_id,
-            document_id,
-            primary_doc_type,
-            visit_date
-        )
-
-        print("📅 Timeline updated")
-        """
-
-    # ============================================================
-    # STEP 4: RAG INGESTION
-    # ============================================================
-
-    print("\n📦 Creating RAG chunks...")
-
-    all_chunks = []
-
-    # ----------------------------------
-    # LAB REPORTS
-    # ----------------------------------
-
-    if all_extracted_data["LAB_REPORT"]:
-
-        chunks = build_chunks(
-            doc_type="LAB_REPORT",
-            extracted_data=
-                all_extracted_data["LAB_REPORT"],
-
-            patient_id=patient_id,
-            document_id=document_id
-        )
-
-        all_chunks.extend(chunks)
-
-    # ----------------------------------
-    # PRESCRIPTIONS
-    # ----------------------------------
-    if all_extracted_data["PRESCRIPTION"]:
-
-        chunks = build_chunks(
-            doc_type="PRESCRIPTION",
-            extracted_data=
-                all_extracted_data["PRESCRIPTION"],
-
-            patient_id=patient_id,
-            document_id=document_id
-        )
-
-        all_chunks.extend(chunks)
-        
-    # ----------------------------------
-    # CLINICAL NOTES
-    # ----------------------------------
-
-    if all_extracted_data["CLINICAL_NOTE"]:
-
-        chunks = build_chunks(
-            doc_type="CLINICAL_NOTE",
-            extracted_data=
-                all_extracted_data["CLINICAL_NOTE"],
-            patient_id=patient_id,
-            document_id=document_id,
-            
-
-
-        )
-
-        all_chunks.extend(chunks)
-    # ----------------------------------
-    # STORE
-    # ----------------------------------
-
-    if all_chunks:
-
-        print(
-            f"🧩 Total chunks created: "
-            f"{len(all_chunks)}"
-        )
-
-        embeddings = embed_chunks(all_chunks)
-
-        insert_chunks(
-            all_chunks,
-            embeddings
-        )
-
-        print(
-            "✅ RAG ingestion completed"
-        )
-
-    else:
-
-        print(
-            "⚠ No chunks created"
-        )
 
     print("\n======================================")
-    print("🎉 PIPELINE COMPLETED")
+    print("🎉 EXTRACTION COMPLETED (nothing saved yet)")
     print("======================================\n")
+
+    return {
+        "lab_values": all_extracted_data["LAB_REPORT"],
+        "clinical_notes": all_extracted_data["CLINICAL_NOTE"],
+        "is_duplicate": is_duplicate,
+        "visit_date": last_visit_date,
+    }
+
+
+# ============================================================
+# SAVE STEP — called after the user confirms values on OCR Preview
+# Contains everything that used to run inside process_document():
+# upload to MinIO, document creation, save_lab_results, trend
+# analysis, timeline updates, and RAG ingestion. Moved, not
+# rewritten — same calls as the original pipeline.
+# ============================================================
+
+def save_confirmed_report(patient_id: str, file_path: str, confirmed_lab_values: list):
+
+    patient_id = str(uuid.UUID(patient_id))
+
+    # ============================================================
+    # DUPLICATE CHECK
+    # ============================================================
+
+    if confirmed_lab_values and is_duplicate_report(patient_id, confirmed_lab_values):
+        print("⚠ Duplicate report detected. Skipping save.")
+
+        return {
+            "success": False,
+            "is_duplicate": True,
+            "message": "Report already exists."
+        }
+
+    # ============================================================
+    # STEP 0: UPLOAD FILE
+    # ============================================================
+
+    print("📤 Uploading file...")
+
+    document_id, stored_name = upload_file(file_path, patient_id)
+
+    print("✅ Document stored:", document_id)
+
+    verify_patient(patient_id)
+
+    # ============================================================
+    # SAVE LAB RESULTS
+    # ============================================================
+
+    if confirmed_lab_values:
+        print("\n=== SAVING CONFIRMED LABS ===")
+
+        for lab in confirmed_lab_values:
+            print(lab)
+
+        save_lab_results(
+            patient_id,
+            document_id,
+            confirmed_lab_values
+        )
+
+        print("\n🔍 Checking historical lab trends...")
+
+        anomalies = detect_patient_anomalies(
+            patient_id,
+            confirmed_lab_values
+        )
+
+        print("\n📈 PATIENT LAB TRENDS")
+
+        if not anomalies:
+            print("No significant trend detected.")
+
+        else:
+            for a in anomalies:
+
+                print("--------------------------------")
+                print("Test :", a["test_name"])
+                print("Current :", a["current_value"])
+                print("Baseline :", a["baseline"])
+                print("History :", a["history"])
+                print("% Change :", a["percent_change"])
+                print("Trend :", a["trend"])
+
+    # ============================================================
+    # RAG INGESTION
+    # ============================================================
+
+    try:
+        print("\n📦 Creating RAG chunks...")
+
+        all_chunks = []
+
+        if confirmed_lab_values:
+            chunks = build_chunks(
+                doc_type="LAB_REPORT",
+                extracted_data=confirmed_lab_values,
+                patient_id=patient_id,
+                document_id=document_id,
+            )
+
+            all_chunks.extend(chunks)
+
+        if all_chunks:
+            print(f"🧩 Total chunks created: {len(all_chunks)}")
+
+            embeddings = embed_chunks(all_chunks)
+            print("✅ Embeddings created")
+
+            insert_chunks(
+                all_chunks,
+                embeddings
+            )
+            print("✅ Inserted into Qdrant")
+
+            print("✅ RAG ingestion completed")
+
+        else:
+            print("⚠ No chunks created")
+
+    except Exception:
+        import traceback
+        print("❌ RAG FAILED")
+        traceback.print_exc()
+        raise
+
+    print("\n======================================")
+    print("🎉 SAVE COMPLETED")
+    print("======================================\n")
+
+    return {
+        "document_id": document_id,
+    }

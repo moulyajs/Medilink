@@ -10,11 +10,13 @@ def build_lab_chunks(
 
     for lab in labs:
 
+        status = lab.get("abnormal") or "NORMAL"
+
         text = (
-            f"Lab Test: {lab['test']}. "
-            f"Value: {lab['value']} {lab.get('unit','')}. "
-            f"Status: {lab['status']}. "
-            f"Collected on {lab.get('date','unknown')}."
+            f"Lab Test: {lab['test_name']}. "
+            f"Value: {lab['value']} {lab.get('unit', '')}. "
+            f"Status: {status}. "
+            f"Collected on {lab.get('date', 'unknown')}."
         )
 
         low, high = lab.get(
@@ -22,7 +24,7 @@ def build_lab_chunks(
             (None, None)
         )
 
-        if low or high:
+        if low is not None or high is not None:
             text += (
                 f" Reference range "
                 f"{low}-{high}."
@@ -42,10 +44,10 @@ def build_lab_chunks(
                 report_date=lab.get("date"),
 
                 metadata={
-                     "test_name": lab["test"],
+                    "test_name": lab["test_name"],
                     "value": lab["value"],
                     "unit": lab.get("unit"),
-                    "status": lab["status"]
+                    "status": status
                 }
             )
         )

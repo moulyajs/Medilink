@@ -1,85 +1,135 @@
 /**
  * ReportsList.tsx
- * Filterable, searchable list of medical reports.
- *
- * Sections: filter chips (All/Lab/ECG/X-Ray/Prescription), search
- * bar, report cards. Tapping a card navigates to ReportDetails.
- *
- * Uses the real theme exports from src/theme/index.ts:
- *   import { Colors, Spacing, Typography } from '../../theme';
+ * Fetches reports from backend and displays them with
+ * search and filter support.
  */
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { View, FlatList, StyleSheet, TouchableOpacity } from "react-native";
-import { Text, Searchbar, Chip } from "react-native-paper";
+import { Text, Searchbar, Chip, ActivityIndicator } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
-import { FileText, Activity, ScanLine, Pill, FileQuestion } from "lucide-react-native";
+import {
+  FileText,
+  Activity,
+  ScanLine,
+  Pill,
+  FileQuestion,
+} from "lucide-react-native";
 import dayjs from "dayjs";
+
 import { Colors, Spacing, Typography } from "../../theme";
+import {
+  getReports,
+  ReportListItem,
+} from "../../services/reportService";
 
-// ---------- Types ----------
+// -----------------------------
+// Types
+// -----------------------------
 
-export type ReportType = "Lab" | "ECG" | "X-Ray" | "Prescription";
-export type ReportStatus = "Normal" | "Abnormal" | "Pending";
-export type ReportFilter = "All" | ReportType;
+type ReportFilter =
+  | "All"
+  | "lab_report"
+  | "ecg"
+  | "xray"
+  | "prescription";
 
-export interface ReportListItem {
-  id: string;
-  title: string;
-  type: ReportType;
-  date: string; // ISO string
-  status: ReportStatus;
-}
+// -----------------------------
+// Filter Chips
+// -----------------------------
 
-interface ReportsListProps {
-  reports?: ReportListItem[];
-  loading?: boolean;
-}
+const FILTERS: ReportFilter[] = [
+  "All",
+  "lab_report",
+  "ecg",
+  "xray",
+  "prescription",
+];
 
-// ---------- Static config ----------
+// -----------------------------
+// Icons
+// -----------------------------
 
-const FILTERS: ReportFilter[] = ["All", "Lab", "ECG", "X-Ray", "Prescription"];
-
-const TYPE_ICON: Record<ReportType, React.ComponentType<{ size?: number; color?: string }>> = {
-  Lab: FileText,
-  ECG: Activity,
-  "X-Ray": ScanLine,
-  Prescription: Pill,
+const TYPE_ICON: Record<
+  string,
+  React.ComponentType<{ size?: number; color?: string }>
+> = {
+  lab_report: FileText,
+  ecg: Activity,
+  xray: ScanLine,
+  prescription: Pill,
 };
 
-// ---------- Helpers ----------
+// -----------------------------
+// Status Colours
+// -----------------------------
 
-const statusColor = (status: ReportStatus) => {
+const statusColor = (status: string) => {
   switch (status) {
     case "Normal":
       return Colors.success;
+
     case "Abnormal":
       return Colors.warning;
+
     case "Pending":
       return Colors.danger;
+
     default:
       return Colors.textSecondary;
   }
 };
 
-// ---------- Component ----------
+// -----------------------------
+// Component
+// -----------------------------
 
-export default function ReportsList({ reports = [], loading = false }: ReportsListProps) {
+export default function ReportsList() {
   const navigation = useNavigation<any>();
-  const [activeFilter, setActiveFilter] = useState<ReportFilter>("All");
+
+  const [reports, setReports] = useState<ReportListItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
   const [query, setQuery] = useState("");
+  const [activeFilter, setActiveFilter] =
+    useState<ReportFilter>("All");
+
+  useEffect(() => {
+    loadReports();
+  }, []);
+
+  const loadReports = async () => {
+    try {
+      setLoading(true);
+
+      const data = await getReports();
+
+      setReports(data);
+    } catch (err) {
+      console.error("Failed to load reports:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const filteredReports = useMemo(() => {
     return reports.filter((report) => {
-      const matchesFilter = activeFilter === "All" || report.type === activeFilter;
-      const matchesQuery = report.title.toLowerCase().includes(query.trim().toLowerCase());
+      const matchesFilter =
+        activeFilter === "All" ||
+        report.document_type === activeFilter;
+
+      const matchesQuery =
+        report.document_type
+          .toLowerCase()
+          .includes(query.toLowerCase());
+
       return matchesFilter && matchesQuery;
     });
   }, [reports, activeFilter, query]);
 
   return (
     <View style={styles.container}>
-      {/* Search bar */}
+      {/* Search */}
       <Searchbar
         placeholder="Search reports"
         value={query}
@@ -90,7 +140,7 @@ export default function ReportsList({ reports = [], loading = false }: ReportsLi
         placeholderTextColor={Colors.textSecondary}
       />
 
-      {/* Filter chips */}
+      {/* Filters */}
       <FlatList
         horizontal
         data={FILTERS}
@@ -99,60 +149,121 @@ export default function ReportsList({ reports = [], loading = false }: ReportsLi
         contentContainerStyle={styles.filterRow}
         renderItem={({ item }) => {
           const isActive = item === activeFilter;
+
           return (
             <Chip
-              onPress={() => setActiveFilter(item)}
-              style={[styles.chip, isActive && styles.chipActive]}
-              textStyle={[styles.chipText, isActive && styles.chipTextActive]}
               selected={isActive}
+              onPress={() => setActiveFilter(item)}
+              style={[
+                styles.chip,
+                isActive && styles.chipActive,
+              ]}
+              textStyle={[
+                styles.chipText,
+                isActive && styles.chipTextActive,
+              ]}
             >
-              {item}
+              {item === "lab_report"
+                ? "Lab"
+                : item === "ecg"
+                ? "ECG"
+                : item === "xray"
+                ? "X-Ray"
+                : item === "prescription"
+                ? "Prescription"
+                : "All"}
             </Chip>
           );
         }}
       />
 
-      {/* Report cards */}
-      <FlatList
-        data={filteredReports}
-        keyExtractor={(item) => item.id}
-        contentContainerStyle={styles.listContent}
-        ListEmptyComponent={
-          !loading ? (
+      {loading ? (
+        <View style={styles.emptyWrap}>
+          <ActivityIndicator size="large" />
+        </View>
+      ) : (
+        <FlatList
+          data={filteredReports}
+          keyExtractor={(item) => item.document_id}
+          contentContainerStyle={styles.listContent}
+          ListEmptyComponent={
             <View style={styles.emptyWrap}>
-              <FileQuestion size={32} color={Colors.disabled} />
+              <FileQuestion
+                size={32}
+                color={Colors.disabled}
+              />
+
               <Text style={styles.emptyText}>
-                {reports.length === 0 ? "No reports uploaded yet" : "No reports match your search"}
+                {reports.length === 0
+                  ? "No reports uploaded yet"
+                  : "No reports match your search"}
               </Text>
             </View>
-          ) : null
-        }
-        renderItem={({ item }) => {
-          const Icon = TYPE_ICON[item.type];
-          return (
-            <TouchableOpacity
-              style={styles.card}
-              activeOpacity={0.8}
-              onPress={() => navigation.navigate("ReportDetails", { reportId: item.id })}
-            >
-              <View style={styles.cardIconWrap}>
-                <Icon size={20} color={Colors.primary} />
-              </View>
-              <View style={styles.cardBody}>
-                <Text style={styles.cardTitle} numberOfLines={1}>
-                  {item.title}
-                </Text>
-                <Text style={styles.cardMeta}>
-                  {item.type} · {dayjs(item.date).format("DD MMM YYYY")}
-                </Text>
-              </View>
-              <View style={[styles.statusPill, { backgroundColor: statusColor(item.status) + "20" }]}>
-                <Text style={[styles.statusPillText, { color: statusColor(item.status) }]}>{item.status}</Text>
-              </View>
-            </TouchableOpacity>
-          );
-        }}
-      />
+          }
+          renderItem={({ item }) => {
+            const Icon =
+              TYPE_ICON[item.document_type] || FileText;
+
+            return (
+              <TouchableOpacity
+                style={styles.card}
+                activeOpacity={0.8}
+                onPress={() =>
+                  navigation.navigate(
+                    "ReportDetails",
+                    {
+                      documentId: item.document_id,
+                    }
+                  )
+                }
+              >
+                <View style={styles.cardIconWrap}>
+                  <Icon
+                    size={20}
+                    color={Colors.primary}
+                  />
+                </View>
+
+                <View style={styles.cardBody}>
+                  <Text
+                    style={styles.cardTitle}
+                    numberOfLines={1}
+                  >
+                    {item.document_type}
+                  </Text>
+
+                  <Text style={styles.cardMeta}>
+                    {dayjs(item.upload_date).format(
+                      "DD MMM YYYY"
+                    )}
+                  </Text>
+                </View>
+
+                <View
+                  style={[
+                    styles.statusPill,
+                    {
+                      backgroundColor:
+                        statusColor(item.status) + "20",
+                    },
+                  ]}
+                >
+                  <Text
+                    style={[
+                      styles.statusPillText,
+                      {
+                        color: statusColor(item.status),
+                      },
+                    ]}
+                  >
+                    {item.status}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            );
+          }}
+                  />
+      )}
     </View>
   );
 }
@@ -160,7 +271,12 @@ export default function ReportsList({ reports = [], loading = false }: ReportsLi
 // ---------- Styles ----------
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: Colors.background, padding: Spacing.md },
+  container: {
+    flex: 1,
+    backgroundColor: Colors.background,
+    padding: Spacing.md,
+  },
+
   searchbar: {
     backgroundColor: Colors.card,
     borderRadius: 12,
@@ -169,18 +285,44 @@ const styles = StyleSheet.create({
     elevation: 0,
     marginBottom: Spacing.md,
   },
-  searchbarInput: { ...Typography.body, color: Colors.text, minHeight: 0 },
-  filterRow: { paddingBottom: Spacing.md, gap: Spacing.xs },
+
+  searchbarInput: {
+    ...Typography.body,
+    color: Colors.text,
+    minHeight: 0,
+  },
+
+  filterRow: {
+    paddingBottom: Spacing.md,
+    gap: Spacing.xs,
+  },
+
   chip: {
     backgroundColor: Colors.card,
     borderWidth: 1,
     borderColor: Colors.border,
     marginRight: Spacing.xs,
   },
-  chipActive: { backgroundColor: Colors.primary, borderColor: Colors.primary },
-  chipText: { ...Typography.small, color: Colors.text },
-  chipTextActive: { color: Colors.white, fontWeight: "600" as const },
-  listContent: { paddingBottom: Spacing.xxxl },
+
+  chipActive: {
+    backgroundColor: Colors.primary,
+    borderColor: Colors.primary,
+  },
+
+  chipText: {
+    ...Typography.small,
+    color: Colors.text,
+  },
+
+  chipTextActive: {
+    color: Colors.white,
+    fontWeight: "600" as const,
+  },
+
+  listContent: {
+    paddingBottom: Spacing.xxxl,
+  },
+
   card: {
     flexDirection: "row",
     alignItems: "center",
@@ -193,9 +335,13 @@ const styles = StyleSheet.create({
     shadowColor: Colors.shadow,
     shadowOpacity: 0.04,
     shadowRadius: 6,
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
     elevation: 1,
   },
+
   cardIconWrap: {
     width: 44,
     height: 44,
@@ -205,11 +351,45 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginRight: Spacing.sm,
   },
-  cardBody: { flex: 1 },
-  cardTitle: { ...Typography.cardTitle, fontSize: 16, color: Colors.text },
-  cardMeta: { ...Typography.caption, color: Colors.textSecondary, marginTop: 2 },
-  statusPill: { paddingHorizontal: Spacing.sm, paddingVertical: 4, borderRadius: 20, marginLeft: Spacing.sm },
-  statusPillText: { fontSize: 11, fontWeight: "600" as const },
-  emptyWrap: { alignItems: "center", justifyContent: "center", paddingVertical: Spacing.xxl, gap: Spacing.sm },
-  emptyText: { ...Typography.small, color: Colors.textSecondary, textAlign: "center" },
+
+  cardBody: {
+    flex: 1,
+  },
+
+  cardTitle: {
+    ...Typography.cardTitle,
+    fontSize: 16,
+    color: Colors.text,
+  },
+
+  cardMeta: {
+    ...Typography.caption,
+    color: Colors.textSecondary,
+    marginTop: 2,
+  },
+
+  statusPill: {
+    paddingHorizontal: Spacing.sm,
+    paddingVertical: 4,
+    borderRadius: 20,
+    marginLeft: Spacing.sm,
+  },
+
+  statusPillText: {
+    fontSize: 11,
+    fontWeight: "600" as const,
+  },
+
+  emptyWrap: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: Spacing.xxl,
+    gap: Spacing.sm,
+  },
+
+  emptyText: {
+    ...Typography.small,
+    color: Colors.textSecondary,
+    textAlign: "center",
+  },
 });
