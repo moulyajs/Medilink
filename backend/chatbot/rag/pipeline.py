@@ -12,9 +12,9 @@ from .query_analyzer import analyze_query
 from .time_retriever import (
     get_latest_lab,
     get_lab_history,
-    get_abnormal_labs
+    get_abnormal_labs,
+    get_lab_trend,
 )
-
 # 🔐 Initialize once
 # guard = PromptGuardAgent()
 
@@ -149,23 +149,67 @@ def rag_pipeline(
             }
 
     # ----------------------------------
-    # TREND / HISTORY
+    # TREND 
     # ----------------------------------
 
     if intent == "TREND" and entity:
+        print("\n" + "=" * 60)
+        print("TREND INTENT DETECTED")
+        print("Entity:", entity)
+        print("=" * 60)
+        trend = get_lab_trend(
+        patient_id,
+        entity
+    )
 
         history = get_lab_history(
-            patient_id,
-            entity
-        )
+        patient_id,
+        entity
+    )
 
-        if history:
+        if trend:
 
-            return {
-                "answer": str(history),
-                "chunks": []
-            }
+            context = f"""
+Lab Test: {entity}
 
+Trend: {trend['trend']}
+Latest Value: {trend['latest_value']}
+Status: {trend['status']}
+Delta: {trend['delta']}
+Slope: {trend['slope']}
+Data Points: {trend['data_points']}
+
+History:
+{history}
+"""
+
+            prompt = f"""
+You are Medilink AI.
+
+Explain the patient's lab trend in simple language.
+
+Rules:
+- Do NOT diagnose diseases.
+- Do NOT prescribe treatment.
+- Mention whether the trend is increasing, decreasing, or stable.
+- Mention whether the latest value is normal or abnormal.
+- Do NOT advise consulting a doctor unless the latest value is abnormal or the trend is clinically concerning.
+- Use the history only to support your explanation.
+- Keep the answer concise.
+
+Trend Information:
+
+{context}
+
+Answer:
+"""
+
+        answer = generate_answer(prompt)
+
+        return {
+            "answer": answer,
+            "chunks": []
+        }
     # ----------------------------------
     # ABNORMAL LABS
     # ----------------------------------
