@@ -100,6 +100,7 @@ def process_document(file_path: str, patient_id: str):
         show_dicom_image(ds)
 
         document_id, stored_name = upload_file(file_path, patient_id)
+        print("1")
 
         add_timeline_event(
             patient_id,
@@ -216,6 +217,7 @@ def process_document(file_path: str, patient_id: str):
         print(entities)
 
         verify_patient(patient_id)
+        print("2")
 
         # ----------------------------------------
         # LAB RESULTS
@@ -252,22 +254,17 @@ def process_document(file_path: str, patient_id: str):
         print("\n🧪 LAB RESULTS")
         print(normalized_labs)
 
-        if is_duplicate_report(patient_id, normalized_labs):
-            print("\n⚠ Duplicate report detected.")
-            is_duplicate = True
-            # NOTE: previously this "continue"'d to skip saving.
-            # There is nothing to save here anymore (extract-only),
-            # so we just flag it and let the caller (API layer)
-            # decide whether to block the user from confirming.
-        else:
-            if normalized_labs:
-                print("\n=== FINAL LABS ===")
-                for lab in normalized_labs:
-                    print(lab)
-                all_extracted_data["LAB_REPORT"].extend(
-                    normalized_labs
-                )
+        if normalized_labs:
+            print("\n=== FINAL LABS ===")
+        for lab in normalized_labs:
+            print(lab)
 
+        all_extracted_data["LAB_REPORT"].extend(normalized_labs)
+
+    if is_duplicate_report(patient_id, normalized_labs):
+        print("\n⚠ Duplicate report detected.")
+        is_duplicate = True
+        
         # ----------------------------------------
         # ECG
         # ----------------------------------------
@@ -329,7 +326,7 @@ def process_document(file_path: str, patient_id: str):
 # ============================================================
 
 def save_confirmed_report(patient_id: str, file_path: str, confirmed_lab_values: list):
-
+    print("ENTERED save_confirmed_report")
     patient_id = str(uuid.UUID(patient_id))
 
     # ============================================================
@@ -344,7 +341,7 @@ def save_confirmed_report(patient_id: str, file_path: str, confirmed_lab_values:
             "is_duplicate": True,
             "message": "Report already exists."
         }
-
+    print("PASSED duplicate check")
     # ============================================================
     # STEP 0: UPLOAD FILE
     # ============================================================
@@ -372,6 +369,7 @@ def save_confirmed_report(patient_id: str, file_path: str, confirmed_lab_values:
             document_id,
             confirmed_lab_values
         )
+        print("3")
 
         print("\n🔍 Checking historical lab trends...")
 
@@ -379,6 +377,7 @@ def save_confirmed_report(patient_id: str, file_path: str, confirmed_lab_values:
             patient_id,
             confirmed_lab_values
         )
+        print("4")
 
         print("\n📈 PATIENT LAB TRENDS")
 

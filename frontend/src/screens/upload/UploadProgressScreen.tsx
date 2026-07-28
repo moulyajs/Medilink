@@ -63,13 +63,20 @@ export default function UploadProgressScreen() {
 
     console.log("=== FULL RESPONSE ===");
     console.log(JSON.stringify(response, null, 2));
+    console.log("UPLOAD RESPONSE:", response);
+    console.log("is_duplicate =", response.is_duplicate);
+    console.log("temp_file_id =", response.temp_file_id);
+    console.log("lab_values length =", response.lab_values?.length);
+    
 
       // ✅ Duplicate detected
       if (response.is_duplicate) {
+        console.log("DUPLICATE DETECTED");
         setDuplicate(true);
         return;
       }
       if (mode !== "confirm") {
+        console.log("ABOUT TO NAVIGATE TO OCRPreview");
         navigation.replace("OCRPreview", {
         tempFileId: response.temp_file_id,
 
@@ -87,11 +94,13 @@ export default function UploadProgressScreen() {
 
     reportTitle: "Lab Report",
   });
-
+  
+  console.log("NAVIGATION CALLED");
   return;
 }
 
 navigation.replace("UploadCompleted");
+
 }catch (error: any) {
       console.log("STATUS:", error.response?.status);
       console.log("DATA:", error.response?.data);
@@ -104,7 +113,7 @@ navigation.replace("UploadCompleted");
       navigation.goBack();
     }
   };
-
+  
   if (duplicate) {
   return (
     <SafeAreaView style={styles.container}>

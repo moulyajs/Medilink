@@ -1,6 +1,7 @@
 from sqlalchemy import text
 from database import SessionLocal
 from rapidfuzz import fuzz
+import traceback
 
 
 def is_same_test(a, b):
@@ -23,81 +24,98 @@ def is_duplicate_report(patient_id, current_labs):
     3. If any document matches >=80%, return True.
     """
 
-    db = SessionLocal()
+    try:
+        print("1 - entered duplicate detector")
 
-    # ----------------------------
-    # Get all previous documents
-    # ----------------------------
-    documents = db.execute(
-        text("""
-            SELECT DISTINCT document_id
-            FROM lab_results
-            WHERE patient_id = :pid
-        """),
-        {
-            "pid": patient_id
-        }
-    ).fetchall()
+        db = SessionLocal()
+        print("2 - session created")
 
-    if not documents:
-        db.close()
-        return False
-
-    # -----------------------------------
-    # Compare with every previous report
-    # -----------------------------------
-    for doc in documents:
-
-        rows = db.execute(
+        # ----------------------------
+        # Get all previous documents
+        # ----------------------------
+        documents = db.execute(
             text("""
-                SELECT test_name, value
+                SELECT DISTINCT document_id
                 FROM lab_results
-                WHERE document_id = :doc
-                AND value IS NOT NULL
+                WHERE patient_id = :pid
             """),
             {
-                "doc": doc.document_id
+                "pid": patient_id
             }
         ).fetchall()
 
-        matched = 0
+        print("3 - documents fetched:", len(documents))
 
-        for lab in current_labs:
+        if not documents:
+            db.close()
+            return False
 
-            if lab.get("value") is None:
-                continue
+        # -----------------------------------
+        # Compare with every previous report
+        # -----------------------------------
+        for doc in documents:
+            print("4 - processing doc", doc.document_id)
 
-            for row in rows:
+            rows = db.execute(
+                text("""
+                    SELECT test_name, value
+                    FROM lab_results
+                    WHERE document_id = :doc
+                    AND value IS NOT NULL
+                """),
+                {
+                    "doc": doc.document_id
+                }
+            ).fetchall()
 
-                if row.value is None:
+            print("5 - rows fetched:", len(rows))
+
+            matched = 0
+            print("6 - about to iterate labs")
+
+            for lab in current_labs:
+                print("7 - first lab")
+                print(lab)
+                print(lab.keys())
+
+                if lab.get("value") is None:
                     continue
 
-                if is_same_test(lab["test"], row.test_name):
+                for row in rows:
 
-                    if abs(float(lab["value"]) - float(row.value)) < 0.0001:
+                    if row.value is None:
+                        continue
 
-                        matched += 1
-                        break
+                    test_name = lab.get("test") or lab.get("test_name")
 
-        similarity = matched / max(
-            len(rows),
-            len(current_labs),
-            1
-        )
+                    if is_same_test(test_name, row.test_name):
+                        print("LAB KEYS:", lab.keys())
 
-        print("\n========== DUPLICATE CHECK ==========")
-        print("Document ID   :", doc.document_id)
-        print("Stored Tests  :", len(rows))
-        print("Current Tests :", len(current_labs))
-        print("Matched       :", matched)
-        print("Similarity    :", f"{similarity*100:.2f}%")
-        print("====================================")
+                        if abs(float(lab["value"]) - float(row.value)) < 0.0001:
+                            matched += 1
+                            break
 
-        if similarity >= 0.80:
+            similarity = matched / max(
+                len(rows),
+                len(current_labs),
+                1
+            )
 
-            db.close()
-            return True
+            print("\n========== DUPLICATE CHECK ==========")
+            print("Document ID   :", doc.document_id)
+            print("Stored Tests  :", len(rows))
+            print("Current Tests :", len(current_labs))
+            print("Matched       :", matched)
+            print("Similarity    :", f"{similarity * 100:.2f}%")
+            print("====================================")
 
-    db.close()
+            if similarity >= 0.80:
+                db.close()
+                return True
 
-    return False
+        db.close()
+        return False
+
+    except Exception:
+        traceback.print_exc()
+        raise
