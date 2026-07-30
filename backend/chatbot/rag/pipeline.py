@@ -6,7 +6,7 @@ from .llm import generate_answer
 from .query_rewriter import rewrite_query
 # ✅ ONLY this agent
 # from chatbot.agents.prompt_guard_agent import PromptGuardAgent
-
+from .definition_prompt import build_definition_prompt
 from .query_analyzer import analyze_query
 
 from .time_retriever import (
@@ -128,7 +128,22 @@ def rag_pipeline(
     entity = analysis.get(
         "entity"
     )
+    # ----------------------------------
+# MEDICAL DEFINITION
+# ----------------------------------
 
+    if intent == "MEDICAL_DEFINITION":
+
+        prompt = build_definition_prompt(
+        rewritten_query
+    )
+
+        answer = generate_answer(prompt)
+
+        return {
+        "answer": answer,
+        "chunks": []
+    }
     # ----------------------------------
     # LATEST VALUE
     # ----------------------------------

@@ -16,6 +16,7 @@ Possible intents:
 LATEST_VALUE
 TREND
 ABNORMAL_LABS
+MEDICAL_DEFINITION
 GENERAL_RAG
 
 Examples:
@@ -28,6 +29,15 @@ User: show haemoglobin trend
 
 User: which labs are abnormal
 {{"intent":"ABNORMAL_LABS"}}
+
+User: what is HbA1c
+{{"intent":"MEDICAL_DEFINITION","entity":"HBA1C"}}
+
+User: why is creatinine test done
+{{"intent":"MEDICAL_DEFINITION","entity":"CREATININE"}}
+
+User: what does LDL measure
+{{"intent":"MEDICAL_DEFINITION","entity":"LDL"}}
 
 User: what medicines am i taking
 {{"intent":"GENERAL_RAG"}}
