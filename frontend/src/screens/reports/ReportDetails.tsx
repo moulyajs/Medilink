@@ -288,7 +288,7 @@ export default function ReportDetails() {
           activeOpacity={0.85}
           onPress={() =>
             navigation.navigate(
-              "TrendDashboard",
+              "Trend",
               {
                 documentId,
               }

@@ -18,6 +18,10 @@ router = APIRouter(prefix="/reports", tags=["Reports"])
 UPLOAD_DIR = "temp_uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
+print(">>> upload.py loaded <<<")
+print("Current working directory:", os.getcwd())
+print("Upload dir exists:", os.path.exists(UPLOAD_DIR))
+
 
 # ============================================================
 # STEP 1: UPLOAD — extract only, nothing saved yet

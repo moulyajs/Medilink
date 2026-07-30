@@ -36,6 +36,8 @@ interface OCRPreviewScreenProps {
   onCancel?: () => void;
 }
 
+console.log("OCRPreviewScreen MOUNTED");
+
 // ---------- Component ----------
 
 export default function OCRPreviewScreen({ onConfirm, onCancel }: OCRPreviewScreenProps) {

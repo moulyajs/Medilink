@@ -6,8 +6,19 @@ from models.otp import EmailOTP
 from database import Base, engine
 from routers.profile import router as profile_router
 from routers.auth import router as auth_router
+from routers.support import router as support_router
+from routers.report_issue import router as report_issue_router
+from routers.device import router as device_router
+from routers.notification import router as notification_router
 from routers.chat import router as chat_router
 from routers.upload import router as upload_router
+from routers.trend import router as trend_router
+from routers import anomaly
+from models.notification import Notification
+from models.notification_settings import NotificationSettings
+from routers.notification_history import (
+    router as notification_history_router,
+)
 # Create database tables
 Base.metadata.create_all(bind=engine)
 app = FastAPI(
@@ -19,7 +30,7 @@ app = FastAPI(
 # Allow frontend to connect
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],      # Later replace with frontend URL
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -40,5 +51,12 @@ def health():
     }
 app.include_router(auth_router)
 app.include_router(profile_router)
+app.include_router(support_router)
+app.include_router(report_issue_router)
+app.include_router(device_router)
+app.include_router(notification_router)
 app.include_router(chat_router)
 app.include_router(upload_router)
+app.include_router(trend_router)
+app.include_router(anomaly.router)
+app.include_router(notification_history_router)

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -6,13 +6,17 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
+import {
+  authenticateBiometric,
+  isBiometricEnabled,
+} from "../../services/biometricService";
 import { useNavigation } from "@react-navigation/native";
-
+// import { registerForPushNotifications } from "../../services/notificationService";
 import { saveToken } from "../../utils/storage";
-
 import { login } from "../../services/authService";
-
-
+import { getToken } from "../../utils/storage";
+import * as Device from "expo-device";
+import { Platform } from "react-native";
 export default function LoginScreen() {
   const navigation = useNavigation<any>();
 
@@ -20,17 +24,60 @@ export default function LoginScreen() {
   const [password, setPassword] = useState("");
 
   const [loading, setLoading] = useState(false);
+  const checkBiometric = async () => {
 
+  try {
+
+    const token = await getToken();
+
+    if (!token) return;
+
+    const enabled = await isBiometricEnabled();
+
+    if (!enabled) return;
+
+    const authenticated = await authenticateBiometric();
+
+    if (authenticated) {
+      navigation.replace("Dashboard");
+    }
+
+  } catch (error) {
+    console.log(error);
+  }
+};
+useEffect(() => {
+  checkBiometric();
+}, []);
   const handleLogin = async () => {
     try {
       setLoading(true);
-
+console.log({
+  device_name: Device.modelName,
+  device_os: `${Device.osName} ${Device.osVersion}`,
+  device_type: Device.deviceType,
+});
+console.log("DEVICE INFO");
+console.log(Device.modelName);
+console.log(Device.osName);
+console.log(Device.osVersion);
+console.log(Device.deviceType);
       const response = await login({
-          email,
-          password,
-      });
+  email,
+  password,
+  device_name: Device.modelName,
+  device_os: `${Device.osName} ${Device.osVersion}`,
+  device_type: Device.deviceType
+    ? Device.deviceType.toString()
+    : "Unknown",
+});
 
-        await saveToken(response.data.access_token);
+await saveToken(response.data.access_token);
+
+// const pushToken =
+// await registerForPushNotifications();
+
+// console.log(pushToken);
       alert("Login Successful!");
 
       navigation.replace("Dashboard");

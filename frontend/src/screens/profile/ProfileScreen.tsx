@@ -22,10 +22,11 @@ import { removeToken } from "../../utils/storage";
 import { Alert, Platform } from "react-native";
 import { useCallback } from "react";
 const { width } = Dimensions.get("window");
-
+import { useTheme } from "../../theme/ThemeContext";
 export default function ProfileScreen() {
 
   const navigation = useNavigation<any>();
+  const { colors, darkMode } = useTheme();
   const [profile, setProfile] = useState<Profile | null>(null);
 
   const [loading, setLoading] = useState(true);
@@ -36,23 +37,17 @@ export default function ProfileScreen() {
 );
 
 const loadProfile = async () => {
-
   try {
-
     const data = await getProfile();
 
+    console.log("PROFILE DATA =", data);
+
     setProfile(data);
-
   } catch (error) {
-
     console.log("Profile Error:", error);
-
   } finally {
-
     setLoading(false);
-
   }
-
 };
 if (loading) {
 
@@ -116,7 +111,14 @@ const handleLogout = async () => {
 };
   return (
 
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+  style={[
+    styles.container,
+    {
+      backgroundColor: colors.background,
+    },
+  ]}
+>
 
       <ScrollView
         showsVerticalScrollIndicator={false}
@@ -126,7 +128,11 @@ const handleLogout = async () => {
         {/* Header */}
 
         <LinearGradient
-          colors={["#4E89B9", "#2563EB"]}
+  colors={
+    darkMode
+      ? ["#1E293B", "#111827", "#000000"]
+      : ["#4E89B9", "#2563EB"]
+  }
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={styles.headerGradient}
@@ -156,15 +162,17 @@ const handleLogout = async () => {
               My Profile
             </Text>
 
-            <TouchableOpacity>
+            <TouchableOpacity
+  onPress={() => navigation.navigate("Settings")}
+>
 
-              <Ionicons
-                name="settings-outline"
-                size={24}
-                color="#FFFFFF"
-              />
+  <Ionicons
+    name="settings-outline"
+    size={24}
+    color="#FFFFFF"
+  />
 
-            </TouchableOpacity>
+</TouchableOpacity>
 
           </View>
 
@@ -183,7 +191,15 @@ const handleLogout = async () => {
 
           {/* Premium Badge */}
 
-          <View style={styles.badge}>
+          <View
+  style={[
+    styles.badge,
+    {
+      backgroundColor: colors.card,
+      shadowColor: colors.shadow,
+    },
+  ]}
+>
 
             <Ionicons
               name="shield-checkmark"
@@ -191,7 +207,14 @@ const handleLogout = async () => {
               color="#2563EB"
             />
 
-            <Text style={styles.badgeText}>
+            <Text
+  style={[
+    styles.badgeText,
+    {
+      color: colors.primary,
+    },
+  ]}
+>
               Verified Health Profile
             </Text>
 
@@ -203,7 +226,15 @@ const handleLogout = async () => {
 
         <View style={styles.statsRow}>
 
-          <View style={styles.statCard}>
+          <View
+  style={[
+    styles.statCard,
+    {
+      backgroundColor: colors.card,
+      shadowColor: colors.shadow,
+    },
+  ]}
+>
 
             <Ionicons
               name="document-text"
@@ -221,7 +252,15 @@ const handleLogout = async () => {
 
           </View>
 
-          <View style={styles.statCard}>
+          <View
+  style={[
+    styles.statCard,
+    {
+      backgroundColor: colors.card,
+      shadowColor: colors.shadow,
+    },
+  ]}
+>
 
             <Ionicons
               name="analytics"
@@ -239,7 +278,15 @@ const handleLogout = async () => {
 
           </View>
 
-          <View style={styles.statCard}>
+          <View
+  style={[
+    styles.statCard,
+    {
+      backgroundColor: colors.card,
+      shadowColor: colors.shadow,
+    },
+  ]}
+>
 
             <Ionicons
               name="chatbubbles"
@@ -261,7 +308,14 @@ const handleLogout = async () => {
 
         {/* Personal Information */}
 
-        <Text style={styles.sectionTitle}>
+        <Text
+  style={[
+    styles.sectionTitle,
+    {
+      color: colors.text,
+    },
+  ]}
+>
           Personal Information
         </Text>
         {/* Personal Information */}
@@ -298,11 +352,26 @@ const handleLogout = async () => {
 
 {/* ---------------- Health Overview ---------------- */}
 
-<View style={styles.healthCard}>
+<View
+  style={[
+    styles.healthCard,
+    {
+      backgroundColor: colors.card,
+      shadowColor: colors.shadow,
+    },
+  ]}
+>
 
   <View style={styles.healthHeader}>
 
-    <Text style={styles.healthTitle}>
+    <Text
+  style={[
+    styles.healthTitle,
+    {
+      color: colors.text,
+    },
+  ]}
+>
       Health Overview
     </Text>
 
@@ -314,7 +383,14 @@ const handleLogout = async () => {
 
   </View>
 
-  <Text style={styles.healthDescription}>
+  <Text
+  style={[
+    styles.healthDescription,
+    {
+      color: colors.subText,
+    },
+  ]}
+>
     Your recent health reports indicate stable vitals.
     Continue maintaining a healthy lifestyle and regular
     checkups.
@@ -324,18 +400,38 @@ const handleLogout = async () => {
 
 {/* ---------------- Quick Actions ---------------- */}
 
-<Text style={styles.sectionTitle}>
+<Text
+  style={[
+    styles.sectionTitle,
+    {
+      color: colors.text,
+    },
+  ]}
+>
   Quick Actions
 </Text>
 
 <View style={styles.quickGrid}>
 
   <TouchableOpacity
-    style={styles.quickCard}
+    style={[
+    styles.quickCard,
+    {
+      backgroundColor: colors.card,
+      shadowColor: colors.shadow,
+    },
+  ]}
     onPress={() => navigation.navigate("Settings")}
   >
 
-    <View style={styles.quickIcon}>
+    <View
+  style={[
+    styles.quickIcon,
+    {
+      backgroundColor: darkMode ? "#2A2A2A" : "#EEF6FF",
+    },
+  ]}
+>
 
       <Ionicons
         name="settings-outline"
@@ -345,18 +441,38 @@ const handleLogout = async () => {
 
     </View>
 
-    <Text style={styles.quickTitle}>
+    <Text
+  style={[
+    styles.quickTitle,
+    {
+      color: colors.text,
+    },
+  ]}
+>
       Settings
     </Text>
 
   </TouchableOpacity>
 
   <TouchableOpacity
-    style={styles.quickCard}
-    onPress={() => navigation.navigate("PrivacySettings")}
+    style={[
+    styles.quickCard,
+    {
+      backgroundColor: colors.card,
+      shadowColor: colors.shadow,
+    },
+  ]}
+    onPress={() => navigation.navigate("Privacy")}
   >
 
-    <View style={styles.quickIcon}>
+    <View
+  style={[
+    styles.quickIcon,
+    {
+      backgroundColor: darkMode ? "#2A2A2A" : "#EEF6FF",
+    },
+  ]}
+>
 
       <Ionicons
         name="shield-checkmark-outline"
@@ -366,18 +482,38 @@ const handleLogout = async () => {
 
     </View>
 
-    <Text style={styles.quickTitle}>
+    <Text
+  style={[
+    styles.quickTitle,
+    {
+      color: colors.text,
+    },
+  ]}
+>
       Privacy
     </Text>
 
   </TouchableOpacity>
 
   <TouchableOpacity
-    style={styles.quickCard}
+    style={[
+    styles.quickCard,
+    {
+      backgroundColor: colors.card,
+      shadowColor: colors.shadow,
+    },
+  ]}
     onPress={() => navigation.navigate("HelpSupport")}
   >
 
-    <View style={styles.quickIcon}>
+    <View
+  style={[
+    styles.quickIcon,
+    {
+      backgroundColor: darkMode ? "#2A2A2A" : "#EEF6FF",
+    },
+  ]}
+>
 
       <Ionicons
         name="help-circle-outline"
@@ -387,7 +523,14 @@ const handleLogout = async () => {
 
     </View>
 
-    <Text style={styles.quickTitle}>
+    <Text
+  style={[
+    styles.quickTitle,
+    {
+      color: colors.text,
+    },
+  ]}
+>
       Help
     </Text>
 
@@ -408,7 +551,13 @@ const handleLogout = async () => {
 </View>
 
 <TouchableOpacity
-  style={styles.logoutButton}
+  style={[
+    styles.logoutButton,
+    {
+      backgroundColor: darkMode ? "#2B1D1D" : "#FFF5F5",
+      borderColor: colors.danger,
+    },
+  ]}
   onPress={handleLogout}
 >
 
@@ -418,7 +567,14 @@ const handleLogout = async () => {
     color="#EF4444"
   />
 
-  <Text style={styles.logoutText}>
+  <Text
+  style={[
+    styles.logoutText,
+    {
+      color: colors.danger,
+    },
+  ]}
+>
     Logout
   </Text>
 

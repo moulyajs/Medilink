@@ -10,7 +10,7 @@ JWT_ACCESS_TOKEN_EXPIRE_MINUTES = int(
 )
 
 
-def create_access_token(patient_id: str, email: str):
+def create_access_token(patient_id: str, email: str, session_id: str,):
     expire = datetime.utcnow() + timedelta(
         minutes=JWT_ACCESS_TOKEN_EXPIRE_MINUTES
     )
@@ -18,6 +18,7 @@ def create_access_token(patient_id: str, email: str):
     payload = {
         "sub": patient_id,
         "email": email,
+        "session_id": session_id,
         "exp": expire
     }
 

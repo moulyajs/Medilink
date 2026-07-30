@@ -6,7 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-
+import { useTheme } from "../../theme/ThemeContext";
 import { Ionicons } from "@expo/vector-icons";
 
 type Props = {
@@ -22,6 +22,7 @@ export default function ProfileAvatar({
   image,
   onEdit,
 }: Props) {
+   const { colors } = useTheme();
   return (
     <View style={styles.container}>
 
@@ -37,7 +38,12 @@ export default function ProfileAvatar({
     style={styles.avatar}
   />
 ) : (
-          <View style={styles.placeholder}>
+          <View
+  style={[
+    styles.placeholder,
+    { backgroundColor: colors.primary },
+  ]}
+>
 
             <Ionicons
               name="person"
@@ -48,27 +54,40 @@ export default function ProfileAvatar({
           </View>
         )}
 
-        <TouchableOpacity
-          style={styles.editButton}
-          onPress={onEdit}
-        >
-
-          <Ionicons
-            name="camera"
-            size={16}
-            color="#FFFFFF"
-          />
-
-        </TouchableOpacity>
+       <TouchableOpacity
+  style={[
+    styles.editButton,
+    {
+      borderColor: colors.card,
+    },
+  ]}
+  onPress={onEdit}
+>
+  <Ionicons
+    name="camera"
+    size={16}
+    color="#FFFFFF"
+  />
+</TouchableOpacity>
 
       </View>
 
-      <Text style={styles.name}>
+      <Text
+  style={[
+    styles.name,
+    { color: colors.text },
+  ]}
+>
         {name}
       </Text>
 
       {role && (
-        <Text style={styles.role}>
+        <Text
+  style={[
+    styles.role,
+    { color: colors.text },
+  ]}
+>
           {role}
         </Text>
       )}
@@ -104,23 +123,22 @@ const styles = StyleSheet.create({
   },
 
   editButton: {
-    position: "absolute",
-    bottom: 0,
-    right: 0,
+  position: "absolute",
+  bottom: 0,
+  right: 0,
 
-    width: 36,
-    height: 36,
+  width: 36,
+  height: 36,
 
-    borderRadius: 18,
+  borderRadius: 18,
 
-    backgroundColor: "#14B8A6",
+  backgroundColor: "#14B8A6",
 
-    justifyContent: "center",
-    alignItems: "center",
+  justifyContent: "center",
+  alignItems: "center",
 
-    borderWidth: 3,
-    borderColor: "#FFFFFF",
-  },
+  borderWidth: 3,
+},
 
   name: {
     marginTop: 18,

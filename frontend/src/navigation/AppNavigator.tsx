@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
+import SettingsScreen from "../screens/settings/SettingsScreen";
 import SplashScreen from "../screens/SplashScreen";
 
 // Onboarding
@@ -9,6 +9,8 @@ import Onboarding3 from "../screens/onboarding/Onboarding3";
 
 // Authentication
 import LoginScreen from "../screens/auth/LoginScreen";
+import ReportIssueScreen from "../screens/settings/ReportIssueScreen";
+import TrendScreen from "../screens/trends/TrendScreen";
 import SignupScreen from "../screens/auth/SignupScreen";
 import ForgotPasswordScreen from "../screens/auth/ForgotPasswordScreen";
 import VerifyOTPScreen from "../screens/auth/VerifyOTPScreen";
@@ -18,6 +20,19 @@ import ResetPasswordScreen from "../screens/auth/ResetPasswordScreen";
 import Dashboard from "../screens/dashboard/Dashboard";
 
 // Upload
+import PrivacySettingsScreen from "../screens/settings/PrivacySettingsScreen";
+import HelpSupportScreen from "../screens/settings/HelpSupportScreen";
+import ContactSupportScreen from "../screens/settings/ContactSupportScreen";
+import FAQScreen from "../screens/settings/FAQScreen";
+import TermsScreen from "../screens/settings/TermsScreen";
+import PrivacyPolicyScreen from "../screens/settings/PrivacyPolicyScreen";
+import CreatePinScreen from "../screens/settings/CreatePinScreen";
+import PinLoginScreen from "../screens/auth/PinLoginScreen";
+import AboutMedilinkScreen from "../screens/settings/AboutMedilinkScreen";
+import ConnectedDevicesScreen from "../screens/settings/ConnectedDevicesScreen";
+import NotificationSettingsScreen from "../screens/settings/NotificationSettingsScreen";
+import PermissionsScreen from "../screens/settings/PermissionsScreen";
+import EncryptionStatusScreen from "../screens/settings/EncryptionStatusScreen";
 import UploadReportScreen from "../screens/upload/UploadReportScreen";
 import UploadProgressScreen from "../screens/upload/UploadProgressScreen";
 import OCRPreviewScreen from "../screens/upload/OCRPreviewScreen";
@@ -35,6 +50,8 @@ import EditProfileScreen from "../screens/profile/EditProfileScreen";
 import ChatHome from "../screens/chatbot/ChatHome";
 import ChatScreen from "../screens/chatbot/ChatScreen";
 
+import AnomalyScreen from "../screens/anomalies/AnomalyScreen";
+import NotificationScreen from "../screens/notifications/NotificationScreen";
 const Stack = createNativeStackNavigator();
 
 export default function AppNavigator() {
@@ -45,6 +62,48 @@ export default function AppNavigator() {
         headerShown: false,
       }}
     >
+      {/* Profile & Settings */}
+      <Stack.Screen
+        name="Profile"
+        component={ProfileScreen}
+      />
+      <Stack.Screen
+        name="EditProfile"
+        component={EditProfileScreen}
+      />
+      <Stack.Screen
+        name="Settings"
+        component={SettingsScreen}
+      />
+      <Stack.Screen
+        name="Privacy"
+        component={PrivacySettingsScreen}
+      />
+      <Stack.Screen
+        name="HelpSupport"
+        component={HelpSupportScreen}
+      />
+      <Stack.Screen
+        name="FAQ"
+        component={FAQScreen}
+      />
+      <Stack.Screen
+        name="ContactSupport"
+        component={ContactSupportScreen}
+      />
+      <Stack.Screen
+        name="ReportIssue"
+        component={ReportIssueScreen}
+      />
+      <Stack.Screen
+        name="Terms"
+        component={TermsScreen}
+      />
+      <Stack.Screen
+        name="PrivacyPolicy"
+        component={PrivacyPolicyScreen}
+      />
+
       {/* Splash */}
       <Stack.Screen
         name="Splash"
@@ -86,6 +145,18 @@ export default function AppNavigator() {
         name="ResetPassword"
         component={ResetPasswordScreen}
       />
+      <Stack.Screen
+        name="CreatePin"
+        component={CreatePinScreen}
+      />
+      <Stack.Screen
+        name="PinLogin"
+        component={PinLoginScreen}
+      />
+      <Stack.Screen
+        name="ConnectedDevices"
+        component={ConnectedDevicesScreen}
+      />
 
       {/* Dashboard */}
       <Stack.Screen
@@ -121,16 +192,6 @@ export default function AppNavigator() {
         component={ReportDetails}
       />
 
-      {/* Profile */}
-      <Stack.Screen
-        name="Profile"
-        component={ProfileScreen}
-      />
-      <Stack.Screen
-        name="EditProfile"
-        component={EditProfileScreen}
-      />
-
       {/* Chatbot */}
       <Stack.Screen
         name="ChatHome"
@@ -139,6 +200,42 @@ export default function AppNavigator() {
       <Stack.Screen
         name="ChatScreen"
         component={ChatScreen}
+      />
+
+      {/* About */}
+      <Stack.Screen
+        name="AboutMedilink"
+        component={AboutMedilinkScreen}
+      />
+
+      {/* Security */}
+      <Stack.Screen
+        name="Permissions"
+        component={PermissionsScreen}
+      />
+      <Stack.Screen
+        name="EncryptionStatus"
+        component={EncryptionStatusScreen}
+      />
+
+      {/* Notifications */}
+      <Stack.Screen
+        name="Notifications"
+        component={NotificationScreen}
+      />
+      <Stack.Screen
+        name="NotificationSettings"
+        component={NotificationSettingsScreen}
+      />
+
+      {/* Health */}
+      <Stack.Screen
+        name="Trend"
+        component={TrendScreen}
+      />
+      <Stack.Screen
+        name="Anomaly"
+        component={AnomalyScreen}
       />
     </Stack.Navigator>
   );

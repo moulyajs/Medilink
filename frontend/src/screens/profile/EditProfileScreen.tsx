@@ -24,11 +24,13 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import { getProfile, updateProfile } from "../../services/profileService";
 import { useFocusEffect } from "@react-navigation/native";
 import { useCallback } from "react";
+import { useTheme } from "../../theme/ThemeContext";
 const { width } = Dimensions.get("window");
 
 export default function EditProfileScreen() {
 
   const navigation = useNavigation<any>();
+  const { colors, darkMode } = useTheme();
 
   const [image, setImage] = useState("");
 
@@ -142,7 +144,7 @@ useFocusEffect(
 
 };
 
-  return (<SafeAreaView style={styles.container}>
+  return (<SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
 
   <ScrollView
     showsVerticalScrollIndicator={false}
@@ -152,7 +154,11 @@ useFocusEffect(
     {/* Header */}
 
     <LinearGradient
-      colors={["#5D9DFF", "#4E89B9", "#3B73C5"]}
+      colors={
+        darkMode
+          ? ["#1F2A3D", "#22314A", "#1A2740"]
+          : ["#5D9DFF", "#4E89B9", "#3B73C5"]
+      }
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
       style={styles.header}
@@ -211,17 +217,26 @@ useFocusEffect(
 
     {/* Personal Information */}
 
-    <View style={styles.card}>
+    <View
+      style={[
+        styles.card,
+        {
+          backgroundColor: colors.card,
+          borderColor: colors.border,
+          shadowColor: colors.shadow,
+        },
+      ]}
+    >
 
       <View style={styles.cardHeader}>
 
         <Ionicons
           name="person-circle-outline"
           size={24}
-          color="#4E89B9"
+          color={colors.primary}
         />
 
-        <Text style={styles.sectionTitle}>
+        <Text style={[styles.sectionTitle, { color: colors.text }]}>
           Personal Information
         </Text>
 
@@ -253,22 +268,28 @@ useFocusEffect(
         icon="call-outline"
       />
 
-     <Text style={styles.label}>
+     <Text style={[styles.label, { color: colors.text }]}>
     Date of Birth
     </Text>
 
     <TouchableOpacity
-    style={styles.dropdown}
+    style={[
+      styles.dropdown,
+      {
+        backgroundColor: colors.card,
+        borderColor: colors.border,
+      },
+    ]}
     onPress={() => setShowDatePicker(true)}
     >
 
     <Ionicons
         name="calendar-outline"
         size={20}
-        color="#4E89B9"
+        color={colors.primary}
     />
 
-    <Text style={styles.dropdownText}>
+    <Text style={[styles.dropdownText, { color: colors.text }]}>
         {dob}
     </Text>
 
@@ -282,7 +303,15 @@ useFocusEffect(
       />
       {showGenderMenu && (
 
-<View style={styles.menu}>
+<View
+  style={[
+    styles.menu,
+    {
+      backgroundColor: colors.card,
+      borderColor: colors.border,
+    },
+  ]}
+>
 
   {["Male","Female","Other"].map(item=>(
 
@@ -290,7 +319,7 @@ useFocusEffect(
 
       key={item}
 
-      style={styles.menuItem}
+      style={[styles.menuItem, { borderBottomColor: colors.border }]}
 
       onPress={()=>{
         setGender(item);
@@ -299,7 +328,7 @@ useFocusEffect(
 
     >
 
-      <Text style={styles.menuText}>
+      <Text style={[styles.menuText, { color: colors.text }]}>
         {item}
       </Text>
 
@@ -319,7 +348,15 @@ useFocusEffect(
       />
       {showBloodMenu && (
 
-<View style={styles.menu}>
+<View
+  style={[
+    styles.menu,
+    {
+      backgroundColor: colors.card,
+      borderColor: colors.border,
+    },
+  ]}
+>
 
   {["A+","A-","B+","B-","AB+","AB-","O+","O-"].map(item=>(
 
@@ -327,7 +364,7 @@ useFocusEffect(
 
       key={item}
 
-      style={styles.menuItem}
+      style={[styles.menuItem, { borderBottomColor: colors.border }]}
 
       onPress={()=>{
         setBlood(item);
@@ -336,7 +373,7 @@ useFocusEffect(
 
     >
 
-      <Text style={styles.menuText}>
+      <Text style={[styles.menuText, { color: colors.text }]}>
         {item}
       </Text>
 
@@ -369,7 +406,15 @@ useFocusEffect(
 
     {/* Health Summary */}
 
-    <View style={styles.healthCard}>
+    <View
+      style={[
+        styles.healthCard,
+        {
+          backgroundColor: colors.card,
+          shadowColor: colors.shadow,
+        },
+      ]}
+    >
 
       <View style={styles.healthHeader}>
 
@@ -385,11 +430,11 @@ useFocusEffect(
 
         <View>
 
-          <Text style={styles.healthTitle}>
+          <Text style={[styles.healthTitle, { color: colors.text }]}>
             Health Summary
           </Text>
 
-          <Text style={styles.healthSubtitle}>
+          <Text style={[styles.healthSubtitle, { color: colors.subText }]}>
             Your medical profile overview
           </Text>
 
@@ -401,55 +446,79 @@ useFocusEffect(
 
       <View style={styles.statsRow}>
 
-        <View style={styles.statCard}>
+        <View
+          style={[
+            styles.statCard,
+            {
+              backgroundColor: darkMode ? "#1F2733" : "#F4FAFF",
+              borderColor: colors.border,
+            },
+          ]}
+        >
 
           <Ionicons
             name="document-text-outline"
             size={26}
-            color="#4E89B9"
+            color={colors.primary}
           />
 
-          <Text style={styles.statNumber}>
+          <Text style={[styles.statNumber, { color: colors.primary }]}>
             24
           </Text>
 
-          <Text style={styles.statLabel}>
+          <Text style={[styles.statLabel, { color: colors.subText }]}>
             Reports
           </Text>
 
         </View>
 
-        <View style={styles.statCard}>
+        <View
+          style={[
+            styles.statCard,
+            {
+              backgroundColor: darkMode ? "#1F2733" : "#F4FAFF",
+              borderColor: colors.border,
+            },
+          ]}
+        >
 
           <Ionicons
             name="pulse-outline"
             size={26}
-            color="#4E89B9"
+            color={colors.primary}
           />
 
-          <Text style={styles.statNumber}>
+          <Text style={[styles.statNumber, { color: colors.primary }]}>
             18
           </Text>
 
-          <Text style={styles.statLabel}>
+          <Text style={[styles.statLabel, { color: colors.subText }]}>
             Timeline
           </Text>
 
         </View>
 
-        <View style={styles.statCard}>
+        <View
+          style={[
+            styles.statCard,
+            {
+              backgroundColor: darkMode ? "#1F2733" : "#F4FAFF",
+              borderColor: colors.border,
+            },
+          ]}
+        >
 
           <Ionicons
             name="sparkles-outline"
             size={26}
-            color="#4E89B9"
+            color={colors.primary}
           />
 
-          <Text style={styles.statNumber}>
+          <Text style={[styles.statNumber, { color: colors.primary }]}>
             12
           </Text>
 
-          <Text style={styles.statLabel}>
+          <Text style={[styles.statLabel, { color: colors.subText }]}>
             AI Insights
           </Text>
 
@@ -461,11 +530,11 @@ useFocusEffect(
 
       <View style={styles.infoRow}>
 
-        <Text style={styles.infoLabel}>
+        <Text style={[styles.infoLabel, { color: colors.subText }]}>
           Blood Group
         </Text>
 
-        <Text style={styles.infoValue}>
+        <Text style={[styles.infoValue, { color: colors.text }]}>
           {blood}
         </Text>
 
@@ -473,7 +542,7 @@ useFocusEffect(
 
       <View style={styles.infoRow}>
 
-        <Text style={styles.infoLabel}>
+        <Text style={[styles.infoLabel, { color: colors.subText }]}>
           Medical Profile
         </Text>
 
@@ -485,11 +554,11 @@ useFocusEffect(
 
       <View style={styles.infoRow}>
 
-        <Text style={styles.infoLabel}>
+        <Text style={[styles.infoLabel, { color: colors.subText }]}>
           Last Updated
         </Text>
 
-        <Text style={styles.infoValue}>
+        <Text style={[styles.infoValue, { color: colors.text }]}>
           Today
         </Text>
 
@@ -508,17 +577,23 @@ useFocusEffect(
 
       <TouchableOpacity
         activeOpacity={0.8}
-        style={styles.cancelButton}
+        style={[
+          styles.cancelButton,
+          {
+            backgroundColor: colors.card,
+            borderColor: colors.border,
+          },
+        ]}
         onPress={() => navigation.goBack()}
       >
 
         <Ionicons
           name="close-outline"
           size={22}
-          color="#4E89B9"
+          color={colors.primary}
         />
 
-        <Text style={styles.cancelText}>
+        <Text style={[styles.cancelText, { color: colors.primary }]}>
           Cancel
         </Text>
 
@@ -533,10 +608,10 @@ useFocusEffect(
       <Ionicons
         name="shield-checkmark"
         size={18}
-        color="#4E89B9"
+        color={colors.primary}
       />
 
-      <Text style={styles.footerText}>
+      <Text style={[styles.footerText, { color: colors.subText }]}>
         Your profile is securely encrypted and protected.
       </Text>
 
@@ -575,7 +650,6 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: "#F4F8FC",
   },
 
   scroll: {
@@ -627,13 +701,9 @@ const styles = StyleSheet.create({
 
     marginHorizontal: width > 900 ? 80 : 18,
 
-    backgroundColor: "#FFFFFF",
-
     borderRadius: 28,
 
     padding: 22,
-
-    shadowColor: "#000",
 
     shadowOpacity: 0.06,
 
@@ -665,8 +735,6 @@ const styles = StyleSheet.create({
 
     fontWeight: "700",
 
-    color: "#23384D",
-
   },
     /* ================= HEALTH CARD ================= */
 
@@ -676,13 +744,9 @@ const styles = StyleSheet.create({
 
     marginTop: 28,
 
-    backgroundColor: "#FFFFFF",
-
     borderRadius: 28,
 
     padding: 24,
-
-    shadowColor: "#000",
 
     shadowOpacity: 0.06,
 
@@ -730,15 +794,11 @@ const styles = StyleSheet.create({
 
     fontWeight: "700",
 
-    color: "#23384D",
-
   },
 
   healthSubtitle: {
 
     marginTop: 4,
-
-    color: "#7A93AA",
 
     fontSize: 14,
 
@@ -763,13 +823,9 @@ const styles = StyleSheet.create({
 
     borderRadius: 20,
 
-    backgroundColor: "#F4FAFF",
-
     alignItems: "center",
 
     borderWidth: 1,
-
-    borderColor: "#E2EDF7",
 
   },
 
@@ -781,15 +837,11 @@ const styles = StyleSheet.create({
 
     fontWeight: "800",
 
-    color: "#2563EB",
-
   },
 
   statLabel: {
 
     marginTop: 5,
-
-    color: "#71869C",
 
     fontSize: 13,
 
@@ -807,8 +859,6 @@ const styles = StyleSheet.create({
 
   infoLabel: {
 
-    color: "#71869C",
-
     fontSize: 15,
 
   },
@@ -816,8 +866,6 @@ const styles = StyleSheet.create({
   infoValue: {
 
     fontWeight: "700",
-
-    color: "#23384D",
 
   },
 
@@ -846,11 +894,7 @@ const styles = StyleSheet.create({
 
     borderRadius: 30,
 
-    backgroundColor: "#FFFFFF",
-
     borderWidth: 1,
-
-    borderColor: "#D7E7F6",
 
     flexDirection: "row",
 
@@ -863,8 +907,6 @@ const styles = StyleSheet.create({
   cancelText: {
 
     marginLeft: 8,
-
-    color: "#4E89B9",
 
     fontWeight: "700",
 
@@ -894,8 +936,6 @@ const styles = StyleSheet.create({
 
     marginLeft: 8,
 
-    color: "#7A93AA",
-
     fontSize: 13,
 
     textAlign: "center",
@@ -904,7 +944,6 @@ const styles = StyleSheet.create({
   label:{
   fontSize:15,
   fontWeight:"600",
-  color:"#23384D",
   marginBottom:8,
 },
 
@@ -912,8 +951,6 @@ dropdown:{
   height:56,
   borderRadius:16,
   borderWidth:1,
-  borderColor:"#DCEAF5",
-  backgroundColor:"#F8FBFE",
   flexDirection:"row",
   alignItems:"center",
   paddingHorizontal:18,
@@ -923,12 +960,11 @@ dropdown:{
 dropdownText:{
   marginLeft:12,
   fontSize:16,
-  color:"#23384D",
 },
 
 menu:{
-  backgroundColor:"#FFF",
   borderRadius:18,
+  borderWidth:1,
   marginBottom:18,
   overflow:"hidden",
   elevation:6,
@@ -937,12 +973,10 @@ menu:{
 menuItem:{
   padding:16,
   borderBottomWidth:1,
-  borderBottomColor:"#EEF3F8",
 },
 
 menuText:{
   fontSize:16,
-  color:"#23384D",
 },
 
 });

@@ -25,6 +25,12 @@ import {
   useNavigation,
 } from "@react-navigation/native";
 
+import { Ionicons } from "@expo/vector-icons";
+
+import {
+  getNotifications,
+} from "../../services/notificationService";
+
 import {
   Upload,
   Clock,
@@ -33,6 +39,7 @@ import {
   Bell,
   ChevronRight,
   FileText,
+  AlertTriangle,
 } from "lucide-react-native";
 
 import dayjs from "dayjs";
@@ -48,6 +55,9 @@ import {
   getReports,
   ReportListItem,
 } from "../../services/reportService";
+
+import { getProfile, Profile } from "../../services/profileService";
+
 
 dayjs.extend(relativeTime);
 
@@ -103,7 +113,12 @@ const QUICK_ACTIONS = [
   {
     label: "Trends",
     icon: TrendingUp,
-    route: "TrendDashboard",
+    route: "Trend",
+  },
+  {
+    label: "Anomalies",
+    icon: AlertTriangle,
+    route: "Anomaly",
   },
 ];
 
@@ -116,14 +131,37 @@ export default function Dashboard() {
     setLoading] =
     useState(true);
 
+  const [profile, 
+    setProfile] = 
+    useState<Profile | null>(null);
+
   const [reports,
     setReports] =
     useState<
       ReportListItem[]
     >([]);
+    const [unreadCount, setUnreadCount] =
+  useState(0);
   useEffect(() => {
-    loadReports();
-  }, []);
+  loadReports();
+  loadUnreadCount();
+  loadProfile();
+}, []);
+
+
+const loadUnreadCount = async () => {
+  try {
+    const notifications = await getNotifications();
+
+    const unread = notifications.filter(
+      (item: any) => !item.is_read
+    );
+
+    setUnreadCount(unread.length);
+  } catch (err) {
+    console.log(err);
+  }
+};
 
   const loadReports =
     async () => {
@@ -146,6 +184,15 @@ export default function Dashboard() {
         );
       } finally {
         setLoading(false);
+      }
+    };
+
+    const loadProfile = async () => {
+      try {
+        const data = await getProfile();
+        setProfile(data);
+      } catch (error) {
+        console.log("Profile Error:", error);
       }
     };
 
@@ -227,26 +274,64 @@ export default function Dashboard() {
               styles.userName
             }
           >
-            Megha
+            {profile?.name ?? "User"}
           </Text>
         </View>
 
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate(
-              "Profile"
-            )
-          }
+        <View
+  style={{
+    flexDirection: "row",
+    alignItems: "center",
+  }}
+>
+  <TouchableOpacity
+    onPress={() =>
+      navigation.navigate(
+        "Notifications"
+      )
+    }
+    style={{
+      marginRight: 16,
+    }}
+  >
+    <View>
+      <Ionicons
+        name="notifications"
+        size={28}
+        color={Colors.primary}
+      />
+
+      {unreadCount > 0 && (
+        <View
+          style={styles.badge}
         >
-          <Avatar.Text
-            size={48}
-            label="M"
-            style={{
-              backgroundColor:
-                Colors.primary,
-            }}
-          />
-        </TouchableOpacity>
+          <Text
+            style={styles.badgeText}
+          >
+            {unreadCount}
+          </Text>
+        </View>
+      )}
+    </View>
+  </TouchableOpacity>
+
+  <TouchableOpacity
+    onPress={() =>
+      navigation.navigate(
+        "Profile"
+      )
+    }
+  >
+    <Avatar.Text
+      size={48}
+      label={profile?.name?.charAt(0).toUpperCase() ?? "U"}
+      style={{
+        backgroundColor:
+          Colors.primary,
+      }}
+    />
+  </TouchableOpacity>
+</View>
       </View>
 
       <View
@@ -762,4 +847,21 @@ export default function Dashboard() {
     textAlign: "center",
     paddingVertical: Spacing.md,
   },
+  badge: {
+  position: "absolute",
+  top: -5,
+  right: -6,
+  width: 18,
+  height: 18,
+  borderRadius: 9,
+  backgroundColor: "#EF4444",
+  justifyContent: "center",
+  alignItems: "center",
+},
+
+badgeText: {
+  color: "#FFFFFF",
+  fontSize: 10,
+  fontWeight: "700",
+},
 });

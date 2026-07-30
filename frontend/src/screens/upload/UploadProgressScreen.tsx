@@ -57,7 +57,14 @@ export default function UploadProgressScreen() {
 
     console.log("Before upload");
 
-    response = await uploadReport(file);
+   response = await uploadReport(file);
+
+  console.log("========== RESPONSE ==========");
+  console.log(response);
+  console.log("temp_file_id:", response.temp_file_id);
+  console.log("lab_values:", response.lab_values);
+  console.log("is_duplicate:", response.is_duplicate);
+
 
     clearTimeout(timer);
 
@@ -102,16 +109,15 @@ export default function UploadProgressScreen() {
 navigation.replace("UploadCompleted");
 
 }catch (error: any) {
-      console.log("STATUS:", error.response?.status);
-      console.log("DATA:", error.response?.data);
+  console.error("FULL ERROR:", error);
 
-      Alert.alert(
-        "Upload Failed",
-        JSON.stringify(error.response?.data ?? error.message, null, 2)
-      );
+  Alert.alert(
+    "Upload Failed",
+    error?.stack || error?.message || JSON.stringify(error, null, 2)
+  );
 
-      navigation.goBack();
-    }
+  navigation.goBack();
+}
   };
   
   if (duplicate) {

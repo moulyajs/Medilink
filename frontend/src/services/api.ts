@@ -1,6 +1,6 @@
 import axios from "axios";
-import { getToken } from "../utils/storage";
-
+import { getToken, removeToken } from "../utils/storage";
+import { resetToLogin } from "../navigation/navigationService";
 const api = axios.create({
   baseURL: "http://localhost:8000",
   timeout: 60000,
@@ -9,6 +9,7 @@ const api = axios.create({
   },
 });
 
+// Attach JWT to every request
 api.interceptors.request.use(
   async (config) => {
     const token = await getToken();
@@ -20,6 +21,24 @@ api.interceptors.request.use(
     return config;
   },
   (error) => Promise.reject(error)
+);
+
+// Logout automatically if session is invalid
+// Logout automatically if session is invalid
+api.interceptors.response.use(
+  (response) => response,
+
+  async (error) => {
+    if (error.response?.status === 401) {
+      console.log("401 Unauthorized");
+
+      await removeToken();
+
+      resetToLogin();
+    }
+
+    return Promise.reject(error);
+  }
 );
 
 export default api;

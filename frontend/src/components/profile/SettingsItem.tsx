@@ -7,6 +7,7 @@ import {
 } from "react-native";
 
 import { Ionicons } from "@expo/vector-icons";
+import { useTheme } from "../../theme/ThemeContext";
 
 type Props = {
   icon: keyof typeof Ionicons.glyphMap;
@@ -24,11 +25,20 @@ export default function SettingsItem({
   onPress,
 }: Props) {
 
+  const { colors, darkMode } = useTheme();
+
   return (
 
     <TouchableOpacity
       activeOpacity={0.85}
-      style={styles.container}
+      style={[
+        styles.container,
+        {
+          backgroundColor: colors.card,
+          borderColor: darkMode ? "#374151" : "#E2E8F0",
+          shadowColor: colors.text,
+        },
+      ]}
       onPress={onPress}
     >
 
@@ -39,14 +49,20 @@ export default function SettingsItem({
         <View
           style={[
             styles.iconContainer,
-            danger && styles.dangerBackground,
+            {
+              backgroundColor: danger
+                ? "#FEE2E2"
+                : darkMode
+                ? "#2D3748"
+                : "#EFF6FF",
+            },
           ]}
         >
 
           <Ionicons
             name={icon}
             size={22}
-            color={danger ? "#DC2626" : "#2563EB"}
+            color={danger ? colors.danger : colors.primary}
           />
 
         </View>
@@ -56,14 +72,25 @@ export default function SettingsItem({
           <Text
             style={[
               styles.title,
-              danger && styles.dangerText,
+              {
+                color: danger
+                  ? colors.danger
+                  : colors.text,
+              },
             ]}
           >
             {title}
           </Text>
 
           {subtitle && (
-            <Text style={styles.subtitle}>
+            <Text
+              style={[
+                styles.subtitle,
+                {
+                  color: colors.subText,
+                },
+              ]}
+            >
               {subtitle}
             </Text>
           )}
@@ -77,7 +104,7 @@ export default function SettingsItem({
       <Ionicons
         name="chevron-forward"
         size={22}
-        color="#94A3B8"
+        color={colors.subText}
       />
 
     </TouchableOpacity>
@@ -96,8 +123,6 @@ const styles = StyleSheet.create({
 
     alignItems: "center",
 
-    backgroundColor: "#FFFFFF",
-
     padding: 18,
 
     borderRadius: 16,
@@ -105,10 +130,6 @@ const styles = StyleSheet.create({
     marginBottom: 16,
 
     borderWidth: 1,
-
-    borderColor: "#E2E8F0",
-
-    shadowColor: "#000",
 
     shadowOpacity: 0.05,
 
@@ -141,19 +162,11 @@ const styles = StyleSheet.create({
 
     borderRadius: 14,
 
-    backgroundColor: "#EFF6FF",
-
     justifyContent: "center",
 
     alignItems: "center",
 
     marginRight: 16,
-
-  },
-
-  dangerBackground: {
-
-    backgroundColor: "#FEE2E2",
 
   },
 
@@ -169,8 +182,6 @@ const styles = StyleSheet.create({
 
     fontWeight: "600",
 
-    color: "#0F172A",
-
   },
 
   subtitle: {
@@ -178,14 +189,6 @@ const styles = StyleSheet.create({
     marginTop: 4,
 
     fontSize: 13,
-
-    color: "#64748B",
-
-  },
-
-  dangerText: {
-
-    color: "#DC2626",
 
   },
 

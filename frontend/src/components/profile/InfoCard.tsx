@@ -6,6 +6,7 @@ import {
 } from "react-native";
 
 import { Ionicons } from "@expo/vector-icons";
+import { useTheme } from "../../theme/ThemeContext";
 
 type Props = {
   icon: keyof typeof Ionicons.glyphMap;
@@ -18,44 +19,67 @@ export default function InfoCard({
   title,
   value,
 }: Props) {
+  const { colors, darkMode } = useTheme();
+
   return (
-
-    <View style={styles.card}>
-
-      <View style={styles.iconContainer}>
-
+    <View
+      style={[
+        styles.card,
+        {
+          backgroundColor: colors.card,
+          borderColor: colors.border,
+          shadowColor: colors.shadow,
+        },
+      ]}
+    >
+      <View
+        style={[
+          styles.iconContainer,
+          {
+            backgroundColor: darkMode
+              ? "#2A2A2A"
+              : "#EFF6FF",
+          },
+        ]}
+      >
         <Ionicons
           name={icon}
           size={22}
-          color="#2563EB"
+          color={colors.primary}
         />
-
       </View>
 
       <View style={styles.textContainer}>
-
-        <Text style={styles.title}>
+        <Text
+          style={[
+            styles.title,
+            {
+              color: colors.subText,
+            },
+          ]}
+        >
           {title}
         </Text>
 
-        <Text style={styles.value}>
+        <Text
+          style={[
+            styles.value,
+            {
+              color: colors.text,
+            },
+          ]}
+        >
           {value}
         </Text>
-
       </View>
-
     </View>
-
   );
 }
 
 const styles = StyleSheet.create({
-
   card: {
     flexDirection: "row",
     alignItems: "center",
-
-    backgroundColor: "#FFFFFF",
 
     padding: 18,
 
@@ -64,11 +88,10 @@ const styles = StyleSheet.create({
     marginBottom: 16,
 
     borderWidth: 1,
-    borderColor: "#E2E8F0",
 
-    shadowColor: "#000",
     shadowOpacity: 0.06,
     shadowRadius: 10,
+
     shadowOffset: {
       width: 0,
       height: 4,
@@ -78,19 +101,15 @@ const styles = StyleSheet.create({
   },
 
   iconContainer: {
-
     width: 48,
     height: 48,
 
     borderRadius: 12,
 
-    backgroundColor: "#EFF6FF",
-
     justifyContent: "center",
     alignItems: "center",
 
     marginRight: 16,
-
   },
 
   textContainer: {
@@ -99,14 +118,11 @@ const styles = StyleSheet.create({
 
   title: {
     fontSize: 13,
-    color: "#64748B",
     marginBottom: 4,
   },
 
   value: {
     fontSize: 17,
     fontWeight: "600",
-    color: "#0F172A",
   },
-
 });
