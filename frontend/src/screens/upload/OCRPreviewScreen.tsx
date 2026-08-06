@@ -23,12 +23,20 @@ import { confirmReport } from "../../services/reportService";
 
 export interface ExtractedValue {
   id: string;
+
+  // UI
   testName: string;
-  value: string; // kept as string while editable; parse/validate on confirm
+  value: string;
   unit: string;
   referenceLow?: number;
   referenceHigh?: number;
-  lowConfidence?: boolean; // flag values OCR wasn't sure about
+  lowConfidence?: boolean;
+
+  // Preserve backend fields
+  test?: string;
+  date?: string;
+  abnormal?: boolean;
+  status?: string;
 }
 
 interface OCRPreviewScreenProps {
@@ -36,7 +44,7 @@ interface OCRPreviewScreenProps {
   onCancel?: () => void;
 }
 
-console.log("OCRPreviewScreen MOUNTED");
+//console.log("OCRPreviewScreen MOUNTED");
 
 // ---------- Component ----------
 
@@ -45,12 +53,13 @@ export default function OCRPreviewScreen({ onConfirm, onCancel }: OCRPreviewScre
   const route = useRoute<any>();
 
   const initialValues: ExtractedValue[] = route.params?.extractedValues ?? [];
-  console.log("OCR PARAMS:", route.params);
-  console.log("INITIAL VALUES:", initialValues);
+  //console.log("OCR PARAMS:", route.params);
+  //console.log("INITIAL VALUES:", initialValues);
   const reportTitle: string = route.params?.reportTitle ?? "New Report";
 
   const [values, setValues] = useState<ExtractedValue[]>(initialValues);
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [saving, setSaving] = useState(false);
 
   const lowConfidenceCount = values.filter((v) => v.lowConfidence).length;
 
@@ -59,25 +68,63 @@ export default function OCRPreviewScreen({ onConfirm, onCancel }: OCRPreviewScre
   };
 
   const handleConfirm = async () => {
-  try {
-   navigation.navigate("UploadProgress", {
-      mode: "confirm",
-      tempFileId: route.params.tempFileId,
-      labValues: values.map(v => ({
-        test_name: v.testName,
-        value: Number(v.value),
-        unit: v.unit,
-        reference_range: [
-          v.referenceLow,
-          v.referenceHigh,
-        ],
-      })),
-    });
+    if (saving) return;
 
-    return;
+    setSaving(true);
+    try {
+    // Validate every value first
+    for (const v of values) {
+
+      if (v.value.trim() === "") {
+        Alert.alert(
+          "Missing Value",
+          `${v.testName} has no value`
+        );
+        setSaving(false);
+        return;
+      }
+
+      if (isNaN(Number(v.value))) {
+        Alert.alert(
+          "Invalid Value",
+          `${v.testName} must be a number`
+        );
+        setSaving(false);
+        return;
+      }
+    }
+
+    // Only navigate after ALL values are validated
+    // Build payload
+const payload = values.map(v => ({
+  test_name: v.test ?? v.testName,
+  value: Number(v.value),
+  unit: v.unit,
+
+  reference_range:
+    v.referenceLow != null &&
+    v.referenceHigh != null
+      ? [v.referenceLow, v.referenceHigh]
+      : null,
+
+  abnormal: v.abnormal,
+  date: v.date,
+}));
+
+//console.log("========== CONFIRM PAYLOAD ==========");
+//console.log(JSON.stringify(payload, null, 2));
+//console.log("=====================================");
+
+navigation.navigate("UploadProgress", {
+  mode: "confirm",
+  tempFileId: route.params.tempFileId,
+  labValues: payload,
+});
+    
 
   } catch (err) {
-    console.error(err);
+    //console.error(err);
+    setSaving(false);
     Alert.alert("Failed to save report");
   }
 };
@@ -196,7 +243,7 @@ export default function OCRPreviewScreen({ onConfirm, onCancel }: OCRPreviewScre
           style={[styles.actionButton, styles.confirmButton]}
           onPress={handleConfirm}
           activeOpacity={0.85}
-          disabled={values.length === 0}
+          disabled={values.length === 0 || saving}
         >
           <Check size={18} color={Colors.white} />
           <Text style={styles.confirmButtonText}>Confirm</Text>

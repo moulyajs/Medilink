@@ -2,7 +2,7 @@ import axios from "axios";
 import { getToken, removeToken } from "../utils/storage";
 import { resetToLogin } from "../navigation/navigationService";
 const api = axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL: "http://192.168.0.103:8000",
   timeout: 60000,
   headers: {
     "Content-Type": "application/json",

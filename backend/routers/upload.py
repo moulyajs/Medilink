@@ -1,7 +1,7 @@
 import os
 import uuid
 from typing import List, Optional
-
+from datetime import date as Date
 from fastapi import APIRouter, UploadFile, File, Depends, HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy import text
@@ -18,9 +18,9 @@ router = APIRouter(prefix="/reports", tags=["Reports"])
 UPLOAD_DIR = "temp_uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
-print(">>> upload.py loaded <<<")
-print("Current working directory:", os.getcwd())
-print("Upload dir exists:", os.path.exists(UPLOAD_DIR))
+#print(">>> upload.py loaded <<<")
+#print("Current working directory:", os.getcwd())
+#print("Upload dir exists:", os.path.exists(UPLOAD_DIR))
 
 
 # ============================================================
@@ -53,6 +53,8 @@ async def upload_report(
         }
 
     except Exception as e:
+        #traceback.print_exc()          # <-- add this
+        #print("ERROR:", repr(e))
         raise HTTPException(status_code=500, detail=str(e))
 
 
@@ -61,8 +63,9 @@ class LabValueInput(BaseModel):
     value: float
     unit: Optional[str] = None
     reference_range: Optional[list[float]] = None
-    abnormal: Optional[str] = None
-    date: Optional[str] = None
+    abnormal: Optional[bool] = None   # ✅ boolean
+
+    date: Optional[Date] = None  
 
 
 class ConfirmUploadRequest(BaseModel):
@@ -125,7 +128,7 @@ def list_reports(
                 d.document_type,
                 d.upload_date,
                 COUNT(lr.result_id) AS lab_count,
-                BOOL_OR(lr.abnormal_flag = 'true') AS has_abnormal
+                BOOL_OR(lr.abnormal_flag) AS has_abnormal
             FROM documents d
             LEFT JOIN lab_results lr ON lr.document_id = d.document_id
             WHERE d.patient_id = :pid
@@ -179,7 +182,7 @@ def get_report_detail(
     ).fetchall()
 
     lab_values = [LabValueResponse(**row._mapping) for row in lab_rows]
-    has_abnormal = any(lv.abnormal_flag == "true" for lv in lab_values)
+    has_abnormal = any(lv.abnormal_flag is True for lv in lab_values)
     status = "Pending" if not lab_values else ("Abnormal" if has_abnormal else "Normal")
 
     return ReportDetail(

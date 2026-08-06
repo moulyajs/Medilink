@@ -338,7 +338,8 @@ const loadUnreadCount = async () => {
         style={
           styles.quickActionsRow
         }
-      >        {QUICK_ACTIONS.map(
+      > 
+      {QUICK_ACTIONS.map(
           ({
             label,
             icon: Icon,
@@ -480,7 +481,9 @@ const loadUnreadCount = async () => {
             See all
           </Text>
         </TouchableOpacity>
-      </View>      {recentReports.length === 0 ? (
+      </View>
+       
+      {recentReports.length === 0 ? (
         <View style={styles.card}>
           <Text style={styles.emptyText}>
             No reports uploaded yet
@@ -659,7 +662,8 @@ const loadUnreadCount = async () => {
       </View>
     </ScrollView>
   );
-}const styles = StyleSheet.create({
+}
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.background,

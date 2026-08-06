@@ -39,77 +39,89 @@ export default function UploadProgressScreen() {
 
     if (mode === "confirm") {
       setStatus("Saving report...");
-
+      //console.log("========== SENDING TO BACKEND ==========");
+      //console.log(JSON.stringify(labValues, null, 2));
+      //console.log("========================================");
       response = await confirmReport(
         tempFileId,
         labValues
       );
 
+      if (response.is_duplicate) {
+        Alert.alert(
+          "Duplicate Report",
+          "This report has already been saved."
+        );
+
+        navigation.goBack();
+        return;
+      }
+
       navigation.replace("UploadCompleted");
       return;
-    }
+}
 
     setStatus("Uploading...");
 
     const timer = setTimeout(() => {
       setStatus("Extracting...");
-    }, 1000);
+  }, 1000);
 
-    console.log("Before upload");
-
-   response = await uploadReport(file);
-
-  console.log("========== RESPONSE ==========");
-  console.log(response);
-  console.log("temp_file_id:", response.temp_file_id);
-  console.log("lab_values:", response.lab_values);
-  console.log("is_duplicate:", response.is_duplicate);
-
-
+  try {
+    response = await uploadReport(file);
+} finally {
     clearTimeout(timer);
+}
 
-    console.log("=== FULL RESPONSE ===");
-    console.log(JSON.stringify(response, null, 2));
-    console.log("UPLOAD RESPONSE:", response);
-    console.log("is_duplicate =", response.is_duplicate);
-    console.log("temp_file_id =", response.temp_file_id);
-    console.log("lab_values length =", response.lab_values?.length);
+    //console.log("=== FULL RESPONSE ===");
+    //console.log(JSON.stringify(response, null, 2));
+    //console.log("UPLOAD RESPONSE:", response);
+    //console.log("is_duplicate =", response.is_duplicate);
+    //console.log("temp_file_id =", response.temp_file_id);
+    //console.log("lab_values length =", response.lab_values?.length);
     
 
       // ✅ Duplicate detected
       if (response.is_duplicate) {
-        console.log("DUPLICATE DETECTED");
+        //console.log("DUPLICATE DETECTED");
         setDuplicate(true);
         return;
       }
       if (mode !== "confirm") {
-        console.log("ABOUT TO NAVIGATE TO OCRPreview");
+        //console.log("ABOUT TO NAVIGATE TO OCRPreview");
         navigation.replace("OCRPreview", {
         tempFileId: response.temp_file_id,
 
         extractedValues: (response.lab_values || []).map(
         (lab: any, index: number) => ({
-        id: String(index + 1),
-        testName: lab.test,
-        value: String(lab.value),
-        unit: lab.unit,
-        referenceLow: lab.reference_range?.[0],
-        referenceHigh: lab.reference_range?.[1],
-        lowConfidence: false,
-      })
-    ),
+        ...lab,                         // ✅ keep everything
+            id: String(index + 1),
+
+            // UI fields
+            testName: lab.test,
+            value: String(lab.value),
+            referenceLow: lab.reference_range?.[0],
+            referenceHigh: lab.reference_range?.[1],
+            lowConfidence: false,
+          })
+        ),
 
     reportTitle: "Lab Report",
   });
   
-  console.log("NAVIGATION CALLED");
+  //console.log("NAVIGATION CALLED");
   return;
 }
 
 navigation.replace("UploadCompleted");
 
 }catch (error: any) {
-  console.error("FULL ERROR:", error);
+ // console.log("STATUS:", error.response?.status);
+  //console.log(
+  //"DETAIL:",
+  //JSON.stringify(error.response?.data, null, 2)
+//);
+  //console.error(error);
 
   Alert.alert(
     "Upload Failed",

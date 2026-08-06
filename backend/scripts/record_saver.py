@@ -50,7 +50,7 @@ def save_lab_results(patient_id, document_id, labs):
 
         if "reference_range" in lab and lab["reference_range"]:
             ref_low, ref_high = lab["reference_range"]
-
+        print(lab)
         db.execute(
             text("""
             INSERT INTO lab_results
@@ -96,6 +96,7 @@ def save_lab_results(patient_id, document_id, labs):
                 "date": lab.get("date")  # ✅ now properly filled
             }
         )
+        
 
     db.commit()
     # Ensure normalized names are used by anomaly detection
