@@ -1,13 +1,14 @@
 from qdrant_client import QdrantClient
-from qdrant_client.models import Filter, FieldCondition, MatchValue
+
 from dotenv import load_dotenv
-from qdrant_client.models import MatchAny
+
 import os
 from qdrant_client.models import (
     Filter,
     FieldCondition,
+    MatchValue,
     MatchText,
-    MatchValue
+    MatchAny,
 )
 load_dotenv()
 QDRANT_URL = os.getenv(
@@ -21,36 +22,39 @@ COLLECTION_NAME = "lab_report_chunks"
 def keyword_search_qdrant(
     patient_id,
     keyword,
-    limit=20
+    chunk_types=None,
+    limit=20,
 ):
+
+    must_conditions = [
+        FieldCondition(
+            key="patient_id",
+            match=MatchValue(value=patient_id)
+        ),
+        FieldCondition(
+            key="text",
+            match=MatchText(text=keyword)
+        )
+    ]
+
+    if chunk_types:
+        must_conditions.append(
+            FieldCondition(
+                key="chunk_type",
+                match=MatchAny(any=chunk_types)
+            )
+        )
 
     points, _ = client.scroll(
         collection_name=COLLECTION_NAME,
-
         scroll_filter=Filter(
-            must=[
-                FieldCondition(
-                    key="patient_id",
-                    match=MatchValue(
-                        value=patient_id
-                    )
-                ),
-
-                FieldCondition(
-                    key="text",
-                    match=MatchText(
-                        text=keyword
-                    )
-                )
-            ]
+            must=must_conditions
         ),
-
         limit=limit,
         with_payload=True
     )
 
     return points
-
 def get_all_patient_chunks(
     patient_id,
     limit=500
@@ -152,4 +156,3 @@ def search_qdrant(
 
     return results.points
 
-    return results.points
