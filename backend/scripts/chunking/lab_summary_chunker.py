@@ -16,14 +16,12 @@ def build_lab_summary_chunk(
 
         report_date = lab.get("date")
 
-        status = lab.get("abnormal") or "NORMAL"
-
         line = (
             f"{lab['test_name']} "
             f"({lab['value']} {lab.get('unit', '')})"
         )
 
-        if status in ["LOW", "HIGH", "ABNORMAL"]:
+        if lab.get("abnormal", False):
             abnormal.append(line)
         else:
             normal.append(line)
@@ -60,7 +58,7 @@ def build_lab_summary_chunk(
 
             metadata={
                 "abnormal_count": len(abnormal),
-                "normal_count": len(normal)
+                "normal_count": len(normal),
             }
         )
     ]

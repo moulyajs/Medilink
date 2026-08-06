@@ -14,7 +14,7 @@ from fastapi import (
 from sqlalchemy.orm import Session
 from sqlalchemy import text
 from pydantic import BaseModel
-
+import traceback
 from database import get_db
 from utils.dependencies import get_current_patient
 
@@ -253,15 +253,15 @@ async def confirm_report(
             "document_id": str(result["document_id"]),
         }
 
+    
+
     except Exception as e:
-
+        traceback.print_exc()
         db.rollback()
-
         raise HTTPException(
             status_code=500,
             detail=str(e),
         )
-
 
 # ======================================================
 # REPORT LIST

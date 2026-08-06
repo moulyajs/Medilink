@@ -150,27 +150,17 @@ def get_lab_history(
         )
 
         history.append({
-            "date":
-                c.payload.get(
-                    "report_date"
-                ),
-
-            "value":
-                md.get("value"),
-
-            "status":
-                md.get("status")
+            "date": c.payload.get("report_date"),
+            "value": md.get("value"),
+            "abnormal": md.get("abnormal", False),
         })
 
     history.sort(
-        key=lambda x:
-            x["date"]
+        key=lambda x: x["date"]
     )
 
     return history
-def get_abnormal_labs(
-    patient_id
-):
+def get_abnormal_labs(patient_id):
 
     chunks = get_all_patient_chunks(
         patient_id
@@ -185,21 +175,7 @@ def get_abnormal_labs(
             {}
         )
 
-        status = (
-            md.get(
-                "status",
-                ""
-            )
-            .upper()
-        )
-
-        if status in [
-            "HIGH",
-            "LOW",
-            "ABNORMAL"
-        ]:
-
+        if md.get("abnormal", False):
             abnormal.append(c)
 
     return abnormal
-

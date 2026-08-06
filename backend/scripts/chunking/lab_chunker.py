@@ -10,12 +10,12 @@ def build_lab_chunks(
 
     for lab in labs:
 
-        status = lab.get("abnormal") or "NORMAL"
+        is_abnormal = lab.get("abnormal", False)
 
         text = (
             f"Lab Test: {lab['test_name']}. "
             f"Value: {lab['value']} {lab.get('unit', '')}. "
-            f"Status: {status}. "
+            f"Status: {'ABNORMAL' if is_abnormal else 'NORMAL'}. "
             f"Collected on {lab.get('date', 'unknown')}."
         )
 
@@ -47,7 +47,7 @@ def build_lab_chunks(
                     "test_name": lab["test_name"],
                     "value": lab["value"],
                     "unit": lab.get("unit"),
-                    "status": status
+                    "abnormal": is_abnormal,
                 }
             )
         )
