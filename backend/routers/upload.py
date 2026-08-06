@@ -2,30 +2,47 @@ import os
 import uuid
 from typing import List, Optional
 from datetime import date as Date
-from fastapi import APIRouter, UploadFile, File, Depends, HTTPException
+
+from fastapi import (
+    APIRouter,
+    UploadFile,
+    File,
+    Depends,
+    HTTPException,
+)
+
 from sqlalchemy.orm import Session
 from sqlalchemy import text
 from pydantic import BaseModel
 
 from database import get_db
 from utils.dependencies import get_current_patient
-from models.patient import Patient
-from schemas.report_schemas import ReportSummary, ReportDetail, LabValueResponse
-from scripts.app import process_document, save_confirmed_report
 
-router = APIRouter(prefix="/reports", tags=["Reports"])
+from models.patient import Patient
+from models.notification import Notification
+
+from schemas.report_schemas import (
+    ReportSummary,
+    ReportDetail,
+    LabValueResponse,
+)
+
+from scripts.app import (
+    process_document,
+    save_confirmed_report,
+)
+
+router = APIRouter(
+    prefix="/reports",
+    tags=["Reports"],
+)
 
 UPLOAD_DIR = "temp_uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
-#print(">>> upload.py loaded <<<")
-#print("Current working directory:", os.getcwd())
-#print("Upload dir exists:", os.path.exists(UPLOAD_DIR))
-
-
-# ============================================================
-# STEP 1: UPLOAD — extract only, nothing saved yet
-# ============================================================
+# ======================================================
+# STEP 1 : Upload (Extract only)
+# ======================================================
 
 @router.post("/upload")
 async def upload_report(
@@ -33,9 +50,15 @@ async def upload_report(
     current_patient: Patient = Depends(get_current_patient),
 ):
     try:
+
         extension = os.path.splitext(file.filename)[1]
+
         temp_filename = f"{uuid.uuid4()}{extension}"
-        file_path = os.path.join(UPLOAD_DIR, temp_filename)
+
+        file_path = os.path.join(
+            UPLOAD_DIR,
+            temp_filename,
+        )
 
         with open(file_path, "wb") as f:
             f.write(await file.read())
@@ -46,26 +69,36 @@ async def upload_report(
         )
 
         return {
-            "temp_file_id": temp_filename,  # frontend must send this back on confirm
+            "temp_file_id": temp_filename,
             "lab_values": result["lab_values"],
-            "clinical_notes": result.get("clinical_notes", []),
-            "is_duplicate": result.get("is_duplicate", False),
+            "clinical_notes": result.get(
+                "clinical_notes",
+                [],
+            ),
+            "is_duplicate": result.get(
+                "is_duplicate",
+                False,
+            ),
         }
 
     except Exception as e:
-        #traceback.print_exc()          # <-- add this
-        #print("ERROR:", repr(e))
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(
+            status_code=500,
+            detail=str(e),
+        )
 
+
+# ======================================================
+# Models
+# ======================================================
 
 class LabValueInput(BaseModel):
     test_name: str
     value: float
     unit: Optional[str] = None
     reference_range: Optional[list[float]] = None
-    abnormal: Optional[bool] = None   # ✅ boolean
-
-    date: Optional[Date] = None  
+    abnormal: Optional[bool] = None
+    date: Optional[Date] = None
 
 
 class ConfirmUploadRequest(BaseModel):
@@ -73,22 +106,34 @@ class ConfirmUploadRequest(BaseModel):
     lab_values: List[LabValueInput]
 
 
-# ============================================================
-# STEP 2: CONFIRM — user edited/confirmed values, now actually save
-# ============================================================
+# ======================================================
+# STEP 2 : Confirm -> Actually Save
+# ======================================================
 
 @router.post("/confirm")
 async def confirm_report(
     payload: ConfirmUploadRequest,
     current_patient: Patient = Depends(get_current_patient),
+    db: Session = Depends(get_db),
 ):
-    file_path = os.path.join(UPLOAD_DIR, payload.temp_file_id)
+
+    file_path = os.path.join(
+        UPLOAD_DIR,
+        payload.temp_file_id,
+    )
 
     if not os.path.exists(file_path):
-        raise HTTPException(status_code=404, detail="Temp file expired — please re-upload.")
+        raise HTTPException(
+            status_code=404,
+            detail="Temporary file expired.",
+        )
 
     try:
-        confirmed_labs = [lab.dict() for lab in payload.lab_values]
+
+        confirmed_labs = [
+            lab.dict()
+            for lab in payload.lab_values
+        ]
 
         result = save_confirmed_report(
             patient_id=str(current_patient.patient_id),
@@ -101,26 +146,133 @@ async def confirm_report(
         if result.get("is_duplicate"):
             return result
 
+        patient_id = str(current_patient.patient_id)
+
+        # ==================================================
+        # REPORT UPLOADED NOTIFICATION
+        # ==================================================
+
+        db.add(
+            Notification(
+                patient_id=current_patient.patient_id,
+                title="Report Uploaded",
+                message="Your medical report has been uploaded successfully.",
+                notification_type="report",
+            )
+        )
+
+        # ==================================================
+        # TREND NOTIFICATIONS
+        # ==================================================
+
+        trend_rows = db.execute(
+            text("""
+                SELECT
+                    test_name,
+                    trend
+                FROM lab_trends
+                WHERE patient_id = :pid
+                AND trend <> 'Stable'
+            """),
+            {
+                "pid": patient_id,
+            },
+        ).fetchall()
+
+        for row in trend_rows:
+
+            message = f"{row.test_name} is now {row.trend}."
+
+            exists = (
+                db.query(Notification)
+                .filter(
+                    Notification.patient_id == current_patient.patient_id,
+                    Notification.notification_type == "trend",
+                    Notification.message == message,
+                )
+                .first()
+            )
+
+            if not exists:
+
+                db.add(
+                    Notification(
+                        patient_id=current_patient.patient_id,
+                        title="Trend Changed",
+                        message=message,
+                        notification_type="trend",
+                    )
+                )
+
+        # ==================================================
+        # ANOMALY NOTIFICATIONS
+        # ==================================================
+
+        anomaly_rows = db.execute(
+            text("""
+                SELECT test_name
+                FROM patient_anomalies
+                WHERE patient_id = :pid
+            """),
+            {
+                "pid": patient_id,
+            },
+        ).fetchall()
+
+        for row in anomaly_rows:
+
+            message = (
+                f"An unusual change was detected in {row.test_name}."
+            )
+
+            exists = (
+                db.query(Notification)
+                .filter(
+                    Notification.patient_id == current_patient.patient_id,
+                    Notification.notification_type == "anomaly",
+                    Notification.message == message,
+                )
+                .first()
+            )
+
+            if not exists:
+
+                db.add(
+                    Notification(
+                        patient_id=current_patient.patient_id,
+                        title="Anomaly Detected",
+                        message=message,
+                        notification_type="anomaly",
+                    )
+                )
+
+        db.commit()
+
         return {
             "message": "Report saved successfully",
-            "document_id": str(result["document_id"])
+            "document_id": str(result["document_id"]),
         }
 
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+
+        db.rollback()
+
+        raise HTTPException(
+            status_code=500,
+            detail=str(e),
+        )
 
 
-# ============================================================
-# LIST + DETAIL — read back saved reports (documents / lab_results)
-# NOTE: /list MUST be defined before /{document_id}, otherwise
-# FastAPI tries to match "list" against the {document_id} pattern.
-# ============================================================
+# ======================================================
+# REPORT LIST
+# ======================================================
 
 @router.get("/list", response_model=list[ReportSummary])
 def list_reports(
     db: Session = Depends(get_db),
     current_patient: Patient = Depends(get_current_patient),
 ):
+
     rows = db.execute(
         text("""
             SELECT
@@ -130,27 +282,50 @@ def list_reports(
                 COUNT(lr.result_id) AS lab_count,
                 BOOL_OR(lr.abnormal_flag) AS has_abnormal
             FROM documents d
-            LEFT JOIN lab_results lr ON lr.document_id = d.document_id
+            LEFT JOIN lab_results lr
+                ON lr.document_id = d.document_id
             WHERE d.patient_id = :pid
-            GROUP BY d.document_id, d.document_type, d.upload_date
+            GROUP BY
+                d.document_id,
+                d.document_type,
+                d.upload_date
             ORDER BY d.upload_date DESC
         """),
-        {"pid": str(current_patient.patient_id)}
+        {
+            "pid": str(current_patient.patient_id),
+        },
     ).fetchall()
 
     reports = []
+
     for r in rows:
-        status = "Pending" if r.lab_count == 0 else ("Abnormal" if r.has_abnormal else "Normal")
-        reports.append(ReportSummary(
-            document_id=r.document_id,
-            document_type=r.document_type,
-            upload_date=r.upload_date,
-            status=status,
-            lab_count=r.lab_count,
-        ))
+
+        status = (
+            "Pending"
+            if r.lab_count == 0
+            else (
+                "Abnormal"
+                if r.has_abnormal
+                else "Normal"
+            )
+        )
+
+        reports.append(
+            ReportSummary(
+                document_id=r.document_id,
+                document_type=r.document_type,
+                upload_date=r.upload_date,
+                status=status,
+                lab_count=r.lab_count,
+            )
+        )
 
     return reports
 
+
+# ======================================================
+# REPORT DETAILS
+# ======================================================
 
 @router.get("/{document_id}", response_model=ReportDetail)
 def get_report_detail(
@@ -158,32 +333,68 @@ def get_report_detail(
     db: Session = Depends(get_db),
     current_patient: Patient = Depends(get_current_patient),
 ):
+
     doc = db.execute(
         text("""
-            SELECT document_id, document_type, upload_date
+            SELECT
+                document_id,
+                document_type,
+                upload_date
             FROM documents
-            WHERE document_id = :did AND patient_id = :pid
+            WHERE document_id=:did
+            AND patient_id=:pid
         """),
-        {"did": document_id, "pid": str(current_patient.patient_id)}
+        {
+            "did": document_id,
+            "pid": str(current_patient.patient_id),
+        },
     ).fetchone()
 
     if doc is None:
-        raise HTTPException(status_code=404, detail="Report not found")
+        raise HTTPException(
+            status_code=404,
+            detail="Report not found",
+        )
 
     lab_rows = db.execute(
         text("""
-            SELECT result_id, test_name, value, unit,
-                   reference_low, reference_high, abnormal_flag, result_date
+            SELECT
+                result_id,
+                test_name,
+                value,
+                unit,
+                reference_low,
+                reference_high,
+                abnormal_flag,
+                result_date
             FROM lab_results
-            WHERE document_id = :did
+            WHERE document_id=:did
             ORDER BY test_name
         """),
-        {"did": document_id}
+        {
+            "did": document_id,
+        },
     ).fetchall()
 
-    lab_values = [LabValueResponse(**row._mapping) for row in lab_rows]
-    has_abnormal = any(lv.abnormal_flag is True for lv in lab_values)
-    status = "Pending" if not lab_values else ("Abnormal" if has_abnormal else "Normal")
+    lab_values = [
+        LabValueResponse(**row._mapping)
+        for row in lab_rows
+    ]
+
+    has_abnormal = any(
+        x.abnormal_flag
+        for x in lab_values
+    )
+
+    status = (
+        "Pending"
+        if not lab_values
+        else (
+            "Abnormal"
+            if has_abnormal
+            else "Normal"
+        )
+    )
 
     return ReportDetail(
         document_id=doc.document_id,
