@@ -12,9 +12,13 @@ venv/
 .env
 .env.*
 
-# Backend data
+# Backend uploads
+backend/temp_uploads/
 backend/data/*
 !backend/data/.gitkeep
+
+# Frontend
+frontend/node_modules/
 
 # Logs
 *.log
@@ -22,12 +26,3 @@ backend/data/*
 # OS files
 .DS_Store
 Thumbs.db
-
-# Node modules
-frontend/node_modules/
-
-# Temp uploads
-backend/temp_uploads/
-
-# Expo cache
-frontend/.expo/
