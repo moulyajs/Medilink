@@ -2,7 +2,6 @@ from sentence_transformers import SentenceTransformer
 
 model = None
 
-
 def get_model():
     global model
 
@@ -16,7 +15,7 @@ def embed_chunks(chunks):
     model = get_model()
 
     texts = [
-        "Represent this sentence for retrieval: " + c["text"]
+        "Represent this medical record for retrieval: " + c["text"]
         for c in chunks
     ]
 

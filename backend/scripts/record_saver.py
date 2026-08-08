@@ -1,7 +1,10 @@
 import uuid
 from sqlalchemy import text
 from database import SessionLocal
-
+from scripts.baseline_engine import update_patient_baselines
+from scripts.trend_engine import update_patient_trends
+from scripts.anomaly_detection import detect_patient_anomalies
+from scripts.anomaly_saver import save_patient_anomalies
 
 # ===============================
 # VERIFY PATIENT
@@ -45,11 +48,7 @@ def save_medical_record(
 
     for lab in labs:
 
-        test_name = (
-            lab.get("test_name")
-            or lab.get("test")
-            or ""
-        ).strip().upper()
+        test_name = (lab.get("test_name") or lab.get("test") or "").strip().upper()
 
         if not test_name:
             continue
@@ -67,6 +66,8 @@ def save_medical_record(
         if ref_range and len(ref_range) >= 2:
             ref_low = ref_range[0]
             ref_high = ref_range[1]
+
+        print(lab)
 
         db.execute(
             text("""
@@ -110,11 +111,34 @@ def save_medical_record(
                 "low": ref_low,
                 "high": ref_high,
                 "flag": lab.get("abnormal"),
-                "date": str(lab.get("date"))
+                "date": lab.get("date")  # ✅ now properly filled
             }
         )
+        
 
     db.commit()
+
+# Ensure normalized names are used by anomaly detection
+    for lab in labs:
+        test_name = (lab.get("test_name") or lab.get("test") or "").strip().upper()
+        lab["test"] = test_name
+
+# Detect anomalies using the previous baseline
+    anomalies = detect_patient_anomalies(
+        patient_id,
+        labs
+    )
+
+    save_patient_anomalies(
+        patient_id,
+        anomalies,
+        labs
+    )
+
+# Update baseline and trends
+    update_patient_baselines(patient_id)
+    update_patient_trends(patient_id)
+
     db.close()
 
     print("✅ Lab results saved")
@@ -127,8 +151,4 @@ def save_medical_record(
 # ===============================
 
 def save_patient(*args, **kwargs):
-    pass
-
-
-def save_lab_results(*args, **kwargs):
     pass

@@ -1,22 +1,51 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.responses import StreamingResponse
-from fastapi.middleware.cors import CORSMiddleware
-from routes.timeline_router import router as timeline_router
 
 from sqlalchemy import text
 
 from storage import client, BUCKET
 from database import SessionLocal, DB_URL
 
+from fastapi import Depends
+from utils.dependencies import get_current_patient
+from models.patient import Patient
+
 import uuid
 import io
 
 print("MAIN DB URL =", DB_URL)
 
-app = FastAPI()
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from models.patient import Patient
+from models.profile import Profile
+from models.otp import EmailOTP
+from database import Base, engine
+from routers.profile import router as profile_router
+from routers.auth import router as auth_router
+from routers.support import router as support_router
+from routers.report_issue import router as report_issue_router
+from routers.device import router as device_router
+from routers.notification import router as notification_router
+from routers.chat import router as chat_router
+from routers.upload import router as upload_router
+from routers.trend import router as trend_router
+from routers import anomaly
+from routes.timeline_router import router as timeline_router
+from models.notification import Notification
+from models.notification_settings import NotificationSettings
+from routers.notification_history import (
+    router as notification_history_router,
+)
+# Create database tables
+Base.metadata.create_all(bind=engine)
+app = FastAPI(
+    title="Medilink API",
+    description="Backend API for Medilink",
+    version="1.0.0"
+)
 
-app.include_router(timeline_router)
-
+# Allow frontend to connect
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -25,13 +54,25 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/")
+def home():
+    return {
+        "status": "success",
+        "message": "Welcome to Medilink API 🚀"
+    }
+
+
+
 
 # ----------------------------------------------------
 # Upload Document
 # ----------------------------------------------------
 
 @app.post("/upload/")
-async def upload_file(file: UploadFile = File(...)):
+async def upload_file(
+    file: UploadFile = File(...),
+    current_patient: Patient = Depends(get_current_patient)
+):
     try:
 
         file_id = str(uuid.uuid4())
@@ -67,7 +108,7 @@ async def upload_file(file: UploadFile = File(...)):
                 )
             """),
             {
-                "pid": "cc82f6e5-1e57-43d3-87c8-f5638bcf0858",
+                "pid": str(current_patient.patient_id),
                 "dtype": file.content_type,
                 "path": stored_filename,
             },
@@ -90,7 +131,9 @@ async def upload_file(file: UploadFile = File(...)):
 # ----------------------------------------------------
 
 @app.get("/documents")
-def get_documents():
+def get_documents(
+    current_patient: Patient = Depends(get_current_patient)
+):
 
     db = SessionLocal()
 
@@ -105,6 +148,7 @@ def get_documents():
                     upload_date,
                     file_path
                 FROM documents
+                WHERE patient_id = :pid
                 ORDER BY upload_date DESC
             """)
         ).fetchall()
@@ -130,8 +174,10 @@ def get_documents():
 # ----------------------------------------------------
 
 @app.get("/document/{document_id}")
-def view_document(document_id: str):
-
+def view_document(
+    document_id: str,
+    current_patient: Patient = Depends(get_current_patient)
+):
     db = SessionLocal()
 
     try:
@@ -141,8 +187,12 @@ def view_document(document_id: str):
                 SELECT file_path
                 FROM documents
                 WHERE document_id = CAST(:id AS UUID)
+                AND patient_id = :pid
             """),
-            {"id": document_id},
+            {
+               "id": document_id,
+               "pid": str(current_patient.patient_id),
+            },
         ).fetchone()
 
         if row is None:
@@ -175,23 +225,20 @@ def view_document(document_id: str):
 # Direct View By File Path
 # ----------------------------------------------------
 
-@app.get("/view/{file_path}")
-def view_file(file_path: str):
-
-    try:
-
-        obj = client.get_object(
-            BUCKET,
-            file_path,
-        )
-
-        return StreamingResponse(
-            obj,
-            media_type="application/pdf",
-        )
-
-    except Exception as e:
-        raise HTTPException(
-            status_code=404,
-            detail=str(e),
-        )
+@app.get("/health")
+def health():
+    return {
+        "status": "healthy"
+    }
+app.include_router(auth_router)
+app.include_router(profile_router)
+app.include_router(support_router)
+app.include_router(report_issue_router)
+app.include_router(device_router)
+app.include_router(notification_router)
+app.include_router(chat_router)
+app.include_router(upload_router)
+app.include_router(trend_router)
+app.include_router(anomaly.router)
+app.include_router(notification_history_router)
+app.include_router(timeline_router)

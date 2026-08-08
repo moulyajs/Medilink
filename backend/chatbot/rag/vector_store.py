@@ -1,40 +1,158 @@
-import chromadb
-from sentence_transformers import SentenceTransformer
+from qdrant_client import QdrantClient
 
+from dotenv import load_dotenv
 
-class VectorStore:
+import os
+from qdrant_client.models import (
+    Filter,
+    FieldCondition,
+    MatchValue,
+    MatchText,
+    MatchAny,
+)
+load_dotenv()
+QDRANT_URL = os.getenv(
+    "QDRANT_URL",
+    "http://qdrant:6333"
+)
 
-    def __init__(self):
+client = QdrantClient(url=QDRANT_URL)
+COLLECTION_NAME = "lab_report_chunks"
 
-        self.client = chromadb.Client()
+def keyword_search_qdrant(
+    patient_id,
+    keyword,
+    chunk_types=None,
+    limit=20,
+):
 
-        self.collection = self.client.get_or_create_collection(
-            name="medical_records"
+    must_conditions = [
+        FieldCondition(
+            key="patient_id",
+            match=MatchValue(value=patient_id)
+        ),
+        FieldCondition(
+            key="text",
+            match=MatchText(text=keyword)
+        )
+    ]
+
+    if chunk_types:
+        must_conditions.append(
+            FieldCondition(
+                key="chunk_type",
+                match=MatchAny(any=chunk_types)
+            )
         )
 
-        self.model = SentenceTransformer("all-MiniLM-L6-v2")
+    points, _ = client.scroll(
+        collection_name=COLLECTION_NAME,
+        scroll_filter=Filter(
+            must=must_conditions
+        ),
+        limit=limit,
+        with_payload=True
+    )
 
-    def embed(self, text):
+    return points
+def get_all_patient_chunks(
+    patient_id,
+    limit=500
+):
 
-        return self.model.encode(text).tolist()
+    points, _ = client.scroll(
+        collection_name=COLLECTION_NAME,
 
-    def add_document(self, doc_id, text):
+        scroll_filter=Filter(
+            must=[
+                FieldCondition(
+                    key="patient_id",
+                    match=MatchValue(
+                        value=patient_id
+                    )
+                )
+            ]
+        ),
 
-        embedding = self.embed(text)
+        limit=limit,
+        with_payload=True
+    )
 
-        self.collection.add(
-            ids=[doc_id],
-            documents=[text],
-            embeddings=[embedding]
+    return points
+
+def get_lab_chunks(
+    patient_id,
+    test_name,
+    limit=100
+):
+
+    points, _ = client.scroll(
+        collection_name=COLLECTION_NAME,
+
+        scroll_filter=Filter(
+            must=[
+                FieldCondition(
+                    key="patient_id",
+                    match=MatchValue(
+                        value=patient_id
+                    )
+                ),
+
+                FieldCondition(
+                    key="metadata.test_name",
+                    match=MatchValue(
+                        value=test_name
+                    )
+                )
+            ]
+        ),
+
+        limit=limit,
+        with_payload=True
+    )
+
+    return points
+
+def search_qdrant(
+    query_embedding,
+    patient_id,
+    chunk_types=None,
+    limit=10
+):
+
+    must_conditions = [
+
+        FieldCondition(
+            key="patient_id",
+            match=MatchValue(
+                value=patient_id
+            )
+        )
+    ]
+
+    if chunk_types:
+
+        must_conditions.append(
+
+            FieldCondition(
+                key="chunk_type",
+                match=MatchAny(
+                    any=chunk_types
+                )
+            )
         )
 
-    def search(self, query):
+    results = client.query_points(
+        collection_name=COLLECTION_NAME,
 
-        query_embedding = self.embed(query)
+        query=query_embedding,
 
-        results = self.collection.query(
-            query_embeddings=[query_embedding],
-            n_results=5
+        limit=limit,
+
+        query_filter=Filter(
+            must=must_conditions
         )
+    )
 
-        return results["documents"]
+    return results.points
+
