@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 from sqlalchemy import text
 
-from backend.database import SessionLocal
+from database import SessionLocal
 
 
 def calculate_delta(values):
@@ -43,16 +43,20 @@ def fetch_patient_records(patient_id):
 
     try:
 
-        query = text("""
-            SELECT lab_results
-            FROM medical_records
-            WHERE patient_id = :patient_id
-            AND document_type = 'LAB_REPORT'
-            ORDER BY id
-        """)
-
         rows = db.execute(
-            query,
+            text("""
+                SELECT
+                    test_name,
+                    value,
+                    unit,
+                    reference_low,
+                    reference_high,
+                    abnormal_flag,
+                    result_date
+                FROM lab_results
+                WHERE patient_id = :patient_id
+                ORDER BY result_date
+            """),
             {"patient_id": patient_id}
         ).fetchall()
 
@@ -61,37 +65,26 @@ def fetch_patient_records(patient_id):
     finally:
         db.close()
 
-
 def group_lab_results(rows):
 
     grouped = defaultdict(list)
 
     for row in rows:
 
-        labs = row[0]
+        test_name = (row.test_name or "").strip()
 
-        if not labs:
+        if not test_name:
             continue
 
-        for lab in labs:
-
-            test_name = lab.get("test", "").strip()
-
-            if not test_name:
-                continue
-
-            try:
-                value = float(lab["value"])
-            except:
-                continue
-
-            grouped[test_name].append({
-                "value": value,
-                "status": lab.get("status"),
-                "abnormal": lab.get("abnormal", False),
-                "date": lab.get("date"),
-                "reference_range": lab.get("reference_range")
-            })
+        grouped[test_name].append({
+            "value": float(row.value),
+            "abnormal": row.abnormal_flag,
+            "date": row.result_date,
+            "reference_range": (
+                row.reference_low,
+                row.reference_high
+            )
+        })
 
     return grouped
 

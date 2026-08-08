@@ -2,19 +2,23 @@ from minio import Minio
 from dotenv import load_dotenv
 import os
 
-# Load .env file
+# Load .env
 load_dotenv()
 
-MINIO_ENDPOINT = os.getenv("MINIO_ENDPOINT", "localhost:9000")
-MINIO_ACCESS = os.getenv("MINIO_ACCESS_KEY", "minioadmin")
-MINIO_SECRET = os.getenv("MINIO_SECRET_KEY", "minioadmin123")
+# Read environment variables
+MINIO_HOST = os.getenv("MINIO_HOST", "minio:9000")
+MINIO_ACCESS_KEY = os.getenv("MINIO_ACCESS_KEY", "minioadmin")
+MINIO_SECRET_KEY = os.getenv("MINIO_SECRET_KEY", "minioadmin")
+BUCKET = os.getenv("MINIO_BUCKET", "health-records")
 
-BUCKET = os.getenv("MINIO_BUCKET", "medilink-docs")
+print("MINIO_HOST =", MINIO_HOST)
+print("BUCKET =", BUCKET)
 
+# Create MinIO client
 client = Minio(
-    MINIO_ENDPOINT,
-    access_key=MINIO_ACCESS,
-    secret_key=MINIO_SECRET,
+    MINIO_HOST,
+    access_key=MINIO_ACCESS_KEY,
+    secret_key=MINIO_SECRET_KEY,
     secure=False
 )
 

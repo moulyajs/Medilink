@@ -78,10 +78,10 @@ if len(sys.argv) < 3:
 
 file_path = sys.argv[1]
 
-try:
-    patient_id = int(sys.argv[2])
-except ValueError:
-    print("❌ Invalid patient_id. Must be an integer.")
+patient_id = sys.argv[2]
+
+if not patient_id:
+    print("❌ Patient ID is required.")
     sys.exit(1)
 
 is_pdf = file_path.lower().endswith(".pdf")
@@ -279,29 +279,17 @@ for visit_date, visit_pages in visits.items():
         labs=normalized_labs,
         clinical_facts=clinical_facts
     )
+    save_lab_results(
+        patient_id,
+        document_id,
+        normalized_labs
+    )
 
-    print("✅ Medical Record ID:", medical_record_id)
-
-    # ----------------------------------------
-    # SUMMARY (LEFT COMMENTED)
-    # ----------------------------------------
-
-    # summary = generate_summary(
-    #     entities,
-    #     reviewed_medicines,
-    #     normalized_labs
-    # )
-
-    # print("\nSUMMARY:")
-    # print(summary)
-
-    # ----------------------------------------
-    # TIMELINE
-    # ----------------------------------------
+    print("✅ Lab Results Saved")
 
     add_timeline_event(
         patient_id,
-        medical_record_id,
+        document_id,
         primary_doc_type,
         visit_date
     )

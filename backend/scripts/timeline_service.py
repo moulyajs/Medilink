@@ -4,6 +4,7 @@ from database import DB_URL
 
 print("TIMELINE DB URL =", DB_URL)
 
+
 def get_timeline(patient_id):
 
     db = SessionLocal()
@@ -11,25 +12,21 @@ def get_timeline(patient_id):
     result = db.execute(
         text("""
         SELECT
-            t.id,
-            t.record_id,
-            t.event_date,
-            t.event_type,
-            t.short_summary,
-            f.file_name,
-            f.file_path
+            te.event_id,
+            te.event_date,
+            te.event_type,
+            te.summary,
+            d.document_id,
+            d.file_path
 
-        FROM timeline t
+        FROM timeline_events te
 
-        LEFT JOIN medical_records mr
-            ON t.record_id = mr.id
+        LEFT JOIN documents d
+            ON te.source_document = d.document_id
 
-        LEFT JOIN files f
-            ON mr.file_id = f.id
+        WHERE te.patient_id = :pid
 
-        WHERE t.patient_id = :pid
-
-        ORDER BY t.event_date DESC
+        ORDER BY te.event_date DESC
 
         LIMIT 3
         """),
@@ -40,12 +37,11 @@ def get_timeline(patient_id):
 
     for row in result:
         timeline.append({
-            "id": row.id,
-            "record_id": row.record_id,
+            "id": str(row.event_id),
+            "document_id": str(row.document_id) if row.document_id else None,
             "date": str(row.event_date),
             "type": row.event_type,
-            "summary": row.short_summary,
-            "file_name": row.file_name,
+            "summary": row.summary,
             "file_path": row.file_path
         })
 

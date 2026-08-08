@@ -20,23 +20,21 @@ export default function TimelineScreen() {
     loadTimeline();
   }, []);
 
-  async function loadTimeline() {
-    try {
-      const patientId =
-        "cc82f6e5-1e57-43d3-87c8-f5638bcf0858";
+async function loadTimeline() {
+  try {
 
-      const data = await getTimeline(patientId);
+    const data = await getTimeline();
 
-      console.log("Timeline:", data);
+    console.log("Timeline:", data);
 
-      setTimeline(data);
+    setTimeline(data);
 
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setLoading(false);
-    }
+  } catch (err) {
+    console.log(err);
+  } finally {
+    setLoading(false);
   }
+}
 
   if (loading) {
     return (

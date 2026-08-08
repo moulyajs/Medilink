@@ -1,42 +1,43 @@
 from database import SessionLocal
 from sqlalchemy import text
 
-
 def add_timeline_event(
     patient_id,
-    record_id,
+    document_id,
     event_type,
-    short_summary
+    summary
 ):
 
     db = SessionLocal()
 
     db.execute(
         text("""
-        INSERT INTO timeline
+        INSERT INTO timeline_events
         (
             patient_id,
-            record_id,
-            event_date,
             event_type,
-            short_summary
+            event_date,
+            source_document,
+            summary
         )
         VALUES
         (
             :pid,
-            :rid,
-            NOW(),
             :etype,
+            NOW(),
+            :docid,
             :summary
         )
         """),
         {
             "pid": patient_id,
-            "rid": record_id,
             "etype": event_type,
-            "summary": short_summary
+            "docid": str(document_id),
+            "summary": str(summary)
         }
     )
 
     db.commit()
     db.close()
+
+    print("✅ Timeline event saved")
