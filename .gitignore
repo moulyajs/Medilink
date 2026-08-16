@@ -29,3 +29,6 @@ Thumbs.db
 
 # Dataset Medilink
 backend/Dataset_Medilink/
+
+# Windows shortcut files
+*.lnk
