@@ -1,36 +1,80 @@
 import axios from "axios";
-import { getToken, removeToken } from "../utils/storage";
-import { resetToLogin } from "../navigation/navigationService";
+import {
+  getToken,
+  removeToken,
+} from "../utils/storage";
+import {
+  resetToLogin,
+} from "../navigation/navigationService";
+
 const api = axios.create({
-  baseURL: "http://192.168.0.103:8000",
-  timeout: 60000,
-  headers: {
-    "Content-Type": "application/json",
-  },
+  baseURL: "http://localhost:8000",
+  timeout: 300000,
 });
 
-// Attach JWT to every request
+// =====================================================
+// ATTACH JWT
+// =====================================================
+
 api.interceptors.request.use(
   async (config) => {
+
     const token = await getToken();
 
+    console.log(
+      "API REQUEST:",
+      config.method?.toUpperCase(),
+      config.url
+    );
+
+    console.log(
+      "JWT EXISTS:",
+      !!token
+    );
+
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+
+      config.headers =
+        config.headers || {};
+
+      config.headers.Authorization =
+        `Bearer ${token}`;
     }
 
     return config;
   },
-  (error) => Promise.reject(error)
+
+  (error) => {
+    return Promise.reject(error);
+  }
 );
 
-// Logout automatically if session is invalid
-// Logout automatically if session is invalid
+// =====================================================
+// RESPONSE INTERCEPTOR
+// =====================================================
+
 api.interceptors.response.use(
   (response) => response,
 
   async (error) => {
-    if (error.response?.status === 401) {
-      console.log("401 Unauthorized");
+
+    console.error(
+      "API ERROR:",
+      error?.config?.url
+    );
+
+    console.error(
+      "STATUS:",
+      error?.response?.status
+    );
+
+    if (
+      error.response?.status === 401
+    ) {
+
+      console.log(
+        "401 Unauthorized"
+      );
 
       await removeToken();
 

@@ -81,12 +81,13 @@ async def upload_report(
             ),
         }
 
+    
     except Exception as e:
+        traceback.print_exc()
         raise HTTPException(
             status_code=500,
             detail=str(e),
         )
-
 
 # ======================================================
 # Models
@@ -115,7 +116,13 @@ async def confirm_report(
     payload: ConfirmUploadRequest,
     current_patient: Patient = Depends(get_current_patient),
     db: Session = Depends(get_db),
-):
+):  
+
+    print("========== CONFIRM ENDPOINT HIT ==========")
+    print("Patient:", current_patient.patient_id)
+    print("Temp File:", payload.temp_file_id)
+    print("Labs:", len(payload.lab_values))
+
 
     file_path = os.path.join(
         UPLOAD_DIR,
@@ -135,6 +142,8 @@ async def confirm_report(
             for lab in payload.lab_values
         ]
 
+        print("💾 SAVING CONFIRMED REPORT")
+        
         result = save_confirmed_report(
             patient_id=str(current_patient.patient_id),
             file_path=file_path,

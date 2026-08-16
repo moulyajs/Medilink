@@ -31,7 +31,7 @@ from routers.chat import router as chat_router
 from routers.upload import router as upload_router
 from routers.trend import router as trend_router
 from routers import anomaly
-from routes.timeline_router import router as timeline_router
+from routers.timeline import router as timeline_router
 from models.notification import Notification
 from models.notification_settings import NotificationSettings
 from routers.notification_history import (

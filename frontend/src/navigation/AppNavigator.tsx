@@ -46,6 +46,9 @@ import ReportDetails from "../screens/reports/ReportDetails";
 import ProfileScreen from "../screens/profile/ProfileScreen";
 import EditProfileScreen from "../screens/profile/EditProfileScreen";
 
+//timeline
+import TimelineScreen from "../screens/timeline/TimelineScreen";
+
 // Chatbot
 import ChatHome from "../screens/chatbot/ChatHome";
 import ChatScreen from "../screens/chatbot/ChatScreen";
@@ -227,6 +230,12 @@ export default function AppNavigator() {
         name="NotificationSettings"
         component={NotificationSettingsScreen}
       />
+
+      <Stack.Screen
+        name="Timeline"
+        component={TimelineScreen}
+      />
+
 
       {/* Health */}
       <Stack.Screen

@@ -4,7 +4,6 @@ import {
   Text,
   TouchableOpacity,
   ScrollView,
-  Linking,
   Platform,
 } from "react-native";
 
@@ -12,6 +11,8 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { TimelineItem } from "../../types/timeline";
 import styles from "./styles";
+
+import { viewDocument } from "../../services/timelineService";
 
 interface Props {
   timeline: TimelineItem[];
@@ -65,33 +66,147 @@ function getEvent(type: string) {
   }
 }
 
-export default function TimelineHeader({ timeline }: Props) {
+export default function TimelineHeader({
+  timeline,
+}: Props) {
   const [showAll, setShowAll] = useState(false);
+  const [openingDocument, setOpeningDocument] =
+    useState<string | null>(null);
 
   const visibleTimeline = useMemo(() => {
-    return showAll ? timeline : timeline.slice(0, 3);
+    return showAll
+      ? timeline
+      : timeline.slice(0, 3);
   }, [timeline, showAll]);
 
-  // View uploaded PDF
-  const viewDocument = (documentId: string) => {
+  // ==========================================================
+  // VIEW DOCUMENT
+  // ==========================================================
+
+  const handleViewDocument = async (
+    documentId: string
+  ) => {
     if (!documentId) {
       alert("Document not found");
       return;
     }
 
-    const url = `http://127.0.0.1:8000/document/${documentId}`;
+    try {
+      console.log(
+        "================================"
+      );
 
-    console.log("Opening:", url);
+      console.log(
+        "VIEW DOCUMENT"
+      );
 
-    if (Platform.OS === "web") {
-      window.open(url, "_blank");
-    } else {
-      Linking.openURL(url);
+      console.log(
+        "DOCUMENT ID:",
+        documentId
+      );
+
+      console.log(
+        "================================"
+      );
+
+      setOpeningDocument(documentId);
+
+      // ------------------------------------------------------
+      // WEB
+      // ------------------------------------------------------
+
+      if (Platform.OS === "web") {
+        const blobUrl =
+          await viewDocument(
+            documentId
+          );
+
+        console.log(
+          "Opening authenticated document"
+        );
+
+        window.open(
+          blobUrl,
+          "_blank"
+        );
+
+        // Release object URL later
+        setTimeout(() => {
+          URL.revokeObjectURL(
+            blobUrl
+          );
+        }, 60000);
+
+        return;
+      }
+
+      // ------------------------------------------------------
+      // MOBILE
+      // ------------------------------------------------------
+
+      /*
+       * For mobile, the authenticated Axios request returns
+       * a blob. Mobile handling can be added separately if
+       * needed.
+       */
+
+      alert(
+        "Document viewing is currently supported on web."
+      );
+
+    } catch (error: any) {
+
+      console.error(
+        "================================"
+      );
+
+      console.error(
+        "DOCUMENT VIEW ERROR"
+      );
+
+      console.error(
+        "ERROR:",
+        error
+      );
+
+      console.error(
+        "MESSAGE:",
+        error?.message
+      );
+
+      console.error(
+        "RESPONSE:",
+        error?.response
+      );
+
+      console.error(
+        "STATUS:",
+        error?.response?.status
+      );
+
+      console.error(
+        "DATA:",
+        error?.response?.data
+      );
+
+      console.error(
+        "================================"
+      );
+
+      alert(
+        error?.response?.data?.detail ||
+        "Unable to open medical report."
+      );
+
+    } finally {
+
+      setOpeningDocument(null);
     }
   };
 
   return (
     <View style={styles.timelineContainer}>
+
       <Text style={styles.timelineTitle}>
         Patient Medical Journey
       </Text>
@@ -99,90 +214,171 @@ export default function TimelineHeader({ timeline }: Props) {
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.scrollContent}
+        contentContainerStyle={
+          styles.scrollContent
+        }
       >
-        {visibleTimeline.map((item, index) => {
-          const event = getEvent(item.document_type);
 
-          return (
-            <React.Fragment key={item.id}>
-              <View style={styles.eventItem}>
-                <TouchableOpacity
+        {visibleTimeline.map(
+          (item, index) => {
+
+            const event =
+              getEvent(
+                item.document_type
+              );
+
+            const isOpening =
+              openingDocument ===
+              item.source_document;
+
+            return (
+              <React.Fragment
+                key={item.id}
+              >
+
+                <View
+                  style={styles.eventItem}
+                >
+
+                  {/* Event Icon */}
+                  <TouchableOpacity
+                    style={[
+                      styles.circle,
+                      {
+                        backgroundColor:
+                          event.color,
+                      },
+                    ]}
+                  >
+
+                    <MaterialCommunityIcons
+                      name={
+                        event.icon as any
+                      }
+                      size={24}
+                      color="#FFFFFF"
+                    />
+
+                  </TouchableOpacity>
+
+                  {/* Event Type */}
+                  <Text
+                    style={styles.eventLabel}
+                  >
+                    {event.label}
+                  </Text>
+
+                  {/* Event Date */}
+                  <Text
+                    style={styles.eventDate}
+                  >
+                    {new Date(
+                      item.event_date
+                    ).toLocaleDateString()}
+                  </Text>
+
+                  {/* View Button */}
+                  <TouchableOpacity
+                    style={
+                      styles.viewButton
+                    }
+                    disabled={isOpening}
+                    onPress={() =>
+                      handleViewDocument(
+                        item.source_document
+                      )
+                    }
+                  >
+
+                    <Text
+                      style={
+                        styles.viewText
+                      }
+                    >
+                      {isOpening
+                        ? "Opening..."
+                        : "View"}
+                    </Text>
+
+                  </TouchableOpacity>
+
+                </View>
+
+                {/* Connecting Line */}
+                {index !==
+                  visibleTimeline.length -
+                    1 && (
+                  <View
+                    style={styles.line}
+                  />
+                )}
+
+              </React.Fragment>
+            );
+          }
+        )}
+
+        {/* Load More */}
+        {!showAll &&
+          timeline.length > 3 && (
+            <>
+
+              <View
+                style={styles.line}
+              />
+
+              <TouchableOpacity
+                style={
+                  styles.eventItem
+                }
+                onPress={() =>
+                  setShowAll(true)
+                }
+              >
+
+                <View
                   style={[
                     styles.circle,
                     {
-                      backgroundColor: event.color,
+                      backgroundColor:
+                        "#2563EB",
                     },
                   ]}
                 >
+
                   <MaterialCommunityIcons
-                    name={event.icon as any}
+                    name="chevron-right"
                     size={24}
                     color="#FFFFFF"
                   />
-                </TouchableOpacity>
 
-                <Text style={styles.eventLabel}>
-                  {event.label}
-                </Text>
+                </View>
 
-                <Text style={styles.eventDate}>
-                  {new Date(item.event_date).toLocaleDateString()}
-                </Text>
-
-                <TouchableOpacity
-                  style={styles.viewButton}
-                  onPress={() =>
-                    viewDocument(item.source_document)
+                <Text
+                  style={
+                    styles.eventLabel
                   }
                 >
-                  <Text style={styles.viewText}>
-                    View
-                  </Text>
-                </TouchableOpacity>
-              </View>
+                  Load More
+                </Text>
 
-              {index !== visibleTimeline.length - 1 && (
-                <View style={styles.line} />
-              )}
-            </React.Fragment>
-          );
-        })}
+                <Text
+                  style={
+                    styles.eventDate
+                  }
+                >
+                  +
+                  {timeline.length - 3}{" "}
+                  Records
+                </Text>
 
-        {!showAll && timeline.length > 3 && (
-          <>
-            <View style={styles.line} />
+              </TouchableOpacity>
 
-            <TouchableOpacity
-              style={styles.eventItem}
-              onPress={() => setShowAll(true)}
-            >
-              <View
-                style={[
-                  styles.circle,
-                  {
-                    backgroundColor: "#2563EB",
-                  },
-                ]}
-              >
-                <MaterialCommunityIcons
-                  name="chevron-right"
-                  size={24}
-                  color="#FFFFFF"
-                />
-              </View>
+            </>
+          )}
 
-              <Text style={styles.eventLabel}>
-                Load More
-              </Text>
-
-              <Text style={styles.eventDate}>
-                +{timeline.length - 3} Records
-              </Text>
-            </TouchableOpacity>
-          </>
-        )}
       </ScrollView>
+
     </View>
   );
 }

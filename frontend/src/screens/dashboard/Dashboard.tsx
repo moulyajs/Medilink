@@ -103,7 +103,7 @@ const QUICK_ACTIONS = [
   {
     label: "Timeline",
     icon: Clock,
-    route: "MedicalTimeline",
+    route: "Timeline",
   },
   {
     label: "Chat",

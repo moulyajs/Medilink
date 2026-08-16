@@ -9,42 +9,78 @@ def get_timeline(patient_id):
 
     db = SessionLocal()
 
-    result = db.execute(
-        text("""
-        SELECT
-            te.event_id,
-            te.event_date,
-            te.event_type,
-            te.summary,
-            d.document_id,
-            d.file_path
+    try:
 
-        FROM timeline_events te
+        result = db.execute(
+            text("""
+                SELECT
+                    te.event_id,
+                    te.event_date,
+                    te.event_type,
+                    te.summary,
+                    d.document_id,
+                    d.file_path
 
-        LEFT JOIN documents d
-            ON te.source_document = d.document_id
+                FROM timeline_events te
 
-        WHERE te.patient_id = :pid
+                LEFT JOIN documents d
+                    ON te.source_document = d.document_id
 
-        ORDER BY te.event_date DESC
+                WHERE te.patient_id = :pid
 
-        LIMIT 3
-        """),
-        {"pid": patient_id}
-    )
+                ORDER BY te.event_date DESC
 
-    timeline = []
+                LIMIT 3
+            """),
+            {
+                "pid": patient_id
+            }
+        )
 
-    for row in result:
-        timeline.append({
-            "id": str(row.event_id),
-            "document_id": str(row.document_id) if row.document_id else None,
-            "date": str(row.event_date),
-            "type": row.event_type,
-            "summary": row.summary,
-            "file_path": row.file_path
-        })
+        timeline = []
 
-    db.close()
+        for row in result:
 
-    return timeline
+            timeline.append({
+                "id": str(row.event_id),
+
+                "document_id":
+                    str(row.document_id)
+                    if row.document_id
+                    else None,
+
+                # Actual timeline/report date
+                "date":
+                    str(row.event_date)
+                    if row.event_date
+                    else None,
+
+                # Frontend-friendly field names
+                "event_date":
+                    str(row.event_date)
+                    if row.event_date
+                    else None,
+
+                "type":
+                    row.event_type,
+
+                "document_type":
+                    row.event_type,
+
+                "summary":
+                    row.summary,
+
+                "file_path":
+                    row.file_path,
+
+                "source_document":
+                    str(row.document_id)
+                    if row.document_id
+                    else None,
+            })
+
+        return timeline
+
+    finally:
+
+        db.close()
