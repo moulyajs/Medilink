@@ -12,7 +12,10 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { TimelineItem } from "../../types/timeline";
 import styles from "./styles";
 
-import { viewDocument } from "../../services/timelineService";
+import {
+  viewDocument,
+  viewDocumentMobile,
+} from "../../services/timelineService";
 
 interface Props {
   timeline: TimelineItem[];
@@ -70,6 +73,7 @@ export default function TimelineHeader({
   timeline,
 }: Props) {
   const [showAll, setShowAll] = useState(false);
+
   const [openingDocument, setOpeningDocument] =
     useState<string | null>(null);
 
@@ -106,14 +110,19 @@ export default function TimelineHeader({
       );
 
       console.log(
+        "PLATFORM:",
+        Platform.OS
+      );
+
+      console.log(
         "================================"
       );
 
       setOpeningDocument(documentId);
 
-      // ------------------------------------------------------
+      // ======================================================
       // WEB
-      // ------------------------------------------------------
+      // ======================================================
 
       if (Platform.OS === "web") {
         const blobUrl =
@@ -130,7 +139,6 @@ export default function TimelineHeader({
           "_blank"
         );
 
-        // Release object URL later
         setTimeout(() => {
           URL.revokeObjectURL(
             blobUrl
@@ -140,18 +148,16 @@ export default function TimelineHeader({
         return;
       }
 
-      // ------------------------------------------------------
+      // ======================================================
       // MOBILE
-      // ------------------------------------------------------
+      // ======================================================
 
-      /*
-       * For mobile, the authenticated Axios request returns
-       * a blob. Mobile handling can be added separately if
-       * needed.
-       */
+      console.log(
+        "Opening document on mobile..."
+      );
 
-      alert(
-        "Document viewing is currently supported on web."
+      await viewDocumentMobile(
+        documentId
       );
 
     } catch (error: any) {
@@ -195,12 +201,14 @@ export default function TimelineHeader({
 
       alert(
         error?.response?.data?.detail ||
+        error?.message ||
         "Unable to open medical report."
       );
 
     } finally {
 
       setOpeningDocument(null);
+
     }
   };
 
