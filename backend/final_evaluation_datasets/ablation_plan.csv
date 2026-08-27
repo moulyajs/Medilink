@@ -1,0 +1,6 @@
+experiment_id,configuration,components_removed,evaluation_dataset
+ABL01,Dense retrieval only,"Keyword retrieval, RRF, recency boost, reranker",retrieval_dataset.csv
+ABL02,Dense + keyword retrieval,"RRF, recency boost, reranker",retrieval_dataset.csv
+ABL03,Dense + keyword + RRF,"Recency boost, reranker",retrieval_dataset.csv
+ABL04,Dense + keyword + RRF + recency,Reranker,retrieval_dataset.csv
+ABL05,Full retrieval pipeline,None,retrieval_dataset.csv

@@ -1,0 +1,272 @@
+{
+"patient_id" : "2a02f095-d81d-4534-933d-92603970be06",
+"document_id" : "39bfc6ad-1188-42c8-9e28-b69d88345251",
+"doc_type": "LAB_REPORT",
+"report_date": "2023-07-22",
+"labs": [
+{
+"test_name": "BLOOD GROUP",
+"value": "O",
+"unit": null,
+"abnormal": false,
+"date": "2023-07-22",
+"reference_range": [null, null]
+},
+{
+"test_name": "RH TYPING",
+"value": "POSITIVE",
+"unit": null,
+"abnormal": false,
+"date": "2023-07-22",
+"reference_range": [null, null]
+},
+{
+"test_name": "HAEMOGLOBIN",
+"value": "16.7",
+"unit": "gm/dl",
+"abnormal": false,
+"date": "2023-07-22",
+"reference_range": [13.5, 18.5]
+},
+{
+"test_name": "TOTAL COUNT",
+"value": "8870",
+"unit": "cells/cu.mm",
+"abnormal": false,
+"date": "2023-07-22",
+"reference_range": [4000, 11000]
+},
+{
+"test_name": "PCV",
+"value": "48.1",
+"unit": "%",
+"abnormal": false,
+"date": "2023-07-22",
+"reference_range": [40, 52]
+},
+{
+"test_name": "RBC COUNT",
+"value": "5.59",
+"unit": "mill/cu.mm",
+"abnormal": false,
+"date": "2023-07-22",
+"reference_range": [4.5, 6.5]
+},
+{
+"test_name": "PLATELET COUNT",
+"value": "220000",
+"unit": "cells/cu.mm",
+"abnormal": false,
+"date": "2023-07-22",
+"reference_range": [140000, 400000]
+},
+{
+"test_name": "MCV",
+"value": "86.0",
+"unit": "fl",
+"abnormal": false,
+"date": "2023-07-22",
+"reference_range": [76, 97]
+},
+{
+"test_name": "MCH",
+"value": "29.9",
+"unit": "pg",
+"abnormal": false,
+"date": "2023-07-22",
+"reference_range": [26.5, 33.5]
+},
+{
+"test_name": "MCHC",
+"value": "34.7",
+"unit": "g/dl",
+"abnormal": false,
+"date": "2023-07-22",
+"reference_range": [30, 35]
+},
+{
+"test_name": "NEUTROPHILS",
+"value": "64.8",
+"unit": "%",
+"abnormal": false,
+"date": "2023-07-22",
+"reference_range": [40, 75]
+},
+{
+"test_name": "LYMPHOCYTES",
+"value": "26.5",
+"unit": "%",
+"abnormal": false,
+"date": "2023-07-22",
+"reference_range": [20, 45]
+},
+{
+"test_name": "EOSINOPHILS",
+"value": "2.8",
+"unit": "%",
+"abnormal": false,
+"date": "2023-07-22",
+"reference_range": [1, 6]
+},
+{
+"test_name": "MONOCYTES",
+"value": "5.9",
+"unit": "%",
+"abnormal": false,
+"date": "2023-07-22",
+"reference_range": [0, 10]
+},
+{
+"test_name": "BASOPHILS",
+"value": "0.0",
+"unit": "%",
+"abnormal": false,
+"date": "2023-07-22",
+"reference_range": [0, 1]
+},
+{
+"test_name": "FASTING BLOOD SUGAR",
+"value": "115",
+"unit": "mg/dl",
+"abnormal": true,
+"date": "2023-07-22",
+"reference_range": [70, 100]
+},
+{
+"test_name": "FASTING URINE SUGAR",
+"value": "NIL",
+"unit": "%",
+"abnormal": false,
+"date": "2023-07-22",
+"reference_range": [null, null]
+},
+{
+"test_name": "POST PRANDIAL BLOOD SUGAR",
+"value": "245",
+"unit": "mg/dl",
+"abnormal": true,
+"date": "2023-07-22",
+"reference_range": [80, 140]
+},
+{
+"test_name": "POST PRANDIAL URINE SUGAR",
+"value": "1%",
+"unit": "%",
+"abnormal": false,
+"date": "2023-07-22",
+"reference_range": [null, null]
+},
+{
+"test_name": "TOTAL CHOLESTROL",
+"value": "140",
+"unit": "mg/dl",
+"abnormal": false,
+"date": "2023-07-22",
+"reference_range": [130, 250]
+},
+{
+"test_name": "TRIGLYCERIDES",
+"value": "90",
+"unit": "mg/dl",
+"abnormal": false,
+"date": "2023-07-22",
+"reference_range": [60, 165]
+},
+{
+"test_name": "HDL CHOLESTROL",
+"value": "32",
+"unit": "mg/dl",
+"abnormal": false,
+"date": "2023-07-22",
+"reference_range": [30, 70]
+},
+{
+"test_name": "LDL CHOLESTROL",
+"value": "90",
+"unit": "mg/dl",
+"abnormal": false,
+"date": "2023-07-22",
+"reference_range": [null, 150]
+},
+{
+"test_name": "VLDL CHOLESTROL",
+"value": "18",
+"unit": "mg/dl",
+"abnormal": false,
+"date": "2023-07-22",
+"reference_range": [7, 35]
+},
+{
+"test_name": "T.CHOL/HDL RATIO",
+"value": "4.3:1",
+"unit": null,
+"abnormal": false,
+"date": "2023-07-22",
+"reference_range": [null, 5]
+},
+{
+"test_name": "SERUM SODIUM",
+"value": "138",
+"unit": "mEq/L",
+"abnormal": false,
+"date": "2023-07-22",
+"reference_range": [135, 150]
+},
+{
+"test_name": "SERUM POTASSIUM",
+"value": "4.4",
+"unit": "mEq/L",
+"abnormal": false,
+"date": "2023-07-22",
+"reference_range": [3.5, 5.0]
+},
+{
+"test_name": "Serum Chlorides",
+"value": "106",
+"unit": "mEq/L",
+"abnormal": false,
+"date": "2023-07-22",
+"reference_range": [98, 110]
+},
+{
+"test_name": "TOTAL BILIRUBIN",
+"value": "3.90",
+"unit": "mg/dl",
+"abnormal": true,
+"date": "2023-07-22",
+"reference_range": [0, 1.2]
+},
+{
+"test_name": "DIRECT BILIRUBIN",
+"value": "1.82",
+"unit": "mg/dl",
+"abnormal": true,
+"date": "2023-07-22",
+"reference_range": [0, 0.40]
+},
+{
+"test_name": "INDIRECT BILIRUBIN",
+"value": "2.08",
+"unit": "mg/dl",
+"abnormal": true,
+"date": "2023-07-22",
+"reference_range": [0.3, 1.0]
+},
+{
+"test_name": "SGOT(AST)",
+"value": "22",
+"unit": "U/L",
+"abnormal": false,
+"date": "2023-07-22",
+"reference_range": [1, 35]
+},
+{
+"test_name": "SGPT(ALT)",
+"value": "31",
+"unit": "U/L",
+"abnormal": false,
+"date": "2023-07-22",
+"reference_range": [1, 45]
+}
+]
+}

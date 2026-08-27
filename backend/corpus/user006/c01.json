@@ -1,0 +1,33 @@
+{
+"patient_id" : "fe56b5d1-a089-42da-bb5d-c33f815973d0",
+"document_id" : "d381d021-6f63-4039-9942-1aa4eb691b46",
+"doc_type": "CLINICAL_NOTE",
+"clinical_notes": [
+{
+"report_date": "2024-02-15",
+"facts": {
+"diagnoses": [],
+"medications": [
+"Syp. Ibugesic 100",
+"Syp. Calpol 250",
+"T. Pan 20"
+],
+"symptoms": [
+"Fever - 2 days",
+"↑ burps - last night",
+"Sorethroat - 1 day"
+],
+"findings": [
+"Wt: 22 kg",
+"SpO2: 99%",
+"PR: 130 b/m",
+"RR: 26 b/m",
+"Temp: 98.5°F",
+"ENT - N",
+"Systems - WNL"
+],
+"procedures": []
+}
+}
+]
+}

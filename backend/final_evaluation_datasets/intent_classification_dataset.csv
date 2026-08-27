@@ -1,0 +1,201 @@
+query_id,query,expected_intent
+INT001,What is my latest A/G RATIO?,LATEST_VALUE
+INT002,"Show me the most recent ALBUMIN, SERUM result.",LATEST_VALUE
+INT003,What's my current ASPARTATE AMINO TRANSFERASE (SGOT/AST) value?,LATEST_VALUE
+INT004,Can you find my newest Albumin - Serum Method : Bromcresol green reading?,LATEST_VALUE
+INT005,What did my latest report say about Anti HAV IgM (Interpretation)?,LATEST_VALUE
+INT006,I need my latest BASO# result.,LATEST_VALUE
+INT007,Tell me the most recent value for BILIRUBIN INDIRECT.,LATEST_VALUE
+INT008,Where is my latest BLOOD GROUP result?,LATEST_VALUE
+INT009,What was my Bile salt in the latest test?,LATEST_VALUE
+INT010,Give me the current recorded Bilirubin - Total Method : Mod. Jendrassik & Grof's.,LATEST_VALUE
+INT011,What is my latest Blood Urea?,LATEST_VALUE
+INT012,Show me the most recent Creatinine - Serum result.,LATEST_VALUE
+INT013,What's my current DENGUE IGG value?,LATEST_VALUE
+INT014,Can you find my newest DIRECT BILIRUBIN reading?,LATEST_VALUE
+INT015,What did my latest report say about EF?,LATEST_VALUE
+INT016,I need my latest EOSINOPHIL result.,LATEST_VALUE
+INT017,Tell me the most recent value for ESV.,LATEST_VALUE
+INT018,Where is my latest FASTING BLOOD SUGAR result?,LATEST_VALUE
+INT019,What was my Fasting Blood Glucose Method : GOD-POD in the latest test?,LATEST_VALUE
+INT020,Give me the current recorded GAMMA GLUTAMYL TRANSFERASE(GGT).,LATEST_VALUE
+INT021,What is my latest GLOBULIN?,LATEST_VALUE
+INT022,Show me the most recent Glycosylated Haemoglobin (HbA1c) result.,LATEST_VALUE
+INT023,What's my current HAEMOGLOBIN value?,LATEST_VALUE
+INT024,Can you find my newest HCT reading?,LATEST_VALUE
+INT025,What did my latest report say about HDL Cholesterol Method : Direct?,LATEST_VALUE
+INT026,I need my latest HGB result.,LATEST_VALUE
+INT027,Tell me the most recent value for IG#.,LATEST_VALUE
+INT028,Where is my latest IVSd result?,LATEST_VALUE
+INT029,What was my LDL CHOLESTROL in the latest test?,LATEST_VALUE
+INT030,Give me the current recorded LVIDd.,LATEST_VALUE
+INT031,What is my latest LYMPH#?,LATEST_VALUE
+INT032,Show me the most recent Lymphocytes result.,LATEST_VALUE
+INT033,What's my current M.C.V value?,LATEST_VALUE
+INT034,Can you find my newest MCHC reading?,LATEST_VALUE
+INT035,What did my latest report say about MONO#?,LATEST_VALUE
+INT036,I need my latest MPV result.,LATEST_VALUE
+INT037,Tell me the most recent value for MicroR.,LATEST_VALUE
+INT038,Where is my latest NEUT% result?,LATEST_VALUE
+INT039,What was my NT pro-BNP in the latest test?,LATEST_VALUE
+INT040,Give me the current recorded P.C.V.,LATEST_VALUE
+INT041,How has my AVERAGE BLOOD GLUCOSE (CALCULATED) changed over time?,TREND
+INT042,Is my Albumin - Serum Method: Bromcresol green going up or down?,TREND
+INT043,"Compare my Anti HAV IgM, Serum results across my reports.",TREND
+INT044,What trend is visible in my BASO%?,TREND
+INT045,Has my BILIRUBIN TOTAL improved or worsened?,TREND
+INT046,Show the progression of my Basophils.,TREND
+INT047,What direction has my Bilirubin - Direct Method : Mod. Jendrassik & Grof's been moving?,TREND
+INT048,How has my Bilirubin - Total Method : Mod. Jendrassik&Grof's behaved across the recorded dates?,TREND
+INT049,Are my Cast results stable over time?,TREND
+INT050,Tell me the trend in my Creatinine - Serum Method: Jaffe's Kinetic results.,TREND
+INT051,How has my DENGUE IGM changed over time?,TREND
+INT052,Is my Direct LDL going up or down?,TREND
+INT053,Compare my EO# results across my reports.,TREND
+INT054,What trend is visible in my EOSINOPHILS?,TREND
+INT055,Has my Eosinophils improved or worsened?,TREND
+INT056,Show the progression of my FASTING URINE SUGAR.,TREND
+INT057,What direction has my Fasting Blood Glucose Method: GOD-POD been moving?,TREND
+INT058,How has my GAMMA GT behaved across the recorded dates?,TREND
+INT059,Are my Globulin - Serum Method : Bromcresol green results stable over time?,TREND
+INT060,Tell me the trend in my Glycosylated Haemoglobin (HbA1c) (Automated) results.,TREND
+INT061,How has my HBA1C (HPLC METHOD) changed over time?,TREND
+INT062,Is my HDL CHOLESTROL going up or down?,TREND
+INT063,Compare my HDL Cholesterol Method: Direct results across my reports.,TREND
+INT064,What trend is visible in my Haemoglobin?,TREND
+INT065,Has my IG% improved or worsened?,TREND
+INT066,Show the progression of my Ketone.,TREND
+INT067,What direction has my LDL Cholesterol been moving?,TREND
+INT068,How has my LVIDs behaved across the recorded dates?,TREND
+INT069,Are my LYMPH% results stable over time?,TREND
+INT070,Tell me the trend in my M.C.H results.,TREND
+INT071,How has my MCH changed over time?,TREND
+INT072,Is my MCHC. going up or down?,TREND
+INT073,Compare my MONO% results across my reports.,TREND
+INT074,What trend is visible in my MacroR?,TREND
+INT075,Has my Monocytes improved or worsened?,TREND
+INT076,Show the progression of my NEUTROPHILS.,TREND
+INT077,What direction has my Neutrophils been moving?,TREND
+INT078,How has my PACKED CELL VOLUME behaved across the recorded dates?,TREND
+INT079,Are my PDW results stable over time?,TREND
+INT080,Tell me the trend in my POST PRANDIAL BLOOD SUGAR results.,TREND
+INT081,Which of my lab results are abnormal?,ABNORMAL_LABS
+INT082,Show me the abnormal tests in my records.,ABNORMAL_LABS
+INT083,What lab values are outside their reference ranges?,ABNORMAL_LABS
+INT084,Do I have any abnormal laboratory results?,ABNORMAL_LABS
+INT085,Which results were flagged as abnormal?,ABNORMAL_LABS
+INT086,List the abnormal findings from my lab reports.,ABNORMAL_LABS
+INT087,Are any of my lab tests out of range?,ABNORMAL_LABS
+INT088,What abnormal lab findings are recorded for me?,ABNORMAL_LABS
+INT089,Which laboratory values were flagged?,ABNORMAL_LABS
+INT090,Can you identify my abnormal test results?,ABNORMAL_LABS
+INT091,Which of my lab results are abnormal?,ABNORMAL_LABS
+INT092,Show me the abnormal tests in my records.,ABNORMAL_LABS
+INT093,What lab values are outside their reference ranges?,ABNORMAL_LABS
+INT094,Do I have any abnormal laboratory results?,ABNORMAL_LABS
+INT095,Which results were flagged as abnormal?,ABNORMAL_LABS
+INT096,List the abnormal findings from my lab reports.,ABNORMAL_LABS
+INT097,Are any of my lab tests out of range?,ABNORMAL_LABS
+INT098,What abnormal lab findings are recorded for me?,ABNORMAL_LABS
+INT099,Which laboratory values were flagged?,ABNORMAL_LABS
+INT100,Can you identify my abnormal test results?,ABNORMAL_LABS
+INT101,Which of my lab results are abnormal?,ABNORMAL_LABS
+INT102,Show me the abnormal tests in my records.,ABNORMAL_LABS
+INT103,What lab values are outside their reference ranges?,ABNORMAL_LABS
+INT104,Do I have any abnormal laboratory results?,ABNORMAL_LABS
+INT105,Which results were flagged as abnormal?,ABNORMAL_LABS
+INT106,List the abnormal findings from my lab reports.,ABNORMAL_LABS
+INT107,Are any of my lab tests out of range?,ABNORMAL_LABS
+INT108,What abnormal lab findings are recorded for me?,ABNORMAL_LABS
+INT109,Which laboratory values were flagged?,ABNORMAL_LABS
+INT110,Can you identify my abnormal test results?,ABNORMAL_LABS
+INT111,Which of my lab results are abnormal?,ABNORMAL_LABS
+INT112,Show me the abnormal tests in my records.,ABNORMAL_LABS
+INT113,What lab values are outside their reference ranges?,ABNORMAL_LABS
+INT114,Do I have any abnormal laboratory results?,ABNORMAL_LABS
+INT115,Which results were flagged as abnormal?,ABNORMAL_LABS
+INT116,List the abnormal findings from my lab reports.,ABNORMAL_LABS
+INT117,Are any of my lab tests out of range?,ABNORMAL_LABS
+INT118,What abnormal lab findings are recorded for me?,ABNORMAL_LABS
+INT119,Which laboratory values were flagged?,ABNORMAL_LABS
+INT120,Can you identify my abnormal test results?,ABNORMAL_LABS
+INT121,What is AVERAGE BLOOD GLUCOSE (CALCULATED)?,MEDICAL_DEFINITION
+INT122,What does Albumin - Serum Method: Bromcresol green mean?,MEDICAL_DEFINITION
+INT123,"Can you explain Anti HAV IgM, Serum?",MEDICAL_DEFINITION
+INT124,Define BASO% in simple terms.,MEDICAL_DEFINITION
+INT125,What is meant by BILIRUBIN TOTAL?,MEDICAL_DEFINITION
+INT126,Tell me about Basophils.,MEDICAL_DEFINITION
+INT127,Could you explain what Bilirubin - Direct Method : Mod. Jendrassik & Grof's is?,MEDICAL_DEFINITION
+INT128,What does the term Bilirubin - Total Method : Mod. Jendrassik&Grof's refer to?,MEDICAL_DEFINITION
+INT129,I want a simple explanation of Cast.,MEDICAL_DEFINITION
+INT130,What does Creatinine - Serum Method: Jaffe's Kinetic measure?,MEDICAL_DEFINITION
+INT131,What is DENGUE IGM?,MEDICAL_DEFINITION
+INT132,What does Direct LDL mean?,MEDICAL_DEFINITION
+INT133,Can you explain EO#?,MEDICAL_DEFINITION
+INT134,Define EOSINOPHILS in simple terms.,MEDICAL_DEFINITION
+INT135,What is meant by Eosinophils?,MEDICAL_DEFINITION
+INT136,Tell me about FASTING URINE SUGAR.,MEDICAL_DEFINITION
+INT137,Could you explain what Fasting Blood Glucose Method: GOD-POD is?,MEDICAL_DEFINITION
+INT138,What does the term GAMMA GT refer to?,MEDICAL_DEFINITION
+INT139,I want a simple explanation of Globulin - Serum Method : Bromcresol green.,MEDICAL_DEFINITION
+INT140,What does Glycosylated Haemoglobin (HbA1c) (Automated) measure?,MEDICAL_DEFINITION
+INT141,What is HBA1C (HPLC METHOD)?,MEDICAL_DEFINITION
+INT142,What does HDL CHOLESTROL mean?,MEDICAL_DEFINITION
+INT143,Can you explain HDL Cholesterol Method: Direct?,MEDICAL_DEFINITION
+INT144,Define Haemoglobin in simple terms.,MEDICAL_DEFINITION
+INT145,What is meant by IG%?,MEDICAL_DEFINITION
+INT146,Tell me about Ketone.,MEDICAL_DEFINITION
+INT147,Could you explain what LDL Cholesterol is?,MEDICAL_DEFINITION
+INT148,What does the term LVIDs refer to?,MEDICAL_DEFINITION
+INT149,I want a simple explanation of LYMPH%.,MEDICAL_DEFINITION
+INT150,What does M.C.H measure?,MEDICAL_DEFINITION
+INT151,What is MCH?,MEDICAL_DEFINITION
+INT152,What does MCHC. mean?,MEDICAL_DEFINITION
+INT153,Can you explain MONO%?,MEDICAL_DEFINITION
+INT154,Define MacroR in simple terms.,MEDICAL_DEFINITION
+INT155,What is meant by Monocytes?,MEDICAL_DEFINITION
+INT156,Tell me about NEUTROPHILS.,MEDICAL_DEFINITION
+INT157,Could you explain what Neutrophils is?,MEDICAL_DEFINITION
+INT158,What does the term PACKED CELL VOLUME refer to?,MEDICAL_DEFINITION
+INT159,I want a simple explanation of PDW.,MEDICAL_DEFINITION
+INT160,What does POST PRANDIAL BLOOD SUGAR measure?,MEDICAL_DEFINITION
+INT161,What medications are listed in my record?,GENERAL_RAG
+INT162,Which medicines were documented for me?,GENERAL_RAG
+INT163,What diagnoses are recorded in my clinical notes?,GENERAL_RAG
+INT164,What symptoms were documented in my visit?,GENERAL_RAG
+INT165,What findings are mentioned in my medical record?,GENERAL_RAG
+INT166,Which procedures are documented for me?,GENERAL_RAG
+INT167,Can you summarize the information in my report?,GENERAL_RAG
+INT168,What information about my treatment is in my records?,GENERAL_RAG
+INT169,What clinical information is recorded for me?,GENERAL_RAG
+INT170,Show me the details documented in my medical record.,GENERAL_RAG
+INT171,What medications are listed in my record?,GENERAL_RAG
+INT172,Which medicines were documented for me?,GENERAL_RAG
+INT173,What diagnoses are recorded in my clinical notes?,GENERAL_RAG
+INT174,What symptoms were documented in my visit?,GENERAL_RAG
+INT175,What findings are mentioned in my medical record?,GENERAL_RAG
+INT176,Which procedures are documented for me?,GENERAL_RAG
+INT177,Can you summarize the information in my report?,GENERAL_RAG
+INT178,What information about my treatment is in my records?,GENERAL_RAG
+INT179,What clinical information is recorded for me?,GENERAL_RAG
+INT180,Show me the details documented in my medical record.,GENERAL_RAG
+INT181,What medications are listed in my record?,GENERAL_RAG
+INT182,Which medicines were documented for me?,GENERAL_RAG
+INT183,What diagnoses are recorded in my clinical notes?,GENERAL_RAG
+INT184,What symptoms were documented in my visit?,GENERAL_RAG
+INT185,What findings are mentioned in my medical record?,GENERAL_RAG
+INT186,Which procedures are documented for me?,GENERAL_RAG
+INT187,Can you summarize the information in my report?,GENERAL_RAG
+INT188,What information about my treatment is in my records?,GENERAL_RAG
+INT189,What clinical information is recorded for me?,GENERAL_RAG
+INT190,Show me the details documented in my medical record.,GENERAL_RAG
+INT191,Hi,GREETING
+INT192,Hello,GREETING
+INT193,Hey there,GREETING
+INT194,Good morning,GREETING
+INT195,Good evening,GREETING
+INT196,Thanks,THANKS
+INT197,Thank you,THANKS
+INT198,"That's helpful, thanks",THANKS
+INT199,Bye,GOODBYE
+INT200,Goodbye,GOODBYE

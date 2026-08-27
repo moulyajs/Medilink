@@ -1,0 +1,72 @@
+{
+"patient_id" : "a5c02458-b9fe-4b00-9914-e856c77eb671",
+"document_id" : "9079fc86-2f8b-4e53-8c67-84921c5ef851",
+"doc_type": "LAB_REPORT",
+"report_date": "2022-10-02",
+"labs": [
+{
+"test_name": "Haemoglobin",
+"value": 11.9,
+"unit": "gms%",
+"abnormal": false,
+"date": "2022-10-02",
+"reference_range": [11.5, 16.4]
+},
+{
+"test_name": "Total WBC Count",
+"value": 7200,
+"unit": "Cells/cumm",
+"abnormal": false,
+"date": "2022-10-02",
+"reference_range": [4000, 10000]
+},
+{
+"test_name": "Neutrophils",
+"value": 72,
+"unit": "%",
+"abnormal": false,
+"date": "2022-10-02",
+"reference_range": [40, 75]
+},
+{
+"test_name": "Lymphocytes",
+"value": 23,
+"unit": "%",
+"abnormal": false,
+"date": "2022-10-02",
+"reference_range": [20, 45]
+},
+{
+"test_name": "Eosinophils",
+"value": 3,
+"unit": "%",
+"abnormal": false,
+"date": "2022-10-02",
+"reference_range": [1, 6]
+},
+{
+"test_name": "Monocytes",
+"value": 2,
+"unit": "%",
+"abnormal": false,
+"date": "2022-10-02",
+"reference_range": [1, 6]
+},
+{
+"test_name": "Basophils",
+"value": 0,
+"unit": "%",
+"abnormal": false,
+"date": "2022-10-02",
+"reference_range": [0, 1]
+},
+{
+"test_name": "Platelet Count",
+"value": 2.76,
+"unit": "Lakhs/uL",
+"abnormal": false,
+"date": "2022-10-02",
+"reference_range": [1.5, 4.5]
+}
+]
+}

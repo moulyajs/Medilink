@@ -1,0 +1,656 @@
+query_id,patient_id,query,category,expected_chunk_text,expected_document_id,source_file,expected_chunk_type
+RAG001,33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,What findings were summarized in this laboratory report?,lab_summary,"Laboratory Report Summary
+
+Abnormal Findings:
+- Serum Sodium (132.3 mEq/L)
+- Fasting blood glucose (123 mg/dl)
+- H.D.L. Cholesterol (27.6 mgs/dl)
+
+Normal Findings:
+- Serum Potassium (3.9 mEq/L)
+- Serum Chlorides (97.6 mEq/L)
+- NT pro-BNP (139.2 pg/ml)
+- HbA1c (5.9 %)
+- Blood Urea (15 mg/dl)
+- Serum Creatinine (0.74 mgs/dl)
+- Total Cholesterol (121 mgs/dl)
+- Direct LDL (64 mgs/dl)",7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r01.json,lab_summary
+RAG002,33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,Which lab findings were listed in the report summary?,lab_summary,"Laboratory Report Summary
+
+Abnormal Findings:
+- R.B.C Count (3.78 millions / cu. mm.)
+- M.C.V (116.9 fL)
+- M.C.H (41.5 pg)
+- Platelet Count (1.26 Lakhs/ cu. mm.)
+- Basophils (0.7 %)
+
+Normal Findings:
+- Haemoglobin (15.7 gms/dl)
+- NRBCs (0.0 %)
+- P.C.V (44.2 %)
+- M.C.H.C (35.5 g/dl)
+- Total W.B.C Count (9800 /cumm)
+- Neutrophils (58.4 %)
+- Lymphocytes (29.0 %)
+- Monocytes (7.6 %)
+- Eosinophils (4.3 %)",7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r02.json,lab_summary
+RAG003,33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,What normal and abnormal findings were summarized?,lab_summary,"Laboratory Report Summary
+
+Normal Findings:
+- LVIDd (4.4 cms)
+- LVIDs (2.7 cms)
+- RVDd (1.3 cms)
+- Aortic root (2.8 cms)
+- LA dimension (3.2 cms)
+- IVSd (0.9 cms)
+- LVPWd (0.9 cms)
+- EDV (66.0 ml)
+- ESV (26.0 ml)
+- EF (60.0 %)",7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r03.json,lab_summary
+RAG004,33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,Can you summarize the lab findings recorded here?,lab_summary,"Laboratory Report Summary
+
+Abnormal Findings:
+- Serum Sodium (132.3 mEq/L)
+- Fasting blood glucose (123 mg/dl)
+- H.D.L. Cholesterol (27.6 mgs/dl)
+
+Normal Findings:
+- Serum Potassium (3.9 mEq/L)
+- Serum Chlorides (97.6 mEq/L)
+- NT pro-BNP (139.2 pg/ml)
+- HbA1c (5.9 %)
+- Blood Urea (15 mg/dl)
+- Serum Creatinine (0.74 mgs/dl)
+- Total Cholesterol (121 mgs/dl)
+- Direct LDL (64 mgs/dl)",7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r04.json,lab_summary
+RAG005,0bcfe13f-d52b-4c01-b173-c18bf6208ba4,What diagnostic information is recorded?,diagnosis,"Date: 2024-12-15
+
+Diagnoses:
+- ACUTE FEBRILE ILLNESS
+- CHOLELITHIASIS",351801e2-1aec-4c3d-af1c-5879229dcbda,corpus/user002/c01.json,diagnosis
+RAG006,0bcfe13f-d52b-4c01-b173-c18bf6208ba4,Can you list the medicines recorded here?,medication,"Date: 2024-12-15
+
+Medications:
+- IV fluids
+- IV antibiotics (Inj. Piptaz 4.5gm)
+- IV antacids
+- IV antiemetics
+- IV multivitamin
+- oral medications
+- antidiabetic injections",351801e2-1aec-4c3d-af1c-5879229dcbda,corpus/user002/c01.json,medication
+RAG007,0bcfe13f-d52b-4c01-b173-c18bf6208ba4,Which symptoms were recorded in this visit?,symptom,"Date: 2024-12-15
+
+Symptoms:
+- fever since 3 days
+- generalized weakness
+- body pain
+- 1 episode of vomiting 2 days ago",351801e2-1aec-4c3d-af1c-5879229dcbda,corpus/user002/c01.json,symptom
+RAG008,0bcfe13f-d52b-4c01-b173-c18bf6208ba4,What observations are listed in my note?,finding,"Date: 2024-12-15
+
+Findings:
+- BP: 130/80 mm of Hg
+- TEMP: 96°F
+- PULSE RATE: 80 B/MIN
+- SPO2: 95% on RA
+- RR: 20 C/MIN
+- GRBS: 163 mg/dl
+- No Icterus, pallor, cyanosis, edema, Lymphadenopathy
+- S1, S2 HEARD
+- Bilateral NVBS (+)
+- CONSCIOUS/ORIENTED
+- P/A: SOFT, BOWEL SOUND (+)
+- USG abdomen and pelvis revealed cholelithiasis without sonological evidence of cholecystitis
+- Edematous gall bladder wall with trace free fluid in the abdomen
+- Patient responded well to given line of treatment",351801e2-1aec-4c3d-af1c-5879229dcbda,corpus/user002/c01.json,finding
+RAG009,0bcfe13f-d52b-4c01-b173-c18bf6208ba4,What medicines were recorded in this visit?,medication,"Date: 2024-12-17
+
+Medications:
+- INJ. PIPTAZ 4.5GM IV INFUSION IN 100ML NS, 6am-2pm-10pm TILL 2024-12-21
+- TAB. LEVOFLOXACIN, 0-1-0 X 4 DAYS AFTER FOOD
+- CAP. SOMPRAZ D 40MG, 1-0-0 X 5 DAYS BEFORE FOOD
+- SYP. MAC OS, 10ML-10ML-10ML BEFORE FOOD
+- TAB. NEUROBION FORTE, 0-1-0 X 2 WEEKS AFTER FOOD
+- TAB. DOLO 650MG, 1 SOS
+- TAB. GLIRUM MF, 1-0-0 X AFTER FOOD TO CONTINUE
+- TAB. AMLODE 5 MG, 1-0-0 X TO CONTINUE AFTER FOOD",351801e2-1aec-4c3d-af1c-5879229dcbda,corpus/user002/c01.json,medication
+RAG010,0bcfe13f-d52b-4c01-b173-c18bf6208ba4,What findings are mentioned in my record?,finding,"Date: 2024-12-17
+
+Findings:
+- Patient is haemodynamically stable at the time of discharge",351801e2-1aec-4c3d-af1c-5879229dcbda,corpus/user002/c01.json,finding
+RAG011,0bcfe13f-d52b-4c01-b173-c18bf6208ba4,What diagnoses are documented in my record?,diagnosis,"Date: 16.12.2024
+
+Diagnoses:
+- Cholelithiasis without sonological evidence of cholecystitis
+- Mild fatty liver",351801e2-1aec-4c3d-af1c-5879229dcbda,corpus/user002/c02.json,diagnosis
+RAG012,0bcfe13f-d52b-4c01-b173-c18bf6208ba4,Which symptoms were recorded in this visit?,symptom,"Date: 16.12.2024
+
+Symptoms:
+- Pain abdomen",351801e2-1aec-4c3d-af1c-5879229dcbda,corpus/user002/c02.json,symptom
+RAG013,0bcfe13f-d52b-4c01-b173-c18bf6208ba4,What observations are listed in my note?,finding,"Date: 16.12.2024
+
+Findings:
+- Liver is normal in size (14.5 cm) and increased in echopattern
+- No intra or extra hepatic biliary duct dilatation
+- No focal lesions
+- Portalvein is normal in course, caliber and shows hepatopetal flow
+- Hepatic veins and their confluence draining into the IVC appear normal
+- CBD is not dilated
+- Gallbladder demonstrates a calculus, measuring 7.5 mm
+- Gallbladder demonstrates edematous wall
+- Pancreas to the extent visualized, appears normal in size, contour and echogenicity
+- Spleen is normal in size (9.2 cm), shape, contour and echopattern
+- No evidence of mass or focal lesions
+- Right kidney is normal in size (measures 9.3 cm in length & 1.8 cm in parenchymal thickness), position, shape and echopattern
+- Corticomedullary differentiation is maintained
+- No evidence of calculi or hydronephrosis
+- Left kidney is normal in size (measures 10.0 cm in length & 1.6 cm in parenchymal thickness), position, shape and echopattern
+- No evidence of calculi or hydronephrosis
+- Retroperitoneum - Obscured by bowel gas
+- Urinary bladder is well distended
+- Wall thickness is normal
+- No evidence of calculi, mass or mural lesion
+- Prostate is normal in size measuring (Volume = 15.0 cc)
+- There is trace free fluid in the abdomen
+- No pleural effusion
+- Cholelithiasis without sonological evidence of cholecystitis
+- Edematous gallbladder wall with trace free fluid in the abdomen",351801e2-1aec-4c3d-af1c-5879229dcbda,corpus/user002/c02.json,finding
+RAG014,f5698963-3aab-4d82-8c5d-c1c2f52730c3,Can you summarize the lab findings recorded here?,lab_summary,"Laboratory Report Summary
+
+Abnormal Findings:
+- HAEMOGLOBIN (10.8 gm/dl)
+- MCV (70.7 fl)
+- MCH (23.3 pg)
+- BASOPHILS (0.1 %)
+
+Normal Findings:
+- RANDOM BLOOD SUGAR (80 MG/DL)
+- SERUM CREATININE (0.56 Mg/dl)
+- TOTAL COUNT (6970 cells/cu.mm)
+- PCV (32.7 %)
+- RBC COUNT (4.62 mill/cu.mm)
+- PLATELET COUNT (253000 Cells/cu.mm)
+- MCHC (33.0 g/dl)
+- NEUTROPHILS (59.1 %)
+- LYMPHOCYTES (30.6 %)
+- EOSINOPHILS (2.0 %)
+- MONOCYTES (8.2 %)
+- THYROID STIMULATING HORMONE (TSH) (2.48 uIU/mL)",1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r01.json,lab_summary
+RAG015,f5698963-3aab-4d82-8c5d-c1c2f52730c3,What does the laboratory summary contain?,lab_summary,"Laboratory Report Summary
+
+Abnormal Findings:
+- HAEMOGLOBIN (10.8 gm/dl)
+- MCV (70.7 fl)
+- MCH (23.3 pg)
+- BASOPHILS (0.1 %)
+
+Normal Findings:
+- TOTAL COUNT (6970 cells/cu.mm)
+- PCV (32.7 %)
+- RBC COUNT (4.62 mill/cu.mm)
+- PLATELET COUNT (253000 Cells/cu.mm)
+- MCHC (33.0 g/dl)
+- NEUTROPHILS (59.1 %)
+- LYMPHOCYTES (30.6 %)
+- EOSINOPHILS (2.0 %)
+- MONOCYTES (8.2 %)
+- THYROID STIMULATING HORMONE (TSH) (2.48 uIU/mL)
+- RANDOM BLOOD SUGAR (80 MG/DL)
+- SERUM CREATININE (0.56 Mg/dl)",1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r02.json,lab_summary
+RAG016,f5698963-3aab-4d82-8c5d-c1c2f52730c3,What findings were summarized in this laboratory report?,lab_summary,"Laboratory Report Summary
+
+Abnormal Findings:
+- HAEMOGLOBIN (11.4 gm/dl)
+- MCV (72.6 fl)
+- MCH. (25.2 pg)
+
+Normal Findings:
+- TOTAL COUNT (9020 cells/cu.mm)
+- PCV (32.7 %)
+- RBC COUNT (4.5 mill/cu.mm)
+- PLATELET COUNT (259000 cells/cu.mm)
+- MCHC. (34.7 g/dl)
+- NEUTROPHILS (63.5 %)
+- LYMPHOCYTES (28.4 %)
+- EOSINOPHILS (1.4 %)
+- MONOCYTES (6.5 %)
+- BASOPHILS (0.2 %)
+- SERUM CREATININE (0.57 mg/dl)
+- SERUM URIC ACID (4.4 mg/dl)
+- THYROID STIMULATING HORMONE ( TSH) (3.63 mIU/mL)",1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r03.json,lab_summary
+RAG017,a5c02458-b9fe-4b00-9914-e856c77eb671,Which diagnoses are listed for me?,diagnosis,"Date: 2015-11-05
+
+Diagnoses:
+- CALCULUS CHOLECYSTITIS",9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/c01.json,diagnosis
+RAG018,a5c02458-b9fe-4b00-9914-e856c77eb671,Can you list the medicines recorded here?,medication,"Date: 2015-11-05
+
+Medications:
+- Inj Calmpose
+- Inj Supacef
+- Inj Dynapar
+- Tab Ceftum
+- Tab Nexpro RD
+- Tab Dicloran A",9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/c01.json,medication
+RAG019,a5c02458-b9fe-4b00-9914-e856c77eb671,Show the symptoms documented for me.,symptom,"Date: 2015-11-05
+
+Symptoms:
+- left hypochondrium and left lumbar region pain, since 5 to 6 months on & off
+- nausea increased since 20 days
+- no h/o vomiting
+- no h/o burning micturition",9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/c01.json,symptom
+RAG020,a5c02458-b9fe-4b00-9914-e856c77eb671,What findings are mentioned in my record?,finding,"Date: 2015-11-05
+
+Findings:
+- USG abdomen and pelvis: Cholelithiasis
+- CBC: Hb—11.3gm/dl, TC—6300, PLT—273000
+- Conscious and oriented, Afebrile
+- Pulse—80/min, BP—110/70 mm of Hg, RR—20/min
+- SpO2—96% on room air
+- CVS—S1S2+, RS—B/L Clear
+- PA—Soft",9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/c01.json,finding
+RAG021,a5c02458-b9fe-4b00-9914-e856c77eb671,What findings are documented in this report?,finding,"Date: 2015-11-06
+
+Findings:
+- Minimal omental adhesion to gall bladder
+- Calot's triangle well defined
+- cystic duct and artery defined",9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/c01.json,finding
+RAG022,a5c02458-b9fe-4b00-9914-e856c77eb671,Which procedure was recorded?,procedure,"Date: 2015-11-06
+
+Procedures:
+- Laparoscopic cholecystectomy
+- Under GA, Aseptic precautions, supine position
+- Verres method pneumoperitoneum, standard 3 port entry
+- All adhesion released
+- cystic artery clipped and cut
+- Gall bladder off GB bed using diathermy
+- Gall bladder extracted from epigastric port
+- Ports removed under vision pneumoperitoneum deflated
+- Nylon to skin",9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/c01.json,procedure
+RAG023,a5c02458-b9fe-4b00-9914-e856c77eb671,What treatment medicines are mentioned in my record?,medication,"Date: 2015-11-07
+
+Medications:
+- Tab Ceftum 500mg, 1-0-1 x 5 days
+- Tab Nexpro RD, 1-0-1 x 5 days
+- Tab Dicloran A, 1-0-1 x 5 days",9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/c01.json,medication
+RAG024,a5c02458-b9fe-4b00-9914-e856c77eb671,Show the findings documented during this visit.,finding,"Date: 2015-11-07
+
+Findings:
+- Patient withstood the procedure well
+- Haemodynamically stable, vitals normal and afebrile
+- Patient was better",9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/c01.json,finding
+RAG025,a5c02458-b9fe-4b00-9914-e856c77eb671,What medications are documented for me?,medication,"Date: 2024-03-29
+
+Medications:
+- ZYLORIC-100 MG TAB
+- CALCIMAX-P SYP",9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/c02.json,medication
+RAG026,a5c02458-b9fe-4b00-9914-e856c77eb671,What findings were summarized in this laboratory report?,lab_summary,"Laboratory Report Summary
+
+Normal Findings:
+- Haemoglobin (11.9 gms%)
+- Total WBC Count (7200 Cells/cumm)
+- Neutrophils (72 %)
+- Lymphocytes (23 %)
+- Eosinophils (3 %)
+- Monocytes (2 %)
+- Basophils (0 %)
+- Platelet Count (2.76 Lakhs/uL)",9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r01.json,lab_summary
+RAG027,a5c02458-b9fe-4b00-9914-e856c77eb671,Which lab findings were listed in the report summary?,lab_summary,"Laboratory Report Summary
+
+Abnormal Findings:
+- ALBUMIN/GLOBULIN RATIO (1.3:1 None)
+
+Normal Findings:
+- BLOOD GROUP (O None)
+- RH TYPING (POSITIVE None)
+- HAEMOGLOBIN (12.3 gm/dl)
+- TOTAL COUNT (6870 cells/cu.mm)
+- PCV (36.6 %)
+- RBC COUNT (4.45 mill/cu.mm)
+- PLATELET COUNT (257000 cells/cu.mm)
+- MCV (82.4 fl)
+- MCH (27.6 pg)
+- MCHC (33.5 g/dl)
+- NEUTROPHILS (60.9 %)
+- LYMPHOCYTES (31.7 %)
+- EOSINOPHILS (1.8 %)
+- MONOCYTES (5.6 %)
+- BASOPHILS (0.0 %)
+- TRIIODOTHYRONINE (T3) (1.0 ng/mL)
+- THYROXINE (T4) (8.85 ug/dL)
+- TSH (4.31 mIU/mL)
+- FASTING BLOOD SUGAR (100 mg/dl)
+- SERUM SODIUM (139 mmol/L)
+- SERUM POTASSIUM (3.7 mmol/L)
+- SERUM CHLORIDES (105 mmol/L)
+- TOTAL CHOLESTROL (195 mg/dl)
+- TRIGLYCERIDES (70 mg/dl)
+- HDL CHOLESTROL (52 mg/dl)
+- LDL CHOLESTROL (129 mg/dl)
+- VLDL CHOLESTROL (14 mg/dl)
+- T.CHOL/HDL RATIO (3.7:1 None)
+- TOTAL BILIRUBIN (0.63 mg/dl)
+- DIRECT BILIRUBIN (0.2 mg/dl)
+- INDIRECT BILIRUBIN (0.43 mg/dl)
+- SGOT(AST) (17 U/L)
+- SGPT(ALT) (21 U/L)
+- SERUM ALKALINE PHOSPHATE (76 None)
+- SERUM TOTAL PROTEIN (7.8 gm/dl)
+- SERUM ALBUMIN (4.5 gm/dl)
+- GLOBULIN (3.3 gm/dl)
+- GAMMA GT (24 U/L)
+- HBSAG (NEGATIVE None)",9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,lab_summary
+RAG028,a5c02458-b9fe-4b00-9914-e856c77eb671,What normal and abnormal findings were summarized?,lab_summary,"Laboratory Report Summary
+
+Abnormal Findings:
+- RBC”S COUNT (4.2 mill/Cu.mm)
+- PACKED CELL VOLUME (35.5 %)
+- ESR (36 mm/hr)
+
+Normal Findings:
+- HEMOGLOBIN (12.5 gm/dL)
+- MCV (83.7 fl)
+- MCH (29.5 Pg)
+- MCHC (35.3 g/dl)
+- PLATELET COUNT (2.51 lakh/cu.mm)
+- TOTAL COUNT (5900 cells/cu.mm)
+- NEUTROPHILS (58 %)
+- LYMPHOCYTES (38 %)
+- EOSINOPHIL (2 %)
+- MONOCYTES (2 %)
+- BASOPHILS (0 %)",9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r03.json,lab_summary
+RAG029,2a02f095-d81d-4534-933d-92603970be06,What treatment medicines are mentioned in my record?,medication,"Date: 2015-11-26
+
+Medications:
+- T. Dolo 650
+- T. Glycomet
+- T. Tonact-ASP (75)",39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/c01.json,medication
+RAG030,2a02f095-d81d-4534-933d-92603970be06,What findings are mentioned in my record?,finding,"Date: 2015-11-26
+
+Findings:
+- FBS: 84 mg%
+- PPBS: 129 mg%
+- BP: 140/90 mmHg
+- FBS/PPBS: July 2015",39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/c01.json,finding
+RAG031,2a02f095-d81d-4534-933d-92603970be06,What findings were summarized in this laboratory report?,lab_summary,"Laboratory Report Summary
+
+Abnormal Findings:
+- TOTAL BILIRUBIN (3.77 mg/dl)
+- DIRECT BILIRUBIN (0.52 mg/dl)
+- INDIRECT BILIRUBIN (3.25 mg/dl)
+- SERUM TOTAL PROTEIN (9.0 gm/dl)
+- SERUM ALBUMIN (5.1 gm/dl)
+- ALBUMIN/GLOBULIN RATIO (1.3:1 None)
+- HBA1C (HPLC METHOD) (6.8 %)
+
+Normal Findings:
+- SERUM SODIUM (139 mmol/L)
+- SERUM POTASSIUM (4.1 mmol/L)
+- SERUM CHLORIDES (102 mmol/L)
+- TOTAL CHOLESTROL (135 mg/dl)
+- TRIGLYCERIDES (108 mg/dl)
+- HDL CHOLESTROL (34 mg/dl)
+- LDL CHOLESTROL (79.4 mg/dl)
+- VLDL CHOLESTROL (21.6 mg/dl)
+- T.CHOL/HDL RATIO (3.9:1 None)
+- SGOT(AST) (26 U/L)
+- SGPT(ALT) (43 U/L)
+- SERUM ALKALINE PHOSPHATE (99 U/L)
+- GLOBULIN (3.9 gm/dl)
+- GAMMA GT (30 U/L)
+- AVERAGE BLOOD GLUCOSE (CALCULATED) (147.6 mg/dL)",39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r01.json,lab_summary
+RAG032,2a02f095-d81d-4534-933d-92603970be06,Which lab findings were listed in the report summary?,lab_summary,"Laboratory Report Summary
+
+Abnormal Findings:
+- Glycosylated Haemoglobin (HbA1c) (Automated) (7.7* %)
+- Mean Blood Glucose (175.1* mg/dl)
+- Bilirubin - Total Method: Mod. Jendrassik & Grof's (3.0* mg/dl)
+- Bilirubin - Direct Method : Mod. Jendrassik & Grof's (1.1* mg/dl)
+- Bilirubin - Indirect Method : Calculation (1.90* mg/dl)
+
+Normal Findings:
+- Fasting Blood Glucose Method : GOD-POD (84 mg/dl)
+- Post Prandial Blood Glucose Method : GOD-POD (149 mg/dl)
+- Total Protein Method : Biuret (7.8 gm/dl)
+- Albumin - Serum Method : Bromcresol green (4.6 gm/dl)
+- Globulin - Serum Method : Bromcresol green (3.2 gm/dl)
+- A/G Ratio Method : Calculation (1.44 None)
+- SGOT (AST) Method : Mod. IFCC Kinetic (30 U/L)
+- SGPT(ALT) (29 U/L)
+- Alkaline Phosphatase (91 U/L)",39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r02.json,lab_summary
+RAG033,2a02f095-d81d-4534-933d-92603970be06,What normal and abnormal findings were summarized?,lab_summary,"Laboratory Report Summary
+
+Abnormal Findings:
+- LYMPHOCYTES (12.7 %)
+- EOSINOPHILS (0.2 %)
+- MONOCYTES (15.2 %)
+- TOTAL BILIRUBIN (3.40 mg/dl)
+- INDIRECT BILIRUBIN (3.11 mg/dl)
+- SGOT(AST) (40 U/L)
+- ALBUMIN/GLOBULIN RATIO (1.3:1 None)
+
+Normal Findings:
+- HAEMOGLOBIN (15.0 gm/dl)
+- TOTAL COUNT (10280 cells/cu.mm)
+- PCV (43.6 %)
+- RBC COUNT (5.10 mill/cu.mm)
+- PLATELET COUNT (156000 cells/cu.mm)
+- MCV (85.5 fl)
+- MCH (29.4 pg)
+- MCHC (34.4 g/dl)
+- NEUTROPHILS (71.9 %)
+- BASOPHILS (0.0 %)
+- DIRECT BILIRUBIN (0.29 mg/dl)
+- SGPT(ALT) (33 U/L)
+- SERUM ALKALINE PHOSPHATE (72 U/L)
+- SERUM TOTAL PROTEIN (7.4 gm/dl)
+- SERUM ALBUMIN (4.2 gm/dl)
+- GLOBULIN (3.2 gm/dl)
+- GAMMA GT (23 U/L)",39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r03.json,lab_summary
+RAG034,2a02f095-d81d-4534-933d-92603970be06,Can you summarize the lab findings recorded here?,lab_summary,"Laboratory Report Summary
+
+Abnormal Findings:
+- Bilirubin - Total Method : Mod. Jendrassik & Grof's (3.4* mg/dl)
+- Bilirubin - Direct Method : Mod. Jendrassik & Grof's (1.1* mg/dl)
+- Bilirubin - Indirect Method : Calculation (2.30* mg/dl)
+
+Normal Findings:
+- Total Protein Method : Biuret (6.7 gm/dl)
+- Albumin - Serum Method : Bromcresol green (3.7 gm/dl)
+- Globulin - Serum Method : Bromcresol green (3.00 gm/dl)
+- A/G Ratio Method : Calculation (1.23 None)
+- SGOT (AST) Method : Mod. IFCC Kinetic (33 U/L)
+- SGPT(ALT) (28 U/L)
+- Alkaline Phosphatase (93 U/L)",39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r04.json,lab_summary
+RAG035,2a02f095-d81d-4534-933d-92603970be06,What does the laboratory summary contain?,lab_summary,"Laboratory Report Summary
+
+Abnormal Findings:
+- Fasting Blood Glucose Method : GOD-POD (127* mg/dl)
+- Post Prandial Blood Glucose Method : GOD-POD (219* mg/dl)
+- Bilirubin - Total Method : Mod. Jendrassik & Grof's (2.8* mg/dl)
+- Bilirubin - Direct Method : Mod. Jendrassik & Grof's (1.6* mg/dl)
+- Bilirubin - Indirect Method : Calculation (1.20* mg/dl)
+
+Normal Findings:
+- Total Protein Method : Biuret (6.9 gm/dl)
+- Albumin - Serum Method: Bromcresol green (3.6 gm/dl)
+- Globulin - Serum Method : Bromcresol green (3.30 gm/dl)
+- A/G Ratio Method : Calculation (1.09 None)
+- SGOT (AST) Method : Mod. IFCC Kinetic (37 U/L)
+- SGPT(ALT) (22 U/L)
+- Alkaline Phosphatase (98 U/L)",39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r05.json,lab_summary
+RAG036,2a02f095-d81d-4534-933d-92603970be06,What findings were summarized in this laboratory report?,lab_summary,"Laboratory Report Summary
+
+Abnormal Findings:
+- FASTING BLOOD SUGAR (115 mg/dl)
+- POST PRANDIAL BLOOD SUGAR (245 mg/dl)
+- TOTAL BILIRUBIN (3.90 mg/dl)
+- DIRECT BILIRUBIN (1.82 mg/dl)
+- INDIRECT BILIRUBIN (2.08 mg/dl)
+
+Normal Findings:
+- BLOOD GROUP (O None)
+- RH TYPING (POSITIVE None)
+- HAEMOGLOBIN (16.7 gm/dl)
+- TOTAL COUNT (8870 cells/cu.mm)
+- PCV (48.1 %)
+- RBC COUNT (5.59 mill/cu.mm)
+- PLATELET COUNT (220000 cells/cu.mm)
+- MCV (86.0 fl)
+- MCH (29.9 pg)
+- MCHC (34.7 g/dl)
+- NEUTROPHILS (64.8 %)
+- LYMPHOCYTES (26.5 %)
+- EOSINOPHILS (2.8 %)
+- MONOCYTES (5.9 %)
+- BASOPHILS (0.0 %)
+- FASTING URINE SUGAR (NIL %)
+- POST PRANDIAL URINE SUGAR (1% %)
+- TOTAL CHOLESTROL (140 mg/dl)
+- TRIGLYCERIDES (90 mg/dl)
+- HDL CHOLESTROL (32 mg/dl)
+- LDL CHOLESTROL (90 mg/dl)
+- VLDL CHOLESTROL (18 mg/dl)
+- T.CHOL/HDL RATIO (4.3:1 None)
+- SERUM SODIUM (138 mEq/L)
+- SERUM POTASSIUM (4.4 mEq/L)
+- Serum Chlorides (106 mEq/L)
+- SGOT(AST) (22 U/L)
+- SGPT(ALT) (31 U/L)",39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,lab_summary
+RAG037,2a02f095-d81d-4534-933d-92603970be06,Which lab findings were listed in the report summary?,lab_summary,"Laboratory Report Summary
+
+Abnormal Findings:
+- Post Prandial Blood Glucose Method : GOD-POD (300 mg/dl)
+- Glycosylated Haemoglobin (HbA1c) (Automated) (8.9 %)
+- Mean Blood Glucose (209.2 mg/dl)
+
+Normal Findings:
+- Fasting Blood Glucose Method : GOD-POD (103 mg/dl)",39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r07.json,lab_summary
+RAG038,2a02f095-d81d-4534-933d-92603970be06,What normal and abnormal findings were summarized?,lab_summary,"Laboratory Report Summary
+
+Abnormal Findings:
+- Fasting Blood Glucose Method : GOD-POD (158* mg/dl)
+- Post Prandial Blood Glucose Method : GOD-POD (273* mg/dl)
+- Glycosylated Haemoglobin (HbA1c) (Automated) (8.6* %)
+- Mean Blood Glucose (199.9* mg/dl)
+- Bilirubin - Total Method : Mod. Jendrassik&Grof's (2.6* mg/dl)
+- Bilirubin - Direct Method : Mod. Jendrassik & Grof's (1.2* mg/dl)
+- Bilirubin - Indirect Method : Calculation (1.40* mg/dl)
+
+Normal Findings:
+- Total Protein Method : Biuret (7.1 gm/dl)
+- Albumin - Serum Method : Bromcresol green (4.1 gm/dl)
+- Globulin - Serum Method : Bromcresol green (3.00 gm/dl)
+- A/G Ratio Method : Calculation (1.37 None)
+- SGOT (AST) Method : Mod. IFCC Kinetic (24 U/L)
+- SGPT(ALT) (28 U/L)
+- Alkaline Phosphatase (85 U/L)",39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r08.json,lab_summary
+RAG039,2a02f095-d81d-4534-933d-92603970be06,Can you summarize the lab findings recorded here?,lab_summary,"Laboratory Report Summary
+
+Abnormal Findings:
+- Post Prandial Blood Glucose (182 mg/dl)
+- Glycosylated Haemoglobin (HbA1c) (7.6 %)
+- Mean Blood Glucose (170.8 mg/dl)
+- HDL Cholesterol (27 mg/dl)
+
+Normal Findings:
+- Fasting Blood Glucose (88 mg/dl)
+- Creatinine - Serum (0.9 mg/dl)
+- Total Cholesterol (112 mg/dl)
+- Triglycerides (100 mg/dl)
+- LDL Cholesterol (65.0 mg/dl)
+- VLDL Cholesterol (20.0 mg/dl)
+- Chol/HDL Ratio (4.15 None)",39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r09.json,lab_summary
+RAG040,fe56b5d1-a089-42da-bb5d-c33f815973d0,Show the medications documented in my note.,medication,"Date: 2024-02-15
+
+Medications:
+- Syp. Ibugesic 100
+- Syp. Calpol 250
+- T. Pan 20",d381d021-6f63-4039-9942-1aa4eb691b46,corpus/user006/c01.json,medication
+RAG041,fe56b5d1-a089-42da-bb5d-c33f815973d0,What symptoms are documented in my record?,symptom,"Date: 2024-02-15
+
+Symptoms:
+- Fever - 2 days
+- ↑ burps - last night
+- Sorethroat - 1 day",d381d021-6f63-4039-9942-1aa4eb691b46,corpus/user006/c01.json,symptom
+RAG042,fe56b5d1-a089-42da-bb5d-c33f815973d0,Which clinical findings are recorded?,finding,"Date: 2024-02-15
+
+Findings:
+- Wt: 22 kg
+- SpO2: 99%
+- PR: 130 b/m
+- RR: 26 b/m
+- Temp: 98.5°F
+- ENT - N
+- Systems - WNL",d381d021-6f63-4039-9942-1aa4eb691b46,corpus/user006/c01.json,finding
+RAG043,171c3dda-109c-4093-a794-6da070dae885,What diagnoses were recorded in this note?,diagnosis,"Date: 2024-02-01
+
+Diagnoses:
+- ACUTE SEVERE RHINOSINUSITIS, LT ASOM PERFORATION OTOMYCOSIS
+- ACUTE GASTRITIS
+- CHRONIC RHINOSINUSITIS ADENOIDS
+- HT EAR WAX ++",39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/c01.json,diagnosis
+RAG044,171c3dda-109c-4093-a794-6da070dae885,Which medicines are listed in my record?,medication,"Date: 2024-02-01
+
+Medications:
+- SYP. AUGMENTIN DDS / MOXCLAV DS
+- SYP. SINAREST AF / T MINIC
+- DRP. OTOREX / SOLIWAX EAR DROPS",39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/c01.json,medication
+RAG045,171c3dda-109c-4093-a794-6da070dae885,What findings are mentioned in my record?,finding,"Date: 2024-02-01
+
+Findings:
+- FOLLOW UP - PT BETTER",39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/c01.json,finding
+RAG046,171c3dda-109c-4093-a794-6da070dae885,What diagnoses are documented in my record?,diagnosis,"Date: 2024-01-27
+
+Diagnoses:
+- ACUTE SEVERE RHINOSINUSITIS, LT ASOM PERFORATION OTOMYCOSIS
+- ACUTE GASTRITIS
+- CHRONIC RHINOSINUSITIS ADENOIDS",39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/c02.json,diagnosis
+RAG047,171c3dda-109c-4093-a794-6da070dae885,What treatment medicines are mentioned in my record?,medication,"Date: 2024-01-27
+
+Medications:
+- TAB. JUNIOR LANZOL 15MG TABLET DT
+- SYP ONDEM EMESY SYR
+- SYP. AUGMENTIN DDS / MOXCLAV DS SUSP
+- SYP. SINAREST AF / T MINIC COLD
+- DRP CANDIBIOTIC PLUS EAR DROPS",39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/c02.json,medication
+RAG048,171c3dda-109c-4093-a794-6da070dae885,What normal and abnormal findings were summarized?,lab_summary,"Laboratory Report Summary
+
+Normal Findings:
+- DENGUE IGG (NEGATIVE None)
+- DENGUE IGM (NEGATIVE None)
+- DENGUE NS1 (NEGATIVE None)
+- Albumin (NIL None)
+- Sugar (NIL None)
+- Ketone (ABSENT None)
+- Bile Pigment (ABSENT None)
+- Bile salt (ABSENT None)
+- Pus Cells (2-3 None)
+- Epithelial Cells (0-1 None)
+- Red Blood Cells (ABSENT None)
+- Cast (NIL None)
+- Crystals (NIL None)",39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/r01.json,lab_summary
+RAG049,171c3dda-109c-4093-a794-6da070dae885,Can you summarize the lab findings recorded here?,lab_summary,"Laboratory Report Summary
+
+Abnormal Findings:
+- ESR (15.0 mm/hr)
+
+Normal Findings:
+- HAEMOGLOBIN (13.9 g/dl)
+- TOTAL W.B.COUNT (8400 c/cumm)
+- NEUTROPHILS (50 %)
+- LYMPHOCYTES (45 %)
+- EOSINOPHILS (2 %)
+- MONOCYTES (3 %)
+- Basophils (0 %)
+- PLATELET COUNT (2.72 lakhs/cmm)
+- RBC (5.14 million/cumm)
+- PCV (36.9 %)",39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/r02.json,lab_summary
+RAG050,daece52a-6286-4732-8c10-e47320b4d9db,What does the laboratory summary contain?,lab_summary,"Laboratory Report Summary
+
+Abnormal Findings:
+- Mean Blood Glucose (144.3 mg/dl)
+
+Normal Findings:
+- Haemoglobin (12.3 gm%)
+- Fasting Blood Glucose Method: GOD-POD (60 mg/dl)
+- Post Prandial Blood Glucose Method: GOD-POD (133 mg/dl)
+- Glycosylated Haemoglobin (HbA1c) (Automated) (6.7 %)",a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r01.json,lab_summary

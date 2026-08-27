@@ -1,0 +1,20 @@
+{
+"patient_id" : "a5c02458-b9fe-4b00-9914-e856c77eb671",
+"document_id" : "9079fc86-2f8b-4e53-8c67-84921c5ef851",
+"doc_type": "CLINICAL_NOTE",
+"clinical_notes": [
+{
+"report_date": "2024-03-29",
+"facts": {
+"diagnoses": [],
+"medications": [
+"ZYLORIC-100 MG TAB",
+"CALCIMAX-P SYP"
+],
+"symptoms": [],
+"findings": [],
+"procedures": []
+}
+}
+]
+}

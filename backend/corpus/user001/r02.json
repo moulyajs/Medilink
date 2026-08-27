@@ -1,0 +1,120 @@
+{
+  "patient_id": "33e738d0-e6c3-48d2-8aa1-746d8fe2eba7",
+  "document_id": "7cf80e66-c181-4a7b-8844-d7fcc87904e1",
+  "doc_type": "LAB_REPORT",
+  "report_date": "2025-05-07",
+  "labs": [
+    {
+      "test_name": "Haemoglobin",
+      "value": 15.7,
+      "unit": "gms/dl",
+      "abnormal": false,
+      "date": "2025-05-07",
+      "reference_range": [14.0, 16.0]
+    },
+    {
+      "test_name": "R.B.C Count",
+      "value": 3.78,
+      "unit": "millions / cu. mm.",
+      "abnormal": true,
+      "date": "2025-05-07",
+      "reference_range": [4.5, 6.5]
+    },
+    {
+      "test_name": "NRBCs",
+      "value": 0.0,
+      "unit": "%",
+      "abnormal": false,
+      "date": "2025-05-07",
+      "reference_range": [null, null]
+    },
+    {
+      "test_name": "P.C.V",
+      "value": 44.2,
+      "unit": "%",
+      "abnormal": false,
+      "date": "2025-05-07",
+      "reference_range": [40.0, 54.0]
+    },
+    {
+      "test_name": "M.C.V",
+      "value": 116.9,
+      "unit": "fL",
+      "abnormal": true,
+      "date": "2025-05-07",
+      "reference_range": [80.0, 99.0]
+    },
+    {
+      "test_name": "M.C.H",
+      "value": 41.5,
+      "unit": "pg",
+      "abnormal": true,
+      "date": "2025-05-07",
+      "reference_range": [27.0, 33.0]
+    },
+    {
+      "test_name": "M.C.H.C",
+      "value": 35.5,
+      "unit": "g/dl",
+      "abnormal": false,
+      "date": "2025-05-07",
+      "reference_range": [32.0, 37.0]
+    },
+    {
+      "test_name": "Platelet Count",
+      "value": 1.26,
+      "unit": "Lakhs/ cu. mm.",
+      "abnormal": true,
+      "date": "2025-05-07",
+      "reference_range": [1.5, 4.5]
+    },
+    {
+      "test_name": "Total W.B.C Count",
+      "value": 9800,
+      "unit": "/cumm",
+      "abnormal": false,
+      "date": "2025-05-07",
+      "reference_range": [4000.0, 11000.0]
+    },
+    {
+      "test_name": "Neutrophils",
+      "value": 58.4,
+      "unit": "%",
+      "abnormal": false,
+      "date": "2025-05-07",
+      "reference_range": [40.0, 75.0]
+    },
+    {
+      "test_name": "Lymphocytes",
+      "value": 29.0,
+      "unit": "%",
+      "abnormal": false,
+      "date": "2025-05-07",
+      "reference_range": [20.0, 45.0]
+    },
+    {
+      "test_name": "Monocytes",
+      "value": 7.6,
+      "unit": "%",
+      "abnormal": false,
+      "date": "2025-05-07",
+      "reference_range": [2.0, 10.0]
+    },
+    {
+      "test_name": "Eosinophils",
+      "value": 4.3,
+      "unit": "%",
+      "abnormal": false,
+      "date": "2025-05-07",
+      "reference_range": [1.0, 6.0]
+    },
+    {
+      "test_name": "Basophils",
+      "value": 0.7,
+      "unit": "%",
+      "abnormal": true,
+      "date": "2025-05-07",
+      "reference_range": [1.0, 2.0]
+    }
+  ]
+}

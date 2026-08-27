@@ -1,0 +1,88 @@
+{
+  "patient_id": "33e738d0-e6c3-48d2-8aa1-746d8fe2eba7",
+  "document_id": "7cf80e66-c181-4a7b-8844-d7fcc87904e1",
+  "doc_type": "LAB_REPORT",
+  "report_date": "2025-10-17",
+  "labs": [
+    {
+      "test_name": "LVIDd",
+      "value": 4.40,
+      "unit": "cms",
+      "abnormal": false,
+      "date": "2025-10-17",
+      "reference_range": [3.5, 5.5]
+    },
+    {
+      "test_name": "LVIDs",
+      "value": 2.70,
+      "unit": "cms",
+      "abnormal": false,
+      "date": "2025-10-17",
+      "reference_range": [2.4, 4.2]
+    },
+    {
+      "test_name": "RVDd",
+      "value": 1.30,
+      "unit": "cms",
+      "abnormal": false,
+      "date": "2025-10-17",
+      "reference_range": [0.7, 2.1]
+    },
+    {
+      "test_name": "Aortic root",
+      "value": 2.80,
+      "unit": "cms",
+      "abnormal": false,
+      "date": "2025-10-17",
+      "reference_range": [2.5, 3.7]
+    },
+    {
+      "test_name": "LA dimension",
+      "value": 3.20,
+      "unit": "cms",
+      "abnormal": false,
+      "date": "2025-10-17",
+      "reference_range": [1.9, 4.0]
+    },
+    {
+      "test_name": "IVSd",
+      "value": 0.90,
+      "unit": "cms",
+      "abnormal": false,
+      "date": "2025-10-17",
+      "reference_range": [0.6, 1.1]
+    },
+    {
+      "test_name": "LVPWd",
+      "value": 0.90,
+      "unit": "cms",
+      "abnormal": false,
+      "date": "2025-10-17",
+      "reference_range": [0.6, 1.1]
+    },
+    {
+      "test_name": "EDV",
+      "value": 66.00,
+      "unit": "ml",
+      "abnormal": false,
+      "date": "2025-10-17",
+      "reference_range": [null, null]
+    },
+    {
+      "test_name": "ESV",
+      "value": 26.00,
+      "unit": "ml",
+      "abnormal": false,
+      "date": "2025-10-17",
+      "reference_range": [null, null]
+    },
+    {
+      "test_name": "EF",
+      "value": 60.00,
+      "unit": "%",
+      "abnormal": false,
+      "date": "2025-10-17",
+      "reference_range": [50.0, 70.0]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+"patient_id" : "171c3dda-109c-4093-a794-6da070dae885",
+"document_id" : "39bfc6ad-1188-42c8-9e28-b69d88345251",
+"doc_type": "CLINICAL_NOTE",
+"clinical_notes": [
+{
+"report_date": "2024-02-01",
+"facts": {
+"diagnoses": [
+"ACUTE SEVERE RHINOSINUSITIS, LT ASOM PERFORATION OTOMYCOSIS",
+"ACUTE GASTRITIS",
+"CHRONIC RHINOSINUSITIS ADENOIDS",
+"HT EAR WAX ++"
+],
+"medications": [
+"SYP. AUGMENTIN DDS / MOXCLAV DS",
+"SYP. SINAREST AF / T MINIC",
+"DRP. OTOREX / SOLIWAX EAR DROPS"
+],
+"symptoms": [],
+"findings": [
+"FOLLOW UP - PT BETTER"
+],
+"procedures": []
+}
+}
+]
+}

@@ -1,0 +1,328 @@
+{
+"patient_id" : "a5c02458-b9fe-4b00-9914-e856c77eb671",
+"document_id" : "9079fc86-2f8b-4e53-8c67-84921c5ef851",
+"doc_type": "LAB_REPORT",
+"report_date": "2025-05-28",
+"labs": [
+{
+"test_name": "BLOOD GROUP",
+"value": "O",
+"unit": null,
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [null, null]
+},
+{
+"test_name": "RH TYPING",
+"value": "POSITIVE",
+"unit": null,
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [null, null]
+},
+{
+"test_name": "HAEMOGLOBIN",
+"value": 12.3,
+"unit": "gm/dl",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [11.5, 16.5]
+},
+{
+"test_name": "TOTAL COUNT",
+"value": 6870,
+"unit": "cells/cu.mm",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [4000, 11000]
+},
+{
+"test_name": "PCV",
+"value": 36.6,
+"unit": "%",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [32, 47]
+},
+{
+"test_name": "RBC COUNT",
+"value": 4.45,
+"unit": "mill/cu.mm",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [3.5, 5.5]
+},
+{
+"test_name": "PLATELET COUNT",
+"value": 257000,
+"unit": "cells/cu.mm",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [140000, 400000]
+},
+{
+"test_name": "MCV",
+"value": 82.4,
+"unit": "fl",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [76, 97]
+},
+{
+"test_name": "MCH",
+"value": 27.6,
+"unit": "pg",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [26.5, 33.5]
+},
+{
+"test_name": "MCHC",
+"value": 33.5,
+"unit": "g/dl",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [30, 35]
+},
+{
+"test_name": "NEUTROPHILS",
+"value": 60.9,
+"unit": "%",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [40, 75]
+},
+{
+"test_name": "LYMPHOCYTES",
+"value": 31.7,
+"unit": "%",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [20, 45]
+},
+{
+"test_name": "EOSINOPHILS",
+"value": 1.8,
+"unit": "%",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [1, 6]
+},
+{
+"test_name": "MONOCYTES",
+"value": 5.6,
+"unit": "%",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [0, 10]
+},
+{
+"test_name": "BASOPHILS",
+"value": 0.0,
+"unit": "%",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [0.0, 1.0]
+},
+{
+"test_name": "TRIIODOTHYRONINE (T3)",
+"value": 1.00,
+"unit": "ng/mL",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [0.58, 1.62]
+},
+{
+"test_name": "THYROXINE (T4)",
+"value": 8.85,
+"unit": "ug/dL",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [5.0, 14.5]
+},
+{
+"test_name": "TSH",
+"value": 4.31,
+"unit": "mIU/mL",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [0.35, 5.2]
+},
+{
+"test_name": "FASTING BLOOD SUGAR",
+"value": 100,
+"unit": "mg/dl",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [70, 100]
+},
+{
+"test_name": "SERUM SODIUM",
+"value": 139,
+"unit": "mmol/L",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [135, 150]
+},
+{
+"test_name": "SERUM POTASSIUM",
+"value": 3.7,
+"unit": "mmol/L",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [3.5, 5.0]
+},
+{
+"test_name": "SERUM CHLORIDES",
+"value": 105,
+"unit": "mmol/L",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [94, 110]
+},
+{
+"test_name": "TOTAL CHOLESTROL",
+"value": 195,
+"unit": "mg/dl",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [130, 250]
+},
+{
+"test_name": "TRIGLYCERIDES",
+"value": 70,
+"unit": "mg/dl",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [40, 140]
+},
+{
+"test_name": "HDL CHOLESTROL",
+"value": 52,
+"unit": "mg/dl",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [30, 70]
+},
+{
+"test_name": "LDL CHOLESTROL",
+"value": 129,
+"unit": "mg/dl",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [0, 150]
+},
+{
+"test_name": "VLDL CHOLESTROL",
+"value": 14,
+"unit": "mg/dl",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [7, 35]
+},
+{
+"test_name": "T.CHOL/HDL RATIO",
+"value": "3.7:1",
+"unit": null,
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [null, 5]
+},
+{
+"test_name": "TOTAL BILIRUBIN",
+"value": 0.63,
+"unit": "mg/dl",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [0, 1.2]
+},
+{
+"test_name": "DIRECT BILIRUBIN",
+"value": 0.20,
+"unit": "mg/dl",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [0.0, 0.40]
+},
+{
+"test_name": "INDIRECT BILIRUBIN",
+"value": 0.43,
+"unit": "mg/dl",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [0.3, 1.0]
+},
+{
+"test_name": "SGOT(AST)",
+"value": 17,
+"unit": "U/L",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [1, 31]
+},
+{
+"test_name": "SGPT(ALT)",
+"value": 21,
+"unit": "U/L",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [1, 34]
+},
+{
+"test_name": "SERUM ALKALINE PHOSPHATE",
+"value": 76,
+"unit": null,
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [null, null]
+},
+{
+"test_name": "SERUM TOTAL PROTEIN",
+"value": 7.8,
+"unit": "gm/dl",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [6.6, 8.3]
+},
+{
+"test_name": "SERUM ALBUMIN",
+"value": 4.5,
+"unit": "gm/dl",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [3.5, 5.0]
+},
+{
+"test_name": "GLOBULIN",
+"value": 3.3,
+"unit": "gm/dl",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [2.0, 4.0]
+},
+{
+"test_name": "ALBUMIN/GLOBULIN RATIO",
+"value": "1.3:1",
+"unit": null,
+"abnormal": true,
+"date": "2025-05-28",
+"reference_range": [1.5, 2.5]
+},
+{
+"test_name": "GAMMA GT",
+"value": 24,
+"unit": "U/L",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [10, 45]
+},
+{
+"test_name": "HBSAG",
+"value": "NEGATIVE",
+"unit": null,
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [null, null]
+}
+]
+}

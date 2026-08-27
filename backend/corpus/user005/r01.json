@@ -1,0 +1,184 @@
+{
+"patient_id" : "2a02f095-d81d-4534-933d-92603970be06",
+"document_id" : "39bfc6ad-1188-42c8-9e28-b69d88345251",
+"doc_type": "LAB_REPORT",
+"report_date": "2025-05-28",
+"labs": [
+{
+"test_name": "SERUM SODIUM",
+"value": 139,
+"unit": "mmol/L",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [135, 150]
+},
+{
+"test_name": "SERUM POTASSIUM",
+"value": 4.1,
+"unit": "mmol/L",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [3.5, 5.0]
+},
+{
+"test_name": "SERUM CHLORIDES",
+"value": 102,
+"unit": "mmol/L",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [94, 110]
+},
+{
+"test_name": "TOTAL CHOLESTROL",
+"value": 135,
+"unit": "mg/dl",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [130, 250]
+},
+{
+"test_name": "TRIGLYCERIDES",
+"value": 108,
+"unit": "mg/dl",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [60, 165]
+},
+{
+"test_name": "HDL CHOLESTROL",
+"value": 34,
+"unit": "mg/dl",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [30, 70]
+},
+{
+"test_name": "LDL CHOLESTROL",
+"value": 79.4,
+"unit": "mg/dl",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [0, 150]
+},
+{
+"test_name": "VLDL CHOLESTROL",
+"value": 21.6,
+"unit": "mg/dl",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [7, 35]
+},
+{
+"test_name": "T.CHOL/HDL RATIO",
+"value": "3.9:1",
+"unit": null,
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [null, 5]
+},
+{
+"test_name": "TOTAL BILIRUBIN",
+"value": 3.77,
+"unit": "mg/dl",
+"abnormal": true,
+"date": "2025-05-28",
+"reference_range": [0, 1.2]
+},
+{
+"test_name": "DIRECT BILIRUBIN",
+"value": 0.52,
+"unit": "mg/dl",
+"abnormal": true,
+"date": "2025-05-28",
+"reference_range": [0.0, 0.40]
+},
+{
+"test_name": "INDIRECT BILIRUBIN",
+"value": 3.25,
+"unit": "mg/dl",
+"abnormal": true,
+"date": "2025-05-28",
+"reference_range": [0.3, 1.0]
+},
+{
+"test_name": "SGOT(AST)",
+"value": 26,
+"unit": "U/L",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [1, 35]
+},
+{
+"test_name": "SGPT(ALT)",
+"value": 43,
+"unit": "U/L",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [1, 45]
+},
+{
+"test_name": "SERUM ALKALINE PHOSPHATE",
+"value": 99,
+"unit": "U/L",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [30, 120]
+},
+{
+"test_name": "SERUM TOTAL PROTEIN",
+"value": 9.0,
+"unit": "gm/dl",
+"abnormal": true,
+"date": "2025-05-28",
+"reference_range": [6.6, 8.3]
+},
+{
+"test_name": "SERUM ALBUMIN",
+"value": 5.1,
+"unit": "gm/dl",
+"abnormal": true,
+"date": "2025-05-28",
+"reference_range": [3.5, 5.0]
+},
+{
+"test_name": "GLOBULIN",
+"value": 3.9,
+"unit": "gm/dl",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [2.0, 4.0]
+},
+{
+"test_name": "ALBUMIN/GLOBULIN RATIO",
+"value": "1.3:1",
+"unit": null,
+"abnormal": true,
+"date": "2025-05-28",
+"reference_range": [1.5, 2.5]
+},
+{
+"test_name": "GAMMA GT",
+"value": 30,
+"unit": "U/L",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [10, 45]
+},
+{
+"test_name": "HBA1C (HPLC METHOD)",
+"value": 6.8,
+"unit": "%",
+"abnormal": true,
+"date": "2025-05-28",
+"reference_range": [4.0, 5.6]
+},
+{
+"test_name": "AVERAGE BLOOD GLUCOSE (CALCULATED)",
+"value": 147.6,
+"unit": "mg/dL",
+"abnormal": false,
+"date": "2025-05-28",
+"reference_range": [null, null]
+}
+]
+}

@@ -1,0 +1,69 @@
+{
+"patient_id": "0bcfe13f-d52b-4c01-b173-c18bf6208ba4",
+"document_id" : "351801e2-1aec-4c3d-af1c-5879229dcbda",
+"doc_type": "CLINICAL_NOTE",
+"clinical_notes": [
+{
+"report_date": "2024-12-15",
+"facts": {
+"diagnoses": [
+"ACUTE FEBRILE ILLNESS",
+"CHOLELITHIASIS"
+],
+"medications": [
+"IV fluids",
+"IV antibiotics (Inj. Piptaz 4.5gm)",
+"IV antacids",
+"IV antiemetics",
+"IV multivitamin",
+"oral medications",
+"antidiabetic injections"
+],
+"symptoms": [
+"fever since 3 days",
+"generalized weakness",
+"body pain",
+"1 episode of vomiting 2 days ago"
+],
+"findings": [
+"BP: 130/80 mm of Hg",
+"TEMP: 96°F",
+"PULSE RATE: 80 B/MIN",
+"SPO2: 95% on RA",
+"RR: 20 C/MIN",
+"GRBS: 163 mg/dl",
+"No Icterus, pallor, cyanosis, edema, Lymphadenopathy",
+"S1, S2 HEARD",
+"Bilateral NVBS (+)",
+"CONSCIOUS/ORIENTED",
+"P/A: SOFT, BOWEL SOUND (+)",
+"USG abdomen and pelvis revealed cholelithiasis without sonological evidence of cholecystitis",
+"Edematous gall bladder wall with trace free fluid in the abdomen",
+"Patient responded well to given line of treatment"
+],
+"procedures": []
+}
+},
+{
+"report_date": "17/12/2024",
+"facts": {
+"diagnoses": [],
+"medications": [
+"INJ. PIPTAZ 4.5GM IV INFUSION IN 100ML NS, 6am-2pm-10pm TILL 21/12/24",
+"TAB. LEVOFLOXACIN, 0-1-0 X 4 DAYS AFTER FOOD",
+"CAP. SOMPRAZ D 40MG, 1-0-0 X 5 DAYS BEFORE FOOD",
+"SYP. MAC OS, 10ML-10ML-10ML BEFORE FOOD",
+"TAB. NEUROBION FORTE, 0-1-0 X 2 WEEKS AFTER FOOD",
+"TAB. DOLO 650MG, 1 SOS",
+"TAB. GLIRUM MF, 1-0-0 X AFTER FOOD TO CONTINUE",
+"TAB. AMLODE 5 MG, 1-0-0 X TO CONTINUE AFTER FOOD"
+],
+"symptoms": [],
+"findings": [
+"Patient is haemodynamically stable at the time of discharge"
+],
+"procedures": []
+}
+}
+]
+}

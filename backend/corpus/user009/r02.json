@@ -1,0 +1,162 @@
+{
+  "patient_id" : "10043ad4-aa9f-46ef-aaf7-574f9d25d2a5",
+  "document_id" : "c578b7be-73c1-4068-8b13-e0c1281fcff8",
+  "doc_type": "LAB_REPORT",
+  "report_date": "2025-01-07",
+  "labs": [
+    {
+      "test_name": "Haemoglobin",
+      "value": 15.2,
+      "unit": "gm/dL",
+      "abnormal": false,
+      "date": "2025-01-07",
+      "reference_range": [
+        13.0,
+        18.0
+      ]
+    },
+    {
+      "test_name": "Total count",
+      "value": 9200,
+      "unit": "/cmm",
+      "abnormal": false,
+      "date": "2025-01-07",
+      "reference_range": [
+        4000,
+        11000
+      ]
+    },
+    {
+      "test_name": "Neutrophils",
+      "value": 85,
+      "unit": "%",
+      "abnormal": true,
+      "date": "2025-01-07",
+      "reference_range": [
+        40,
+        70
+      ]
+    },
+    {
+      "test_name": "Lymphocytes",
+      "value": 12,
+      "unit": "%",
+      "abnormal": true,
+      "date": "2025-01-07",
+      "reference_range": [
+        20,
+        45
+      ]
+    },
+    {
+      "test_name": "Eosinophils",
+      "value": 1,
+      "unit": "%",
+      "abnormal": false,
+      "date": "2025-01-07",
+      "reference_range": [
+        1,
+        6
+      ]
+    },
+    {
+      "test_name": "Monocytes",
+      "value": 2,
+      "unit": "%",
+      "abnormal": false,
+      "date": "2025-01-07",
+      "reference_range": [
+        1,
+        10
+      ]
+    },
+    {
+      "test_name": "Basophils",
+      "value": 0,
+      "unit": "%",
+      "abnormal": false,
+      "date": "2025-01-07",
+      "reference_range": [
+        0,
+        1
+      ]
+    },
+    {
+      "test_name": "RBC Count",
+      "value": 5.41,
+      "unit": "mill/cmm",
+      "abnormal": false,
+      "date": "2025-01-07",
+      "reference_range": [
+        4.2,
+        6.5
+      ]
+    },
+    {
+      "test_name": "Packed Cell Volume",
+      "value": 42.0,
+      "unit": "%",
+      "abnormal": false,
+      "date": "2025-01-07",
+      "reference_range": [
+        40,
+        54
+      ]
+    },
+    {
+      "test_name": "MCV",
+      "value": 78.5,
+      "unit": "fl",
+      "abnormal": false,
+      "date": "2025-01-07",
+      "reference_range": [
+        76,
+        96
+      ]
+    },
+    {
+      "test_name": "MCH",
+      "value": 28.2,
+      "unit": "pg",
+      "abnormal": false,
+      "date": "2025-01-07",
+      "reference_range": [
+        27,
+        32
+      ]
+    },
+    {
+      "test_name": "MCHC",
+      "value": 36.3,
+      "unit": "gm/dL",
+      "abnormal": false,
+      "date": "2025-01-07",
+      "reference_range": [
+        30,
+        37
+      ]
+    },
+    {
+      "test_name": "Platelet Count",
+      "value": 2.55,
+      "unit": "Lakh/cmm",
+      "abnormal": false,
+      "date": "2025-01-07",
+      "reference_range": [
+        1.4,
+        4.0
+      ]
+    },
+    {
+      "test_name": "RBS - Random Blood Sugar (Method - GOD-POD)",
+      "value": 115,
+      "unit": "mg/dL",
+      "abnormal": true,
+      "date": "2025-01-07",
+      "reference_range": [
+        60,
+        140
+      ]
+    }
+  ]
+}

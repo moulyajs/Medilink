@@ -1,0 +1,27 @@
+{
+"patient_id" : "171c3dda-109c-4093-a794-6da070dae885",
+"document_id" : "39bfc6ad-1188-42c8-9e28-b69d88345251",
+"doc_type": "CLINICAL_NOTE",
+"clinical_notes": [
+{
+"report_date": "2024-01-27",
+"facts": {
+"diagnoses": [
+"ACUTE SEVERE RHINOSINUSITIS, LT ASOM PERFORATION OTOMYCOSIS",
+"ACUTE GASTRITIS",
+"CHRONIC RHINOSINUSITIS ADENOIDS"
+],
+"medications": [
+"TAB. JUNIOR LANZOL 15MG TABLET DT",
+"SYP ONDEM EMESY SYR",
+"SYP. AUGMENTIN DDS / MOXCLAV DS SUSP",
+"SYP. SINAREST AF / T MINIC COLD",
+"DRP CANDIBIOTIC PLUS EAR DROPS"
+],
+"symptoms": [],
+"findings": [],
+"procedures": []
+}
+}
+]
+}

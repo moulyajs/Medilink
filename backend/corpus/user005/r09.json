@@ -1,0 +1,96 @@
+{
+"patient_id" : "2a02f095-d81d-4534-933d-92603970be06",
+"document_id" : "39bfc6ad-1188-42c8-9e28-b69d88345251",
+"doc_type": "LAB_REPORT",
+"report_date": "2023-05-24",
+"labs": [
+{
+"test_name": "Fasting Blood Glucose",
+"value": 88,
+"unit": "mg/dl",
+"abnormal": false,
+"date": "2023-05-24",
+"reference_range": [60, 110]
+},
+{
+"test_name": "Post Prandial Blood Glucose",
+"value": 182,
+"unit": "mg/dl",
+"abnormal": true,
+"date": "2023-05-24",
+"reference_range": [100, 150]
+},
+{
+"test_name": "Glycosylated Haemoglobin (HbA1c)",
+"value": 7.6,
+"unit": "%",
+"abnormal": true,
+"date": "2023-05-24",
+"reference_range": [4.0, 6.0]
+},
+{
+"test_name": "Mean Blood Glucose",
+"value": 170.8,
+"unit": "mg/dl",
+"abnormal": true,
+"date": "2023-05-24",
+"reference_range": [70, 140]
+},
+{
+"test_name": "Creatinine - Serum",
+"value": 0.9,
+"unit": "mg/dl",
+"abnormal": false,
+"date": "2023-05-24",
+"reference_range": [0.7, 1.5]
+},
+{
+"test_name": "Total Cholesterol",
+"value": 112,
+"unit": "mg/dl",
+"abnormal": false,
+"date": "2023-05-24",
+"reference_range": [50, 200]
+},
+{
+"test_name": "Triglycerides",
+"value": 100,
+"unit": "mg/dl",
+"abnormal": false,
+"date": "2023-05-24",
+"reference_range": [40, 150]
+},
+{
+"test_name": "HDL Cholesterol",
+"value": 27,
+"unit": "mg/dl",
+"abnormal": true,
+"date": "2023-05-24",
+"reference_range": [30, 70]
+},
+{
+"test_name": "LDL Cholesterol",
+"value": 65.00,
+"unit": "mg/dl",
+"abnormal": false,
+"date": "2023-05-24",
+"reference_range": [null, 100]
+},
+{
+"test_name": "VLDL Cholesterol",
+"value": 20.00,
+"unit": "mg/dl",
+"abnormal": false,
+"date": "2023-05-24",
+"reference_range": [20, 45]
+},
+{
+"test_name": "Chol/HDL Ratio",
+"value": 4.15,
+"unit": null,
+"abnormal": false,
+"date": "2023-05-24",
+"reference_range": [0, 6]
+}
+]
+}

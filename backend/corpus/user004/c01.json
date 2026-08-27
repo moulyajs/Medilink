@@ -1,0 +1,81 @@
+{
+"patient_id" : "a5c02458-b9fe-4b00-9914-e856c77eb671",
+"document_id" : "9079fc86-2f8b-4e53-8c67-84921c5ef851",
+"doc_type": "CLINICAL_NOTE",
+"clinical_notes": [
+{
+"report_date": "2026-11-05",
+"facts": {
+"diagnoses": [
+"CALCULUS CHOLECYSTITIS"
+],
+"medications": [
+"Inj Calmpose",
+"Inj Supacef",
+"Inj Dynapar",
+"Tab Ceftum",
+"Tab Nexpro RD",
+"Tab Dicloran A"
+],
+"symptoms": [
+"left hypochondrium and left lumbar region pain, since 5 to 6 months on & off",
+"nausea increased since 20 days",
+"no h/o vomiting",
+"no h/o burning micturition"
+],
+"findings": [
+"USG abdomen and pelvis: Cholelithiasis",
+"CBC: Hb—11.3gm/dl, TC—6300, PLT—273000",
+"Conscious and oriented, Afebrile",
+"Pulse—80/min, BP—110/70 mm of Hg, RR—20/min",
+"SpO2—96% on room air",
+"CVS—S1S2+, RS—B/L Clear",
+"PA—Soft"
+],
+"procedures": []
+}
+},
+{
+"report_date": "06/11/2015",
+"facts": {
+"diagnoses": [],
+"medications": [],
+"symptoms": [],
+"findings": [
+"Minimal omental adhesion to gall bladder",
+"Calot's triangle well defined",
+"cystic duct and artery defined"
+],
+"procedures": [
+"Laparoscopic cholecystectomy",
+"Under GA, Aseptic precautions, supine position",
+"Verres method pneumoperitoneum, standard 3 port entry",
+"All adhesion released",
+"cystic artery clipped and cut",
+"Gall bladder off GB bed using diathermy",
+"Gall bladder extracted from epigastric port",
+"Ports removed under vision pneumoperitoneum deflated",
+"Nylon to skin"
+]
+}
+},
+{
+"report_date": "07/11/2015",
+"facts": {
+"diagnoses": [],
+"medications": [
+"Tab Ceftum 500mg, 1-0-1 x 5 days",
+"Tab Nexpro RD, 1-0-1 x 5 days",
+"Tab Dicloran A, 1-0-1 x 5 days"
+],
+"symptoms": [],
+"findings": [
+"Patient withstood the procedure well",
+"Haemodynamically stable, vitals normal and afebrile",
+"Patient was better"
+],
+"procedures": []
+}
+}
+]
+}

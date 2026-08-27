@@ -1,0 +1,96 @@
+{
+  "patient_id": "33e738d0-e6c3-48d2-8aa1-746d8fe2eba7",
+  "document_id": "7cf80e66-c181-4a7b-8844-d7fcc87904e1",
+  "doc_type": "LAB_REPORT",
+  "report_date": "2025-05-07",  
+  "labs": [
+    {
+      "test_name": "Serum Sodium",
+      "value": 132.3,
+      "unit": "mEq/L",
+      "abnormal": true,
+      "date": "2025-05-07",
+      "reference_range": [135.0, 145.0]
+    },
+    {
+      "test_name": "Serum Potassium",
+      "value": 3.9,
+      "unit": "mEq/L",
+      "abnormal": false,
+      "date": "2025-05-07",
+      "reference_range": [3.5, 4.5]
+    },
+    {
+      "test_name": "Serum Chlorides",
+      "value": 97.6,
+      "unit": "mEq/L",
+      "abnormal": false,
+      "date": "2025-05-07",
+      "reference_range": [96.0, 106.0]
+    },
+    {
+      "test_name": "NT pro-BNP",
+      "value": 139.2,
+      "unit": "pg/ml",
+      "abnormal": false,
+      "date": "2025-05-07",
+      "reference_range": [null, 900.0]
+    },
+    {
+      "test_name": "Fasting blood glucose",
+      "value": 123,
+      "unit": "mg/dl",
+      "abnormal": true,
+      "date": "2025-05-07",
+      "reference_range": [60.0, 100.0]
+    },
+    {
+      "test_name": "HbA1c",
+      "value": 5.9,
+      "unit": "%",
+      "abnormal": false,
+      "date": "2025-05-07",
+      "reference_range": [null, 6.0]
+    },
+    {
+      "test_name": "Blood Urea",
+      "value": 15,
+      "unit": "mg/dl",
+      "abnormal": false,
+      "date": "2025-05-07",
+      "reference_range": [15.0, 45.0]
+    },
+    {
+      "test_name": "Serum Creatinine",
+      "value": 0.74,
+      "unit": "mgs/dl",
+      "abnormal": false,
+      "date": "2025-05-07",
+      "reference_range": [0.7, 1.2]
+    },
+    {
+      "test_name": "Total Cholesterol",
+      "value": 121,
+      "unit": "mgs/dl",
+      "abnormal": false,
+      "date": "2025-05-07",
+      "reference_range": [0.0, 200.0]
+    },
+    {
+      "test_name": "H.D.L. Cholesterol",
+      "value": 27.6,
+      "unit": "mgs/dl",
+      "abnormal": true,
+      "date": "2025-05-07",
+      "reference_range": [35.0, 55.0]
+    },
+    {
+      "test_name": "Direct LDL",
+      "value": 64,
+      "unit": "mgs/dl",
+      "abnormal": false,
+      "date": "2025-05-07",
+      "reference_range": [null, 100.0]
+    }
+  ]
+}

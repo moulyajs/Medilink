@@ -1,0 +1,136 @@
+{
+"patient_id": "f5698963-3aab-4d82-8c5d-c1c2f52730c3",
+"document_id" : "1c534aad-a729-498d-9098-69c4dd921480",
+"doc_type": "LAB_REPORT",
+"report_date": "2024-05-15",
+"labs": [
+{
+"test_name": "RANDOM BLOOD SUGAR",
+"value": 80,
+"unit": "MG/DL",
+"abnormal": false,
+"date": "2024-05-15",
+"reference_range": [80, 140]
+},
+{
+"test_name": "SERUM CREATININE",
+"value": 0.56,
+"unit": "Mg/dl",
+"abnormal": false,
+"date": "2024-05-15",
+"reference_range": [0.5, 0.9]
+},
+{
+"test_name": "HAEMOGLOBIN",
+"value": 10.8,
+"unit": "gm/dl",
+"abnormal": true,
+"date": "2024-05-15",
+"reference_range": [11.5, 16.5]
+},
+{
+"test_name": "TOTAL COUNT",
+"value": 6970,
+"unit": "cells/cu.mm",
+"abnormal": false,
+"date": "2024-05-15",
+"reference_range": [4000, 11000]
+},
+{
+"test_name": "PCV",
+"value": 32.7,
+"unit": "%",
+"abnormal": false,
+"date": "2024-05-15",
+"reference_range": [32, 47]
+},
+{
+"test_name": "RBC COUNT",
+"value": 4.62,
+"unit": "mill/cu.mm",
+"abnormal": false,
+"date": "2024-05-15",
+"reference_range": [3.5, 5.5]
+},
+{
+"test_name": "PLATELET COUNT",
+"value": 253000,
+"unit": "Cells/cu.mm",
+"abnormal": false,
+"date": "2024-05-15",
+"reference_range": [140000, 400000]
+},
+{
+"test_name": "MCV",
+"value": 70.7,
+"unit": "fl",
+"abnormal": true,
+"date": "2024-05-15",
+"reference_range": [76, 97]
+},
+{
+"test_name": "MCH",
+"value": 23.3,
+"unit": "pg",
+"abnormal": true,
+"date": "2024-05-15",
+"reference_range": [26.5, 33.5]
+},
+{
+"test_name": "MCHC",
+"value": 33.0,
+"unit": "g/dl",
+"abnormal": false,
+"date": "2024-05-15",
+"reference_range": [30, 35]
+},
+{
+"test_name": "NEUTROPHILS",
+"value": 59.1,
+"unit": "%",
+"abnormal": false,
+"date": "2024-05-15",
+"reference_range": [40, 75]
+},
+{
+"test_name": "LYMPHOCYTES",
+"value": 30.6,
+"unit": "%",
+"abnormal": false,
+"date": "2024-05-15",
+"reference_range": [20, 45]
+},
+{
+"test_name": "EOSINOPHILS",
+"value": 2.0,
+"unit": "%",
+"abnormal": false,
+"date": "2024-05-15",
+"reference_range": [1, 6]
+},
+{
+"test_name": "MONOCYTES",
+"value": 8.2,
+"unit": "%",
+"abnormal": false,
+"date": "2024-05-15",
+"reference_range": [0, 10]
+},
+{
+"test_name": "BASOPHILS",
+"value": 0.1,
+"unit": "%",
+"abnormal": true,
+"date": "2024-05-15",
+"reference_range": [0, 0]
+},
+{
+"test_name": "THYROID STIMULATING HORMONE (TSH)",
+"value": 2.48,
+"unit": "uIU/mL",
+"abnormal": false,
+"date": "2024-05-15",
+"reference_range": [0.35, 5.2]
+}
+]
+}

@@ -1,0 +1,129 @@
+{
+  "patient_id" : "171c3dda-109c-4093-a794-6da070dae885",
+"document_id" : "39bfc6ad-1188-42c8-9e28-b69d88345251",
+  "doc_type": "LAB_REPORT",
+  "report_date": "2023-08-26",
+  "labs": [
+    {
+      "test_name": "HAEMOGLOBIN",
+      "value": 13.9,
+      "unit": "g/dl",
+      "abnormal": false,
+      "date": "2023-08-26",
+      "reference_range": [
+        12,
+        18
+      ]
+    },
+    {
+      "test_name": "TOTAL W.B.COUNT",
+      "value": 8400,
+      "unit": "c/cumm",
+      "abnormal": false,
+      "date": "2023-08-26",
+      "reference_range": [
+        4000,
+        11000
+      ]
+    },
+    {
+      "test_name": "NEUTROPHILS",
+      "value": 50,
+      "unit": "%",
+      "abnormal": false,
+      "date": "2023-08-26",
+      "reference_range": [
+        40,
+        75
+      ]
+    },
+    {
+      "test_name": "LYMPHOCYTES",
+      "value": 45,
+      "unit": "%",
+      "abnormal": false,
+      "date": "2023-08-26",
+      "reference_range": [
+        20,
+        45
+      ]
+    },
+    {
+      "test_name": "EOSINOPHILS",
+      "value": 2,
+      "unit": "%",
+      "abnormal": false,
+      "date": "2023-08-26",
+      "reference_range": [
+        1,
+        6
+      ]
+    },
+    {
+      "test_name": "MONOCYTES",
+      "value": 3,
+      "unit": "%",
+      "abnormal": false,
+      "date": "2023-08-26",
+      "reference_range": [
+        0,
+        4
+      ]
+    },
+    {
+      "test_name": "Basophils",
+      "value": 0,
+      "unit": "%",
+      "abnormal": false,
+      "date": "2023-08-26",
+      "reference_range": [
+        0,
+        1
+      ]
+    },
+    {
+      "test_name": "ESR",
+      "value": 15.0,
+      "unit": "mm/hr",
+      "abnormal": true,
+      "date": "2023-08-26",
+      "reference_range": [
+        0,
+        10
+      ]
+    },
+    {
+      "test_name": "PLATELET COUNT",
+      "value": 2.72,
+      "unit": "lakhs/cmm",
+      "abnormal": false,
+      "date": "2023-08-26",
+      "reference_range": [
+        1.5,
+        4.0
+      ]
+    },
+    {
+      "test_name": "RBC",
+      "value": 5.14,
+      "unit": "million/cumm",
+      "abnormal": false,
+      "date": "2023-08-26",
+      "reference_range": [
+        3.5,
+        5.5
+      ]
+    },
+    {
+      "test_name": "PCV",
+      "value": 36.9,
+      "unit": "%",
+      "abnormal": false,
+      "date": "2023-08-26",
+      "reference_range": [
+        35,
+        55
+      ]
+    }
+  ]
+}

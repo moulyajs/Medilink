@@ -1,0 +1,30 @@
+{
+  "patient_id" : "daece52a-6286-4732-8c10-e47320b4d9db",
+  "document_id" : "a8cb31de-b79b-4c27-8d49-c335ed030627",
+  "doc_type": "LAB_REPORT",
+  "report_date": "2023-07-23",
+  "labs": [
+    {
+      "test_name": "Fasting Blood Glucose Method: GOD-POD",
+      "value": 109,
+      "unit": "mg/dl",
+      "abnormal": false,
+      "date": "2023-07-23",
+      "reference_range": [
+        60,
+        110
+      ]
+    },
+    {
+      "test_name": "Post Prandial Blood Glucose Method: GOD-POD",
+      "value": 198,
+      "unit": "mg/dl",
+      "abnormal": true,
+      "date": "2023-07-23",
+      "reference_range": [
+        100,
+        150
+      ]
+    }
+  ]
+}

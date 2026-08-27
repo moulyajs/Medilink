@@ -1,0 +1,120 @@
+{
+"patient_id" : "a5c02458-b9fe-4b00-9914-e856c77eb671",
+"document_id" : "9079fc86-2f8b-4e53-8c67-84921c5ef851",
+"doc_type": "LAB_REPORT",
+"report_date": "2020-03-17",
+"labs": [
+{
+"test_name": "HEMOGLOBIN",
+"value": 12.5,
+"unit": "gm/dL",
+"abnormal": false,
+"date": "2020-03-17",
+"reference_range": [11, 16]
+},
+{
+"test_name": "RBC”S COUNT",
+"value": 4.2,
+"unit": "mill/Cu.mm",
+"abnormal": true,
+"date": "2020-03-17",
+"reference_range": [4.7, 6.0]
+},
+{
+"test_name": "PACKED CELL VOLUME",
+"value": 35.5,
+"unit": "%",
+"abnormal": true,
+"date": "2020-03-17",
+"reference_range": [36, 50]
+},
+{
+"test_name": "MCV",
+"value": 83.7,
+"unit": "fl",
+"abnormal": false,
+"date": "2020-03-17",
+"reference_range": [75.0, 95.0]
+},
+{
+"test_name": "MCH",
+"value": 29.5,
+"unit": "Pg",
+"abnormal": false,
+"date": "2020-03-17",
+"reference_range": [25.0, 31.0]
+},
+{
+"test_name": "MCHC",
+"value": 35.3,
+"unit": "g/dl",
+"abnormal": false,
+"date": "2020-03-17",
+"reference_range": [32.0, 36.0]
+},
+{
+"test_name": "PLATELET COUNT",
+"value": 2.51,
+"unit": "lakh/cu.mm",
+"abnormal": false,
+"date": "2020-03-17",
+"reference_range": [1.5, 4.5]
+},
+{
+"test_name": "TOTAL COUNT",
+"value": 5900,
+"unit": "cells/cu.mm",
+"abnormal": false,
+"date": "2020-03-17",
+"reference_range": [4000, 11000]
+},
+{
+"test_name": "NEUTROPHILS",
+"value": 58,
+"unit": "%",
+"abnormal": false,
+"date": "2020-03-17",
+"reference_range": [40, 70]
+},
+{
+"test_name": "LYMPHOCYTES",
+"value": 38,
+"unit": "%",
+"abnormal": false,
+"date": "2020-03-17",
+"reference_range": [20, 45]
+},
+{
+"test_name": "EOSINOPHIL",
+"value": 2,
+"unit": "%",
+"abnormal": false,
+"date": "2020-03-17",
+"reference_range": [2, 6]
+},
+{
+"test_name": "MONOCYTES",
+"value": 2,
+"unit": "%",
+"abnormal": false,
+"date": "2020-03-17",
+"reference_range": [1, 8]
+},
+{
+"test_name": "BASOPHILS",
+"value": 0,
+"unit": "%",
+"abnormal": false,
+"date": "2020-03-17",
+"reference_range": [0, 1]
+},
+{
+"test_name": "ESR",
+"value": 36,
+"unit": "mm/hr",
+"abnormal": true,
+"date": "2020-03-17",
+"reference_range": [5, 20]
+}
+]
+}

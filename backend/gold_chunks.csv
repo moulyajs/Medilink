@@ -1,0 +1,1301 @@
+patient_id,document_id,source_file,chunk_index,report_type,chunk_type,chunk_level,report_date,chunk_text
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r01.json,1,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: Serum Sodium. Value: 132.3 mEq/L. Status: ABNORMAL. Collected on 07/05/2025. Reference range 135.0-145.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r01.json,2,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: Serum Potassium. Value: 3.9 mEq/L. Status: NORMAL. Collected on 07/05/2025. Reference range 3.5-4.5.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r01.json,3,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: Serum Chlorides. Value: 97.6 mEq/L. Status: NORMAL. Collected on 07/05/2025. Reference range 96.0-106.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r01.json,4,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: NT pro-BNP. Value: 139.2 pg/ml. Status: NORMAL. Collected on 07/05/2025. Reference range None-900.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r01.json,5,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: Fasting blood glucose. Value: 123 mg/dl. Status: ABNORMAL. Collected on 07/05/2025. Reference range 60.0-100.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r01.json,6,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: HbA1c. Value: 5.9 %. Status: NORMAL. Collected on 07/05/2025. Reference range None-6.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r01.json,7,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: Blood Urea. Value: 15 mg/dl. Status: NORMAL. Collected on 07/05/2025. Reference range 15.0-45.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r01.json,8,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: Serum Creatinine. Value: 0.74 mgs/dl. Status: NORMAL. Collected on 07/05/2025. Reference range 0.7-1.2.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r01.json,9,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: Total Cholesterol. Value: 121 mgs/dl. Status: NORMAL. Collected on 07/05/2025. Reference range 0.0-200.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r01.json,10,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: H.D.L. Cholesterol. Value: 27.6 mgs/dl. Status: ABNORMAL. Collected on 07/05/2025. Reference range 35.0-55.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r01.json,11,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: Direct LDL. Value: 64 mgs/dl. Status: NORMAL. Collected on 07/05/2025. Reference range None-100.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r01.json,12,LAB_REPORT,lab_summary,2,07/05/2025,"Laboratory Report Summary
+
+Abnormal Findings:
+- Serum Sodium (132.3 mEq/L)
+- Fasting blood glucose (123 mg/dl)
+- H.D.L. Cholesterol (27.6 mgs/dl)
+
+Normal Findings:
+- Serum Potassium (3.9 mEq/L)
+- Serum Chlorides (97.6 mEq/L)
+- NT pro-BNP (139.2 pg/ml)
+- HbA1c (5.9 %)
+- Blood Urea (15 mg/dl)
+- Serum Creatinine (0.74 mgs/dl)
+- Total Cholesterol (121 mgs/dl)
+- Direct LDL (64 mgs/dl)"
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r02.json,1,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: Haemoglobin. Value: 15.7 gms/dl. Status: NORMAL. Collected on 07/05/2025. Reference range 14.0-16.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r02.json,2,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: R.B.C Count. Value: 3.78 millions / cu. mm.. Status: ABNORMAL. Collected on 07/05/2025. Reference range 4.5-6.5.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r02.json,3,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: NRBCs. Value: 0.0 %. Status: NORMAL. Collected on 07/05/2025.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r02.json,4,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: P.C.V. Value: 44.2 %. Status: NORMAL. Collected on 07/05/2025. Reference range 40.0-54.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r02.json,5,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: M.C.V. Value: 116.9 fL. Status: ABNORMAL. Collected on 07/05/2025. Reference range 80.0-99.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r02.json,6,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: M.C.H. Value: 41.5 pg. Status: ABNORMAL. Collected on 07/05/2025. Reference range 27.0-33.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r02.json,7,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: M.C.H.C. Value: 35.5 g/dl. Status: NORMAL. Collected on 07/05/2025. Reference range 32.0-37.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r02.json,8,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: Platelet Count. Value: 1.26 Lakhs/ cu. mm.. Status: ABNORMAL. Collected on 07/05/2025. Reference range 1.5-4.5.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r02.json,9,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: Total W.B.C Count. Value: 9800 /cumm. Status: NORMAL. Collected on 07/05/2025. Reference range 4000.0-11000.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r02.json,10,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: Neutrophils. Value: 58.4 %. Status: NORMAL. Collected on 07/05/2025. Reference range 40.0-75.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r02.json,11,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: Lymphocytes. Value: 29.0 %. Status: NORMAL. Collected on 07/05/2025. Reference range 20.0-45.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r02.json,12,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: Monocytes. Value: 7.6 %. Status: NORMAL. Collected on 07/05/2025. Reference range 2.0-10.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r02.json,13,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: Eosinophils. Value: 4.3 %. Status: NORMAL. Collected on 07/05/2025. Reference range 1.0-6.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r02.json,14,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: Basophils. Value: 0.7 %. Status: ABNORMAL. Collected on 07/05/2025. Reference range 1.0-2.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r02.json,15,LAB_REPORT,lab_summary,2,07/05/2025,"Laboratory Report Summary
+
+Abnormal Findings:
+- R.B.C Count (3.78 millions / cu. mm.)
+- M.C.V (116.9 fL)
+- M.C.H (41.5 pg)
+- Platelet Count (1.26 Lakhs/ cu. mm.)
+- Basophils (0.7 %)
+
+Normal Findings:
+- Haemoglobin (15.7 gms/dl)
+- NRBCs (0.0 %)
+- P.C.V (44.2 %)
+- M.C.H.C (35.5 g/dl)
+- Total W.B.C Count (9800 /cumm)
+- Neutrophils (58.4 %)
+- Lymphocytes (29.0 %)
+- Monocytes (7.6 %)
+- Eosinophils (4.3 %)"
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r03.json,1,LAB_REPORT,lab_row,1,17/10/2025,Lab Test: LVIDd. Value: 4.4 cms. Status: NORMAL. Collected on 17/10/2025. Reference range 3.5-5.5.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r03.json,2,LAB_REPORT,lab_row,1,17/10/2025,Lab Test: LVIDs. Value: 2.7 cms. Status: NORMAL. Collected on 17/10/2025. Reference range 2.4-4.2.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r03.json,3,LAB_REPORT,lab_row,1,17/10/2025,Lab Test: RVDd. Value: 1.3 cms. Status: NORMAL. Collected on 17/10/2025. Reference range 0.7-2.1.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r03.json,4,LAB_REPORT,lab_row,1,17/10/2025,Lab Test: Aortic root. Value: 2.8 cms. Status: NORMAL. Collected on 17/10/2025. Reference range 2.5-3.7.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r03.json,5,LAB_REPORT,lab_row,1,17/10/2025,Lab Test: LA dimension. Value: 3.2 cms. Status: NORMAL. Collected on 17/10/2025. Reference range 1.9-4.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r03.json,6,LAB_REPORT,lab_row,1,17/10/2025,Lab Test: IVSd. Value: 0.9 cms. Status: NORMAL. Collected on 17/10/2025. Reference range 0.6-1.1.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r03.json,7,LAB_REPORT,lab_row,1,17/10/2025,Lab Test: LVPWd. Value: 0.9 cms. Status: NORMAL. Collected on 17/10/2025. Reference range 0.6-1.1.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r03.json,8,LAB_REPORT,lab_row,1,17/10/2025,Lab Test: EDV. Value: 66.0 ml. Status: NORMAL. Collected on 17/10/2025.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r03.json,9,LAB_REPORT,lab_row,1,17/10/2025,Lab Test: ESV. Value: 26.0 ml. Status: NORMAL. Collected on 17/10/2025.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r03.json,10,LAB_REPORT,lab_row,1,17/10/2025,Lab Test: EF. Value: 60.0 %. Status: NORMAL. Collected on 17/10/2025. Reference range 50.0-70.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r03.json,11,LAB_REPORT,lab_summary,2,17/10/2025,"Laboratory Report Summary
+
+Normal Findings:
+- LVIDd (4.4 cms)
+- LVIDs (2.7 cms)
+- RVDd (1.3 cms)
+- Aortic root (2.8 cms)
+- LA dimension (3.2 cms)
+- IVSd (0.9 cms)
+- LVPWd (0.9 cms)
+- EDV (66.0 ml)
+- ESV (26.0 ml)
+- EF (60.0 %)"
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r04.json,1,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: Serum Sodium. Value: 132.3 mEq/L. Status: ABNORMAL. Collected on 07/05/2025. Reference range 135.0-145.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r04.json,2,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: Serum Potassium. Value: 3.9 mEq/L. Status: NORMAL. Collected on 07/05/2025. Reference range 3.5-4.5.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r04.json,3,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: Serum Chlorides. Value: 97.6 mEq/L. Status: NORMAL. Collected on 07/05/2025. Reference range 96.0-106.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r04.json,4,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: NT pro-BNP. Value: 139.2 pg/ml. Status: NORMAL. Collected on 07/05/2025. Reference range None-450.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r04.json,5,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: Fasting blood glucose. Value: 123 mg/dl. Status: ABNORMAL. Collected on 07/05/2025. Reference range 60.0-100.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r04.json,6,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: HbA1c. Value: 5.9 %. Status: NORMAL. Collected on 07/05/2025. Reference range None-6.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r04.json,7,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: Blood Urea. Value: 15 mg/dl. Status: NORMAL. Collected on 07/05/2025. Reference range 15.0-45.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r04.json,8,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: Serum Creatinine. Value: 0.74 mgs/dl. Status: NORMAL. Collected on 07/05/2025. Reference range 0.7-1.2.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r04.json,9,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: Total Cholesterol. Value: 121 mgs/dl. Status: NORMAL. Collected on 07/05/2025. Reference range 0.0-200.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r04.json,10,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: H.D.L. Cholesterol. Value: 27.6 mgs/dl. Status: ABNORMAL. Collected on 07/05/2025. Reference range 35.0-55.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r04.json,11,LAB_REPORT,lab_row,1,07/05/2025,Lab Test: Direct LDL. Value: 64 mgs/dl. Status: NORMAL. Collected on 07/05/2025. Reference range None-100.0.
+33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,7cf80e66-c181-4a7b-8844-d7fcc87904e1,corpus/user001/r04.json,12,LAB_REPORT,lab_summary,2,07/05/2025,"Laboratory Report Summary
+
+Abnormal Findings:
+- Serum Sodium (132.3 mEq/L)
+- Fasting blood glucose (123 mg/dl)
+- H.D.L. Cholesterol (27.6 mgs/dl)
+
+Normal Findings:
+- Serum Potassium (3.9 mEq/L)
+- Serum Chlorides (97.6 mEq/L)
+- NT pro-BNP (139.2 pg/ml)
+- HbA1c (5.9 %)
+- Blood Urea (15 mg/dl)
+- Serum Creatinine (0.74 mgs/dl)
+- Total Cholesterol (121 mgs/dl)
+- Direct LDL (64 mgs/dl)"
+0bcfe13f-d52b-4c01-b173-c18bf6208ba4,351801e2-1aec-4c3d-af1c-5879229dcbda,corpus/user002/c01.json,1,CLINICAL_NOTE,diagnosis,1,15/12/2024,"Date: 15/12/2024
+
+Diagnoses:
+- ACUTE FEBRILE ILLNESS
+- CHOLELITHIASIS"
+0bcfe13f-d52b-4c01-b173-c18bf6208ba4,351801e2-1aec-4c3d-af1c-5879229dcbda,corpus/user002/c01.json,2,CLINICAL_NOTE,medication,1,15/12/2024,"Date: 15/12/2024
+
+Medications:
+- IV fluids
+- IV antibiotics (Inj. Piptaz 4.5gm)
+- IV antacids
+- IV antiemetics
+- IV multivitamin
+- oral medications
+- antidiabetic injections"
+0bcfe13f-d52b-4c01-b173-c18bf6208ba4,351801e2-1aec-4c3d-af1c-5879229dcbda,corpus/user002/c01.json,3,CLINICAL_NOTE,symptom,1,15/12/2024,"Date: 15/12/2024
+
+Symptoms:
+- fever since 3 days
+- generalized weakness
+- body pain
+- 1 episode of vomiting 2 days ago"
+0bcfe13f-d52b-4c01-b173-c18bf6208ba4,351801e2-1aec-4c3d-af1c-5879229dcbda,corpus/user002/c01.json,4,CLINICAL_NOTE,finding,1,15/12/2024,"Date: 15/12/2024
+
+Findings:
+- BP: 130/80 mm of Hg
+- TEMP: 96°F
+- PULSE RATE: 80 B/MIN
+- SPO2: 95% on RA
+- RR: 20 C/MIN
+- GRBS: 163 mg/dl
+- No Icterus, pallor, cyanosis, edema, Lymphadenopathy
+- S1, S2 HEARD
+- Bilateral NVBS (+)
+- CONSCIOUS/ORIENTED
+- P/A: SOFT, BOWEL SOUND (+)
+- USG abdomen and pelvis revealed cholelithiasis without sonological evidence of cholecystitis
+- Edematous gall bladder wall with trace free fluid in the abdomen
+- Patient responded well to given line of treatment"
+0bcfe13f-d52b-4c01-b173-c18bf6208ba4,351801e2-1aec-4c3d-af1c-5879229dcbda,corpus/user002/c01.json,5,CLINICAL_NOTE,medication,1,17/12/2024,"Date: 17/12/2024
+
+Medications:
+- INJ. PIPTAZ 4.5GM IV INFUSION IN 100ML NS, 6am-2pm-10pm TILL 21/12/24
+- TAB. LEVOFLOXACIN, 0-1-0 X 4 DAYS AFTER FOOD
+- CAP. SOMPRAZ D 40MG, 1-0-0 X 5 DAYS BEFORE FOOD
+- SYP. MAC OS, 10ML-10ML-10ML BEFORE FOOD
+- TAB. NEUROBION FORTE, 0-1-0 X 2 WEEKS AFTER FOOD
+- TAB. DOLO 650MG, 1 SOS
+- TAB. GLIRUM MF, 1-0-0 X AFTER FOOD TO CONTINUE
+- TAB. AMLODE 5 MG, 1-0-0 X TO CONTINUE AFTER FOOD"
+0bcfe13f-d52b-4c01-b173-c18bf6208ba4,351801e2-1aec-4c3d-af1c-5879229dcbda,corpus/user002/c01.json,6,CLINICAL_NOTE,finding,1,17/12/2024,"Date: 17/12/2024
+
+Findings:
+- Patient is haemodynamically stable at the time of discharge"
+0bcfe13f-d52b-4c01-b173-c18bf6208ba4,351801e2-1aec-4c3d-af1c-5879229dcbda,corpus/user002/c02.json,1,CLINICAL_NOTE,diagnosis,1,16.12.2024,"Date: 16.12.2024
+
+Diagnoses:
+- Cholelithiasis without sonological evidence of cholecystitis
+- Mild fatty liver"
+0bcfe13f-d52b-4c01-b173-c18bf6208ba4,351801e2-1aec-4c3d-af1c-5879229dcbda,corpus/user002/c02.json,2,CLINICAL_NOTE,symptom,1,16.12.2024,"Date: 16.12.2024
+
+Symptoms:
+- Pain abdomen"
+0bcfe13f-d52b-4c01-b173-c18bf6208ba4,351801e2-1aec-4c3d-af1c-5879229dcbda,corpus/user002/c02.json,3,CLINICAL_NOTE,finding,1,16.12.2024,"Date: 16.12.2024
+
+Findings:
+- Liver is normal in size (14.5 cm) and increased in echopattern
+- No intra or extra hepatic biliary duct dilatation
+- No focal lesions
+- Portalvein is normal in course, caliber and shows hepatopetal flow
+- Hepatic veins and their confluence draining into the IVC appear normal
+- CBD is not dilated
+- Gallbladder demonstrates a calculus, measuring 7.5 mm
+- Gallbladder demonstrates edematous wall
+- Pancreas to the extent visualized, appears normal in size, contour and echogenicity
+- Spleen is normal in size (9.2 cm), shape, contour and echopattern
+- No evidence of mass or focal lesions
+- Right kidney is normal in size (measures 9.3 cm in length & 1.8 cm in parenchymal thickness), position, shape and echopattern
+- Corticomedullary differentiation is maintained
+- No evidence of calculi or hydronephrosis
+- Left kidney is normal in size (measures 10.0 cm in length & 1.6 cm in parenchymal thickness), position, shape and echopattern
+- No evidence of calculi or hydronephrosis
+- Retroperitoneum - Obscured by bowel gas
+- Urinary bladder is well distended
+- Wall thickness is normal
+- No evidence of calculi, mass or mural lesion
+- Prostate is normal in size measuring (Volume = 15.0 cc)
+- There is trace free fluid in the abdomen
+- No pleural effusion
+- Cholelithiasis without sonological evidence of cholecystitis
+- Edematous gallbladder wall with trace free fluid in the abdomen"
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r01.json,1,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: RANDOM BLOOD SUGAR. Value: 80 MG/DL. Status: NORMAL. Collected on 15/05/2024. Reference range 80-140.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r01.json,2,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: SERUM CREATININE. Value: 0.56 Mg/dl. Status: NORMAL. Collected on 15/05/2024. Reference range 0.5-0.9.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r01.json,3,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: HAEMOGLOBIN. Value: 10.8 gm/dl. Status: ABNORMAL. Collected on 15/05/2024. Reference range 11.5-16.5.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r01.json,4,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: TOTAL COUNT. Value: 6970 cells/cu.mm. Status: NORMAL. Collected on 15/05/2024. Reference range 4000-11000.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r01.json,5,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: PCV. Value: 32.7 %. Status: NORMAL. Collected on 15/05/2024. Reference range 32-47.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r01.json,6,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: RBC COUNT. Value: 4.62 mill/cu.mm. Status: NORMAL. Collected on 15/05/2024. Reference range 3.5-5.5.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r01.json,7,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: PLATELET COUNT. Value: 253000 Cells/cu.mm. Status: NORMAL. Collected on 15/05/2024. Reference range 140000-400000.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r01.json,8,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: MCV. Value: 70.7 fl. Status: ABNORMAL. Collected on 15/05/2024. Reference range 76-97.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r01.json,9,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: MCH. Value: 23.3 pg. Status: ABNORMAL. Collected on 15/05/2024. Reference range 26.5-33.5.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r01.json,10,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: MCHC. Value: 33.0 g/dl. Status: NORMAL. Collected on 15/05/2024. Reference range 30-35.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r01.json,11,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: NEUTROPHILS. Value: 59.1 %. Status: NORMAL. Collected on 15/05/2024. Reference range 40-75.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r01.json,12,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: LYMPHOCYTES. Value: 30.6 %. Status: NORMAL. Collected on 15/05/2024. Reference range 20-45.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r01.json,13,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: EOSINOPHILS. Value: 2.0 %. Status: NORMAL. Collected on 15/05/2024. Reference range 1-6.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r01.json,14,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: MONOCYTES. Value: 8.2 %. Status: NORMAL. Collected on 15/05/2024. Reference range 0-10.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r01.json,15,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: BASOPHILS. Value: 0.1 %. Status: ABNORMAL. Collected on 15/05/2024. Reference range 0-0.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r01.json,16,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: THYROID STIMULATING HORMONE (TSH). Value: 2.48 uIU/mL. Status: NORMAL. Collected on 15/05/2024. Reference range 0.35-5.2.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r01.json,17,LAB_REPORT,lab_summary,2,15/05/2024,"Laboratory Report Summary
+
+Abnormal Findings:
+- HAEMOGLOBIN (10.8 gm/dl)
+- MCV (70.7 fl)
+- MCH (23.3 pg)
+- BASOPHILS (0.1 %)
+
+Normal Findings:
+- RANDOM BLOOD SUGAR (80 MG/DL)
+- SERUM CREATININE (0.56 Mg/dl)
+- TOTAL COUNT (6970 cells/cu.mm)
+- PCV (32.7 %)
+- RBC COUNT (4.62 mill/cu.mm)
+- PLATELET COUNT (253000 Cells/cu.mm)
+- MCHC (33.0 g/dl)
+- NEUTROPHILS (59.1 %)
+- LYMPHOCYTES (30.6 %)
+- EOSINOPHILS (2.0 %)
+- MONOCYTES (8.2 %)
+- THYROID STIMULATING HORMONE (TSH) (2.48 uIU/mL)"
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r02.json,1,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: HAEMOGLOBIN. Value: 10.8 gm/dl. Status: ABNORMAL. Collected on 15/05/2024. Reference range 11.5-16.5.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r02.json,2,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: TOTAL COUNT. Value: 6970 cells/cu.mm. Status: NORMAL. Collected on 15/05/2024. Reference range 4000-11000.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r02.json,3,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: PCV. Value: 32.7 %. Status: NORMAL. Collected on 15/05/2024. Reference range 32-47.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r02.json,4,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: RBC COUNT. Value: 4.62 mill/cu.mm. Status: NORMAL. Collected on 15/05/2024. Reference range 3.5-5.5.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r02.json,5,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: PLATELET COUNT. Value: 253000 Cells/cu.mm. Status: NORMAL. Collected on 15/05/2024. Reference range 140000-400000.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r02.json,6,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: MCV. Value: 70.7 fl. Status: ABNORMAL. Collected on 15/05/2024. Reference range 76-97.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r02.json,7,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: MCH. Value: 23.3 pg. Status: ABNORMAL. Collected on 15/05/2024. Reference range 26.5-33.5.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r02.json,8,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: MCHC. Value: 33.0 g/dl. Status: NORMAL. Collected on 15/05/2024. Reference range 30-35.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r02.json,9,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: NEUTROPHILS. Value: 59.1 %. Status: NORMAL. Collected on 15/05/2024. Reference range 40-75.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r02.json,10,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: LYMPHOCYTES. Value: 30.6 %. Status: NORMAL. Collected on 15/05/2024. Reference range 20-45.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r02.json,11,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: EOSINOPHILS. Value: 2.0 %. Status: NORMAL. Collected on 15/05/2024. Reference range 1-6.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r02.json,12,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: MONOCYTES. Value: 8.2 %. Status: NORMAL. Collected on 15/05/2024. Reference range 0-10.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r02.json,13,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: BASOPHILS. Value: 0.1 %. Status: ABNORMAL. Collected on 15/05/2024. Reference range 0-0.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r02.json,14,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: THYROID STIMULATING HORMONE (TSH). Value: 2.48 uIU/mL. Status: NORMAL. Collected on 15/05/2024. Reference range 0.35-5.2.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r02.json,15,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: RANDOM BLOOD SUGAR. Value: 80 MG/DL. Status: NORMAL. Collected on 15/05/2024. Reference range 80-140.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r02.json,16,LAB_REPORT,lab_row,1,15/05/2024,Lab Test: SERUM CREATININE. Value: 0.56 Mg/dl. Status: NORMAL. Collected on 15/05/2024. Reference range 0.5-0.9.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r02.json,17,LAB_REPORT,lab_summary,2,15/05/2024,"Laboratory Report Summary
+
+Abnormal Findings:
+- HAEMOGLOBIN (10.8 gm/dl)
+- MCV (70.7 fl)
+- MCH (23.3 pg)
+- BASOPHILS (0.1 %)
+
+Normal Findings:
+- TOTAL COUNT (6970 cells/cu.mm)
+- PCV (32.7 %)
+- RBC COUNT (4.62 mill/cu.mm)
+- PLATELET COUNT (253000 Cells/cu.mm)
+- MCHC (33.0 g/dl)
+- NEUTROPHILS (59.1 %)
+- LYMPHOCYTES (30.6 %)
+- EOSINOPHILS (2.0 %)
+- MONOCYTES (8.2 %)
+- THYROID STIMULATING HORMONE (TSH) (2.48 uIU/mL)
+- RANDOM BLOOD SUGAR (80 MG/DL)
+- SERUM CREATININE (0.56 Mg/dl)"
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r03.json,1,LAB_REPORT,lab_row,1,04/05/2026,Lab Test: HAEMOGLOBIN. Value: 11.4 gm/dl. Status: ABNORMAL. Collected on 04/05/2026. Reference range 11.5-16.5.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r03.json,2,LAB_REPORT,lab_row,1,04/05/2026,Lab Test: TOTAL COUNT. Value: 9020 cells/cu.mm. Status: NORMAL. Collected on 04/05/2026. Reference range 4000-11000.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r03.json,3,LAB_REPORT,lab_row,1,04/05/2026,Lab Test: PCV. Value: 32.7 %. Status: NORMAL. Collected on 04/05/2026. Reference range 32-47.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r03.json,4,LAB_REPORT,lab_row,1,04/05/2026,Lab Test: RBC COUNT. Value: 4.5 mill/cu.mm. Status: NORMAL. Collected on 04/05/2026. Reference range 3.5-5.5.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r03.json,5,LAB_REPORT,lab_row,1,04/05/2026,Lab Test: PLATELET COUNT. Value: 259000 cells/cu.mm. Status: NORMAL. Collected on 04/05/2026. Reference range 140000-400000.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r03.json,6,LAB_REPORT,lab_row,1,04/05/2026,Lab Test: MCV. Value: 72.6 fl. Status: ABNORMAL. Collected on 04/05/2026. Reference range 76-97.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r03.json,7,LAB_REPORT,lab_row,1,04/05/2026,Lab Test: MCH.. Value: 25.2 pg. Status: ABNORMAL. Collected on 04/05/2026. Reference range 26.5-33.5.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r03.json,8,LAB_REPORT,lab_row,1,04/05/2026,Lab Test: MCHC.. Value: 34.7 g/dl. Status: NORMAL. Collected on 04/05/2026. Reference range 30-35.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r03.json,9,LAB_REPORT,lab_row,1,04/05/2026,Lab Test: NEUTROPHILS. Value: 63.5 %. Status: NORMAL. Collected on 04/05/2026. Reference range 40-75.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r03.json,10,LAB_REPORT,lab_row,1,04/05/2026,Lab Test: LYMPHOCYTES. Value: 28.4 %. Status: NORMAL. Collected on 04/05/2026. Reference range 20-45.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r03.json,11,LAB_REPORT,lab_row,1,04/05/2026,Lab Test: EOSINOPHILS. Value: 1.4 %. Status: NORMAL. Collected on 04/05/2026. Reference range 1-6.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r03.json,12,LAB_REPORT,lab_row,1,04/05/2026,Lab Test: MONOCYTES. Value: 6.5 %. Status: NORMAL. Collected on 04/05/2026. Reference range 0-10.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r03.json,13,LAB_REPORT,lab_row,1,04/05/2026,Lab Test: BASOPHILS. Value: 0.2 %. Status: NORMAL. Collected on 04/05/2026. Reference range 0-1.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r03.json,14,LAB_REPORT,lab_row,1,04/05/2026,Lab Test: SERUM CREATININE. Value: 0.57 mg/dl. Status: NORMAL. Collected on 04/05/2026. Reference range 0.5-0.9.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r03.json,15,LAB_REPORT,lab_row,1,04/05/2026,Lab Test: SERUM URIC ACID. Value: 4.4 mg/dl. Status: NORMAL. Collected on 04/05/2026. Reference range 2.4-5.7.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r03.json,16,LAB_REPORT,lab_row,1,04/05/2026,Lab Test: THYROID STIMULATING HORMONE ( TSH). Value: 3.63 mIU/mL. Status: NORMAL. Collected on 04/05/2026. Reference range 0.35-5.2.
+f5698963-3aab-4d82-8c5d-c1c2f52730c3,1c534aad-a729-498d-9098-69c4dd921480,corpus/user003/r03.json,17,LAB_REPORT,lab_summary,2,04/05/2026,"Laboratory Report Summary
+
+Abnormal Findings:
+- HAEMOGLOBIN (11.4 gm/dl)
+- MCV (72.6 fl)
+- MCH. (25.2 pg)
+
+Normal Findings:
+- TOTAL COUNT (9020 cells/cu.mm)
+- PCV (32.7 %)
+- RBC COUNT (4.5 mill/cu.mm)
+- PLATELET COUNT (259000 cells/cu.mm)
+- MCHC. (34.7 g/dl)
+- NEUTROPHILS (63.5 %)
+- LYMPHOCYTES (28.4 %)
+- EOSINOPHILS (1.4 %)
+- MONOCYTES (6.5 %)
+- BASOPHILS (0.2 %)
+- SERUM CREATININE (0.57 mg/dl)
+- SERUM URIC ACID (4.4 mg/dl)
+- THYROID STIMULATING HORMONE ( TSH) (3.63 mIU/mL)"
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/c01.json,1,CLINICAL_NOTE,diagnosis,1,05/11/2015,"Date: 05/11/2015
+
+Diagnoses:
+- CALCULUS CHOLECYSTITIS"
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/c01.json,2,CLINICAL_NOTE,medication,1,05/11/2015,"Date: 05/11/2015
+
+Medications:
+- Inj Calmpose
+- Inj Supacef
+- Inj Dynapar
+- Tab Ceftum
+- Tab Nexpro RD
+- Tab Dicloran A"
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/c01.json,3,CLINICAL_NOTE,symptom,1,05/11/2015,"Date: 05/11/2015
+
+Symptoms:
+- left hypochondrium and left lumbar region pain, since 5 to 6 months on & off
+- nausea increased since 20 days
+- no h/o vomiting
+- no h/o burning micturition"
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/c01.json,4,CLINICAL_NOTE,finding,1,05/11/2015,"Date: 05/11/2015
+
+Findings:
+- USG abdomen and pelvis: Cholelithiasis
+- CBC: Hb—11.3gm/dl, TC—6300, PLT—273000
+- Conscious and oriented, Afebrile
+- Pulse—80/min, BP—110/70 mm of Hg, RR—20/min
+- SpO2—96% on room air
+- CVS—S1S2+, RS—B/L Clear
+- PA—Soft"
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/c01.json,5,CLINICAL_NOTE,finding,1,06/11/2015,"Date: 06/11/2015
+
+Findings:
+- Minimal omental adhesion to gall bladder
+- Calot's triangle well defined
+- cystic duct and artery defined"
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/c01.json,6,CLINICAL_NOTE,procedure,1,06/11/2015,"Date: 06/11/2015
+
+Procedures:
+- Laparoscopic cholecystectomy
+- Under GA, Aseptic precautions, supine position
+- Verres method pneumoperitoneum, standard 3 port entry
+- All adhesion released
+- cystic artery clipped and cut
+- Gall bladder off GB bed using diathermy
+- Gall bladder extracted from epigastric port
+- Ports removed under vision pneumoperitoneum deflated
+- Nylon to skin"
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/c01.json,7,CLINICAL_NOTE,medication,1,07/11/2015,"Date: 07/11/2015
+
+Medications:
+- Tab Ceftum 500mg, 1-0-1 x 5 days
+- Tab Nexpro RD, 1-0-1 x 5 days
+- Tab Dicloran A, 1-0-1 x 5 days"
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/c01.json,8,CLINICAL_NOTE,finding,1,07/11/2015,"Date: 07/11/2015
+
+Findings:
+- Patient withstood the procedure well
+- Haemodynamically stable, vitals normal and afebrile
+- Patient was better"
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/c02.json,1,CLINICAL_NOTE,medication,1,29-03-24,"Date: 29-03-24
+
+Medications:
+- ZYLORIC-100 MG TAB
+- CALCIMAX-P SYP"
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r01.json,1,LAB_REPORT,lab_row,1,02-Oct-2022,Lab Test: Haemoglobin. Value: 11.9 gms%. Status: NORMAL. Collected on 02-Oct-2022. Reference range 11.5-16.4.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r01.json,2,LAB_REPORT,lab_row,1,02-Oct-2022,Lab Test: Total WBC Count. Value: 7200 Cells/cumm. Status: NORMAL. Collected on 02-Oct-2022. Reference range 4000-10000.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r01.json,3,LAB_REPORT,lab_row,1,02-Oct-2022,Lab Test: Neutrophils. Value: 72 %. Status: NORMAL. Collected on 02-Oct-2022. Reference range 40-75.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r01.json,4,LAB_REPORT,lab_row,1,02-Oct-2022,Lab Test: Lymphocytes. Value: 23 %. Status: NORMAL. Collected on 02-Oct-2022. Reference range 20-45.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r01.json,5,LAB_REPORT,lab_row,1,02-Oct-2022,Lab Test: Eosinophils. Value: 3 %. Status: NORMAL. Collected on 02-Oct-2022. Reference range 1-6.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r01.json,6,LAB_REPORT,lab_row,1,02-Oct-2022,Lab Test: Monocytes. Value: 2 %. Status: NORMAL. Collected on 02-Oct-2022. Reference range 1-6.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r01.json,7,LAB_REPORT,lab_row,1,02-Oct-2022,Lab Test: Basophils. Value: 0 %. Status: NORMAL. Collected on 02-Oct-2022. Reference range 0-1.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r01.json,8,LAB_REPORT,lab_row,1,02-Oct-2022,Lab Test: Platelet Count. Value: 2.76 Lakhs/uL. Status: NORMAL. Collected on 02-Oct-2022. Reference range 1.5-4.5.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r01.json,9,LAB_REPORT,lab_summary,2,02-Oct-2022,"Laboratory Report Summary
+
+Normal Findings:
+- Haemoglobin (11.9 gms%)
+- Total WBC Count (7200 Cells/cumm)
+- Neutrophils (72 %)
+- Lymphocytes (23 %)
+- Eosinophils (3 %)
+- Monocytes (2 %)
+- Basophils (0 %)
+- Platelet Count (2.76 Lakhs/uL)"
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,1,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: BLOOD GROUP. Value: O None. Status: NORMAL. Collected on 28/05/2025.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,2,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: RH TYPING. Value: POSITIVE None. Status: NORMAL. Collected on 28/05/2025.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,3,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: HAEMOGLOBIN. Value: 12.3 gm/dl. Status: NORMAL. Collected on 28/05/2025. Reference range 11.5-16.5.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,4,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: TOTAL COUNT. Value: 6870 cells/cu.mm. Status: NORMAL. Collected on 28/05/2025. Reference range 4000-11000.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,5,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: PCV. Value: 36.6 %. Status: NORMAL. Collected on 28/05/2025. Reference range 32-47.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,6,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: RBC COUNT. Value: 4.45 mill/cu.mm. Status: NORMAL. Collected on 28/05/2025. Reference range 3.5-5.5.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,7,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: PLATELET COUNT. Value: 257000 cells/cu.mm. Status: NORMAL. Collected on 28/05/2025. Reference range 140000-400000.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,8,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: MCV. Value: 82.4 fl. Status: NORMAL. Collected on 28/05/2025. Reference range 76-97.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,9,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: MCH. Value: 27.6 pg. Status: NORMAL. Collected on 28/05/2025. Reference range 26.5-33.5.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,10,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: MCHC. Value: 33.5 g/dl. Status: NORMAL. Collected on 28/05/2025. Reference range 30-35.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,11,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: NEUTROPHILS. Value: 60.9 %. Status: NORMAL. Collected on 28/05/2025. Reference range 40-75.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,12,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: LYMPHOCYTES. Value: 31.7 %. Status: NORMAL. Collected on 28/05/2025. Reference range 20-45.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,13,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: EOSINOPHILS. Value: 1.8 %. Status: NORMAL. Collected on 28/05/2025. Reference range 1-6.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,14,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: MONOCYTES. Value: 5.6 %. Status: NORMAL. Collected on 28/05/2025. Reference range 0-10.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,15,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: BASOPHILS. Value: 0.0 %. Status: NORMAL. Collected on 28/05/2025. Reference range 0.0-1.0.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,16,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: TRIIODOTHYRONINE (T3). Value: 1.0 ng/mL. Status: NORMAL. Collected on 28/05/2025. Reference range 0.58-1.62.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,17,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: THYROXINE (T4). Value: 8.85 ug/dL. Status: NORMAL. Collected on 28/05/2025. Reference range 5.0-14.5.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,18,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: TSH. Value: 4.31 mIU/mL. Status: NORMAL. Collected on 28/05/2025. Reference range 0.35-5.2.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,19,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: FASTING BLOOD SUGAR. Value: 100 mg/dl. Status: NORMAL. Collected on 28/05/2025. Reference range 70-100.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,20,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: SERUM SODIUM. Value: 139 mmol/L. Status: NORMAL. Collected on 28/05/2025. Reference range 135-150.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,21,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: SERUM POTASSIUM. Value: 3.7 mmol/L. Status: NORMAL. Collected on 28/05/2025. Reference range 3.5-5.0.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,22,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: SERUM CHLORIDES. Value: 105 mmol/L. Status: NORMAL. Collected on 28/05/2025. Reference range 94-110.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,23,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: TOTAL CHOLESTROL. Value: 195 mg/dl. Status: NORMAL. Collected on 28/05/2025. Reference range 130-250.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,24,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: TRIGLYCERIDES. Value: 70 mg/dl. Status: NORMAL. Collected on 28/05/2025. Reference range 40-140.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,25,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: HDL CHOLESTROL. Value: 52 mg/dl. Status: NORMAL. Collected on 28/05/2025. Reference range 30-70.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,26,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: LDL CHOLESTROL. Value: 129 mg/dl. Status: NORMAL. Collected on 28/05/2025. Reference range 0-150.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,27,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: VLDL CHOLESTROL. Value: 14 mg/dl. Status: NORMAL. Collected on 28/05/2025. Reference range 7-35.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,28,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: T.CHOL/HDL RATIO. Value: 3.7:1 None. Status: NORMAL. Collected on 28/05/2025. Reference range None-5.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,29,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: TOTAL BILIRUBIN. Value: 0.63 mg/dl. Status: NORMAL. Collected on 28/05/2025. Reference range 0-1.2.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,30,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: DIRECT BILIRUBIN. Value: 0.2 mg/dl. Status: NORMAL. Collected on 28/05/2025. Reference range 0.0-0.4.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,31,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: INDIRECT BILIRUBIN. Value: 0.43 mg/dl. Status: NORMAL. Collected on 28/05/2025. Reference range 0.3-1.0.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,32,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: SGOT(AST). Value: 17 U/L. Status: NORMAL. Collected on 28/05/2025. Reference range 1-31.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,33,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: SGPT(ALT). Value: 21 U/L. Status: NORMAL. Collected on 28/05/2025. Reference range 1-34.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,34,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: SERUM ALKALINE PHOSPHATE. Value: 76 None. Status: NORMAL. Collected on 28/05/2025.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,35,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: SERUM TOTAL PROTEIN. Value: 7.8 gm/dl. Status: NORMAL. Collected on 28/05/2025. Reference range 6.6-8.3.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,36,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: SERUM ALBUMIN. Value: 4.5 gm/dl. Status: NORMAL. Collected on 28/05/2025. Reference range 3.5-5.0.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,37,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: GLOBULIN. Value: 3.3 gm/dl. Status: NORMAL. Collected on 28/05/2025. Reference range 2.0-4.0.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,38,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: ALBUMIN/GLOBULIN RATIO. Value: 1.3:1 None. Status: ABNORMAL. Collected on 28/05/2025. Reference range 1.5-2.5.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,39,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: GAMMA GT. Value: 24 U/L. Status: NORMAL. Collected on 28/05/2025. Reference range 10-45.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,40,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: HBSAG. Value: NEGATIVE None. Status: NORMAL. Collected on 28/05/2025.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r02.json,41,LAB_REPORT,lab_summary,2,28/05/2025,"Laboratory Report Summary
+
+Abnormal Findings:
+- ALBUMIN/GLOBULIN RATIO (1.3:1 None)
+
+Normal Findings:
+- BLOOD GROUP (O None)
+- RH TYPING (POSITIVE None)
+- HAEMOGLOBIN (12.3 gm/dl)
+- TOTAL COUNT (6870 cells/cu.mm)
+- PCV (36.6 %)
+- RBC COUNT (4.45 mill/cu.mm)
+- PLATELET COUNT (257000 cells/cu.mm)
+- MCV (82.4 fl)
+- MCH (27.6 pg)
+- MCHC (33.5 g/dl)
+- NEUTROPHILS (60.9 %)
+- LYMPHOCYTES (31.7 %)
+- EOSINOPHILS (1.8 %)
+- MONOCYTES (5.6 %)
+- BASOPHILS (0.0 %)
+- TRIIODOTHYRONINE (T3) (1.0 ng/mL)
+- THYROXINE (T4) (8.85 ug/dL)
+- TSH (4.31 mIU/mL)
+- FASTING BLOOD SUGAR (100 mg/dl)
+- SERUM SODIUM (139 mmol/L)
+- SERUM POTASSIUM (3.7 mmol/L)
+- SERUM CHLORIDES (105 mmol/L)
+- TOTAL CHOLESTROL (195 mg/dl)
+- TRIGLYCERIDES (70 mg/dl)
+- HDL CHOLESTROL (52 mg/dl)
+- LDL CHOLESTROL (129 mg/dl)
+- VLDL CHOLESTROL (14 mg/dl)
+- T.CHOL/HDL RATIO (3.7:1 None)
+- TOTAL BILIRUBIN (0.63 mg/dl)
+- DIRECT BILIRUBIN (0.2 mg/dl)
+- INDIRECT BILIRUBIN (0.43 mg/dl)
+- SGOT(AST) (17 U/L)
+- SGPT(ALT) (21 U/L)
+- SERUM ALKALINE PHOSPHATE (76 None)
+- SERUM TOTAL PROTEIN (7.8 gm/dl)
+- SERUM ALBUMIN (4.5 gm/dl)
+- GLOBULIN (3.3 gm/dl)
+- GAMMA GT (24 U/L)
+- HBSAG (NEGATIVE None)"
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r03.json,1,LAB_REPORT,lab_row,1,17/03/2020,Lab Test: HEMOGLOBIN. Value: 12.5 gm/dL. Status: NORMAL. Collected on 17/03/2020. Reference range 11-16.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r03.json,2,LAB_REPORT,lab_row,1,17/03/2020,Lab Test: RBC”S COUNT. Value: 4.2 mill/Cu.mm. Status: ABNORMAL. Collected on 17/03/2020. Reference range 4.7-6.0.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r03.json,3,LAB_REPORT,lab_row,1,17/03/2020,Lab Test: PACKED CELL VOLUME. Value: 35.5 %. Status: ABNORMAL. Collected on 17/03/2020. Reference range 36-50.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r03.json,4,LAB_REPORT,lab_row,1,17/03/2020,Lab Test: MCV. Value: 83.7 fl. Status: NORMAL. Collected on 17/03/2020. Reference range 75.0-95.0.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r03.json,5,LAB_REPORT,lab_row,1,17/03/2020,Lab Test: MCH. Value: 29.5 Pg. Status: NORMAL. Collected on 17/03/2020. Reference range 25.0-31.0.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r03.json,6,LAB_REPORT,lab_row,1,17/03/2020,Lab Test: MCHC. Value: 35.3 g/dl. Status: NORMAL. Collected on 17/03/2020. Reference range 32.0-36.0.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r03.json,7,LAB_REPORT,lab_row,1,17/03/2020,Lab Test: PLATELET COUNT. Value: 2.51 lakh/cu.mm. Status: NORMAL. Collected on 17/03/2020. Reference range 1.5-4.5.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r03.json,8,LAB_REPORT,lab_row,1,17/03/2020,Lab Test: TOTAL COUNT. Value: 5900 cells/cu.mm. Status: NORMAL. Collected on 17/03/2020. Reference range 4000-11000.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r03.json,9,LAB_REPORT,lab_row,1,17/03/2020,Lab Test: NEUTROPHILS. Value: 58 %. Status: NORMAL. Collected on 17/03/2020. Reference range 40-70.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r03.json,10,LAB_REPORT,lab_row,1,17/03/2020,Lab Test: LYMPHOCYTES. Value: 38 %. Status: NORMAL. Collected on 17/03/2020. Reference range 20-45.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r03.json,11,LAB_REPORT,lab_row,1,17/03/2020,Lab Test: EOSINOPHIL. Value: 2 %. Status: NORMAL. Collected on 17/03/2020. Reference range 2-6.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r03.json,12,LAB_REPORT,lab_row,1,17/03/2020,Lab Test: MONOCYTES. Value: 2 %. Status: NORMAL. Collected on 17/03/2020. Reference range 1-8.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r03.json,13,LAB_REPORT,lab_row,1,17/03/2020,Lab Test: BASOPHILS. Value: 0 %. Status: NORMAL. Collected on 17/03/2020. Reference range 0-1.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r03.json,14,LAB_REPORT,lab_row,1,17/03/2020,Lab Test: ESR. Value: 36 mm/hr. Status: ABNORMAL. Collected on 17/03/2020. Reference range 5-20.
+a5c02458-b9fe-4b00-9914-e856c77eb671,9079fc86-2f8b-4e53-8c67-84921c5ef851,corpus/user004/r03.json,15,LAB_REPORT,lab_summary,2,17/03/2020,"Laboratory Report Summary
+
+Abnormal Findings:
+- RBC”S COUNT (4.2 mill/Cu.mm)
+- PACKED CELL VOLUME (35.5 %)
+- ESR (36 mm/hr)
+
+Normal Findings:
+- HEMOGLOBIN (12.5 gm/dL)
+- MCV (83.7 fl)
+- MCH (29.5 Pg)
+- MCHC (35.3 g/dl)
+- PLATELET COUNT (2.51 lakh/cu.mm)
+- TOTAL COUNT (5900 cells/cu.mm)
+- NEUTROPHILS (58 %)
+- LYMPHOCYTES (38 %)
+- EOSINOPHIL (2 %)
+- MONOCYTES (2 %)
+- BASOPHILS (0 %)"
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/c01.json,1,CLINICAL_NOTE,medication,1,26/11/15,"Date: 26/11/15
+
+Medications:
+- T. Dolo 650
+- T. Glycomet
+- T. Tonact-ASP (75)"
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/c01.json,2,CLINICAL_NOTE,finding,1,26/11/15,"Date: 26/11/15
+
+Findings:
+- FBS: 84 mg%
+- PPBS: 129 mg%
+- BP: 140/90 mmHg
+- FBS/PPBS: July 2015"
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r01.json,1,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: SERUM SODIUM. Value: 139 mmol/L. Status: NORMAL. Collected on 28/05/2025. Reference range 135-150.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r01.json,2,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: SERUM POTASSIUM. Value: 4.1 mmol/L. Status: NORMAL. Collected on 28/05/2025. Reference range 3.5-5.0.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r01.json,3,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: SERUM CHLORIDES. Value: 102 mmol/L. Status: NORMAL. Collected on 28/05/2025. Reference range 94-110.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r01.json,4,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: TOTAL CHOLESTROL. Value: 135 mg/dl. Status: NORMAL. Collected on 28/05/2025. Reference range 130-250.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r01.json,5,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: TRIGLYCERIDES. Value: 108 mg/dl. Status: NORMAL. Collected on 28/05/2025. Reference range 60-165.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r01.json,6,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: HDL CHOLESTROL. Value: 34 mg/dl. Status: NORMAL. Collected on 28/05/2025. Reference range 30-70.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r01.json,7,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: LDL CHOLESTROL. Value: 79.4 mg/dl. Status: NORMAL. Collected on 28/05/2025. Reference range 0-150.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r01.json,8,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: VLDL CHOLESTROL. Value: 21.6 mg/dl. Status: NORMAL. Collected on 28/05/2025. Reference range 7-35.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r01.json,9,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: T.CHOL/HDL RATIO. Value: 3.9:1 None. Status: NORMAL. Collected on 28/05/2025. Reference range None-5.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r01.json,10,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: TOTAL BILIRUBIN. Value: 3.77 mg/dl. Status: ABNORMAL. Collected on 28/05/2025. Reference range 0-1.2.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r01.json,11,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: DIRECT BILIRUBIN. Value: 0.52 mg/dl. Status: ABNORMAL. Collected on 28/05/2025. Reference range 0.0-0.4.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r01.json,12,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: INDIRECT BILIRUBIN. Value: 3.25 mg/dl. Status: ABNORMAL. Collected on 28/05/2025. Reference range 0.3-1.0.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r01.json,13,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: SGOT(AST). Value: 26 U/L. Status: NORMAL. Collected on 28/05/2025. Reference range 1-35.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r01.json,14,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: SGPT(ALT). Value: 43 U/L. Status: NORMAL. Collected on 28/05/2025. Reference range 1-45.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r01.json,15,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: SERUM ALKALINE PHOSPHATE. Value: 99 U/L. Status: NORMAL. Collected on 28/05/2025. Reference range 30-120.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r01.json,16,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: SERUM TOTAL PROTEIN. Value: 9.0 gm/dl. Status: ABNORMAL. Collected on 28/05/2025. Reference range 6.6-8.3.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r01.json,17,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: SERUM ALBUMIN. Value: 5.1 gm/dl. Status: ABNORMAL. Collected on 28/05/2025. Reference range 3.5-5.0.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r01.json,18,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: GLOBULIN. Value: 3.9 gm/dl. Status: NORMAL. Collected on 28/05/2025. Reference range 2.0-4.0.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r01.json,19,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: ALBUMIN/GLOBULIN RATIO. Value: 1.3:1 None. Status: ABNORMAL. Collected on 28/05/2025. Reference range 1.5-2.5.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r01.json,20,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: GAMMA GT. Value: 30 U/L. Status: NORMAL. Collected on 28/05/2025. Reference range 10-45.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r01.json,21,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: HBA1C (HPLC METHOD). Value: 6.8 %. Status: ABNORMAL. Collected on 28/05/2025. Reference range 4.0-5.6.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r01.json,22,LAB_REPORT,lab_row,1,28/05/2025,Lab Test: AVERAGE BLOOD GLUCOSE (CALCULATED). Value: 147.6 mg/dL. Status: NORMAL. Collected on 28/05/2025.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r01.json,23,LAB_REPORT,lab_summary,2,28/05/2025,"Laboratory Report Summary
+
+Abnormal Findings:
+- TOTAL BILIRUBIN (3.77 mg/dl)
+- DIRECT BILIRUBIN (0.52 mg/dl)
+- INDIRECT BILIRUBIN (3.25 mg/dl)
+- SERUM TOTAL PROTEIN (9.0 gm/dl)
+- SERUM ALBUMIN (5.1 gm/dl)
+- ALBUMIN/GLOBULIN RATIO (1.3:1 None)
+- HBA1C (HPLC METHOD) (6.8 %)
+
+Normal Findings:
+- SERUM SODIUM (139 mmol/L)
+- SERUM POTASSIUM (4.1 mmol/L)
+- SERUM CHLORIDES (102 mmol/L)
+- TOTAL CHOLESTROL (135 mg/dl)
+- TRIGLYCERIDES (108 mg/dl)
+- HDL CHOLESTROL (34 mg/dl)
+- LDL CHOLESTROL (79.4 mg/dl)
+- VLDL CHOLESTROL (21.6 mg/dl)
+- T.CHOL/HDL RATIO (3.9:1 None)
+- SGOT(AST) (26 U/L)
+- SGPT(ALT) (43 U/L)
+- SERUM ALKALINE PHOSPHATE (99 U/L)
+- GLOBULIN (3.9 gm/dl)
+- GAMMA GT (30 U/L)
+- AVERAGE BLOOD GLUCOSE (CALCULATED) (147.6 mg/dL)"
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r02.json,1,LAB_REPORT,lab_row,1,17-11-2023,Lab Test: Fasting Blood Glucose Method : GOD-POD. Value: 84 mg/dl. Status: NORMAL. Collected on 17-11-2023. Reference range 60-110.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r02.json,2,LAB_REPORT,lab_row,1,17-11-2023,Lab Test: Post Prandial Blood Glucose Method : GOD-POD. Value: 149 mg/dl. Status: NORMAL. Collected on 17-11-2023. Reference range 100-150.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r02.json,3,LAB_REPORT,lab_row,1,17-11-2023,Lab Test: Glycosylated Haemoglobin (HbA1c) (Automated). Value: 7.7* %. Status: ABNORMAL. Collected on 17-11-2023. Reference range 4.0-6.0.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r02.json,4,LAB_REPORT,lab_row,1,17-11-2023,Lab Test: Mean Blood Glucose. Value: 175.1* mg/dl. Status: ABNORMAL. Collected on 17-11-2023. Reference range 70-140.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r02.json,5,LAB_REPORT,lab_row,1,17-11-2023,Lab Test: Bilirubin - Total Method: Mod. Jendrassik & Grof's. Value: 3.0* mg/dl. Status: ABNORMAL. Collected on 17-11-2023. Reference range 0.2-1.2.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r02.json,6,LAB_REPORT,lab_row,1,17-11-2023,Lab Test: Bilirubin - Direct Method : Mod. Jendrassik & Grof's. Value: 1.1* mg/dl. Status: ABNORMAL. Collected on 17-11-2023. Reference range 0.0-0.4.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r02.json,7,LAB_REPORT,lab_row,1,17-11-2023,Lab Test: Bilirubin - Indirect Method : Calculation. Value: 1.90* mg/dl. Status: ABNORMAL. Collected on 17-11-2023. Reference range 0.2-0.6.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r02.json,8,LAB_REPORT,lab_row,1,17-11-2023,Lab Test: Total Protein Method : Biuret. Value: 7.8 gm/dl. Status: NORMAL. Collected on 17-11-2023. Reference range 6.0-10.0.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r02.json,9,LAB_REPORT,lab_row,1,17-11-2023,Lab Test: Albumin - Serum Method : Bromcresol green. Value: 4.6 gm/dl. Status: NORMAL. Collected on 17-11-2023. Reference range 3.5-5.8.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r02.json,10,LAB_REPORT,lab_row,1,17-11-2023,Lab Test: Globulin - Serum Method : Bromcresol green. Value: 3.2 gm/dl. Status: NORMAL. Collected on 17-11-2023. Reference range 2.0-3.6.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r02.json,11,LAB_REPORT,lab_row,1,17-11-2023,Lab Test: A/G Ratio Method : Calculation. Value: 1.44 None. Status: NORMAL. Collected on 17-11-2023. Reference range 1.0-2.3.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r02.json,12,LAB_REPORT,lab_row,1,17-11-2023,Lab Test: SGOT (AST) Method : Mod. IFCC Kinetic. Value: 30 U/L. Status: NORMAL. Collected on 17-11-2023. Reference range 5-37.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r02.json,13,LAB_REPORT,lab_row,1,17-11-2023,Lab Test: SGPT(ALT). Value: 29 U/L. Status: NORMAL. Collected on 17-11-2023. Reference range 5-37.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r02.json,14,LAB_REPORT,lab_row,1,17-11-2023,Lab Test: Alkaline Phosphatase. Value: 91 U/L. Status: NORMAL. Collected on 17-11-2023. Reference range 42-141.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r02.json,15,LAB_REPORT,lab_summary,2,17-11-2023,"Laboratory Report Summary
+
+Abnormal Findings:
+- Glycosylated Haemoglobin (HbA1c) (Automated) (7.7* %)
+- Mean Blood Glucose (175.1* mg/dl)
+- Bilirubin - Total Method: Mod. Jendrassik & Grof's (3.0* mg/dl)
+- Bilirubin - Direct Method : Mod. Jendrassik & Grof's (1.1* mg/dl)
+- Bilirubin - Indirect Method : Calculation (1.90* mg/dl)
+
+Normal Findings:
+- Fasting Blood Glucose Method : GOD-POD (84 mg/dl)
+- Post Prandial Blood Glucose Method : GOD-POD (149 mg/dl)
+- Total Protein Method : Biuret (7.8 gm/dl)
+- Albumin - Serum Method : Bromcresol green (4.6 gm/dl)
+- Globulin - Serum Method : Bromcresol green (3.2 gm/dl)
+- A/G Ratio Method : Calculation (1.44 None)
+- SGOT (AST) Method : Mod. IFCC Kinetic (30 U/L)
+- SGPT(ALT) (29 U/L)
+- Alkaline Phosphatase (91 U/L)"
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r03.json,1,LAB_REPORT,lab_row,1,10/10/2023,Lab Test: HAEMOGLOBIN. Value: 15.0 gm/dl. Status: NORMAL. Collected on 10/10/2023. Reference range 13.5-18.5.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r03.json,2,LAB_REPORT,lab_row,1,10/10/2023,Lab Test: TOTAL COUNT. Value: 10280 cells/cu.mm. Status: NORMAL. Collected on 10/10/2023. Reference range 4000-11000.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r03.json,3,LAB_REPORT,lab_row,1,10/10/2023,Lab Test: PCV. Value: 43.6 %. Status: NORMAL. Collected on 10/10/2023. Reference range 32-47.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r03.json,4,LAB_REPORT,lab_row,1,10/10/2023,Lab Test: RBC COUNT. Value: 5.10 mill/cu.mm. Status: NORMAL. Collected on 10/10/2023. Reference range 4.5-6.5.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r03.json,5,LAB_REPORT,lab_row,1,10/10/2023,Lab Test: PLATELET COUNT. Value: 156000 cells/cu.mm. Status: NORMAL. Collected on 10/10/2023. Reference range 140000-400000.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r03.json,6,LAB_REPORT,lab_row,1,10/10/2023,Lab Test: MCV. Value: 85.5 fl. Status: NORMAL. Collected on 10/10/2023. Reference range 76-97.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r03.json,7,LAB_REPORT,lab_row,1,10/10/2023,Lab Test: MCH. Value: 29.4 pg. Status: NORMAL. Collected on 10/10/2023. Reference range 26.5-33.5.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r03.json,8,LAB_REPORT,lab_row,1,10/10/2023,Lab Test: MCHC. Value: 34.4 g/dl. Status: NORMAL. Collected on 10/10/2023. Reference range 30-35.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r03.json,9,LAB_REPORT,lab_row,1,10/10/2023,Lab Test: NEUTROPHILS. Value: 71.9 %. Status: NORMAL. Collected on 10/10/2023. Reference range 40-75.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r03.json,10,LAB_REPORT,lab_row,1,10/10/2023,Lab Test: LYMPHOCYTES. Value: 12.7 %. Status: ABNORMAL. Collected on 10/10/2023. Reference range 20-45.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r03.json,11,LAB_REPORT,lab_row,1,10/10/2023,Lab Test: EOSINOPHILS. Value: 0.2 %. Status: ABNORMAL. Collected on 10/10/2023. Reference range 1-6.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r03.json,12,LAB_REPORT,lab_row,1,10/10/2023,Lab Test: MONOCYTES. Value: 15.2 %. Status: ABNORMAL. Collected on 10/10/2023. Reference range 0-10.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r03.json,13,LAB_REPORT,lab_row,1,10/10/2023,Lab Test: BASOPHILS. Value: 0.0 %. Status: NORMAL. Collected on 10/10/2023. Reference range 0.0-1.0.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r03.json,14,LAB_REPORT,lab_row,1,10/10/2023,Lab Test: TOTAL BILIRUBIN. Value: 3.40 mg/dl. Status: ABNORMAL. Collected on 10/10/2023. Reference range 0-1.2.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r03.json,15,LAB_REPORT,lab_row,1,10/10/2023,Lab Test: DIRECT BILIRUBIN. Value: 0.29 mg/dl. Status: NORMAL. Collected on 10/10/2023. Reference range 0.0-0.4.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r03.json,16,LAB_REPORT,lab_row,1,10/10/2023,Lab Test: INDIRECT BILIRUBIN. Value: 3.11 mg/dl. Status: ABNORMAL. Collected on 10/10/2023. Reference range 0.3-1.0.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r03.json,17,LAB_REPORT,lab_row,1,10/10/2023,Lab Test: SGOT(AST). Value: 40 U/L. Status: ABNORMAL. Collected on 10/10/2023. Reference range 1-35.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r03.json,18,LAB_REPORT,lab_row,1,10/10/2023,Lab Test: SGPT(ALT). Value: 33 U/L. Status: NORMAL. Collected on 10/10/2023. Reference range 1-45.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r03.json,19,LAB_REPORT,lab_row,1,10/10/2023,Lab Test: SERUM ALKALINE PHOSPHATE. Value: 72 U/L. Status: NORMAL. Collected on 10/10/2023. Reference range 30-120.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r03.json,20,LAB_REPORT,lab_row,1,10/10/2023,Lab Test: SERUM TOTAL PROTEIN. Value: 7.4 gm/dl. Status: NORMAL. Collected on 10/10/2023. Reference range 6.6-8.3.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r03.json,21,LAB_REPORT,lab_row,1,10/10/2023,Lab Test: SERUM ALBUMIN. Value: 4.2 gm/dl. Status: NORMAL. Collected on 10/10/2023.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r03.json,22,LAB_REPORT,lab_row,1,10/10/2023,Lab Test: GLOBULIN. Value: 3.2 gm/dl. Status: NORMAL. Collected on 10/10/2023. Reference range 2.0-4.0.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r03.json,23,LAB_REPORT,lab_row,1,10/10/2023,Lab Test: ALBUMIN/GLOBULIN RATIO. Value: 1.3:1 None. Status: ABNORMAL. Collected on 10/10/2023. Reference range 1.5-2.5.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r03.json,24,LAB_REPORT,lab_row,1,10/10/2023,Lab Test: GAMMA GT. Value: 23 U/L. Status: NORMAL. Collected on 10/10/2023. Reference range 10-45.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r03.json,25,LAB_REPORT,lab_summary,2,10/10/2023,"Laboratory Report Summary
+
+Abnormal Findings:
+- LYMPHOCYTES (12.7 %)
+- EOSINOPHILS (0.2 %)
+- MONOCYTES (15.2 %)
+- TOTAL BILIRUBIN (3.40 mg/dl)
+- INDIRECT BILIRUBIN (3.11 mg/dl)
+- SGOT(AST) (40 U/L)
+- ALBUMIN/GLOBULIN RATIO (1.3:1 None)
+
+Normal Findings:
+- HAEMOGLOBIN (15.0 gm/dl)
+- TOTAL COUNT (10280 cells/cu.mm)
+- PCV (43.6 %)
+- RBC COUNT (5.10 mill/cu.mm)
+- PLATELET COUNT (156000 cells/cu.mm)
+- MCV (85.5 fl)
+- MCH (29.4 pg)
+- MCHC (34.4 g/dl)
+- NEUTROPHILS (71.9 %)
+- BASOPHILS (0.0 %)
+- DIRECT BILIRUBIN (0.29 mg/dl)
+- SGPT(ALT) (33 U/L)
+- SERUM ALKALINE PHOSPHATE (72 U/L)
+- SERUM TOTAL PROTEIN (7.4 gm/dl)
+- SERUM ALBUMIN (4.2 gm/dl)
+- GLOBULIN (3.2 gm/dl)
+- GAMMA GT (23 U/L)"
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r04.json,1,LAB_REPORT,lab_row,1,07-08-2023,Lab Test: Bilirubin - Total Method : Mod. Jendrassik & Grof's. Value: 3.4* mg/dl. Status: ABNORMAL. Collected on 07-08-2023. Reference range 0.2-1.2.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r04.json,2,LAB_REPORT,lab_row,1,07-08-2023,Lab Test: Bilirubin - Direct Method : Mod. Jendrassik & Grof's. Value: 1.1* mg/dl. Status: ABNORMAL. Collected on 07-08-2023. Reference range 0.0-0.4.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r04.json,3,LAB_REPORT,lab_row,1,07-08-2023,Lab Test: Bilirubin - Indirect Method : Calculation. Value: 2.30* mg/dl. Status: ABNORMAL. Collected on 07-08-2023. Reference range 0.2-0.6.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r04.json,4,LAB_REPORT,lab_row,1,07-08-2023,Lab Test: Total Protein Method : Biuret. Value: 6.7 gm/dl. Status: NORMAL. Collected on 07-08-2023. Reference range 6.0-10.0.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r04.json,5,LAB_REPORT,lab_row,1,07-08-2023,Lab Test: Albumin - Serum Method : Bromcresol green. Value: 3.7 gm/dl. Status: NORMAL. Collected on 07-08-2023. Reference range 3.5-5.8.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r04.json,6,LAB_REPORT,lab_row,1,07-08-2023,Lab Test: Globulin - Serum Method : Bromcresol green. Value: 3.00 gm/dl. Status: NORMAL. Collected on 07-08-2023. Reference range 2.0-3.6.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r04.json,7,LAB_REPORT,lab_row,1,07-08-2023,Lab Test: A/G Ratio Method : Calculation. Value: 1.23 None. Status: NORMAL. Collected on 07-08-2023. Reference range 1.0-2.3.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r04.json,8,LAB_REPORT,lab_row,1,07-08-2023,Lab Test: SGOT (AST) Method : Mod. IFCC Kinetic. Value: 33 U/L. Status: NORMAL. Collected on 07-08-2023. Reference range 5-37.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r04.json,9,LAB_REPORT,lab_row,1,07-08-2023,Lab Test: SGPT(ALT). Value: 28 U/L. Status: NORMAL. Collected on 07-08-2023. Reference range 5-37.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r04.json,10,LAB_REPORT,lab_row,1,07-08-2023,Lab Test: Alkaline Phosphatase. Value: 93 U/L. Status: NORMAL. Collected on 07-08-2023. Reference range 42-141.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r04.json,11,LAB_REPORT,lab_summary,2,07-08-2023,"Laboratory Report Summary
+
+Abnormal Findings:
+- Bilirubin - Total Method : Mod. Jendrassik & Grof's (3.4* mg/dl)
+- Bilirubin - Direct Method : Mod. Jendrassik & Grof's (1.1* mg/dl)
+- Bilirubin - Indirect Method : Calculation (2.30* mg/dl)
+
+Normal Findings:
+- Total Protein Method : Biuret (6.7 gm/dl)
+- Albumin - Serum Method : Bromcresol green (3.7 gm/dl)
+- Globulin - Serum Method : Bromcresol green (3.00 gm/dl)
+- A/G Ratio Method : Calculation (1.23 None)
+- SGOT (AST) Method : Mod. IFCC Kinetic (33 U/L)
+- SGPT(ALT) (28 U/L)
+- Alkaline Phosphatase (93 U/L)"
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r05.json,1,LAB_REPORT,lab_row,1,11-09-2023,Lab Test: Fasting Blood Glucose Method : GOD-POD. Value: 127* mg/dl. Status: ABNORMAL. Collected on 11-09-2023. Reference range 60-110.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r05.json,2,LAB_REPORT,lab_row,1,11-09-2023,Lab Test: Post Prandial Blood Glucose Method : GOD-POD. Value: 219* mg/dl. Status: ABNORMAL. Collected on 11-09-2023. Reference range 100-150.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r05.json,3,LAB_REPORT,lab_row,1,11-09-2023,Lab Test: Bilirubin - Total Method : Mod. Jendrassik & Grof's. Value: 2.8* mg/dl. Status: ABNORMAL. Collected on 11-09-2023. Reference range 0.2-1.2.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r05.json,4,LAB_REPORT,lab_row,1,11-09-2023,Lab Test: Bilirubin - Direct Method : Mod. Jendrassik & Grof's. Value: 1.6* mg/dl. Status: ABNORMAL. Collected on 11-09-2023. Reference range 0.0-0.4.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r05.json,5,LAB_REPORT,lab_row,1,11-09-2023,Lab Test: Bilirubin - Indirect Method : Calculation. Value: 1.20* mg/dl. Status: ABNORMAL. Collected on 11-09-2023. Reference range 0.2-0.6.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r05.json,6,LAB_REPORT,lab_row,1,11-09-2023,Lab Test: Total Protein Method : Biuret. Value: 6.9 gm/dl. Status: NORMAL. Collected on 11-09-2023. Reference range 6.0-10.0.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r05.json,7,LAB_REPORT,lab_row,1,11-09-2023,Lab Test: Albumin - Serum Method: Bromcresol green. Value: 3.6 gm/dl. Status: NORMAL. Collected on 11-09-2023. Reference range 3.5-5.8.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r05.json,8,LAB_REPORT,lab_row,1,11-09-2023,Lab Test: Globulin - Serum Method : Bromcresol green. Value: 3.30 gm/dl. Status: NORMAL. Collected on 11-09-2023. Reference range 2.3-3.6.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r05.json,9,LAB_REPORT,lab_row,1,11-09-2023,Lab Test: A/G Ratio Method : Calculation. Value: 1.09 None. Status: NORMAL. Collected on 11-09-2023. Reference range 1.0-2.3.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r05.json,10,LAB_REPORT,lab_row,1,11-09-2023,Lab Test: SGOT (AST) Method : Mod. IFCC Kinetic. Value: 37 U/L. Status: NORMAL. Collected on 11-09-2023. Reference range 5-37.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r05.json,11,LAB_REPORT,lab_row,1,11-09-2023,Lab Test: SGPT(ALT). Value: 22 U/L. Status: NORMAL. Collected on 11-09-2023. Reference range 5-37.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r05.json,12,LAB_REPORT,lab_row,1,11-09-2023,Lab Test: Alkaline Phosphatase. Value: 98 U/L. Status: NORMAL. Collected on 11-09-2023. Reference range 42-141.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r05.json,13,LAB_REPORT,lab_summary,2,11-09-2023,"Laboratory Report Summary
+
+Abnormal Findings:
+- Fasting Blood Glucose Method : GOD-POD (127* mg/dl)
+- Post Prandial Blood Glucose Method : GOD-POD (219* mg/dl)
+- Bilirubin - Total Method : Mod. Jendrassik & Grof's (2.8* mg/dl)
+- Bilirubin - Direct Method : Mod. Jendrassik & Grof's (1.6* mg/dl)
+- Bilirubin - Indirect Method : Calculation (1.20* mg/dl)
+
+Normal Findings:
+- Total Protein Method : Biuret (6.9 gm/dl)
+- Albumin - Serum Method: Bromcresol green (3.6 gm/dl)
+- Globulin - Serum Method : Bromcresol green (3.30 gm/dl)
+- A/G Ratio Method : Calculation (1.09 None)
+- SGOT (AST) Method : Mod. IFCC Kinetic (37 U/L)
+- SGPT(ALT) (22 U/L)
+- Alkaline Phosphatase (98 U/L)"
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,1,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: BLOOD GROUP. Value: O None. Status: NORMAL. Collected on 22-07-2023.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,2,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: RH TYPING. Value: POSITIVE None. Status: NORMAL. Collected on 22-07-2023.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,3,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: HAEMOGLOBIN. Value: 16.7 gm/dl. Status: NORMAL. Collected on 22-07-2023. Reference range 13.5-18.5.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,4,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: TOTAL COUNT. Value: 8870 cells/cu.mm. Status: NORMAL. Collected on 22-07-2023. Reference range 4000-11000.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,5,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: PCV. Value: 48.1 %. Status: NORMAL. Collected on 22-07-2023. Reference range 40-52.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,6,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: RBC COUNT. Value: 5.59 mill/cu.mm. Status: NORMAL. Collected on 22-07-2023. Reference range 4.5-6.5.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,7,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: PLATELET COUNT. Value: 220000 cells/cu.mm. Status: NORMAL. Collected on 22-07-2023. Reference range 140000-400000.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,8,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: MCV. Value: 86.0 fl. Status: NORMAL. Collected on 22-07-2023. Reference range 76-97.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,9,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: MCH. Value: 29.9 pg. Status: NORMAL. Collected on 22-07-2023. Reference range 26.5-33.5.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,10,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: MCHC. Value: 34.7 g/dl. Status: NORMAL. Collected on 22-07-2023. Reference range 30-35.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,11,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: NEUTROPHILS. Value: 64.8 %. Status: NORMAL. Collected on 22-07-2023. Reference range 40-75.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,12,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: LYMPHOCYTES. Value: 26.5 %. Status: NORMAL. Collected on 22-07-2023. Reference range 20-45.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,13,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: EOSINOPHILS. Value: 2.8 %. Status: NORMAL. Collected on 22-07-2023. Reference range 1-6.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,14,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: MONOCYTES. Value: 5.9 %. Status: NORMAL. Collected on 22-07-2023. Reference range 0-10.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,15,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: BASOPHILS. Value: 0.0 %. Status: NORMAL. Collected on 22-07-2023. Reference range 0-1.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,16,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: FASTING BLOOD SUGAR. Value: 115 mg/dl. Status: ABNORMAL. Collected on 22-07-2023. Reference range 70-100.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,17,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: FASTING URINE SUGAR. Value: NIL %. Status: NORMAL. Collected on 22-07-2023.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,18,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: POST PRANDIAL BLOOD SUGAR. Value: 245 mg/dl. Status: ABNORMAL. Collected on 22-07-2023. Reference range 80-140.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,19,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: POST PRANDIAL URINE SUGAR. Value: 1% %. Status: NORMAL. Collected on 22-07-2023.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,20,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: TOTAL CHOLESTROL. Value: 140 mg/dl. Status: NORMAL. Collected on 22-07-2023. Reference range 130-250.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,21,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: TRIGLYCERIDES. Value: 90 mg/dl. Status: NORMAL. Collected on 22-07-2023. Reference range 60-165.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,22,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: HDL CHOLESTROL. Value: 32 mg/dl. Status: NORMAL. Collected on 22-07-2023. Reference range 30-70.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,23,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: LDL CHOLESTROL. Value: 90 mg/dl. Status: NORMAL. Collected on 22-07-2023. Reference range None-150.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,24,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: VLDL CHOLESTROL. Value: 18 mg/dl. Status: NORMAL. Collected on 22-07-2023. Reference range 7-35.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,25,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: T.CHOL/HDL RATIO. Value: 4.3:1 None. Status: NORMAL. Collected on 22-07-2023. Reference range None-5.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,26,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: SERUM SODIUM. Value: 138 mEq/L. Status: NORMAL. Collected on 22-07-2023. Reference range 135-150.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,27,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: SERUM POTASSIUM. Value: 4.4 mEq/L. Status: NORMAL. Collected on 22-07-2023. Reference range 3.5-5.0.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,28,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: Serum Chlorides. Value: 106 mEq/L. Status: NORMAL. Collected on 22-07-2023. Reference range 98-110.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,29,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: TOTAL BILIRUBIN. Value: 3.90 mg/dl. Status: ABNORMAL. Collected on 22-07-2023. Reference range 0-1.2.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,30,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: DIRECT BILIRUBIN. Value: 1.82 mg/dl. Status: ABNORMAL. Collected on 22-07-2023. Reference range 0-0.4.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,31,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: INDIRECT BILIRUBIN. Value: 2.08 mg/dl. Status: ABNORMAL. Collected on 22-07-2023. Reference range 0.3-1.0.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,32,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: SGOT(AST). Value: 22 U/L. Status: NORMAL. Collected on 22-07-2023. Reference range 1-35.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,33,LAB_REPORT,lab_row,1,22-07-2023,Lab Test: SGPT(ALT). Value: 31 U/L. Status: NORMAL. Collected on 22-07-2023. Reference range 1-45.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r06.json,34,LAB_REPORT,lab_summary,2,22-07-2023,"Laboratory Report Summary
+
+Abnormal Findings:
+- FASTING BLOOD SUGAR (115 mg/dl)
+- POST PRANDIAL BLOOD SUGAR (245 mg/dl)
+- TOTAL BILIRUBIN (3.90 mg/dl)
+- DIRECT BILIRUBIN (1.82 mg/dl)
+- INDIRECT BILIRUBIN (2.08 mg/dl)
+
+Normal Findings:
+- BLOOD GROUP (O None)
+- RH TYPING (POSITIVE None)
+- HAEMOGLOBIN (16.7 gm/dl)
+- TOTAL COUNT (8870 cells/cu.mm)
+- PCV (48.1 %)
+- RBC COUNT (5.59 mill/cu.mm)
+- PLATELET COUNT (220000 cells/cu.mm)
+- MCV (86.0 fl)
+- MCH (29.9 pg)
+- MCHC (34.7 g/dl)
+- NEUTROPHILS (64.8 %)
+- LYMPHOCYTES (26.5 %)
+- EOSINOPHILS (2.8 %)
+- MONOCYTES (5.9 %)
+- BASOPHILS (0.0 %)
+- FASTING URINE SUGAR (NIL %)
+- POST PRANDIAL URINE SUGAR (1% %)
+- TOTAL CHOLESTROL (140 mg/dl)
+- TRIGLYCERIDES (90 mg/dl)
+- HDL CHOLESTROL (32 mg/dl)
+- LDL CHOLESTROL (90 mg/dl)
+- VLDL CHOLESTROL (18 mg/dl)
+- T.CHOL/HDL RATIO (4.3:1 None)
+- SERUM SODIUM (138 mEq/L)
+- SERUM POTASSIUM (4.4 mEq/L)
+- Serum Chlorides (106 mEq/L)
+- SGOT(AST) (22 U/L)
+- SGPT(ALT) (31 U/L)"
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r07.json,1,LAB_REPORT,lab_row,1,21-02-2025,Lab Test: Fasting Blood Glucose Method : GOD-POD. Value: 103 mg/dl. Status: NORMAL. Collected on 21-02-2025. Reference range 60-110.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r07.json,2,LAB_REPORT,lab_row,1,21-02-2025,Lab Test: Post Prandial Blood Glucose Method : GOD-POD. Value: 300 mg/dl. Status: ABNORMAL. Collected on 21-02-2025. Reference range 100-150.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r07.json,3,LAB_REPORT,lab_row,1,21-02-2025,Lab Test: Glycosylated Haemoglobin (HbA1c) (Automated). Value: 8.9 %. Status: ABNORMAL. Collected on 21-02-2025. Reference range 4.0-6.0.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r07.json,4,LAB_REPORT,lab_row,1,21-02-2025,Lab Test: Mean Blood Glucose. Value: 209.2 mg/dl. Status: ABNORMAL. Collected on 21-02-2025. Reference range 70-140.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r07.json,5,LAB_REPORT,lab_summary,2,21-02-2025,"Laboratory Report Summary
+
+Abnormal Findings:
+- Post Prandial Blood Glucose Method : GOD-POD (300 mg/dl)
+- Glycosylated Haemoglobin (HbA1c) (Automated) (8.9 %)
+- Mean Blood Glucose (209.2 mg/dl)
+
+Normal Findings:
+- Fasting Blood Glucose Method : GOD-POD (103 mg/dl)"
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r08.json,1,LAB_REPORT,lab_row,1,24-09-2024,Lab Test: Fasting Blood Glucose Method : GOD-POD. Value: 158* mg/dl. Status: ABNORMAL. Collected on 24-09-2024. Reference range 60-110.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r08.json,2,LAB_REPORT,lab_row,1,24-09-2024,Lab Test: Post Prandial Blood Glucose Method : GOD-POD. Value: 273* mg/dl. Status: ABNORMAL. Collected on 24-09-2024. Reference range 100-150.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r08.json,3,LAB_REPORT,lab_row,1,24-09-2024,Lab Test: Glycosylated Haemoglobin (HbA1c) (Automated). Value: 8.6* %. Status: ABNORMAL. Collected on 24-09-2024. Reference range 4.0-6.0.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r08.json,4,LAB_REPORT,lab_row,1,24-09-2024,Lab Test: Mean Blood Glucose. Value: 199.9* mg/dl. Status: ABNORMAL. Collected on 24-09-2024. Reference range 70-140.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r08.json,5,LAB_REPORT,lab_row,1,24-09-2024,Lab Test: Bilirubin - Total Method : Mod. Jendrassik&Grof's. Value: 2.6* mg/dl. Status: ABNORMAL. Collected on 24-09-2024. Reference range 0.2-1.2.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r08.json,6,LAB_REPORT,lab_row,1,24-09-2024,Lab Test: Bilirubin - Direct Method : Mod. Jendrassik & Grof's. Value: 1.2* mg/dl. Status: ABNORMAL. Collected on 24-09-2024. Reference range 0.0-0.4.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r08.json,7,LAB_REPORT,lab_row,1,24-09-2024,Lab Test: Bilirubin - Indirect Method : Calculation. Value: 1.40* mg/dl. Status: ABNORMAL. Collected on 24-09-2024. Reference range 0.2-0.6.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r08.json,8,LAB_REPORT,lab_row,1,24-09-2024,Lab Test: Total Protein Method : Biuret. Value: 7.1 gm/dl. Status: NORMAL. Collected on 24-09-2024. Reference range 6.0-10.0.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r08.json,9,LAB_REPORT,lab_row,1,24-09-2024,Lab Test: Albumin - Serum Method : Bromcresol green. Value: 4.1 gm/dl. Status: NORMAL. Collected on 24-09-2024. Reference range 3.5-5.8.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r08.json,10,LAB_REPORT,lab_row,1,24-09-2024,Lab Test: Globulin - Serum Method : Bromcresol green. Value: 3.00 gm/dl. Status: NORMAL. Collected on 24-09-2024. Reference range 2.3-3.6.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r08.json,11,LAB_REPORT,lab_row,1,24-09-2024,Lab Test: A/G Ratio Method : Calculation. Value: 1.37 None. Status: NORMAL. Collected on 24-09-2024. Reference range 1.0-2.3.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r08.json,12,LAB_REPORT,lab_row,1,24-09-2024,Lab Test: SGOT (AST) Method : Mod. IFCC Kinetic. Value: 24 U/L. Status: NORMAL. Collected on 24-09-2024. Reference range 5-37.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r08.json,13,LAB_REPORT,lab_row,1,24-09-2024,Lab Test: SGPT(ALT). Value: 28 U/L. Status: NORMAL. Collected on 24-09-2024. Reference range 5-37.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r08.json,14,LAB_REPORT,lab_row,1,24-09-2024,Lab Test: Alkaline Phosphatase. Value: 85 U/L. Status: NORMAL. Collected on 24-09-2024. Reference range 42-141.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r08.json,15,LAB_REPORT,lab_summary,2,24-09-2024,"Laboratory Report Summary
+
+Abnormal Findings:
+- Fasting Blood Glucose Method : GOD-POD (158* mg/dl)
+- Post Prandial Blood Glucose Method : GOD-POD (273* mg/dl)
+- Glycosylated Haemoglobin (HbA1c) (Automated) (8.6* %)
+- Mean Blood Glucose (199.9* mg/dl)
+- Bilirubin - Total Method : Mod. Jendrassik&Grof's (2.6* mg/dl)
+- Bilirubin - Direct Method : Mod. Jendrassik & Grof's (1.2* mg/dl)
+- Bilirubin - Indirect Method : Calculation (1.40* mg/dl)
+
+Normal Findings:
+- Total Protein Method : Biuret (7.1 gm/dl)
+- Albumin - Serum Method : Bromcresol green (4.1 gm/dl)
+- Globulin - Serum Method : Bromcresol green (3.00 gm/dl)
+- A/G Ratio Method : Calculation (1.37 None)
+- SGOT (AST) Method : Mod. IFCC Kinetic (24 U/L)
+- SGPT(ALT) (28 U/L)
+- Alkaline Phosphatase (85 U/L)"
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r09.json,1,LAB_REPORT,lab_row,1,24-05-2023,Lab Test: Fasting Blood Glucose. Value: 88 mg/dl. Status: NORMAL. Collected on 24-05-2023. Reference range 60-110.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r09.json,2,LAB_REPORT,lab_row,1,24-05-2023,Lab Test: Post Prandial Blood Glucose. Value: 182 mg/dl. Status: ABNORMAL. Collected on 24-05-2023. Reference range 100-150.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r09.json,3,LAB_REPORT,lab_row,1,24-05-2023,Lab Test: Glycosylated Haemoglobin (HbA1c). Value: 7.6 %. Status: ABNORMAL. Collected on 24-05-2023. Reference range 4.0-6.0.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r09.json,4,LAB_REPORT,lab_row,1,24-05-2023,Lab Test: Mean Blood Glucose. Value: 170.8 mg/dl. Status: ABNORMAL. Collected on 24-05-2023. Reference range 70-140.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r09.json,5,LAB_REPORT,lab_row,1,24-05-2023,Lab Test: Creatinine - Serum. Value: 0.9 mg/dl. Status: NORMAL. Collected on 24-05-2023. Reference range 0.7-1.5.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r09.json,6,LAB_REPORT,lab_row,1,24-05-2023,Lab Test: Total Cholesterol. Value: 112 mg/dl. Status: NORMAL. Collected on 24-05-2023. Reference range 50-200.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r09.json,7,LAB_REPORT,lab_row,1,24-05-2023,Lab Test: Triglycerides. Value: 100 mg/dl. Status: NORMAL. Collected on 24-05-2023. Reference range 40-150.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r09.json,8,LAB_REPORT,lab_row,1,24-05-2023,Lab Test: HDL Cholesterol. Value: 27 mg/dl. Status: ABNORMAL. Collected on 24-05-2023. Reference range 30-70.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r09.json,9,LAB_REPORT,lab_row,1,24-05-2023,Lab Test: LDL Cholesterol. Value: 65.0 mg/dl. Status: NORMAL. Collected on 24-05-2023. Reference range None-100.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r09.json,10,LAB_REPORT,lab_row,1,24-05-2023,Lab Test: VLDL Cholesterol. Value: 20.0 mg/dl. Status: NORMAL. Collected on 24-05-2023. Reference range 20-45.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r09.json,11,LAB_REPORT,lab_row,1,24-05-2023,Lab Test: Chol/HDL Ratio. Value: 4.15 None. Status: NORMAL. Collected on 24-05-2023. Reference range 0-6.
+2a02f095-d81d-4534-933d-92603970be06,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user005/r09.json,12,LAB_REPORT,lab_summary,2,24-05-2023,"Laboratory Report Summary
+
+Abnormal Findings:
+- Post Prandial Blood Glucose (182 mg/dl)
+- Glycosylated Haemoglobin (HbA1c) (7.6 %)
+- Mean Blood Glucose (170.8 mg/dl)
+- HDL Cholesterol (27 mg/dl)
+
+Normal Findings:
+- Fasting Blood Glucose (88 mg/dl)
+- Creatinine - Serum (0.9 mg/dl)
+- Total Cholesterol (112 mg/dl)
+- Triglycerides (100 mg/dl)
+- LDL Cholesterol (65.0 mg/dl)
+- VLDL Cholesterol (20.0 mg/dl)
+- Chol/HDL Ratio (4.15 None)"
+fe56b5d1-a089-42da-bb5d-c33f815973d0,d381d021-6f63-4039-9942-1aa4eb691b46,corpus/user006/c01.json,1,CLINICAL_NOTE,medication,1,15-02-2024,"Date: 15-02-2024
+
+Medications:
+- Syp. Ibugesic 100
+- Syp. Calpol 250
+- T. Pan 20"
+fe56b5d1-a089-42da-bb5d-c33f815973d0,d381d021-6f63-4039-9942-1aa4eb691b46,corpus/user006/c01.json,2,CLINICAL_NOTE,symptom,1,15-02-2024,"Date: 15-02-2024
+
+Symptoms:
+- Fever - 2 days
+- ↑ burps - last night
+- Sorethroat - 1 day"
+fe56b5d1-a089-42da-bb5d-c33f815973d0,d381d021-6f63-4039-9942-1aa4eb691b46,corpus/user006/c01.json,3,CLINICAL_NOTE,finding,1,15-02-2024,"Date: 15-02-2024
+
+Findings:
+- Wt: 22 kg
+- SpO2: 99%
+- PR: 130 b/m
+- RR: 26 b/m
+- Temp: 98.5°F
+- ENT - N
+- Systems - WNL"
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/c01.json,1,CLINICAL_NOTE,diagnosis,1,01-02-2024,"Date: 01-02-2024
+
+Diagnoses:
+- ACUTE SEVERE RHINOSINUSITIS, LT ASOM PERFORATION OTOMYCOSIS
+- ACUTE GASTRITIS
+- CHRONIC RHINOSINUSITIS ADENOIDS
+- HT EAR WAX ++"
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/c01.json,2,CLINICAL_NOTE,medication,1,01-02-2024,"Date: 01-02-2024
+
+Medications:
+- SYP. AUGMENTIN DDS / MOXCLAV DS
+- SYP. SINAREST AF / T MINIC
+- DRP. OTOREX / SOLIWAX EAR DROPS"
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/c01.json,3,CLINICAL_NOTE,finding,1,01-02-2024,"Date: 01-02-2024
+
+Findings:
+- FOLLOW UP - PT BETTER"
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/c02.json,1,CLINICAL_NOTE,diagnosis,1,27-01-2024,"Date: 27-01-2024
+
+Diagnoses:
+- ACUTE SEVERE RHINOSINUSITIS, LT ASOM PERFORATION OTOMYCOSIS
+- ACUTE GASTRITIS
+- CHRONIC RHINOSINUSITIS ADENOIDS"
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/c02.json,2,CLINICAL_NOTE,medication,1,27-01-2024,"Date: 27-01-2024
+
+Medications:
+- TAB. JUNIOR LANZOL 15MG TABLET DT
+- SYP ONDEM EMESY SYR
+- SYP. AUGMENTIN DDS / MOXCLAV DS SUSP
+- SYP. SINAREST AF / T MINIC COLD
+- DRP CANDIBIOTIC PLUS EAR DROPS"
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/r01.json,1,LAB_REPORT,lab_row,1,26/08/23,Lab Test: DENGUE IGG. Value: NEGATIVE None. Status: NORMAL. Collected on 26/08/23.
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/r01.json,2,LAB_REPORT,lab_row,1,26/08/23,Lab Test: DENGUE IGM. Value: NEGATIVE None. Status: NORMAL. Collected on 26/08/23.
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/r01.json,3,LAB_REPORT,lab_row,1,26/08/23,Lab Test: DENGUE NS1. Value: NEGATIVE None. Status: NORMAL. Collected on 26/08/23.
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/r01.json,4,LAB_REPORT,lab_row,1,26/08/23,Lab Test: Albumin. Value: NIL None. Status: NORMAL. Collected on 26/08/23.
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/r01.json,5,LAB_REPORT,lab_row,1,26/08/23,Lab Test: Sugar. Value: NIL None. Status: NORMAL. Collected on 26/08/23.
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/r01.json,6,LAB_REPORT,lab_row,1,26/08/23,Lab Test: Ketone. Value: ABSENT None. Status: NORMAL. Collected on 26/08/23.
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/r01.json,7,LAB_REPORT,lab_row,1,26/08/23,Lab Test: Bile Pigment. Value: ABSENT None. Status: NORMAL. Collected on 26/08/23.
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/r01.json,8,LAB_REPORT,lab_row,1,26/08/23,Lab Test: Bile salt. Value: ABSENT None. Status: NORMAL. Collected on 26/08/23.
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/r01.json,9,LAB_REPORT,lab_row,1,26/08/23,Lab Test: Pus Cells. Value: 2-3 None. Status: NORMAL. Collected on 26/08/23.
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/r01.json,10,LAB_REPORT,lab_row,1,26/08/23,Lab Test: Epithelial Cells. Value: 0-1 None. Status: NORMAL. Collected on 26/08/23. Reference range 1-2.
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/r01.json,11,LAB_REPORT,lab_row,1,26/08/23,Lab Test: Red Blood Cells. Value: ABSENT None. Status: NORMAL. Collected on 26/08/23.
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/r01.json,12,LAB_REPORT,lab_row,1,26/08/23,Lab Test: Cast. Value: NIL None. Status: NORMAL. Collected on 26/08/23.
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/r01.json,13,LAB_REPORT,lab_row,1,26/08/23,Lab Test: Crystals. Value: NIL None. Status: NORMAL. Collected on 26/08/23.
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/r01.json,14,LAB_REPORT,lab_summary,2,26/08/23,"Laboratory Report Summary
+
+Normal Findings:
+- DENGUE IGG (NEGATIVE None)
+- DENGUE IGM (NEGATIVE None)
+- DENGUE NS1 (NEGATIVE None)
+- Albumin (NIL None)
+- Sugar (NIL None)
+- Ketone (ABSENT None)
+- Bile Pigment (ABSENT None)
+- Bile salt (ABSENT None)
+- Pus Cells (2-3 None)
+- Epithelial Cells (0-1 None)
+- Red Blood Cells (ABSENT None)
+- Cast (NIL None)
+- Crystals (NIL None)"
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/r02.json,1,LAB_REPORT,lab_row,1,26/08/23,Lab Test: HAEMOGLOBIN. Value: 13.9 g/dl. Status: NORMAL. Collected on 26/08/23. Reference range 12-18.
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/r02.json,2,LAB_REPORT,lab_row,1,26/08/23,Lab Test: TOTAL W.B.COUNT. Value: 8400 c/cumm. Status: NORMAL. Collected on 26/08/23. Reference range 4000-11000.
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/r02.json,3,LAB_REPORT,lab_row,1,26/08/23,Lab Test: NEUTROPHILS. Value: 50 %. Status: NORMAL. Collected on 26/08/23. Reference range 40-75.
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/r02.json,4,LAB_REPORT,lab_row,1,26/08/23,Lab Test: LYMPHOCYTES. Value: 45 %. Status: NORMAL. Collected on 26/08/23. Reference range 20-45.
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/r02.json,5,LAB_REPORT,lab_row,1,26/08/23,Lab Test: EOSINOPHILS. Value: 2 %. Status: NORMAL. Collected on 26/08/23. Reference range 1-6.
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/r02.json,6,LAB_REPORT,lab_row,1,26/08/23,Lab Test: MONOCYTES. Value: 3 %. Status: NORMAL. Collected on 26/08/23. Reference range 0-4.
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/r02.json,7,LAB_REPORT,lab_row,1,26/08/23,Lab Test: Basophils. Value: 0 %. Status: NORMAL. Collected on 26/08/23. Reference range 0-1.
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/r02.json,8,LAB_REPORT,lab_row,1,26/08/23,Lab Test: ESR. Value: 15.0 mm/hr. Status: ABNORMAL. Collected on 26/08/23. Reference range 0-10.
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/r02.json,9,LAB_REPORT,lab_row,1,26/08/23,Lab Test: PLATELET COUNT. Value: 2.72 lakhs/cmm. Status: NORMAL. Collected on 26/08/23. Reference range 1.5-4.0.
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/r02.json,10,LAB_REPORT,lab_row,1,26/08/23,Lab Test: RBC. Value: 5.14 million/cumm. Status: NORMAL. Collected on 26/08/23. Reference range 3.5-5.5.
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/r02.json,11,LAB_REPORT,lab_row,1,26/08/23,Lab Test: PCV. Value: 36.9 %. Status: NORMAL. Collected on 26/08/23. Reference range 35-55.
+171c3dda-109c-4093-a794-6da070dae885,39bfc6ad-1188-42c8-9e28-b69d88345251,corpus/user007/r02.json,12,LAB_REPORT,lab_summary,2,26/08/23,"Laboratory Report Summary
+
+Abnormal Findings:
+- ESR (15.0 mm/hr)
+
+Normal Findings:
+- HAEMOGLOBIN (13.9 g/dl)
+- TOTAL W.B.COUNT (8400 c/cumm)
+- NEUTROPHILS (50 %)
+- LYMPHOCYTES (45 %)
+- EOSINOPHILS (2 %)
+- MONOCYTES (3 %)
+- Basophils (0 %)
+- PLATELET COUNT (2.72 lakhs/cmm)
+- RBC (5.14 million/cumm)
+- PCV (36.9 %)"
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r01.json,1,LAB_REPORT,lab_row,1,22-03-2024,Lab Test: Haemoglobin. Value: 12.3 gm%. Status: NORMAL. Collected on 22-03-2024. Reference range 11.5-16.4.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r01.json,2,LAB_REPORT,lab_row,1,22-03-2024,Lab Test: Fasting Blood Glucose Method: GOD-POD. Value: 60 mg/dl. Status: NORMAL. Collected on 22-03-2024. Reference range 60-110.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r01.json,3,LAB_REPORT,lab_row,1,22-03-2024,Lab Test: Post Prandial Blood Glucose Method: GOD-POD. Value: 133 mg/dl. Status: NORMAL. Collected on 22-03-2024. Reference range 100-150.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r01.json,4,LAB_REPORT,lab_row,1,22-03-2024,Lab Test: Glycosylated Haemoglobin (HbA1c) (Automated). Value: 6.7 %. Status: NORMAL. Collected on 22-03-2024. Reference range 6.1-7.0.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r01.json,5,LAB_REPORT,lab_row,1,22-03-2024,Lab Test: Mean Blood Glucose. Value: 144.3 mg/dl. Status: ABNORMAL. Collected on 22-03-2024. Reference range 70-140.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r01.json,6,LAB_REPORT,lab_summary,2,22-03-2024,"Laboratory Report Summary
+
+Abnormal Findings:
+- Mean Blood Glucose (144.3 mg/dl)
+
+Normal Findings:
+- Haemoglobin (12.3 gm%)
+- Fasting Blood Glucose Method: GOD-POD (60 mg/dl)
+- Post Prandial Blood Glucose Method: GOD-POD (133 mg/dl)
+- Glycosylated Haemoglobin (HbA1c) (Automated) (6.7 %)"
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r02.json,1,LAB_REPORT,lab_row,1,15-11-2023,Lab Test: Fasting Blood Glucose Method: GOD-POD. Value: 119 mg/dl. Status: ABNORMAL. Collected on 15-11-2023. Reference range 60-110.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r02.json,2,LAB_REPORT,lab_row,1,15-11-2023,Lab Test: Post Prandial Blood Glucose Method: GOD-POD. Value: 165 mg/dl. Status: ABNORMAL. Collected on 15-11-2023. Reference range 100-150.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r02.json,3,LAB_REPORT,lab_summary,2,15-11-2023,"Laboratory Report Summary
+
+Abnormal Findings:
+- Fasting Blood Glucose Method: GOD-POD (119 mg/dl)
+- Post Prandial Blood Glucose Method: GOD-POD (165 mg/dl)
+
+"
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r03.json,1,LAB_REPORT,lab_row,1,23-07-2023,Lab Test: Fasting Blood Glucose Method: GOD-POD. Value: 109 mg/dl. Status: NORMAL. Collected on 23-07-2023. Reference range 60-110.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r03.json,2,LAB_REPORT,lab_row,1,23-07-2023,Lab Test: Post Prandial Blood Glucose Method: GOD-POD. Value: 198 mg/dl. Status: ABNORMAL. Collected on 23-07-2023. Reference range 100-150.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r03.json,3,LAB_REPORT,lab_summary,2,23-07-2023,"Laboratory Report Summary
+
+Abnormal Findings:
+- Post Prandial Blood Glucose Method: GOD-POD (198 mg/dl)
+
+Normal Findings:
+- Fasting Blood Glucose Method: GOD-POD (109 mg/dl)"
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r04.json,1,LAB_REPORT,lab_row,1,09-07-2023,Lab Test: Fasting Blood Glucose Method: GOD-POD. Value: 341 mg/dl. Status: ABNORMAL. Collected on 09-07-2023. Reference range 60-110.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r04.json,2,LAB_REPORT,lab_row,1,09-07-2023,Lab Test: Post Prandial Blood Glucose Method: GOD-POD. Value: 455 mg/dl. Status: ABNORMAL. Collected on 09-07-2023. Reference range 100-150.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r04.json,3,LAB_REPORT,lab_row,1,09-07-2023,Lab Test: Glycosylated Haemoglobin (HbA1C) (Automated). Value: 13.5 %. Status: ABNORMAL. Collected on 09-07-2023. Reference range 4.0-5.8.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r04.json,4,LAB_REPORT,lab_row,1,09-07-2023,Lab Test: Mean Blood Glucose. Value: 341.6 mg/dl. Status: ABNORMAL. Collected on 09-07-2023. Reference range 70-140.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r04.json,5,LAB_REPORT,lab_row,1,09-07-2023,Lab Test: Creatinine - Serum Method: Jaffe's Kinetic. Value: 0.7 mg/dl. Status: NORMAL. Collected on 09-07-2023. Reference range 0.7-1.3.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r04.json,6,LAB_REPORT,lab_row,1,09-07-2023,Lab Test: Total Cholesterol Method : CHOD/PAP. Value: 203 mg/dl. Status: NORMAL. Collected on 09-07-2023. Reference range 200-239.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r04.json,7,LAB_REPORT,lab_row,1,09-07-2023,Lab Test: Triglycerides Method : GPO/PAP. Value: 160 mg/dl. Status: ABNORMAL. Collected on 09-07-2023. Reference range 40-150.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r04.json,8,LAB_REPORT,lab_row,1,09-07-2023,Lab Test: HDL Cholesterol Method : Direct. Value: 53 mg/dl. Status: NORMAL. Collected on 09-07-2023. Reference range 30-70.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r04.json,9,LAB_REPORT,lab_row,1,09-07-2023,Lab Test: LDL Cholesterol Method: Calculation. Value: 118.0 mg/dl. Status: NORMAL. Collected on 09-07-2023. Reference range 0-129.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r04.json,10,LAB_REPORT,lab_row,1,09-07-2023,Lab Test: VLDL Cholesterol. Value: 32.0 mg/dl. Status: NORMAL. Collected on 09-07-2023. Reference range 20-45.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r04.json,11,LAB_REPORT,lab_row,1,09-07-2023,Lab Test: Chol/HDL Ratio. Value: 3.83 None. Status: NORMAL. Collected on 09-07-2023. Reference range 0-6.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r04.json,12,LAB_REPORT,lab_summary,2,09-07-2023,"Laboratory Report Summary
+
+Abnormal Findings:
+- Fasting Blood Glucose Method: GOD-POD (341 mg/dl)
+- Post Prandial Blood Glucose Method: GOD-POD (455 mg/dl)
+- Glycosylated Haemoglobin (HbA1C) (Automated) (13.5 %)
+- Mean Blood Glucose (341.6 mg/dl)
+- Triglycerides Method : GPO/PAP (160 mg/dl)
+
+Normal Findings:
+- Creatinine - Serum Method: Jaffe's Kinetic (0.7 mg/dl)
+- Total Cholesterol Method : CHOD/PAP (203 mg/dl)
+- HDL Cholesterol Method : Direct (53 mg/dl)
+- LDL Cholesterol Method: Calculation (118.0 mg/dl)
+- VLDL Cholesterol (32.0 mg/dl)
+- Chol/HDL Ratio (3.83 None)"
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r05.json,1,LAB_REPORT,lab_row,1,18-06-2025,Lab Test: Fasting Blood Glucose Method: GOD-POD. Value: 94 mg/dl. Status: NORMAL. Collected on 18-06-2025. Reference range 60-110.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r05.json,2,LAB_REPORT,lab_row,1,18-06-2025,Lab Test: Post Prandial Blood Glucose Method: GOD-POD. Value: 192 mg/dl. Status: ABNORMAL. Collected on 18-06-2025. Reference range 100-150.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r05.json,3,LAB_REPORT,lab_row,1,18-06-2025,Lab Test: Glycosylated Haemoglobin (HbA1C) (Automated). Value: 8.0 %. Status: NORMAL. Collected on 18-06-2025.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r05.json,4,LAB_REPORT,lab_row,1,18-06-2025,Lab Test: Mean Blood Glucose. Value: 182.3 mg/dl. Status: ABNORMAL. Collected on 18-06-2025. Reference range 70-140.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r05.json,5,LAB_REPORT,lab_row,1,18-06-2025,Lab Test: Creatinine - Serum Method: Jaffe's Kinetic. Value: 0.7 mg/dl. Status: NORMAL. Collected on 18-06-2025. Reference range 0.7-1.5.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r05.json,6,LAB_REPORT,lab_row,1,18-06-2025,Lab Test: Total Cholesterol Method: CHOD/PAP. Value: 188 mg/dl. Status: NORMAL. Collected on 18-06-2025. Reference range 50-200.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r05.json,7,LAB_REPORT,lab_row,1,18-06-2025,Lab Test: Triglycerides Method: GPO/PAP. Value: 160 mg/dl. Status: ABNORMAL. Collected on 18-06-2025. Reference range 40-150.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r05.json,8,LAB_REPORT,lab_row,1,18-06-2025,Lab Test: HDL Cholesterol Method: Direct. Value: 44 mg/dl. Status: NORMAL. Collected on 18-06-2025. Reference range 30-70.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r05.json,9,LAB_REPORT,lab_row,1,18-06-2025,Lab Test: LDL Cholesterol Method: Calculation. Value: 112.0 mg/dl. Status: NORMAL. Collected on 18-06-2025.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r05.json,10,LAB_REPORT,lab_row,1,18-06-2025,Lab Test: VLDL Cholesterol. Value: 32.0 mg/dl. Status: NORMAL. Collected on 18-06-2025. Reference range 20-45.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r05.json,11,LAB_REPORT,lab_row,1,18-06-2025,Lab Test: Chol/HDL Ratio. Value: 4.27 None. Status: NORMAL. Collected on 18-06-2025. Reference range 0-6.
+daece52a-6286-4732-8c10-e47320b4d9db,a8cb31de-b79b-4c27-8d49-c335ed030627,corpus/user008/r05.json,12,LAB_REPORT,lab_summary,2,18-06-2025,"Laboratory Report Summary
+
+Abnormal Findings:
+- Post Prandial Blood Glucose Method: GOD-POD (192 mg/dl)
+- Mean Blood Glucose (182.3 mg/dl)
+- Triglycerides Method: GPO/PAP (160 mg/dl)
+
+Normal Findings:
+- Fasting Blood Glucose Method: GOD-POD (94 mg/dl)
+- Glycosylated Haemoglobin (HbA1C) (Automated) (8.0 %)
+- Creatinine - Serum Method: Jaffe's Kinetic (0.7 mg/dl)
+- Total Cholesterol Method: CHOD/PAP (188 mg/dl)
+- HDL Cholesterol Method: Direct (44 mg/dl)
+- LDL Cholesterol Method: Calculation (112.0 mg/dl)
+- VLDL Cholesterol (32.0 mg/dl)
+- Chol/HDL Ratio (4.27 None)"
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r01.json,1,LAB_REPORT,lab_row,1,07/01/25,Lab Test: BILIRUBIN TOTAL. Value: 4.3 mg/dl. Status: ABNORMAL. Collected on 07/01/25. Reference range 0-1.0.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r01.json,2,LAB_REPORT,lab_row,1,07/01/25,"Lab Test: BILIRUBIN, DIRECT. Value: 3.68 mg/dl. Status: ABNORMAL. Collected on 07/01/25. Reference range 0-0.3."
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r01.json,3,LAB_REPORT,lab_row,1,07/01/25,Lab Test: BILIRUBIN INDIRECT. Value: 0.32 mg/dL. Status: NORMAL. Collected on 07/01/25. Reference range 0.3-1.3.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r01.json,4,LAB_REPORT,lab_row,1,07/01/25,Lab Test: TOTAL PROTEIN. Value: 7.4 g/dL. Status: NORMAL. Collected on 07/01/25. Reference range 6.4-8.2.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r01.json,5,LAB_REPORT,lab_row,1,07/01/25,"Lab Test: ALBUMIN, SERUM. Value: 4.3 g/dl. Status: NORMAL. Collected on 07/01/25. Reference range 3.4-5.0."
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r01.json,6,LAB_REPORT,lab_row,1,07/01/25,Lab Test: GLOBULIN. Value: 3.1 g/dL. Status: NORMAL. Collected on 07/01/25. Reference range 2.0-3.5.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r01.json,7,LAB_REPORT,lab_row,1,07/01/25,Lab Test: A/G RATIO. Value: 1.39 None. Status: NORMAL. Collected on 07/01/25. Reference range 0.8-2.0.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r01.json,8,LAB_REPORT,lab_row,1,07/01/25,Lab Test: SGOT (AST). Value: 1573 U/L. Status: ABNORMAL. Collected on 07/01/25. Reference range 15-37.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r01.json,9,LAB_REPORT,lab_row,1,07/01/25,Lab Test: SGPT (ALT). Value: 1720 U/L. Status: ABNORMAL. Collected on 07/01/25. Reference range 0-45.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r01.json,10,LAB_REPORT,lab_row,1,07/01/25,Lab Test: ALKALINE PHOSPHATASE. Value: 393 IU/L. Status: ABNORMAL. Collected on 07/01/25. Reference range 30-120.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r01.json,11,LAB_REPORT,lab_row,1,07/01/25,Lab Test: GAMMA GLUTAMYL TRANSFERASE(GGT). Value: 162 IU/L. Status: ABNORMAL. Collected on 07/01/25. Reference range 15-85.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r01.json,12,LAB_REPORT,lab_summary,2,07/01/25,"Laboratory Report Summary
+
+Abnormal Findings:
+- BILIRUBIN TOTAL (4.3 mg/dl)
+- BILIRUBIN, DIRECT (3.68 mg/dl)
+- SGOT (AST) (1573 U/L)
+- SGPT (ALT) (1720 U/L)
+- ALKALINE PHOSPHATASE (393 IU/L)
+- GAMMA GLUTAMYL TRANSFERASE(GGT) (162 IU/L)
+
+Normal Findings:
+- BILIRUBIN INDIRECT (0.32 mg/dL)
+- TOTAL PROTEIN (7.4 g/dL)
+- ALBUMIN, SERUM (4.3 g/dl)
+- GLOBULIN (3.1 g/dL)
+- A/G RATIO (1.39 None)"
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r02.json,1,LAB_REPORT,lab_row,1,07/01/2025,Lab Test: Haemoglobin. Value: 15.2 gm/dL. Status: NORMAL. Collected on 07/01/2025. Reference range 13.0-18.0.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r02.json,2,LAB_REPORT,lab_row,1,07/01/2025,Lab Test: Total count. Value: 9200 /cmm. Status: NORMAL. Collected on 07/01/2025. Reference range 4000-11000.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r02.json,3,LAB_REPORT,lab_row,1,07/01/2025,Lab Test: Neutrophils. Value: 85 %. Status: ABNORMAL. Collected on 07/01/2025. Reference range 40-70.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r02.json,4,LAB_REPORT,lab_row,1,07/01/2025,Lab Test: Lymphocytes. Value: 12 %. Status: ABNORMAL. Collected on 07/01/2025. Reference range 20-45.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r02.json,5,LAB_REPORT,lab_row,1,07/01/2025,Lab Test: Eosinophils. Value: 1 %. Status: NORMAL. Collected on 07/01/2025. Reference range 1-6.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r02.json,6,LAB_REPORT,lab_row,1,07/01/2025,Lab Test: Monocytes. Value: 2 %. Status: NORMAL. Collected on 07/01/2025. Reference range 1-10.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r02.json,7,LAB_REPORT,lab_row,1,07/01/2025,Lab Test: Basophils. Value: 0 %. Status: NORMAL. Collected on 07/01/2025. Reference range 0-1.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r02.json,8,LAB_REPORT,lab_row,1,07/01/2025,Lab Test: RBC Count. Value: 5.41 mill/cmm. Status: NORMAL. Collected on 07/01/2025. Reference range 4.2-6.5.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r02.json,9,LAB_REPORT,lab_row,1,07/01/2025,Lab Test: Packed Cell Volume. Value: 42.0 %. Status: NORMAL. Collected on 07/01/2025. Reference range 40-54.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r02.json,10,LAB_REPORT,lab_row,1,07/01/2025,Lab Test: MCV. Value: 78.5 fl. Status: NORMAL. Collected on 07/01/2025. Reference range 76-96.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r02.json,11,LAB_REPORT,lab_row,1,07/01/2025,Lab Test: MCH. Value: 28.2 pg. Status: NORMAL. Collected on 07/01/2025. Reference range 27-32.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r02.json,12,LAB_REPORT,lab_row,1,07/01/2025,Lab Test: MCHC. Value: 36.3 gm/dL. Status: NORMAL. Collected on 07/01/2025. Reference range 30-37.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r02.json,13,LAB_REPORT,lab_row,1,07/01/2025,Lab Test: Platelet Count. Value: 2.55 Lakh/cmm. Status: NORMAL. Collected on 07/01/2025. Reference range 1.4-4.0.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r02.json,14,LAB_REPORT,lab_row,1,07/01/2025,Lab Test: RBS - Random Blood Sugar (Method - GOD-POD). Value: 115 mg/dL. Status: ABNORMAL. Collected on 07/01/2025. Reference range 60-140.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r02.json,15,LAB_REPORT,lab_summary,2,07/01/2025,"Laboratory Report Summary
+
+Abnormal Findings:
+- Neutrophils (85 %)
+- Lymphocytes (12 %)
+- RBS - Random Blood Sugar (Method - GOD-POD) (115 mg/dL)
+
+Normal Findings:
+- Haemoglobin (15.2 gm/dL)
+- Total count (9200 /cmm)
+- Eosinophils (1 %)
+- Monocytes (2 %)
+- Basophils (0 %)
+- RBC Count (5.41 mill/cmm)
+- Packed Cell Volume (42.0 %)
+- MCV (78.5 fl)
+- MCH (28.2 pg)
+- MCHC (36.3 gm/dL)
+- Platelet Count (2.55 Lakh/cmm)"
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r03.json,1,LAB_REPORT,lab_row,1,18-01-2025,"Lab Test: Anti HAV IgM, Serum. Value: 7.75 None. Status: ABNORMAL. Collected on 18-01-2025."
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r03.json,2,LAB_REPORT,lab_row,1,18-01-2025,Lab Test: Anti HAV IgM (Interpretation). Value: Positive None. Status: ABNORMAL. Collected on 18-01-2025.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r03.json,3,LAB_REPORT,lab_summary,2,18-01-2025,"Laboratory Report Summary
+
+Abnormal Findings:
+- Anti HAV IgM, Serum (7.75 None)
+- Anti HAV IgM (Interpretation) (Positive None)
+
+"
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r04.json,1,LAB_REPORT,lab_row,1,09/01/2025,Lab Test: WBC. Value: 5.14 [10^3/uL]. Status: NORMAL. Collected on 09/01/2025. Reference range 3.0-15.0.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r04.json,2,LAB_REPORT,lab_row,1,09/01/2025,Lab Test: RBC. Value: 5.34 [10^6/uL]. Status: NORMAL. Collected on 09/01/2025. Reference range 2.5-5.5.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r04.json,3,LAB_REPORT,lab_row,1,09/01/2025,Lab Test: HGB. Value: 14.4 [g/dL]. Status: NORMAL. Collected on 09/01/2025. Reference range 8.0-17.0.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r04.json,4,LAB_REPORT,lab_row,1,09/01/2025,Lab Test: HCT. Value: 43.5 [%]. Status: NORMAL. Collected on 09/01/2025. Reference range 26.0-50.0.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r04.json,5,LAB_REPORT,lab_row,1,09/01/2025,Lab Test: MCV. Value: 81.5 [fL]. Status: ABNORMAL. Collected on 09/01/2025. Reference range 86.0-110.0.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r04.json,6,LAB_REPORT,lab_row,1,09/01/2025,Lab Test: MCH. Value: 27.0 [pg]. Status: NORMAL. Collected on 09/01/2025. Reference range 26.0-38.0.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r04.json,7,LAB_REPORT,lab_row,1,09/01/2025,Lab Test: MCHC. Value: 33.1 [g/dL]. Status: NORMAL. Collected on 09/01/2025. Reference range 31.0-37.0.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r04.json,8,LAB_REPORT,lab_row,1,09/01/2025,Lab Test: RDW-SD. Value: 41.8 [fL]. Status: NORMAL. Collected on 09/01/2025. Reference range 37.0-54.0.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r04.json,9,LAB_REPORT,lab_row,1,09/01/2025,Lab Test: RDW-CV. Value: 13.8 [%]. Status: NORMAL. Collected on 09/01/2025. Reference range 11.0-16.0.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r04.json,10,LAB_REPORT,lab_row,1,09/01/2025,Lab Test: PLT. Value: 295 [10^3/uL]. Status: NORMAL. Collected on 09/01/2025. Reference range 50-400.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r04.json,11,LAB_REPORT,lab_row,1,09/01/2025,Lab Test: PDW. Value: 12.3 [fL]. Status: NORMAL. Collected on 09/01/2025. Reference range 9.0-17.0.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r04.json,12,LAB_REPORT,lab_row,1,09/01/2025,Lab Test: MPV. Value: 10.5 [fL]. Status: NORMAL. Collected on 09/01/2025. Reference range 9.0-13.0.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r04.json,13,LAB_REPORT,lab_row,1,09/01/2025,Lab Test: P-LCR. Value: 28.7 [%]. Status: NORMAL. Collected on 09/01/2025. Reference range 13.0-43.0.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r04.json,14,LAB_REPORT,lab_row,1,09/01/2025,Lab Test: PCT. Value: 0.31 [%]. Status: NORMAL. Collected on 09/01/2025. Reference range 0.17-0.35.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r04.json,15,LAB_REPORT,lab_row,1,09/01/2025,Lab Test: NEUT#. Value: 3.01 [10^3/uL]. Status: NORMAL. Collected on 09/01/2025. Reference range 1.5-7.0.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r04.json,16,LAB_REPORT,lab_row,1,09/01/2025,Lab Test: LYMPH#. Value: 1.5 [10^3/uL]. Status: NORMAL. Collected on 09/01/2025. Reference range 1.0-3.7.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r04.json,17,LAB_REPORT,lab_row,1,09/01/2025,Lab Test: MONO#. Value: 0.59 [10^3/uL]. Status: NORMAL. Collected on 09/01/2025. Reference range 0.0-0.7.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r04.json,18,LAB_REPORT,lab_row,1,09/01/2025,Lab Test: EO#. Value: 0.02 [10^3/uL]. Status: NORMAL. Collected on 09/01/2025. Reference range 0.0-0.4.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r04.json,19,LAB_REPORT,lab_row,1,09/01/2025,Lab Test: BASO#. Value: 0.02 [10^3/uL]. Status: NORMAL. Collected on 09/01/2025. Reference range 0.0-0.1.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r04.json,20,LAB_REPORT,lab_row,1,09/01/2025,Lab Test: IG#. Value: 0.01 [10^3/uL]. Status: NORMAL. Collected on 09/01/2025. Reference range 0.0-7.0.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r04.json,21,LAB_REPORT,lab_row,1,09/01/2025,Lab Test: NEUT%. Value: 58.5 [%]. Status: NORMAL. Collected on 09/01/2025. Reference range 37.0-72.0.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r04.json,22,LAB_REPORT,lab_row,1,09/01/2025,Lab Test: LYMPH%. Value: 29.2 [%]. Status: NORMAL. Collected on 09/01/2025. Reference range 20.0-50.0.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r04.json,23,LAB_REPORT,lab_row,1,09/01/2025,Lab Test: MONO%. Value: 11.5 [%]. Status: NORMAL. Collected on 09/01/2025. Reference range 0.0-14.0.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r04.json,24,LAB_REPORT,lab_row,1,09/01/2025,Lab Test: EO%. Value: 0.4 [%]. Status: NORMAL. Collected on 09/01/2025. Reference range 0.0-6.0.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r04.json,25,LAB_REPORT,lab_row,1,09/01/2025,Lab Test: BASO%. Value: 0.4 [%]. Status: NORMAL. Collected on 09/01/2025. Reference range 0.0-1.0.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r04.json,26,LAB_REPORT,lab_row,1,09/01/2025,Lab Test: IG%. Value: 0.2 [%]. Status: NORMAL. Collected on 09/01/2025. Reference range 0.0-72.0.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r04.json,27,LAB_REPORT,lab_row,1,09/01/2025,Lab Test: MicroR. Value: 4.4 None. Status: NORMAL. Collected on 09/01/2025. Reference range 0.0-999.9.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r04.json,28,LAB_REPORT,lab_row,1,09/01/2025,Lab Test: MacroR. Value: 4.3 None. Status: NORMAL. Collected on 09/01/2025. Reference range 0.0-999.9.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r04.json,29,LAB_REPORT,lab_summary,2,09/01/2025,"Laboratory Report Summary
+
+Abnormal Findings:
+- MCV (81.5 [fL])
+
+Normal Findings:
+- WBC (5.14 [10^3/uL])
+- RBC (5.34 [10^6/uL])
+- HGB (14.4 [g/dL])
+- HCT (43.5 [%])
+- MCH (27.0 [pg])
+- MCHC (33.1 [g/dL])
+- RDW-SD (41.8 [fL])
+- RDW-CV (13.8 [%])
+- PLT (295 [10^3/uL])
+- PDW (12.3 [fL])
+- MPV (10.5 [fL])
+- P-LCR (28.7 [%])
+- PCT (0.31 [%])
+- NEUT# (3.01 [10^3/uL])
+- LYMPH# (1.5 [10^3/uL])
+- MONO# (0.59 [10^3/uL])
+- EO# (0.02 [10^3/uL])
+- BASO# (0.02 [10^3/uL])
+- IG# (0.01 [10^3/uL])
+- NEUT% (58.5 [%])
+- LYMPH% (29.2 [%])
+- MONO% (11.5 [%])
+- EO% (0.4 [%])
+- BASO% (0.4 [%])
+- IG% (0.2 [%])
+- MicroR (4.4 None)
+- MacroR (4.3 None)"
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r05.json,1,LAB_REPORT,lab_row,1,07/01/25,Lab Test: BILIRUBIN TOTAL. Value: 4.2 mg/dl. Status: ABNORMAL. Collected on 07/01/25. Reference range 0-1.0.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r05.json,2,LAB_REPORT,lab_row,1,07/01/25,"Lab Test: BILIRUBIN, DIRECT. Value: 3.88 mg/dl. Status: ABNORMAL. Collected on 07/01/25. Reference range 0-0.3."
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r05.json,3,LAB_REPORT,lab_row,1,07/01/25,Lab Test: BILIRUBIN INDIRECT. Value: 0.32 mg/dL. Status: NORMAL. Collected on 07/01/25. Reference range 0.3-1.3.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r05.json,4,LAB_REPORT,lab_row,1,07/01/25,Lab Test: TOTAL PROTEIN. Value: 7.4 g/dL. Status: NORMAL. Collected on 07/01/25. Reference range 6.4-8.2.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r05.json,5,LAB_REPORT,lab_row,1,07/01/25,"Lab Test: ALBUMIN, SERUM. Value: 4.3 g/dl. Status: NORMAL. Collected on 07/01/25. Reference range 3.4-5.0."
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r05.json,6,LAB_REPORT,lab_row,1,07/01/25,Lab Test: GLOBULIN. Value: 3.1 g/dL. Status: NORMAL. Collected on 07/01/25. Reference range 2.0-3.5.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r05.json,7,LAB_REPORT,lab_row,1,07/01/25,Lab Test: A/G RATIO. Value: 1.39 None. Status: NORMAL. Collected on 07/01/25. Reference range 0.8-2.0.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r05.json,8,LAB_REPORT,lab_row,1,07/01/25,Lab Test: SGOT (AST). Value: 1573 U/L. Status: ABNORMAL. Collected on 07/01/25. Reference range 15-37.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r05.json,9,LAB_REPORT,lab_row,1,07/01/25,Lab Test: SGPT (ALT). Value: 1720 U/L. Status: ABNORMAL. Collected on 07/01/25. Reference range 0-45.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r05.json,10,LAB_REPORT,lab_row,1,07/01/25,Lab Test: ALKALINE PHOSPHATASE. Value: 393 IU/L. Status: ABNORMAL. Collected on 07/01/25. Reference range 30-120.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r05.json,11,LAB_REPORT,lab_row,1,07/01/25,Lab Test: GAMMA GLUTAMYL TRANSFERASE(GGT). Value: 162 IU/L. Status: ABNORMAL. Collected on 07/01/25. Reference range 15-85.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r05.json,12,LAB_REPORT,lab_summary,2,07/01/25,"Laboratory Report Summary
+
+Abnormal Findings:
+- BILIRUBIN TOTAL (4.2 mg/dl)
+- BILIRUBIN, DIRECT (3.88 mg/dl)
+- SGOT (AST) (1573 U/L)
+- SGPT (ALT) (1720 U/L)
+- ALKALINE PHOSPHATASE (393 IU/L)
+- GAMMA GLUTAMYL TRANSFERASE(GGT) (162 IU/L)
+
+Normal Findings:
+- BILIRUBIN INDIRECT (0.32 mg/dL)
+- TOTAL PROTEIN (7.4 g/dL)
+- ALBUMIN, SERUM (4.3 g/dl)
+- GLOBULIN (3.1 g/dL)
+- A/G RATIO (1.39 None)"
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r06.json,1,LAB_REPORT,lab_row,1,07/01/2025,Lab Test: Haemoglobin. Value: 15.2 gm/dL. Status: NORMAL. Collected on 07/01/2025. Reference range 13.0-18.0.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r06.json,2,LAB_REPORT,lab_row,1,07/01/2025,Lab Test: Total count. Value: 9.200 /cmm. Status: NORMAL. Collected on 07/01/2025. Reference range 4000-11000.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r06.json,3,LAB_REPORT,lab_row,1,07/01/2025,Lab Test: Neutrophils. Value: 85 %. Status: ABNORMAL. Collected on 07/01/2025. Reference range 40-70.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r06.json,4,LAB_REPORT,lab_row,1,07/01/2025,Lab Test: Lymphocytes. Value: 12 %. Status: ABNORMAL. Collected on 07/01/2025. Reference range 20-45.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r06.json,5,LAB_REPORT,lab_row,1,07/01/2025,Lab Test: Eosinophils. Value: 01 %. Status: NORMAL. Collected on 07/01/2025. Reference range 1-6.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r06.json,6,LAB_REPORT,lab_row,1,07/01/2025,Lab Test: Monocytes. Value: 02 %. Status: NORMAL. Collected on 07/01/2025. Reference range 1-10.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r06.json,7,LAB_REPORT,lab_row,1,07/01/2025,Lab Test: Basophils. Value: 00 %. Status: NORMAL. Collected on 07/01/2025. Reference range 0-1.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r06.json,8,LAB_REPORT,lab_row,1,07/01/2025,Lab Test: RBC Count. Value: 5.41 mill/cmm. Status: NORMAL. Collected on 07/01/2025. Reference range 4.2-6.5.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r06.json,9,LAB_REPORT,lab_row,1,07/01/2025,Lab Test: Packed Cell Volume. Value: 42.0 %. Status: NORMAL. Collected on 07/01/2025. Reference range 40-54.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r06.json,10,LAB_REPORT,lab_row,1,07/01/2025,Lab Test: MCV. Value: 78.5 fl. Status: NORMAL. Collected on 07/01/2025. Reference range 76-96.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r06.json,11,LAB_REPORT,lab_row,1,07/01/2025,Lab Test: MCH. Value: 28.2 pg. Status: NORMAL. Collected on 07/01/2025. Reference range 27-32.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r06.json,12,LAB_REPORT,lab_row,1,07/01/2025,Lab Test: MCHC. Value: 36.3 gm/dL. Status: NORMAL. Collected on 07/01/2025. Reference range 30-37.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r06.json,13,LAB_REPORT,lab_row,1,07/01/2025,Lab Test: Platelet Count. Value: 2.55 Lakh/cmm. Status: NORMAL. Collected on 07/01/2025. Reference range 1.4-4.0.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r06.json,14,LAB_REPORT,lab_row,1,07/01/2025,Lab Test: RBS - Random Blood Sugar (Method - GOD-POD). Value: 115 mg/dL. Status: NORMAL. Collected on 07/01/2025. Reference range 60-140.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r06.json,15,LAB_REPORT,lab_summary,2,07/01/2025,"Laboratory Report Summary
+
+Abnormal Findings:
+- Neutrophils (85 %)
+- Lymphocytes (12 %)
+
+Normal Findings:
+- Haemoglobin (15.2 gm/dL)
+- Total count (9.200 /cmm)
+- Eosinophils (01 %)
+- Monocytes (02 %)
+- Basophils (00 %)
+- RBC Count (5.41 mill/cmm)
+- Packed Cell Volume (42.0 %)
+- MCV (78.5 fl)
+- MCH (28.2 pg)
+- MCHC (36.3 gm/dL)
+- Platelet Count (2.55 Lakh/cmm)
+- RBS - Random Blood Sugar (Method - GOD-POD) (115 mg/dL)"
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r09.json,1,LAB_REPORT,lab_row,1,17-01-2025,Lab Test: TOTAL BILIRUBIN. Value: 5.68 mg/dL. Status: ABNORMAL. Collected on 17-01-2025. Reference range None-1.2.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r09.json,2,LAB_REPORT,lab_row,1,17-01-2025,Lab Test: DIRECT BILIRUBIN. Value: 5.05 mg/dl. Status: ABNORMAL. Collected on 17-01-2025. Reference range 0-0.2.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r09.json,3,LAB_REPORT,lab_row,1,17-01-2025,Lab Test: INDIRECT BILIRUBIN. Value: 0.63 mg/dl. Status: NORMAL. Collected on 17-01-2025. Reference range 0-0.75.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r09.json,4,LAB_REPORT,lab_row,1,17-01-2025,Lab Test: TOTAL PROTEIN. Value: 7.4 g/dl. Status: NORMAL. Collected on 17-01-2025. Reference range 6.0-8.0.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r09.json,5,LAB_REPORT,lab_row,1,17-01-2025,Lab Test: SERUM ALBUMIN. Value: 3.8 g/dl. Status: NORMAL. Collected on 17-01-2025. Reference range 3.2-4.5.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r09.json,6,LAB_REPORT,lab_row,1,17-01-2025,Lab Test: SERUM GLOBULIN. Value: 3.6 g/dl. Status: ABNORMAL. Collected on 17-01-2025. Reference range 2.3-3.5.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r09.json,7,LAB_REPORT,lab_row,1,17-01-2025,Lab Test: A/G RATIO. Value: 1.1 None. Status: NORMAL. Collected on 17-01-2025. Reference range 1-1.5.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r09.json,8,LAB_REPORT,lab_row,1,17-01-2025,Lab Test: ASPARTATE AMINO TRANSFERASE (SGOT/AST). Value: 84.8 U/L. Status: ABNORMAL. Collected on 17-01-2025. Reference range None-40.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r09.json,9,LAB_REPORT,lab_row,1,17-01-2025,Lab Test: ALANINE AMINOTRANSFERASE (SGPT/ALT). Value: 321.2 U/L. Status: NORMAL. Collected on 17-01-2025.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r09.json,10,LAB_REPORT,lab_row,1,17-01-2025,Lab Test: ALKALINE PHOSPHATASE. Value: 417.2 U/L. Status: ABNORMAL. Collected on 17-01-2025. Reference range 82-331.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r09.json,11,LAB_REPORT,lab_row,1,17-01-2025,Lab Test: GGT. Value: 155.4 U/L. Status: ABNORMAL. Collected on 17-01-2025. Reference range None-60.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r09.json,12,LAB_REPORT,lab_summary,2,17-01-2025,"Laboratory Report Summary
+
+Abnormal Findings:
+- TOTAL BILIRUBIN (5.68 mg/dL)
+- DIRECT BILIRUBIN (5.05 mg/dl)
+- SERUM GLOBULIN (3.6 g/dl)
+- ASPARTATE AMINO TRANSFERASE (SGOT/AST) (84.8 U/L)
+- ALKALINE PHOSPHATASE (417.2 U/L)
+- GGT (155.4 U/L)
+
+Normal Findings:
+- INDIRECT BILIRUBIN (0.63 mg/dl)
+- TOTAL PROTEIN (7.4 g/dl)
+- SERUM ALBUMIN (3.8 g/dl)
+- A/G RATIO (1.1 None)
+- ALANINE AMINOTRANSFERASE (SGPT/ALT) (321.2 U/L)"
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r11.json,1,LAB_REPORT,lab_row,1,28-03-2025,Lab Test: TOTAL BILIRUBIN. Value: 0.65 mg/dL. Status: NORMAL. Collected on 28-03-2025. Reference range None-1.2.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r11.json,2,LAB_REPORT,lab_row,1,28-03-2025,Lab Test: DIRECT BILIRUBIN. Value: 0.29 mg/dl. Status: ABNORMAL. Collected on 28-03-2025. Reference range 0-0.2.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r11.json,3,LAB_REPORT,lab_row,1,28-03-2025,Lab Test: INDIRECT BILIRUBIN. Value: 0.36 mg/dl. Status: NORMAL. Collected on 28-03-2025. Reference range 0-0.75.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r11.json,4,LAB_REPORT,lab_row,1,28-03-2025,Lab Test: TOTAL PROTEIN. Value: 7.6 g/dl. Status: NORMAL. Collected on 28-03-2025. Reference range 6.0-8.0.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r11.json,5,LAB_REPORT,lab_row,1,28-03-2025,Lab Test: SERUM ALBUMIN. Value: 4.9 g/dl. Status: ABNORMAL. Collected on 28-03-2025. Reference range 3.2-4.5.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r11.json,6,LAB_REPORT,lab_row,1,28-03-2025,Lab Test: SERUM GLOBULIN. Value: 2.6 g/dl. Status: NORMAL. Collected on 28-03-2025. Reference range 2.3-3.5.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r11.json,7,LAB_REPORT,lab_row,1,28-03-2025,Lab Test: A/G RATIO. Value: 1.9 None. Status: ABNORMAL. Collected on 28-03-2025. Reference range 1-1.5.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r11.json,8,LAB_REPORT,lab_row,1,28-03-2025,Lab Test: ASPARTATE AMINO TRANSFERASE (SGOT/AST). Value: 22.5 U/L. Status: NORMAL. Collected on 28-03-2025. Reference range None-40.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r11.json,9,LAB_REPORT,lab_row,1,28-03-2025,Lab Test: ALANINE AMINOTRANSFERASE (SGPT/ALT). Value: 15.4 U/L. Status: NORMAL. Collected on 28-03-2025.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r11.json,10,LAB_REPORT,lab_row,1,28-03-2025,Lab Test: ALKALINE PHOSPHATASE. Value: 286.2 U/L. Status: NORMAL. Collected on 28-03-2025. Reference range 82-331.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r11.json,11,LAB_REPORT,lab_row,1,28-03-2025,Lab Test: GGT. Value: 15.9 U/L. Status: NORMAL. Collected on 28-03-2025. Reference range None-60.
+10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,c578b7be-73c1-4068-8b13-e0c1281fcff8,corpus/user009/r11.json,12,LAB_REPORT,lab_summary,2,28-03-2025,"Laboratory Report Summary
+
+Abnormal Findings:
+- DIRECT BILIRUBIN (0.29 mg/dl)
+- SERUM ALBUMIN (4.9 g/dl)
+- A/G RATIO (1.9 None)
+
+Normal Findings:
+- TOTAL BILIRUBIN (0.65 mg/dL)
+- INDIRECT BILIRUBIN (0.36 mg/dl)
+- TOTAL PROTEIN (7.6 g/dl)
+- SERUM GLOBULIN (2.6 g/dl)
+- ASPARTATE AMINO TRANSFERASE (SGOT/AST) (22.5 U/L)
+- ALANINE AMINOTRANSFERASE (SGPT/ALT) (15.4 U/L)
+- ALKALINE PHOSPHATASE (286.2 U/L)
+- GGT (15.9 U/L)"

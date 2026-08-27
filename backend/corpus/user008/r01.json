@@ -1,0 +1,63 @@
+{
+  "patient_id" : "daece52a-6286-4732-8c10-e47320b4d9db",
+  "document_id" : "a8cb31de-b79b-4c27-8d49-c335ed030627",
+  "doc_type": "LAB_REPORT",
+  "report_date": "2024-03-22",
+  "labs": [
+    {
+      "test_name": "Haemoglobin",
+      "value": 12.3,
+      "unit": "gm%",
+      "abnormal": false,
+      "date": "2024-03-22",
+      "reference_range": [
+        11.5,
+        16.4
+      ]
+    },
+    {
+      "test_name": "Fasting Blood Glucose Method: GOD-POD",
+      "value": 60,
+      "unit": "mg/dl",
+      "abnormal": false,
+      "date": "2024-03-22",
+      "reference_range": [
+        60,
+        110
+      ]
+    },
+    {
+      "test_name": "Post Prandial Blood Glucose Method: GOD-POD",
+      "value": 133,
+      "unit": "mg/dl",
+      "abnormal": false,
+      "date": "2024-03-22",
+      "reference_range": [
+        100,
+        150
+      ]
+    },
+    {
+      "test_name": "Glycosylated Haemoglobin (HbA1c) (Automated)",
+      "value": 6.7,
+      "unit": "%",
+      "abnormal": false,
+      "date": "2024-03-22",
+      "reference_range": [
+        6.1,
+        7.0
+      ]
+    },
+    {
+      "test_name": "Mean Blood Glucose",
+      "value": 144.3,
+      "unit": "mg/dl",
+      "abnormal": true,
+      "date": "2024-03-22",
+      "reference_range": [
+        70,
+        140
+      ]
+    }
+  ]
+}

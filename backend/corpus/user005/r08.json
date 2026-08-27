@@ -1,0 +1,120 @@
+{
+"patient_id" : "2a02f095-d81d-4534-933d-92603970be06",
+"document_id" : "39bfc6ad-1188-42c8-9e28-b69d88345251",
+"doc_type": "LAB_REPORT",
+"report_date": "2024-09-24",
+"labs": [
+{
+"test_name": "Fasting Blood Glucose Method : GOD-POD",
+"value": "158",
+"unit": "mg/dl",
+"abnormal": true,
+"date": "2024-09-24",
+"reference_range": [60, 110]
+},
+{
+"test_name": "Post Prandial Blood Glucose Method : GOD-POD",
+"value": "273",
+"unit": "mg/dl",
+"abnormal": true,
+"date": "2024-09-24",
+"reference_range": [100, 150]
+},
+{
+"test_name": "Glycosylated Haemoglobin (HbA1c) (Automated)",
+"value": "8.6",
+"unit": "%",
+"abnormal": true,
+"date": "2024-09-24",
+"reference_range": [4.0, 6.0]
+},
+{
+"test_name": "Mean Blood Glucose",
+"value": "199.9",
+"unit": "mg/dl",
+"abnormal": true,
+"date": "2024-09-24",
+"reference_range": [70, 140]
+},
+{
+"test_name": "Bilirubin - Total Method : Mod. Jendrassik&Grof's",
+"value": "2.6",
+"unit": "mg/dl",
+"abnormal": true,
+"date": "2024-09-24",
+"reference_range": [0.2, 1.2]
+},
+{
+"test_name": "Bilirubin - Direct Method : Mod. Jendrassik & Grof's",
+"value": "1.2",
+"unit": "mg/dl",
+"abnormal": true,
+"date": "2024-09-24",
+"reference_range": [0.0, 0.4]
+},
+{
+"test_name": "Bilirubin - Indirect Method : Calculation",
+"value": "1.40",
+"unit": "mg/dl",
+"abnormal": true,
+"date": "2024-09-24",
+"reference_range": [0.2, 0.6]
+},
+{
+"test_name": "Total Protein Method : Biuret",
+"value": "7.1",
+"unit": "gm/dl",
+"abnormal": false,
+"date": "2024-09-24",
+"reference_range": [6.0, 10.0]
+},
+{
+"test_name": "Albumin - Serum Method : Bromcresol green",
+"value": "4.1",
+"unit": "gm/dl",
+"abnormal": false,
+"date": "2024-09-24",
+"reference_range": [3.5, 5.8]
+},
+{
+"test_name": "Globulin - Serum Method : Bromcresol green",
+"value": "3.00",
+"unit": "gm/dl",
+"abnormal": false,
+"date": "2024-09-24",
+"reference_range": [2.3, 3.6]
+},
+{
+"test_name": "A/G Ratio Method : Calculation",
+"value": "1.37",
+"unit": null,
+"abnormal": false,
+"date": "2024-09-24",
+"reference_range": [1.0, 2.3]
+},
+{
+"test_name": "SGOT (AST) Method : Mod. IFCC Kinetic",
+"value": "24",
+"unit": "U/L",
+"abnormal": false,
+"date": "2024-09-24",
+"reference_range": [5, 37]
+},
+{
+"test_name": "SGPT(ALT)",
+"value": "28",
+"unit": "U/L",
+"abnormal": false,
+"date": "2024-09-24",
+"reference_range": [5, 37]
+},
+{
+"test_name": "Alkaline Phosphatase",
+"value": "85",
+"unit": "U/L",
+"abnormal": false,
+"date": "2024-09-24",
+"reference_range": [42, 141]
+}
+]
+}

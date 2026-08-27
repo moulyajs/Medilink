@@ -1,0 +1,316 @@
+{
+  "patient_id" : "10043ad4-aa9f-46ef-aaf7-574f9d25d2a5",
+  "document_id" : "c578b7be-73c1-4068-8b13-e0c1281fcff8",
+  "doc_type": "LAB_REPORT",
+  "report_date": "2025-01-09",
+  "labs": [
+    {
+      "test_name": "WBC",
+      "value": 5.14,
+      "unit": "[10^3/uL]",
+      "abnormal": false,
+      "date": "2025-01-09",
+      "reference_range": [
+        3.0,
+        15.0
+      ]
+    },
+    {
+      "test_name": "RBC",
+      "value": 5.34,
+      "unit": "[10^6/uL]",
+      "abnormal": false,
+      "date": "2025-01-09",
+      "reference_range": [
+        2.5,
+        5.5
+      ]
+    },
+    {
+      "test_name": "HGB",
+      "value": 14.4,
+      "unit": "[g/dL]",
+      "abnormal": false,
+      "date": "2025-01-09",
+      "reference_range": [
+        8.0,
+        17.0
+      ]
+    },
+    {
+      "test_name": "HCT",
+      "value": 43.5,
+      "unit": "[%]",
+      "abnormal": false,
+      "date": "2025-01-09",
+      "reference_range": [
+        26.0,
+        50.0
+      ]
+    },
+    {
+      "test_name": "MCV",
+      "value": 81.5,
+      "unit": "[fL]",
+      "abnormal": true,
+      "date": "2025-01-09",
+      "reference_range": [
+        86.0,
+        110.0
+      ]
+    },
+    {
+      "test_name": "MCH",
+      "value": 27.0,
+      "unit": "[pg]",
+      "abnormal": false,
+      "date": "2025-01-09",
+      "reference_range": [
+        26.0,
+        38.0
+      ]
+    },
+    {
+      "test_name": "MCHC",
+      "value": 33.1,
+      "unit": "[g/dL]",
+      "abnormal": false,
+      "date": "2025-01-09",
+      "reference_range": [
+        31.0,
+        37.0
+      ]
+    },
+    {
+      "test_name": "RDW-SD",
+      "value": 41.8,
+      "unit": "[fL]",
+      "abnormal": false,
+      "date": "2025-01-09",
+      "reference_range": [
+        37.0,
+        54.0
+      ]
+    },
+    {
+      "test_name": "RDW-CV",
+      "value": 13.8,
+      "unit": "[%]",
+      "abnormal": false,
+      "date": "2025-01-09",
+      "reference_range": [
+        11.0,
+        16.0
+      ]
+    },
+    {
+      "test_name": "PLT",
+      "value": 295,
+      "unit": "[10^3/uL]",
+      "abnormal": false,
+      "date": "2025-01-09",
+      "reference_range": [
+        50,
+        400
+      ]
+    },
+    {
+      "test_name": "PDW",
+      "value": 12.3,
+      "unit": "[fL]",
+      "abnormal": false,
+      "date": "2025-01-09",
+      "reference_range": [
+        9.0,
+        17.0
+      ]
+    },
+    {
+      "test_name": "MPV",
+      "value": 10.5,
+      "unit": "[fL]",
+      "abnormal": false,
+      "date": "2025-01-09",
+      "reference_range": [
+        9.0,
+        13.0
+      ]
+    },
+    {
+      "test_name": "P-LCR",
+      "value": 28.7,
+      "unit": "[%]",
+      "abnormal": false,
+      "date": "2025-01-09",
+      "reference_range": [
+        13.0,
+        43.0
+      ]
+    },
+    {
+      "test_name": "PCT",
+      "value": 0.31,
+      "unit": "[%]",
+      "abnormal": false,
+      "date": "2025-01-09",
+      "reference_range": [
+        0.17,
+        0.35
+      ]
+    },
+    {
+      "test_name": "NEUT#",
+      "value": 3.01,
+      "unit": "[10^3/uL]",
+      "abnormal": false,
+      "date": "2025-01-09",
+      "reference_range": [
+        1.5,
+        7.0
+      ]
+    },
+    {
+      "test_name": "LYMPH#",
+      "value": 1.5,
+      "unit": "[10^3/uL]",
+      "abnormal": false,
+      "date": "2025-01-09",
+      "reference_range": [
+        1.0,
+        3.7
+      ]
+    },
+    {
+      "test_name": "MONO#",
+      "value": 0.59,
+      "unit": "[10^3/uL]",
+      "abnormal": false,
+      "date": "2025-01-09",
+      "reference_range": [
+        0.0,
+        0.7
+      ]
+    },
+    {
+      "test_name": "EO#",
+      "value": 0.02,
+      "unit": "[10^3/uL]",
+      "abnormal": false,
+      "date": "2025-01-09",
+      "reference_range": [
+        0.0,
+        0.4
+      ]
+    },
+    {
+      "test_name": "BASO#",
+      "value": 0.02,
+      "unit": "[10^3/uL]",
+      "abnormal": false,
+      "date": "2025-01-09",
+      "reference_range": [
+        0.0,
+        0.1
+      ]
+    },
+    {
+      "test_name": "IG#",
+      "value": 0.01,
+      "unit": "[10^3/uL]",
+      "abnormal": false,
+      "date": "2025-01-09",
+      "reference_range": [
+        0.0,
+        7.0
+      ]
+    },
+    {
+      "test_name": "NEUT%",
+      "value": 58.5,
+      "unit": "[%]",
+      "abnormal": false,
+      "date": "2025-01-09",
+      "reference_range": [
+        37.0,
+        72.0
+      ]
+    },
+    {
+      "test_name": "LYMPH%",
+      "value": 29.2,
+      "unit": "[%]",
+      "abnormal": false,
+      "date": "2025-01-09",
+      "reference_range": [
+        20.0,
+        50.0
+      ]
+    },
+    {
+      "test_name": "MONO%",
+      "value": 11.5,
+      "unit": "[%]",
+      "abnormal": false,
+      "date": "2025-01-09",
+      "reference_range": [
+        0.0,
+        14.0
+      ]
+    },
+    {
+      "test_name": "EO%",
+      "value": 0.4,
+      "unit": "[%]",
+      "abnormal": false,
+      "date": "2025-01-09",
+      "reference_range": [
+        0.0,
+        6.0
+      ]
+    },
+    {
+      "test_name": "BASO%",
+      "value": 0.4,
+      "unit": "[%]",
+      "abnormal": false,
+      "date": "2025-01-09",
+      "reference_range": [
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "test_name": "IG%",
+      "value": 0.2,
+      "unit": "[%]",
+      "abnormal": false,
+      "date": "2025-01-09",
+      "reference_range": [
+        0.0,
+        72.0
+      ]
+    },
+    {
+      "test_name": "MicroR",
+      "value": 4.4,
+      "unit": null,
+      "abnormal": false,
+      "date": "2025-01-09",
+      "reference_range": [
+        0.0,
+        999.9
+      ]
+    },
+    {
+      "test_name": "MacroR",
+      "value": 4.3,
+      "unit": null,
+      "abnormal": false,
+      "date": "2025-01-09",
+      "reference_range": [
+        0.0,
+        999.9
+      ]
+    }
+  ]
+}

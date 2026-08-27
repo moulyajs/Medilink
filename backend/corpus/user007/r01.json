@@ -1,0 +1,151 @@
+{
+  "patient_id" : "171c3dda-109c-4093-a794-6da070dae885",
+"document_id" : "39bfc6ad-1188-42c8-9e28-b69d88345251",
+  "doc_type": "LAB_REPORT",
+  "report_date": "2023-08-26",
+  "labs": [
+    {
+      "test_name": "DENGUE IGG",
+      "value": "NEGATIVE",
+      "unit": null,
+      "abnormal": false,
+      "date": "2023-08-26",
+      "reference_range": [
+        null,
+        null
+      ]
+    },
+    {
+      "test_name": "DENGUE IGM",
+      "value": "NEGATIVE",
+      "unit": null,
+      "abnormal": false,
+      "date": "2023-08-26",
+      "reference_range": [
+        null,
+        null
+      ]
+    },
+    {
+      "test_name": "DENGUE NS1",
+      "value": "NEGATIVE",
+      "unit": null,
+      "abnormal": false,
+      "date": "2023-08-26",
+      "reference_range": [
+        null,
+        null
+      ]
+    },
+    {
+      "test_name": "Albumin",
+      "value": "NIL",
+      "unit": null,
+      "abnormal": false,
+      "date": "2023-08-26",
+      "reference_range": [
+        null,
+        null
+      ]
+    },
+    {
+      "test_name": "Sugar",
+      "value": "NIL",
+      "unit": null,
+      "abnormal": false,
+      "date": "2023-08-26",
+      "reference_range": [
+        null,
+        null
+      ]
+    },
+    {
+      "test_name": "Ketone",
+      "value": "ABSENT",
+      "unit": null,
+      "abnormal": false,
+      "date": "2023-08-26",
+      "reference_range": [
+        null,
+        null
+      ]
+    },
+    {
+      "test_name": "Bile Pigment",
+      "value": "ABSENT",
+      "unit": null,
+      "abnormal": false,
+      "date": "2023-08-26",
+      "reference_range": [
+        null,
+        null
+      ]
+    },
+    {
+      "test_name": "Bile salt",
+      "value": "ABSENT",
+      "unit": null,
+      "abnormal": false,
+      "date": "2023-08-26",
+      "reference_range": [
+        null,
+        null
+      ]
+    },
+    {
+      "test_name": "Pus Cells",
+      "value": "2-3",
+      "unit": null,
+      "abnormal": false,
+      "date": "2023-08-26",
+      "reference_range": [
+        null,
+        null
+      ]
+    },
+    {
+      "test_name": "Epithelial Cells",
+      "value": "0-1",
+      "unit": null,
+      "abnormal": false,
+      "date": "2023-08-26",
+      "reference_range": [
+        1,
+        2
+      ]
+    },
+    {
+      "test_name": "Red Blood Cells",
+      "value": "ABSENT",
+      "unit": null,
+      "abnormal": false,
+      "date": "2023-08-26",
+      "reference_range": [
+        null,
+        null
+      ]
+    },
+    {
+      "test_name": "Cast",
+      "value": "NIL",
+      "unit": null,
+      "abnormal": false,
+      "date": "2023-08-26",
+      "reference_range": [
+        null,
+        null
+      ]
+    },
+    {
+      "test_name": "Crystals",
+      "value": "NIL",
+      "unit": null,
+      "abnormal": false,
+      "date": "2023-08-26",
+      "reference_range": [
+        null,
+        null
+      ]
+    }
+  ]
+}

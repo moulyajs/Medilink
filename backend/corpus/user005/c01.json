@@ -1,0 +1,26 @@
+{
+"patient_id" : "2a02f095-d81d-4534-933d-92603970be06",
+"document_id" : "39bfc6ad-1188-42c8-9e28-b69d88345251",
+"doc_type": "CLINICAL_NOTE",
+"clinical_notes": [
+{
+"report_date": "2015-11-26",
+"facts": {
+"diagnoses": [],
+"medications": [
+"T. Dolo 650",
+"T. Glycomet",
+"T. Tonact-ASP (75)"
+],
+"symptoms": [],
+"findings": [
+"FBS: 84 mg%",
+"PPBS: 129 mg%",
+"BP: 140/90 mmHg",
+"FBS/PPBS: July 2015"
+],
+"procedures": []
+}
+}
+]
+}

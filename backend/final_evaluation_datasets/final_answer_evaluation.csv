@@ -1,0 +1,209 @@
+eval_id,patient_id,query,task_type,reference_facts,answer_requirements
+ANS001,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,What is my latest BASO# result?,LATEST_VALUE,Lab Test: BASO#. Value: 0.02 [10^3/uL]. Status: NORMAL. Collected on 09/01/2025. Reference range 0.0-0.1.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS002,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,Can you tell me the most recent BASO% value?,LATEST_VALUE,Lab Test: BASO%. Value: 0.4 [%]. Status: NORMAL. Collected on 09/01/2025. Reference range 0.0-1.0.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS003,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,What was my EO# on the latest report?,LATEST_VALUE,Lab Test: EO#. Value: 0.02 [10^3/uL]. Status: NORMAL. Collected on 09/01/2025. Reference range 0.0-0.4.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS004,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,Show my current EO% result.,LATEST_VALUE,Lab Test: EO%. Value: 0.4 [%]. Status: NORMAL. Collected on 09/01/2025. Reference range 0.0-6.0.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS005,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,What is the newest result recorded for HCT?,LATEST_VALUE,Lab Test: HCT. Value: 43.5 [%]. Status: NORMAL. Collected on 09/01/2025. Reference range 26.0-50.0.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS006,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,Give me my most recent HGB reading.,LATEST_VALUE,Lab Test: HGB. Value: 14.4 [g/dL]. Status: NORMAL. Collected on 09/01/2025. Reference range 8.0-17.0.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS007,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,What does my latest report show for IG#?,LATEST_VALUE,Lab Test: IG#. Value: 0.01 [10^3/uL]. Status: NORMAL. Collected on 09/01/2025. Reference range 0.0-7.0.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS008,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,I want to know my latest IG% value.,LATEST_VALUE,Lab Test: IG%. Value: 0.2 [%]. Status: NORMAL. Collected on 09/01/2025. Reference range 0.0-72.0.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS009,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,What is the latest recorded LYMPH#?,LATEST_VALUE,Lab Test: LYMPH#. Value: 1.5 [10^3/uL]. Status: NORMAL. Collected on 09/01/2025. Reference range 1.0-3.7.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS010,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,How much was my LYMPH% in the most recent test?,LATEST_VALUE,Lab Test: LYMPH%. Value: 29.2 [%]. Status: NORMAL. Collected on 09/01/2025. Reference range 20.0-50.0.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS011,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,Can you find the latest MCH result in my records?,LATEST_VALUE,Lab Test: MCH. Value: 27.0 [pg]. Status: NORMAL. Collected on 09/01/2025. Reference range 26.0-38.0.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS012,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,What did my latest test report for MCHC?,LATEST_VALUE,Lab Test: MCHC. Value: 33.1 [g/dL]. Status: NORMAL. Collected on 09/01/2025. Reference range 31.0-37.0.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS013,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,What is my latest MCV result?,LATEST_VALUE,Lab Test: MCV. Value: 81.5 [fL]. Status: ABNORMAL. Collected on 09/01/2025. Reference range 86.0-110.0.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS014,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,Can you tell me the most recent MONO# value?,LATEST_VALUE,Lab Test: MONO#. Value: 0.59 [10^3/uL]. Status: NORMAL. Collected on 09/01/2025. Reference range 0.0-0.7.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS015,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,What was my MONO% on the latest report?,LATEST_VALUE,Lab Test: MONO%. Value: 11.5 [%]. Status: NORMAL. Collected on 09/01/2025. Reference range 0.0-14.0.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS016,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,Show my current MPV result.,LATEST_VALUE,Lab Test: MPV. Value: 10.5 [fL]. Status: NORMAL. Collected on 09/01/2025. Reference range 9.0-13.0.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS017,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,What is the newest result recorded for MacroR?,LATEST_VALUE,Lab Test: MacroR. Value: 4.3 None. Status: NORMAL. Collected on 09/01/2025. Reference range 0.0-999.9.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS018,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,Give me my most recent MicroR reading.,LATEST_VALUE,Lab Test: MicroR. Value: 4.4 None. Status: NORMAL. Collected on 09/01/2025. Reference range 0.0-999.9.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS019,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,What does my latest report show for NEUT#?,LATEST_VALUE,Lab Test: NEUT#. Value: 3.01 [10^3/uL]. Status: NORMAL. Collected on 09/01/2025. Reference range 1.5-7.0.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS020,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,I want to know my latest NEUT% value.,LATEST_VALUE,Lab Test: NEUT%. Value: 58.5 [%]. Status: NORMAL. Collected on 09/01/2025. Reference range 37.0-72.0.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS021,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,What is the latest recorded P-LCR?,LATEST_VALUE,Lab Test: P-LCR. Value: 28.7 [%]. Status: NORMAL. Collected on 09/01/2025. Reference range 13.0-43.0.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS022,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,How much was my PCT in the most recent test?,LATEST_VALUE,Lab Test: PCT. Value: 0.31 [%]. Status: NORMAL. Collected on 09/01/2025. Reference range 0.17-0.35.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS023,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,Can you find the latest PDW result in my records?,LATEST_VALUE,Lab Test: PDW. Value: 12.3 [fL]. Status: NORMAL. Collected on 09/01/2025. Reference range 9.0-17.0.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS024,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,What did my latest test report for PLT?,LATEST_VALUE,Lab Test: PLT. Value: 295 [10^3/uL]. Status: NORMAL. Collected on 09/01/2025. Reference range 50-400.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS025,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,What is my latest RBC result?,LATEST_VALUE,Lab Test: RBC. Value: 5.34 [10^6/uL]. Status: NORMAL. Collected on 09/01/2025. Reference range 2.5-5.5.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS026,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,Can you tell me the most recent RDW-CV value?,LATEST_VALUE,Lab Test: RDW-CV. Value: 13.8 [%]. Status: NORMAL. Collected on 09/01/2025. Reference range 11.0-16.0.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS027,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,What was my RDW-SD on the latest report?,LATEST_VALUE,Lab Test: RDW-SD. Value: 41.8 [fL]. Status: NORMAL. Collected on 09/01/2025. Reference range 37.0-54.0.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS028,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,Show my current WBC result.,LATEST_VALUE,Lab Test: WBC. Value: 5.14 [10^3/uL]. Status: NORMAL. Collected on 09/01/2025. Reference range 3.0-15.0.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS029,2a02f095-d81d-4534-933d-92603970be06,What is the newest result recorded for ALBUMIN/GLOBULIN RATIO?,LATEST_VALUE,Lab Test: ALBUMIN/GLOBULIN RATIO. Value: 1.3:1 None. Status: ABNORMAL. Collected on 28/05/2025. Reference range 1.5-2.5.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS030,2a02f095-d81d-4534-933d-92603970be06,Give me my most recent AVERAGE BLOOD GLUCOSE (CALCULATED) reading.,LATEST_VALUE,Lab Test: AVERAGE BLOOD GLUCOSE (CALCULATED). Value: 147.6 mg/dL. Status: NORMAL. Collected on 28/05/2025.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS031,2a02f095-d81d-4534-933d-92603970be06,What does my latest report show for BASOPHILS?,LATEST_VALUE,Lab Test: BASOPHILS. Value: 0.0 %. Status: NORMAL. Collected on 10/10/2023. Reference range 0.0-1.0.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS032,2a02f095-d81d-4534-933d-92603970be06,I want to know my latest DIRECT BILIRUBIN value.,LATEST_VALUE,Lab Test: DIRECT BILIRUBIN. Value: 0.52 mg/dl. Status: ABNORMAL. Collected on 28/05/2025. Reference range 0.0-0.4.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS033,2a02f095-d81d-4534-933d-92603970be06,What is the latest recorded EOSINOPHILS?,LATEST_VALUE,Lab Test: EOSINOPHILS. Value: 0.2 %. Status: ABNORMAL. Collected on 10/10/2023. Reference range 1-6.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS034,2a02f095-d81d-4534-933d-92603970be06,How much was my GAMMA GT in the most recent test?,LATEST_VALUE,Lab Test: GAMMA GT. Value: 30 U/L. Status: NORMAL. Collected on 28/05/2025. Reference range 10-45.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS035,2a02f095-d81d-4534-933d-92603970be06,Can you find the latest GLOBULIN result in my records?,LATEST_VALUE,Lab Test: GLOBULIN. Value: 3.9 gm/dl. Status: NORMAL. Collected on 28/05/2025. Reference range 2.0-4.0.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS036,2a02f095-d81d-4534-933d-92603970be06,What did my latest test report for HAEMOGLOBIN?,LATEST_VALUE,Lab Test: HAEMOGLOBIN. Value: 15.0 gm/dl. Status: NORMAL. Collected on 10/10/2023. Reference range 13.5-18.5.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS037,2a02f095-d81d-4534-933d-92603970be06,What is my latest HBA1C (HPLC METHOD) result?,LATEST_VALUE,Lab Test: HBA1C (HPLC METHOD). Value: 6.8 %. Status: ABNORMAL. Collected on 28/05/2025. Reference range 4.0-5.6.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS038,2a02f095-d81d-4534-933d-92603970be06,Can you tell me the most recent HDL CHOLESTROL value?,LATEST_VALUE,Lab Test: HDL CHOLESTROL. Value: 34 mg/dl. Status: NORMAL. Collected on 28/05/2025. Reference range 30-70.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS039,2a02f095-d81d-4534-933d-92603970be06,What was my INDIRECT BILIRUBIN on the latest report?,LATEST_VALUE,Lab Test: INDIRECT BILIRUBIN. Value: 3.25 mg/dl. Status: ABNORMAL. Collected on 28/05/2025. Reference range 0.3-1.0.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS040,2a02f095-d81d-4534-933d-92603970be06,Show my current LDL CHOLESTROL result.,LATEST_VALUE,Lab Test: LDL CHOLESTROL. Value: 79.4 mg/dl. Status: NORMAL. Collected on 28/05/2025. Reference range 0-150.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS041,2a02f095-d81d-4534-933d-92603970be06,What is the newest result recorded for LYMPHOCYTES?,LATEST_VALUE,Lab Test: LYMPHOCYTES. Value: 12.7 %. Status: ABNORMAL. Collected on 10/10/2023. Reference range 20-45.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS042,2a02f095-d81d-4534-933d-92603970be06,Give me my most recent MCH reading.,LATEST_VALUE,Lab Test: MCH. Value: 29.4 pg. Status: NORMAL. Collected on 10/10/2023. Reference range 26.5-33.5.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS043,2a02f095-d81d-4534-933d-92603970be06,What does my latest report show for MCHC?,LATEST_VALUE,Lab Test: MCHC. Value: 34.4 g/dl. Status: NORMAL. Collected on 10/10/2023. Reference range 30-35.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS044,2a02f095-d81d-4534-933d-92603970be06,I want to know my latest MCV value.,LATEST_VALUE,Lab Test: MCV. Value: 85.5 fl. Status: NORMAL. Collected on 10/10/2023. Reference range 76-97.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS045,2a02f095-d81d-4534-933d-92603970be06,What is the latest recorded MONOCYTES?,LATEST_VALUE,Lab Test: MONOCYTES. Value: 15.2 %. Status: ABNORMAL. Collected on 10/10/2023. Reference range 0-10.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS046,2a02f095-d81d-4534-933d-92603970be06,How much was my NEUTROPHILS in the most recent test?,LATEST_VALUE,Lab Test: NEUTROPHILS. Value: 71.9 %. Status: NORMAL. Collected on 10/10/2023. Reference range 40-75.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS047,2a02f095-d81d-4534-933d-92603970be06,Can you find the latest PCV result in my records?,LATEST_VALUE,Lab Test: PCV. Value: 43.6 %. Status: NORMAL. Collected on 10/10/2023. Reference range 32-47.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS048,2a02f095-d81d-4534-933d-92603970be06,What did my latest test report for PLATELET COUNT?,LATEST_VALUE,Lab Test: PLATELET COUNT. Value: 156000 cells/cu.mm. Status: NORMAL. Collected on 10/10/2023. Reference range 140000-400000.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS049,2a02f095-d81d-4534-933d-92603970be06,What is my latest RBC COUNT result?,LATEST_VALUE,Lab Test: RBC COUNT. Value: 5.10 mill/cu.mm. Status: NORMAL. Collected on 10/10/2023. Reference range 4.5-6.5.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS050,2a02f095-d81d-4534-933d-92603970be06,Can you tell me the most recent SERUM ALBUMIN value?,LATEST_VALUE,Lab Test: SERUM ALBUMIN. Value: 5.1 gm/dl. Status: ABNORMAL. Collected on 28/05/2025. Reference range 3.5-5.0.,"Must give the recorded latest value, unit, and date when available; must not add unsupported interpretation."
+ANS051,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,How has my MCH changed over time?,TREND,"[""Lab Test: MCH. Value: 28.2 pg. Status: NORMAL. Collected on 07/01/2025. Reference range 27-32."", ""Lab Test: MCH. Value: 27.0 [pg]. Status: NORMAL. Collected on 09/01/2025. Reference range 26.0-38.0.""]",Must reflect the recorded historical values and dates and correctly report endpoint direction (DECREASING); no unsupported diagnosis.
+ANS052,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,What trend do you see in my MCHC results?,TREND,"[""Lab Test: MCHC. Value: 36.3 gm/dL. Status: NORMAL. Collected on 07/01/2025. Reference range 30-37."", ""Lab Test: MCHC. Value: 33.1 [g/dL]. Status: NORMAL. Collected on 09/01/2025. Reference range 31.0-37.0.""]",Must reflect the recorded historical values and dates and correctly report endpoint direction (DECREASING); no unsupported diagnosis.
+ANS053,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,Has my MCV increased or decreased across my reports?,TREND,"[""Lab Test: MCV. Value: 78.5 fl. Status: NORMAL. Collected on 07/01/2025. Reference range 76-96."", ""Lab Test: MCV. Value: 81.5 [fL]. Status: ABNORMAL. Collected on 09/01/2025. Reference range 86.0-110.0.""]",Must reflect the recorded historical values and dates and correctly report endpoint direction (INCREASING); no unsupported diagnosis.
+ANS054,2a02f095-d81d-4534-933d-92603970be06,Compare my ALBUMIN/GLOBULIN RATIO results over time.,TREND,"[""Lab Test: ALBUMIN/GLOBULIN RATIO. Value: 1.3:1 None. Status: ABNORMAL. Collected on 10/10/2023. Reference range 1.5-2.5."", ""Lab Test: ALBUMIN/GLOBULIN RATIO. Value: 1.3:1 None. Status: ABNORMAL. Collected on 28/05/2025. Reference range 1.5-2.5.""]",Must reflect the recorded historical values and dates and correctly report endpoint direction (STABLE); no unsupported diagnosis.
+ANS055,2a02f095-d81d-4534-933d-92603970be06,Is my DIRECT BILIRUBIN going up or down?,TREND,"[""Lab Test: DIRECT BILIRUBIN. Value: 0.29 mg/dl. Status: NORMAL. Collected on 10/10/2023. Reference range 0.0-0.4."", ""Lab Test: DIRECT BILIRUBIN. Value: 0.52 mg/dl. Status: ABNORMAL. Collected on 28/05/2025. Reference range 0.0-0.4.""]",Must reflect the recorded historical values and dates and correctly report endpoint direction (INCREASING); no unsupported diagnosis.
+ANS056,2a02f095-d81d-4534-933d-92603970be06,What has happened to my GAMMA GT across the recorded dates?,TREND,"[""Lab Test: GAMMA GT. Value: 23 U/L. Status: NORMAL. Collected on 10/10/2023. Reference range 10-45."", ""Lab Test: GAMMA GT. Value: 30 U/L. Status: NORMAL. Collected on 28/05/2025. Reference range 10-45.""]",Must reflect the recorded historical values and dates and correctly report endpoint direction (INCREASING); no unsupported diagnosis.
+ANS057,2a02f095-d81d-4534-933d-92603970be06,Show me the progression of my GLOBULIN.,TREND,"[""Lab Test: GLOBULIN. Value: 3.2 gm/dl. Status: NORMAL. Collected on 10/10/2023. Reference range 2.0-4.0."", ""Lab Test: GLOBULIN. Value: 3.9 gm/dl. Status: NORMAL. Collected on 28/05/2025. Reference range 2.0-4.0.""]",Must reflect the recorded historical values and dates and correctly report endpoint direction (INCREASING); no unsupported diagnosis.
+ANS058,2a02f095-d81d-4534-933d-92603970be06,How has my INDIRECT BILIRUBIN changed over time?,TREND,"[""Lab Test: INDIRECT BILIRUBIN. Value: 3.11 mg/dl. Status: ABNORMAL. Collected on 10/10/2023. Reference range 0.3-1.0."", ""Lab Test: INDIRECT BILIRUBIN. Value: 3.25 mg/dl. Status: ABNORMAL. Collected on 28/05/2025. Reference range 0.3-1.0.""]",Must reflect the recorded historical values and dates and correctly report endpoint direction (INCREASING); no unsupported diagnosis.
+ANS059,2a02f095-d81d-4534-933d-92603970be06,What trend do you see in my SERUM ALBUMIN results?,TREND,"[""Lab Test: SERUM ALBUMIN. Value: 4.2 gm/dl. Status: NORMAL. Collected on 10/10/2023."", ""Lab Test: SERUM ALBUMIN. Value: 5.1 gm/dl. Status: ABNORMAL. Collected on 28/05/2025. Reference range 3.5-5.0.""]",Must reflect the recorded historical values and dates and correctly report endpoint direction (INCREASING); no unsupported diagnosis.
+ANS060,2a02f095-d81d-4534-933d-92603970be06,Has my SERUM ALKALINE PHOSPHATE increased or decreased across my reports?,TREND,"[""Lab Test: SERUM ALKALINE PHOSPHATE. Value: 72 U/L. Status: NORMAL. Collected on 10/10/2023. Reference range 30-120."", ""Lab Test: SERUM ALKALINE PHOSPHATE. Value: 99 U/L. Status: NORMAL. Collected on 28/05/2025. Reference range 30-120.""]",Must reflect the recorded historical values and dates and correctly report endpoint direction (INCREASING); no unsupported diagnosis.
+ANS061,2a02f095-d81d-4534-933d-92603970be06,Compare my SERUM TOTAL PROTEIN results over time.,TREND,"[""Lab Test: SERUM TOTAL PROTEIN. Value: 7.4 gm/dl. Status: NORMAL. Collected on 10/10/2023. Reference range 6.6-8.3."", ""Lab Test: SERUM TOTAL PROTEIN. Value: 9.0 gm/dl. Status: ABNORMAL. Collected on 28/05/2025. Reference range 6.6-8.3.""]",Must reflect the recorded historical values and dates and correctly report endpoint direction (INCREASING); no unsupported diagnosis.
+ANS062,2a02f095-d81d-4534-933d-92603970be06,Is my SGOT(AST) going up or down?,TREND,"[""Lab Test: SGOT(AST). Value: 40 U/L. Status: ABNORMAL. Collected on 10/10/2023. Reference range 1-35."", ""Lab Test: SGOT(AST). Value: 26 U/L. Status: NORMAL. Collected on 28/05/2025. Reference range 1-35.""]",Must reflect the recorded historical values and dates and correctly report endpoint direction (DECREASING); no unsupported diagnosis.
+ANS063,2a02f095-d81d-4534-933d-92603970be06,What has happened to my SGPT(ALT) across the recorded dates?,TREND,"[""Lab Test: SGPT(ALT). Value: 33 U/L. Status: NORMAL. Collected on 10/10/2023. Reference range 1-45."", ""Lab Test: SGPT(ALT). Value: 43 U/L. Status: NORMAL. Collected on 28/05/2025. Reference range 1-45.""]",Must reflect the recorded historical values and dates and correctly report endpoint direction (INCREASING); no unsupported diagnosis.
+ANS064,2a02f095-d81d-4534-933d-92603970be06,Show me the progression of my TOTAL BILIRUBIN.,TREND,"[""Lab Test: TOTAL BILIRUBIN. Value: 3.40 mg/dl. Status: ABNORMAL. Collected on 10/10/2023. Reference range 0-1.2."", ""Lab Test: TOTAL BILIRUBIN. Value: 3.77 mg/dl. Status: ABNORMAL. Collected on 28/05/2025. Reference range 0-1.2.""]",Must reflect the recorded historical values and dates and correctly report endpoint direction (INCREASING); no unsupported diagnosis.
+ANS065,a5c02458-b9fe-4b00-9914-e856c77eb671,How has my BASOPHILS changed over time?,TREND,"[""Lab Test: BASOPHILS. Value: 0 %. Status: NORMAL. Collected on 17/03/2020. Reference range 0-1."", ""Lab Test: BASOPHILS. Value: 0.0 %. Status: NORMAL. Collected on 28/05/2025. Reference range 0.0-1.0.""]",Must reflect the recorded historical values and dates and correctly report endpoint direction (STABLE); no unsupported diagnosis.
+ANS066,a5c02458-b9fe-4b00-9914-e856c77eb671,What trend do you see in my LYMPHOCYTES results?,TREND,"[""Lab Test: LYMPHOCYTES. Value: 38 %. Status: NORMAL. Collected on 17/03/2020. Reference range 20-45."", ""Lab Test: LYMPHOCYTES. Value: 31.7 %. Status: NORMAL. Collected on 28/05/2025. Reference range 20-45.""]",Must reflect the recorded historical values and dates and correctly report endpoint direction (DECREASING); no unsupported diagnosis.
+ANS067,a5c02458-b9fe-4b00-9914-e856c77eb671,Has my MCH increased or decreased across my reports?,TREND,"[""Lab Test: MCH. Value: 29.5 Pg. Status: NORMAL. Collected on 17/03/2020. Reference range 25.0-31.0."", ""Lab Test: MCH. Value: 27.6 pg. Status: NORMAL. Collected on 28/05/2025. Reference range 26.5-33.5.""]",Must reflect the recorded historical values and dates and correctly report endpoint direction (DECREASING); no unsupported diagnosis.
+ANS068,a5c02458-b9fe-4b00-9914-e856c77eb671,Compare my MCHC results over time.,TREND,"[""Lab Test: MCHC. Value: 35.3 g/dl. Status: NORMAL. Collected on 17/03/2020. Reference range 32.0-36.0."", ""Lab Test: MCHC. Value: 33.5 g/dl. Status: NORMAL. Collected on 28/05/2025. Reference range 30-35.""]",Must reflect the recorded historical values and dates and correctly report endpoint direction (DECREASING); no unsupported diagnosis.
+ANS069,a5c02458-b9fe-4b00-9914-e856c77eb671,Is my MCV going up or down?,TREND,"[""Lab Test: MCV. Value: 83.7 fl. Status: NORMAL. Collected on 17/03/2020. Reference range 75.0-95.0."", ""Lab Test: MCV. Value: 82.4 fl. Status: NORMAL. Collected on 28/05/2025. Reference range 76-97.""]",Must reflect the recorded historical values and dates and correctly report endpoint direction (DECREASING); no unsupported diagnosis.
+ANS070,a5c02458-b9fe-4b00-9914-e856c77eb671,What has happened to my MONOCYTES across the recorded dates?,TREND,"[""Lab Test: MONOCYTES. Value: 2 %. Status: NORMAL. Collected on 17/03/2020. Reference range 1-8."", ""Lab Test: MONOCYTES. Value: 5.6 %. Status: NORMAL. Collected on 28/05/2025. Reference range 0-10.""]",Must reflect the recorded historical values and dates and correctly report endpoint direction (INCREASING); no unsupported diagnosis.
+ANS071,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,Was my Neutrophils abnormal in this report?,ABNORMAL_LABS,Lab Test: Neutrophils. Value: 85 %. Status: ABNORMAL. Collected on 07/01/2025. Reference range 40-70.,Must accurately report the test/value/status supported by the record and avoid adding causes or diagnoses.
+ANS072,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,Did this report flag Neutrophils as abnormal?,ABNORMAL_LABS,Lab Test: Neutrophils. Value: 85 %. Status: ABNORMAL. Collected on 07/01/2025. Reference range 40-70.,Must accurately report the test/value/status supported by the record and avoid adding causes or diagnoses.
+ANS073,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,Was the Lymphocytes result outside its stated range?,ABNORMAL_LABS,Lab Test: Lymphocytes. Value: 12 %. Status: ABNORMAL. Collected on 07/01/2025. Reference range 20-45.,Must accurately report the test/value/status supported by the record and avoid adding causes or diagnoses.
+ANS074,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,Does my report mark Lymphocytes as abnormal?,ABNORMAL_LABS,Lab Test: Lymphocytes. Value: 12 %. Status: ABNORMAL. Collected on 07/01/2025. Reference range 20-45.,Must accurately report the test/value/status supported by the record and avoid adding causes or diagnoses.
+ANS075,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,Was there an abnormal finding for RBS - Random Blood Sugar (Method - GOD-POD)?,ABNORMAL_LABS,Lab Test: RBS - Random Blood Sugar (Method - GOD-POD). Value: 115 mg/dL. Status: ABNORMAL. Collected on 07/01/2025. Reference range 60-140.,Must accurately report the test/value/status supported by the record and avoid adding causes or diagnoses.
+ANS076,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,What status did my report give for MCV?,ABNORMAL_LABS,Lab Test: MCV. Value: 81.5 [fL]. Status: ABNORMAL. Collected on 09/01/2025. Reference range 86.0-110.0.,Must accurately report the test/value/status supported by the record and avoid adding causes or diagnoses.
+ANS077,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,Is the BILIRUBIN TOTAL result within the reported reference range?,ABNORMAL_LABS,Lab Test: BILIRUBIN TOTAL. Value: 4.3 mg/dl. Status: ABNORMAL. Collected on 07/01/25. Reference range 0-1.0.,Must accurately report the test/value/status supported by the record and avoid adding causes or diagnoses.
+ANS078,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,"Was my Anti HAV IgM, Serum abnormal in this report?",ABNORMAL_LABS,"Lab Test: Anti HAV IgM, Serum. Value: 7.75 None. Status: ABNORMAL. Collected on 18-01-2025.",Must accurately report the test/value/status supported by the record and avoid adding causes or diagnoses.
+ANS079,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,Did this report flag BILIRUBIN TOTAL as abnormal?,ABNORMAL_LABS,Lab Test: BILIRUBIN TOTAL. Value: 4.2 mg/dl. Status: ABNORMAL. Collected on 07/01/25. Reference range 0-1.0.,Must accurately report the test/value/status supported by the record and avoid adding causes or diagnoses.
+ANS080,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,Was the TOTAL BILIRUBIN result outside its stated range?,ABNORMAL_LABS,Lab Test: TOTAL BILIRUBIN. Value: 5.68 mg/dL. Status: ABNORMAL. Collected on 17-01-2025. Reference range None-1.2.,Must accurately report the test/value/status supported by the record and avoid adding causes or diagnoses.
+ANS081,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,"Does my report mark BILIRUBIN, DIRECT as abnormal?",ABNORMAL_LABS,"Lab Test: BILIRUBIN, DIRECT. Value: 3.68 mg/dl. Status: ABNORMAL. Collected on 07/01/25. Reference range 0-0.3.",Must accurately report the test/value/status supported by the record and avoid adding causes or diagnoses.
+ANS082,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,Was there an abnormal finding for Anti HAV IgM (Interpretation)?,ABNORMAL_LABS,Lab Test: Anti HAV IgM (Interpretation). Value: Positive None. Status: ABNORMAL. Collected on 18-01-2025.,Must accurately report the test/value/status supported by the record and avoid adding causes or diagnoses.
+ANS083,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,"What status did my report give for BILIRUBIN, DIRECT?",ABNORMAL_LABS,"Lab Test: BILIRUBIN, DIRECT. Value: 3.88 mg/dl. Status: ABNORMAL. Collected on 07/01/25. Reference range 0-0.3.",Must accurately report the test/value/status supported by the record and avoid adding causes or diagnoses.
+ANS084,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,Is the DIRECT BILIRUBIN result within the reported reference range?,ABNORMAL_LABS,Lab Test: DIRECT BILIRUBIN. Value: 5.05 mg/dl. Status: ABNORMAL. Collected on 17-01-2025. Reference range 0-0.2.,Must accurately report the test/value/status supported by the record and avoid adding causes or diagnoses.
+ANS085,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,Was my DIRECT BILIRUBIN abnormal in this report?,ABNORMAL_LABS,Lab Test: DIRECT BILIRUBIN. Value: 0.29 mg/dl. Status: ABNORMAL. Collected on 28-03-2025. Reference range 0-0.2.,Must accurately report the test/value/status supported by the record and avoid adding causes or diagnoses.
+ANS086,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,Did this report flag SERUM ALBUMIN as abnormal?,ABNORMAL_LABS,Lab Test: SERUM ALBUMIN. Value: 4.9 g/dl. Status: ABNORMAL. Collected on 28-03-2025. Reference range 3.2-4.5.,Must accurately report the test/value/status supported by the record and avoid adding causes or diagnoses.
+ANS087,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,Was the SERUM GLOBULIN result outside its stated range?,ABNORMAL_LABS,Lab Test: SERUM GLOBULIN. Value: 3.6 g/dl. Status: ABNORMAL. Collected on 17-01-2025. Reference range 2.3-3.5.,Must accurately report the test/value/status supported by the record and avoid adding causes or diagnoses.
+ANS088,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,Does my report mark A/G RATIO as abnormal?,ABNORMAL_LABS,Lab Test: A/G RATIO. Value: 1.9 None. Status: ABNORMAL. Collected on 28-03-2025. Reference range 1-1.5.,Must accurately report the test/value/status supported by the record and avoid adding causes or diagnoses.
+ANS089,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,Was there an abnormal finding for SGOT (AST)?,ABNORMAL_LABS,Lab Test: SGOT (AST). Value: 1573 U/L. Status: ABNORMAL. Collected on 07/01/25. Reference range 15-37.,Must accurately report the test/value/status supported by the record and avoid adding causes or diagnoses.
+ANS090,10043ad4-aa9f-46ef-aaf7-574f9d25d2a5,What status did my report give for SGOT (AST)?,ABNORMAL_LABS,Lab Test: SGOT (AST). Value: 1573 U/L. Status: ABNORMAL. Collected on 07/01/25. Reference range 15-37.,Must accurately report the test/value/status supported by the record and avoid adding causes or diagnoses.
+ANS091,33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,What findings were summarized in this laboratory report?,GENERAL_RAG,"Laboratory Report Summary
+
+Abnormal Findings:
+- Serum Sodium (132.3 mEq/L)
+- Fasting blood glucose (123 mg/dl)
+- H.D.L. Cholesterol (27.6 mgs/dl)
+
+Normal Findings:
+- Serum Potassium (3.9 mEq/L)
+- Serum Chlorides (97.6 mEq/L)
+- NT pro-BNP (139.2 pg/ml)
+- HbA1c (5.9 %)
+- Blood Urea (15 mg/dl)
+- Serum Creatinine (0.74 mgs/dl)
+- Total Cholesterol (121 mgs/dl)
+- Direct LDL (64 mgs/dl)",Answer only from the retrieved record content; do not invent missing facts.
+ANS092,33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,Which lab findings were listed in the report summary?,GENERAL_RAG,"Laboratory Report Summary
+
+Abnormal Findings:
+- R.B.C Count (3.78 millions / cu. mm.)
+- M.C.V (116.9 fL)
+- M.C.H (41.5 pg)
+- Platelet Count (1.26 Lakhs/ cu. mm.)
+- Basophils (0.7 %)
+
+Normal Findings:
+- Haemoglobin (15.7 gms/dl)
+- NRBCs (0.0 %)
+- P.C.V (44.2 %)
+- M.C.H.C (35.5 g/dl)
+- Total W.B.C Count (9800 /cumm)
+- Neutrophils (58.4 %)
+- Lymphocytes (29.0 %)
+- Monocytes (7.6 %)
+- Eosinophils (4.3 %)",Answer only from the retrieved record content; do not invent missing facts.
+ANS093,33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,What normal and abnormal findings were summarized?,GENERAL_RAG,"Laboratory Report Summary
+
+Normal Findings:
+- LVIDd (4.4 cms)
+- LVIDs (2.7 cms)
+- RVDd (1.3 cms)
+- Aortic root (2.8 cms)
+- LA dimension (3.2 cms)
+- IVSd (0.9 cms)
+- LVPWd (0.9 cms)
+- EDV (66.0 ml)
+- ESV (26.0 ml)
+- EF (60.0 %)",Answer only from the retrieved record content; do not invent missing facts.
+ANS094,33e738d0-e6c3-48d2-8aa1-746d8fe2eba7,Can you summarize the lab findings recorded here?,GENERAL_RAG,"Laboratory Report Summary
+
+Abnormal Findings:
+- Serum Sodium (132.3 mEq/L)
+- Fasting blood glucose (123 mg/dl)
+- H.D.L. Cholesterol (27.6 mgs/dl)
+
+Normal Findings:
+- Serum Potassium (3.9 mEq/L)
+- Serum Chlorides (97.6 mEq/L)
+- NT pro-BNP (139.2 pg/ml)
+- HbA1c (5.9 %)
+- Blood Urea (15 mg/dl)
+- Serum Creatinine (0.74 mgs/dl)
+- Total Cholesterol (121 mgs/dl)
+- Direct LDL (64 mgs/dl)",Answer only from the retrieved record content; do not invent missing facts.
+ANS095,0bcfe13f-d52b-4c01-b173-c18bf6208ba4,What diagnostic information is recorded?,GENERAL_RAG,"Date: 15/12/2024
+
+Diagnoses:
+- ACUTE FEBRILE ILLNESS
+- CHOLELITHIASIS",Answer only from the retrieved record content; do not invent missing facts.
+ANS096,0bcfe13f-d52b-4c01-b173-c18bf6208ba4,Can you list the medicines recorded here?,GENERAL_RAG,"Date: 15/12/2024
+
+Medications:
+- IV fluids
+- IV antibiotics (Inj. Piptaz 4.5gm)
+- IV antacids
+- IV antiemetics
+- IV multivitamin
+- oral medications
+- antidiabetic injections",Answer only from the retrieved record content; do not invent missing facts.
+ANS097,0bcfe13f-d52b-4c01-b173-c18bf6208ba4,Which symptoms were recorded in this visit?,GENERAL_RAG,"Date: 15/12/2024
+
+Symptoms:
+- fever since 3 days
+- generalized weakness
+- body pain
+- 1 episode of vomiting 2 days ago",Answer only from the retrieved record content; do not invent missing facts.
+ANS098,0bcfe13f-d52b-4c01-b173-c18bf6208ba4,What observations are listed in my note?,GENERAL_RAG,"Date: 15/12/2024
+
+Findings:
+- BP: 130/80 mm of Hg
+- TEMP: 96°F
+- PULSE RATE: 80 B/MIN
+- SPO2: 95% on RA
+- RR: 20 C/MIN
+- GRBS: 163 mg/dl
+- No Icterus, pallor, cyanosis, edema, Lymphadenopathy
+- S1, S2 HEARD
+- Bilateral NVBS (+)
+- CONSCIOUS/ORIENTED
+- P/A: SOFT, BOWEL SOUND (+)
+- USG abdomen and pelvis revealed cholelithiasis without sonological evidence of cholecystitis
+- Edematous gall bladder wall with trace free fluid in the abdomen
+- Patient responded well to given line of treatment",Answer only from the retrieved record content; do not invent missing facts.
+ANS099,0bcfe13f-d52b-4c01-b173-c18bf6208ba4,What medicines were recorded in this visit?,GENERAL_RAG,"Date: 17/12/2024
+
+Medications:
+- INJ. PIPTAZ 4.5GM IV INFUSION IN 100ML NS, 6am-2pm-10pm TILL 21/12/24
+- TAB. LEVOFLOXACIN, 0-1-0 X 4 DAYS AFTER FOOD
+- CAP. SOMPRAZ D 40MG, 1-0-0 X 5 DAYS BEFORE FOOD
+- SYP. MAC OS, 10ML-10ML-10ML BEFORE FOOD
+- TAB. NEUROBION FORTE, 0-1-0 X 2 WEEKS AFTER FOOD
+- TAB. DOLO 650MG, 1 SOS
+- TAB. GLIRUM MF, 1-0-0 X AFTER FOOD TO CONTINUE
+- TAB. AMLODE 5 MG, 1-0-0 X TO CONTINUE AFTER FOOD",Answer only from the retrieved record content; do not invent missing facts.
+ANS100,0bcfe13f-d52b-4c01-b173-c18bf6208ba4,What findings are mentioned in my record?,GENERAL_RAG,"Date: 17/12/2024
+
+Findings:
+- Patient is haemodynamically stable at the time of discharge",Answer only from the retrieved record content; do not invent missing facts.

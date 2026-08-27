@@ -59,6 +59,7 @@ def retrieve(
             {
                 "chunk_id": r.payload.get("chunk_id"),
                 "text": r.payload.get("text"),
+                "patient_id": r.payload.get("patient_id"),
                 "chunk_type": r.payload.get("chunk_type"),
                 "chunk_level": r.payload.get("chunk_level"),
                 "report_type": r.payload.get("report_type"),
@@ -94,6 +95,7 @@ def retrieve(
                 {
                     "chunk_id": r.payload.get("chunk_id"),
                     "text": r.payload.get("text"),
+                    "patient_id": r.payload.get("patient_id"),
                     "chunk_type": r.payload.get("chunk_type"),
                     "chunk_level": r.payload.get("chunk_level"),
                     "report_type": r.payload.get("report_type"),

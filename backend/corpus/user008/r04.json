@@ -1,0 +1,129 @@
+{
+  "patient_id" : "daece52a-6286-4732-8c10-e47320b4d9db",
+  "document_id" : "a8cb31de-b79b-4c27-8d49-c335ed030627",
+  "doc_type": "LAB_REPORT",
+  "report_date": "2023-07-09",
+  "labs": [
+    {
+      "test_name": "Fasting Blood Glucose Method: GOD-POD",
+      "value": 341,
+      "unit": "mg/dl",
+      "abnormal": true,
+      "date": "2023-07-09",
+      "reference_range": [
+        60,
+        110
+      ]
+    },
+    {
+      "test_name": "Post Prandial Blood Glucose Method: GOD-POD",
+      "value": 455,
+      "unit": "mg/dl",
+      "abnormal": true,
+      "date": "2023-07-09",
+      "reference_range": [
+        100,
+        150
+      ]
+    },
+    {
+      "test_name": "Glycosylated Haemoglobin (HbA1C) (Automated)",
+      "value": 13.5,
+      "unit": "%",
+      "abnormal": true,
+      "date": "2023-07-09",
+      "reference_range": [
+        4.0,
+        5.8
+      ]
+    },
+    {
+      "test_name": "Mean Blood Glucose",
+      "value": 341.6,
+      "unit": "mg/dl",
+      "abnormal": true,
+      "date": "2023-07-09",
+      "reference_range": [
+        70,
+        140
+      ]
+    },
+    {
+      "test_name": "Creatinine - Serum Method: Jaffe's Kinetic",
+      "value": 0.7,
+      "unit": "mg/dl",
+      "abnormal": false,
+      "date": "2023-07-09",
+      "reference_range": [
+        0.7,
+        1.3
+      ]
+    },
+    {
+      "test_name": "Total Cholesterol Method : CHOD/PAP",
+      "value": 203,
+      "unit": "mg/dl",
+      "abnormal": false,
+      "date": "2023-07-09",
+      "reference_range": [
+        200,
+        239
+      ]
+    },
+    {
+      "test_name": "Triglycerides Method : GPO/PAP",
+      "value": 160,
+      "unit": "mg/dl",
+      "abnormal": true,
+      "date": "2023-07-09",
+      "reference_range": [
+        40,
+        150
+      ]
+    },
+    {
+      "test_name": "HDL Cholesterol Method : Direct",
+      "value": 53,
+      "unit": "mg/dl",
+      "abnormal": false,
+      "date": "2023-07-09",
+      "reference_range": [
+        30,
+        70
+      ]
+    },
+    {
+      "test_name": "LDL Cholesterol Method: Calculation",
+      "value": 118.0,
+      "unit": "mg/dl",
+      "abnormal": false,
+      "date": "2023-07-09",
+      "reference_range": [
+        0,
+        129
+      ]
+    },
+    {
+      "test_name": "VLDL Cholesterol",
+      "value": 32.0,
+      "unit": "mg/dl",
+      "abnormal": false,
+      "date": "2023-07-09",
+      "reference_range": [
+        20,
+        45
+      ]
+    },
+    {
+      "test_name": "Chol/HDL Ratio",
+      "value": 3.83,
+      "unit": null,
+      "abnormal": false,
+      "date": "2023-07-09",
+      "reference_range": [
+        0,
+        6
+      ]
+    }
+  ]
+}

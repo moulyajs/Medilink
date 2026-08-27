@@ -1,0 +1,30 @@
+{
+  "patient_id" : "10043ad4-aa9f-46ef-aaf7-574f9d25d2a5",
+  "document_id" : "c578b7be-73c1-4068-8b13-e0c1281fcff8",
+  "doc_type": "LAB_REPORT",
+  "report_date": "2025-01-18",
+  "labs": [
+    {
+      "test_name": "Anti HAV IgM, Serum",
+      "value": 7.75,
+      "unit": null,
+      "abnormal": true,
+      "date": "2025-01-18",
+      "reference_range": [
+        null,
+        null
+      ]
+    },
+    {
+      "test_name": "Anti HAV IgM (Interpretation)",
+      "value": "Positive",
+      "unit": null,
+      "abnormal": true,
+      "date": "2025-01-18",
+      "reference_range": [
+        null,
+        null
+      ]
+    }
+  ]
+}

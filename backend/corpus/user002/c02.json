@@ -1,0 +1,48 @@
+{
+    "patient_id": "0bcfe13f-d52b-4c01-b173-c18bf6208ba4",
+"document_id" : "351801e2-1aec-4c3d-af1c-5879229dcbda",
+"doc_type": "CLINICAL_NOTE",
+"clinical_notes": [
+{
+"report_date": "2024-12-16",
+"facts": {
+"diagnoses": [
+"Cholelithiasis without sonological evidence of cholecystitis",
+"Mild fatty liver"
+],
+"medications": [],
+"symptoms": [
+"Pain abdomen"
+],
+"findings": [
+"Liver is normal in size (14.5 cm) and increased in echopattern",
+"No intra or extra hepatic biliary duct dilatation",
+"No focal lesions",
+"Portalvein is normal in course, caliber and shows hepatopetal flow",
+"Hepatic veins and their confluence draining into the IVC appear normal",
+"CBD is not dilated",
+"Gallbladder demonstrates a calculus, measuring 7.5 mm",
+"Gallbladder demonstrates edematous wall",
+"Pancreas to the extent visualized, appears normal in size, contour and echogenicity",
+"Spleen is normal in size (9.2 cm), shape, contour and echopattern",
+"No evidence of mass or focal lesions",
+"Right kidney is normal in size (measures 9.3 cm in length & 1.8 cm in parenchymal thickness), position, shape and echopattern",
+"Corticomedullary differentiation is maintained",
+"No evidence of calculi or hydronephrosis",
+"Left kidney is normal in size (measures 10.0 cm in length & 1.6 cm in parenchymal thickness), position, shape and echopattern",
+"No evidence of calculi or hydronephrosis",
+"Retroperitoneum - Obscured by bowel gas",
+"Urinary bladder is well distended",
+"Wall thickness is normal",
+"No evidence of calculi, mass or mural lesion",
+"Prostate is normal in size measuring (Volume = 15.0 cc)",
+"There is trace free fluid in the abdomen",
+"No pleural effusion",
+"Cholelithiasis without sonological evidence of cholecystitis",
+"Edematous gallbladder wall with trace free fluid in the abdomen"
+],
+"procedures": []
+}
+}
+]
+}
