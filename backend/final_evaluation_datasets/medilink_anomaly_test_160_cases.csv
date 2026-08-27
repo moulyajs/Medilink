@@ -1,0 +1,161 @@
+case_id,test_name,unit,historical_values,sample_count,current_value,ref_low,ref_high,population_status,scenario,expected_personal_deviation
+A001,Hb,g/dL,"10.0,10.2,9.9,10.1",4,12.5,12.0,16.0,Normal,in_range_large_personal_change,1
+A002,Hb,g/dL,"13.0,13.2,12.9,13.1",4,13.3,12.0,16.0,Normal,stable_normal,0
+A003,Glucose,mg/dL,"78,80,79,81",4,102,70.0,99.0,Abnormal,in_range_large_personal_change,1
+A004,Creatinine,mg/dL,"0.9,0.91,0.89,0.9",4,1.4,0.6,1.3,Abnormal,out_of_range_large_change,1
+A005,Platelets,10^3/uL,"166.42,168.24,171.09,173.28,168.82",5,167.48,150.0,450.0,Normal,stable_normal,0
+A006,Glucose,mg/dL,"76.94,77.18,76.36,76.96,76.44,77.13",6,77.25,70.0,99.0,Normal,stable_normal,0
+A007,TSH,mIU/L,"1.49,1.51,1.52,1.51,1.47",5,1.51,0.4,4.0,Normal,stable_normal,0
+A008,Total Cholesterol,mg/dL,"173.95,179.28,176.22,175.5,176.62",5,178.73,0.0,200.0,Normal,stable_normal,0
+A009,Hb,g/dL,"11.17,10.95,10.76,11.23",4,11.06,12.0,16.0,Abnormal,stable_normal,0
+A010,TSH,mIU/L,"1.5,1.53,1.51,1.47,1.47,1.52",6,1.5,0.4,4.0,Normal,stable_normal,0
+A011,WBC,10^3/uL,"10.35,10.76,10.51,10.29,10.26",5,10.27,4.0,11.0,Normal,stable_normal,0
+A012,Creatinine,mg/dL,"1.32,1.34,1.38,1.35,1.38,1.37",6,1.33,0.6,1.3,Abnormal,stable_normal,0
+A013,Glucose,mg/dL,"116.54,114.08,113.81,113.03,112.14",5,114.93,70.0,99.0,Abnormal,stable_normal,0
+A014,ALT,U/L,"35.72,35.65,34.65,35.24,35.19,34.39",6,35.51,7.0,56.0,Normal,stable_normal,0
+A015,Hb,g/dL,"13.18,13.79,13.76,13.72,13.37",5,13.32,12.0,16.0,Normal,stable_normal,0
+A016,Glucose,mg/dL,"77.95,76.32,79.02,79.04,76.55,77.9",6,77.95,70.0,99.0,Normal,stable_normal,0
+A017,ALT,U/L,"61.29,60.77,60.57,60.64",4,60.57,7.0,56.0,Abnormal,stable_normal,0
+A018,TSH,mIU/L,"3.79,3.75,3.72,3.71,3.81,3.82",6,3.69,0.4,4.0,Normal,stable_normal,0
+A019,Hb,g/dL,"11.22,11.2,10.76,10.86",4,11.08,12.0,16.0,Abnormal,stable_normal,0
+A020,Total Cholesterol,mg/dL,"178.81,175.62,174.76,177.49,177.69,172.29",6,173.27,0.0,200.0,Normal,stable_normal,0
+A021,WBC,10^3/uL,"9.46,9.67,9.29,9.57,9.57",5,9.34,4.0,11.0,Normal,stable_normal,0
+A022,TSH,mIU/L,"0.79,0.8,0.79,0.79",4,0.79,0.4,4.0,Normal,stable_normal,0
+A023,Glucose,mg/dL,"102.89,105.8,105.21,102.45,102.86,106.33",6,103.16,70.0,99.0,Abnormal,stable_normal,0
+A024,WBC,10^3/uL,"10.35,10.45,10.27,10.44,10.75",5,10.35,4.0,11.0,Normal,stable_normal,0
+A025,Platelets,10^3/uL,"302.95,303.46,304.25,302.43,299.8",5,298.82,150.0,450.0,Normal,stable_normal,0
+A026,Total Cholesterol,mg/dL,"146.71,141.82,143.65,141.74,144.83,148.04",6,234.06,0.0,200.0,Abnormal,out_of_range_large_change,1
+A027,Hb,g/dL,"9.78,9.78,10.18,9.95",4,19.84,12.0,16.0,Abnormal,out_of_range_large_change,1
+A028,Total Cholesterol,mg/dL,"141.97,146.14,145.47,143.67,143.27,146.23",6,226.68,0.0,200.0,Abnormal,out_of_range_large_change,1
+A029,ALT,U/L,"60.52,59.4,59.45,60.76",4,4.68,7.0,56.0,Abnormal,out_of_range_large_change,1
+A030,Platelets,10^3/uL,"170.32,170.05,166.88,168.72",4,491.26,150.0,450.0,Abnormal,out_of_range_large_change,1
+A031,Total Cholesterol,mg/dL,"191.66,198.25,196.98,196.09,199.75",5,238.24,0.0,200.0,Abnormal,out_of_range_large_change,1
+A032,Hb,g/dL,"13.23,13.76,13.34,13.76,13.66,13.27",6,18.05,12.0,16.0,Abnormal,out_of_range_large_change,1
+A033,Total Cholesterol,mg/dL,"196.83,198.44,195.05,192.57",4,246.88,0.0,200.0,Abnormal,out_of_range_large_change,1
+A034,Hb,g/dL,"9.96,9.89,9.75,10.14,10.07,9.88",6,19.3,12.0,16.0,Abnormal,out_of_range_large_change,1
+A035,WBC,10^3/uL,"4.89,5.1,5.1,5.01",4,13.44,4.0,11.0,Abnormal,out_of_range_large_change,1
+A036,Creatinine,mg/dL,"1.32,1.34,1.38,1.38",4,0.4,0.6,1.3,Abnormal,out_of_range_large_change,1
+A037,TSH,mIU/L,"1.48,1.47,1.52,1.53,1.49,1.51",6,4.43,0.4,4.0,Abnormal,out_of_range_large_change,1
+A038,Total Cholesterol,mg/dL,"178.34,170.84,177.07,173.53",4,247.65,0.0,200.0,Abnormal,out_of_range_large_change,1
+A039,Total Cholesterol,mg/dL,"197.8,191.18,198.63,198.5",4,223.56,0.0,200.0,Abnormal,out_of_range_large_change,1
+A040,Platelets,10^3/uL,"304.81,305.57,295.84,302.4,298.48",5,507.31,150.0,450.0,Abnormal,out_of_range_large_change,1
+A041,Glucose,mg/dL,"95.67,94.52,97.29,95.17,97.09",5,108.86,70.0,99.0,Abnormal,out_of_range_large_change,1
+A042,ALT,U/L,"35.81,34.59,34.31,34.89,35.4,34.67",6,66.25,7.0,56.0,Abnormal,out_of_range_large_change,1
+A043,Glucose,mg/dL,"103.37,102.61,104.66,105.1,106.61,105.98",6,61.95,70.0,99.0,Abnormal,out_of_range_large_change,1
+A044,Total Cholesterol,mg/dL,"190.81,196.6,193.34,193.19,198.39",5,240.47,0.0,200.0,Abnormal,out_of_range_large_change,1
+A045,ALT,U/L,"49.77,49.76,49.49,49.07,49.8,51.1",6,66.93,7.0,56.0,Abnormal,out_of_range_large_change,1
+A046,Creatinine,mg/dL,"1.15,1.12,1.14,1.15,1.15",5,1.55,0.6,1.3,Abnormal,out_of_range_large_change,1
+A047,Platelets,10^3/uL,"403.51,400.22,405.87,409.2,404.72",5,536.4,150.0,450.0,Abnormal,out_of_range_large_change,1
+A048,ALT,U/L,"50.8,50.63,50.43,49.31",4,62.38,7.0,56.0,Abnormal,out_of_range_large_change,1
+A049,Hb,g/dL,"10.24,10.06,10.13,9.98",4,19.69,12.0,16.0,Abnormal,out_of_range_large_change,1
+A050,Total Cholesterol,mg/dL,"218.9,216.12,222.06,224.32,223.96",5,0.0,0.0,200.0,Normal,out_of_range_large_change,1
+A051,WBC,10^3/uL,"6.19,6.19,6.27,6.29",4,8.06,4.0,11.0,Normal,in_range_large_personal_change,1
+A052,TSH,mIU/L,"1.82,1.84,1.85,1.81,1.84,1.82",6,2.29,0.4,4.0,Normal,in_range_large_personal_change,1
+A053,Platelets,10^3/uL,"243.22,237.02,240.34,241.64,240.42,238.4",6,306.13,150.0,450.0,Normal,in_range_large_personal_change,1
+A054,Hb,g/dL,"10.79,10.7,10.72,10.56,10.56",5,13.62,12.0,16.0,Normal,in_range_large_personal_change,1
+A055,Hb,g/dL,"11.88,12.05,11.9,11.94,11.66",5,15.16,12.0,16.0,Normal,in_range_large_personal_change,1
+A056,Platelets,10^3/uL,"247.37,254.09,248.8,252.93",4,321.31,150.0,450.0,Normal,in_range_large_personal_change,1
+A057,Hb,g/dL,"11.65,11.57,11.63,11.62",4,15.18,12.0,16.0,Normal,in_range_large_personal_change,1
+A058,Total Cholesterol,mg/dL,"71.91,72.68,73.7,72.68,73.64,72.1",6,97.71,0.0,200.0,Normal,in_range_large_personal_change,1
+A059,Total Cholesterol,mg/dL,"73.21,72.63,71.38,71.61,71.44,71.83",6,91.05,0.0,200.0,Normal,in_range_large_personal_change,1
+A060,WBC,10^3/uL,"5.35,5.43,5.45,5.45",4,7.26,4.0,11.0,Normal,in_range_large_personal_change,1
+A061,Platelets,10^3/uL,"222.11,224.78,223.17,224.05,221.1",5,286.44,150.0,450.0,Normal,in_range_large_personal_change,1
+A062,TSH,mIU/L,"1.6,1.66,1.6,1.65,1.63",5,2.15,0.4,4.0,Normal,in_range_large_personal_change,1
+A063,Platelets,10^3/uL,"235.92,236.46,235.47,238.49,234.57",5,309.72,150.0,450.0,Normal,in_range_large_personal_change,1
+A064,ALT,U/L,"25.0,25.55,25.08,25.4,25.57",5,32.85,7.0,56.0,Normal,in_range_large_personal_change,1
+A065,Glucose,mg/dL,"71.65,72.06,70.43,72.55,71.47",5,95.52,70.0,99.0,Normal,in_range_large_personal_change,1
+A066,ALT,U/L,"25.83,25.49,26.07,25.47,25.57",5,33.22,7.0,56.0,Normal,in_range_large_personal_change,1
+A067,ALT,U/L,"23.14,23.07,23.06,23.45",4,31.26,7.0,56.0,Normal,in_range_large_personal_change,1
+A068,ALT,U/L,"23.23,22.86,23.1,23.36,23.16,22.75",6,29.02,7.0,56.0,Normal,in_range_large_personal_change,1
+A069,ALT,U/L,"25.61,25.1,25.22,25.32",4,33.87,7.0,56.0,Normal,in_range_large_personal_change,1
+A070,Creatinine,mg/dL,"0.7,0.71,0.71,0.72",4,0.91,0.6,1.3,Normal,in_range_large_personal_change,1
+A071,Platelets,10^3/uL,"208.87,212.64,214.21,211.9",4,259.1,150.0,450.0,Normal,in_range_large_personal_change,1
+A072,ALT,U/L,"24.95,24.81,24.41,24.66",4,31.21,7.0,56.0,Normal,in_range_large_personal_change,1
+A073,Glucose,mg/dL,"58.63,59.02,58.7,60.27,60.49",5,78.87,70.0,99.0,Normal,in_range_large_personal_change,1
+A074,Hb,g/dL,"9.82,9.76,9.82,10.06,9.9",5,12.08,12.0,16.0,Normal,in_range_large_personal_change,1
+A075,Total Cholesterol,mg/dL,"75.74,77.94,76.92,77.59,76.95",5,96.71,0.0,200.0,Normal,in_range_large_personal_change,1
+A076,Platelets,10^3/uL,"240.04,239.39,246.24,247.04",4,307.42,150.0,450.0,Normal,in_range_large_personal_change,1
+A077,ALT,U/L,"24.14,24.0,24.41,24.04,24.58",5,32.31,7.0,56.0,Normal,in_range_large_personal_change,1
+A078,Total Cholesterol,mg/dL,"83.3,85.34,84.68,84.21",4,104.62,0.0,200.0,Normal,in_range_large_personal_change,1
+A079,Hb,g/dL,"9.69,9.98,10.02,9.67,9.94,9.74",6,12.8,12.0,16.0,Normal,in_range_large_personal_change,1
+A080,WBC,10^3/uL,"6.2,5.99,6.0,6.14,6.21",5,8.24,4.0,11.0,Normal,in_range_large_personal_change,1
+A081,Glucose,mg/dL,"100.41,101.65,101.94,101.18",4,101.51,70.0,99.0,Abnormal,out_of_range_personally_stable,0
+A082,WBC,10^3/uL,"11.97,11.89,11.99,12.1",4,11.78,4.0,11.0,Abnormal,out_of_range_personally_stable,0
+A083,Platelets,10^3/uL,"128.73,127.99,124.22,125.61,125.49,125.17",6,125.21,150.0,450.0,Abnormal,out_of_range_personally_stable,0
+A084,ALT,U/L,"6.49,6.35,6.49,6.34,6.34,6.35",6,6.52,7.0,56.0,Abnormal,out_of_range_personally_stable,0
+A085,Creatinine,mg/dL,"1.41,1.43,1.45,1.43,1.45,1.45",6,1.41,0.6,1.3,Abnormal,out_of_range_personally_stable,0
+A086,ALT,U/L,"6.58,6.57,6.53,6.42,6.53",5,6.51,7.0,56.0,Abnormal,out_of_range_personally_stable,0
+A087,Hb,g/dL,"17.54,17.76,17.33,17.53,17.55,17.55",6,17.43,12.0,16.0,Abnormal,out_of_range_personally_stable,0
+A088,Platelets,10^3/uL,"117.36,117.7,118.65,116.19,117.7,114.96",6,116.35,150.0,450.0,Abnormal,out_of_range_personally_stable,0
+A089,WBC,10^3/uL,"11.79,11.5,11.75,11.63,11.36",5,11.5,4.0,11.0,Abnormal,out_of_range_personally_stable,0
+A090,ALT,U/L,"6.57,6.74,6.69,6.53",4,6.49,7.0,56.0,Abnormal,out_of_range_personally_stable,0
+A091,Total Cholesterol,mg/dL,"0.0,0.0,0.0,0.0",4,0.0,0.0,200.0,Normal,out_of_range_personally_stable,0
+A092,Hb,g/dL,"16.61,16.55,16.71,16.61",4,16.35,12.0,16.0,Abnormal,out_of_range_personally_stable,0
+A093,Total Cholesterol,mg/dL,"213.15,216.72,209.59,209.65,214.15,209.52",6,214.82,0.0,200.0,Abnormal,out_of_range_personally_stable,0
+A094,ALT,U/L,"6.51,6.5,6.37,6.43,6.37",5,6.48,7.0,56.0,Abnormal,out_of_range_personally_stable,0
+A095,TSH,mIU/L,"4.51,4.38,4.38,4.49,4.51",5,4.38,0.4,4.0,Abnormal,out_of_range_personally_stable,0
+A096,Hb,g/dL,"13.25,13.4,13.61,13.67,13.75,13.65",6,15.15,12.0,16.0,Normal,small_personal_change,0
+A097,ALT,U/L,"50.19,49.28,50.39,49.31",4,52.66,7.0,56.0,Normal,small_personal_change,0
+A098,TSH,mIU/L,"0.8,0.81,0.81,0.82,0.81",5,0.89,0.4,4.0,Normal,small_personal_change,0
+A099,Hb,g/dL,"13.28,13.64,13.37,13.39",4,14.1,12.0,16.0,Normal,small_personal_change,0
+A100,Creatinine,mg/dL,"1.33,1.36,1.32,1.37",4,1.43,0.6,1.3,Abnormal,small_personal_change,0
+A101,WBC,10^3/uL,"10.32,10.4,10.41,10.73,10.55",5,11.65,4.0,11.0,Abnormal,small_personal_change,0
+A102,Creatinine,mg/dL,"0.93,0.93,0.95,0.95,0.96,0.95",6,1.01,0.6,1.3,Normal,small_personal_change,0
+A103,Glucose,mg/dL,"93.15,95.85,95.44,95.13,94.09",5,100.93,70.0,99.0,Abnormal,small_personal_change,0
+A104,Hb,g/dL,"9.9,9.86,9.82,9.88",4,10.58,12.0,16.0,Abnormal,small_personal_change,0
+A105,Hb,g/dL,"14.95,14.72,15.02,14.8,15.04,15.13",6,16.06,12.0,16.0,Abnormal,small_personal_change,0
+A106,WBC,10^3/uL,"4.88,5.11,5.09,5.02,5.02",5,5.52,4.0,11.0,Normal,small_personal_change,0
+A107,WBC,10^3/uL,"9.45,9.72,9.34,9.71",4,10.34,4.0,11.0,Normal,small_personal_change,0
+A108,TSH,mIU/L,"0.81,0.79,0.8,0.8,0.8",5,0.86,0.4,4.0,Normal,small_personal_change,0
+A109,TSH,mIU/L,"1.52,1.47,1.51,1.5,1.48",5,1.65,0.4,4.0,Normal,small_personal_change,0
+A110,TSH,mIU/L,"1.47,1.48,1.48,1.47",4,1.63,0.4,4.0,Normal,small_personal_change,0
+A111,Glucose,mg/dL,"87.97,89.12,89.14,87.78,89.87,88.28",6,97.07,70.0,99.0,Normal,small_personal_change,0
+A112,TSH,mIU/L,"2.49,2.5,2.52,2.54",4,2.74,0.4,4.0,Normal,small_personal_change,0
+A113,TSH,mIU/L,"0.8,0.78,0.79,0.79,0.81",5,0.89,0.4,4.0,Normal,small_personal_change,0
+A114,Glucose,mg/dL,"115.04,114.79,115.31,116.68,117.28,114.71",6,127.97,70.0,99.0,Abnormal,small_personal_change,0
+A115,Total Cholesterol,mg/dL,"194.76,191.6,190.73,191.13,198.89,193.47",6,212.77,0.0,200.0,Abnormal,small_personal_change,0
+A116,Creatinine,mg/dL,"0.76,0.77,0.75,0.75",4,1.09,0.6,1.3,Normal,very_large_personal_change,1
+A117,ALT,U/L,"60.82,60.54,58.66,60.39,59.5",5,82.39,7.0,56.0,Abnormal,very_large_personal_change,1
+A118,WBC,10^3/uL,"9.61,9.57,9.69,9.68,9.42",5,4.04,4.0,11.0,Normal,very_large_personal_change,1
+A119,ALT,U/L,"60.29,61.31,59.43,59.63",4,93.45,7.0,56.0,Abnormal,very_large_personal_change,1
+A120,Glucose,mg/dL,"104.27,104.28,103.32,103.5,107.35,104.93",6,41.84,70.0,99.0,Abnormal,very_large_personal_change,1
+A121,Creatinine,mg/dL,"0.76,0.74,0.76,0.76,0.76",5,0.37,0.6,1.3,Abnormal,very_large_personal_change,1
+A122,Creatinine,mg/dL,"1.33,1.37,1.37,1.37",4,0.64,0.6,1.3,Normal,very_large_personal_change,1
+A123,Hb,g/dL,"15.13,14.8,14.96,14.84,15.19",5,21.1,12.0,16.0,Abnormal,very_large_personal_change,1
+A124,Total Cholesterol,mg/dL,"198.94,192.02,196.74,195.69,194.42",5,302.05,0.0,200.0,Abnormal,very_large_personal_change,1
+A125,WBC,10^3/uL,"7.11,6.87,6.91,7.05",4,10.4,4.0,11.0,Normal,very_large_personal_change,1
+A126,Glucose,mg/dL,"113.76,116.51,113.69,117.33",4,51.0,70.0,99.0,Abnormal,very_large_personal_change,1
+A127,Glucose,mg/dL,"89.69,89.89,87.63,87.54,87.45",5,141.38,70.0,99.0,Abnormal,very_large_personal_change,1
+A128,TSH,mIU/L,"1.49,1.47,1.52,1.49",4,0.92,0.4,4.0,Normal,very_large_personal_change,1
+A129,ALT,U/L,"60.99,60.78,59.91,60.35,61.22,58.56",6,26.61,7.0,56.0,Normal,very_large_personal_change,1
+A130,WBC,10^3/uL,"4.93,4.91,4.93,5.03,5.03",5,3.09,4.0,11.0,Abnormal,very_large_personal_change,1
+A131,Platelets,10^3/uL,"170.13,167.81,166.97,169.4,170.98,167.79",6,235.85,150.0,450.0,Normal,very_large_personal_change,1
+A132,Glucose,mg/dL,"112.51,115.15,115.04,117.81,115.31",5,180.62,70.0,99.0,Abnormal,very_large_personal_change,1
+A133,Hb,g/dL,"14.82,14.64,15.22,14.88,15.17",5,6.83,12.0,16.0,Abnormal,very_large_personal_change,1
+A134,TSH,mIU/L,"1.49,1.49,1.51,1.52",4,2.4,0.4,4.0,Normal,very_large_personal_change,1
+A135,Platelets,10^3/uL,"215.19,223.04,219.53,217.73",4,98.98,150.0,450.0,Abnormal,very_large_personal_change,1
+A136,Hb,g/dL,13.51,1,18.88,12.0,16.0,Abnormal,insufficient_history,0
+A137,Platelets,10^3/uL,,0,408.9,150.0,450.0,Normal,insufficient_history,0
+A138,Total Cholesterol,mg/dL,197.82,1,245.15,0.0,200.0,Abnormal,insufficient_history,0
+A139,TSH,mIU/L,,0,3.42,0.4,4.0,Normal,insufficient_history,0
+A140,WBC,10^3/uL,"10.47,10.69",2,13.66,4.0,11.0,Abnormal,insufficient_history,0
+A141,Creatinine,mg/dL,"1.35,1.37",2,1.79,0.6,1.3,Abnormal,insufficient_history,0
+A142,Glucose,mg/dL,,0,138.03,70.0,99.0,Abnormal,insufficient_history,0
+A143,Creatinine,mg/dL,1.13,1,1.49,0.6,1.3,Abnormal,insufficient_history,0
+A144,ALT,U/L,50.21,1,65.7,7.0,56.0,Abnormal,insufficient_history,0
+A145,Platelets,10^3/uL,294.51,1,414.15,150.0,450.0,Normal,insufficient_history,0
+A146,TSH,mIU/L,"3.83,3.86,3.72,3.83,3.78",5,3.2,0.4,4.0,Normal,cross_test_robustness,1
+A147,Hb,g/dL,"11.1,10.97,10.79,10.85,11.08,10.92",6,9.59,12.0,16.0,Abnormal,cross_test_robustness,1
+A148,Platelets,10^3/uL,"299.16,293.65,294.57,298.0,297.22",5,243.83,150.0,450.0,Normal,cross_test_robustness,1
+A149,Creatinine,mg/dL,"1.34,1.35,1.33,1.33,1.35,1.38",6,1.61,0.6,1.3,Abnormal,cross_test_robustness,1
+A150,Total Cholesterol,mg/dL,"147.56,144.65,147.89,144.6",4,171.69,0.0,200.0,Normal,cross_test_robustness,1
+A151,TSH,mIU/L,"0.8,0.82,0.81,0.81,0.82,0.81",6,0.7,0.4,4.0,Normal,cross_test_robustness,1
+A152,Total Cholesterol,mg/dL,"177.54,170.85,175.47,173.85",4,150.76,0.0,200.0,Normal,cross_test_robustness,1
+A153,Glucose,mg/dL,"97.37,96.04,95.12,96.28,96.54",5,77.58,70.0,99.0,Normal,cross_test_robustness,1
+A154,Platelets,10^3/uL,"400.35,392.57,406.58,401.03,401.76,405.36",6,325.16,150.0,450.0,Normal,cross_test_robustness,1
+A155,Glucose,mg/dL,"113.87,113.06,117.5,113.42",4,132.95,70.0,99.0,Abnormal,cross_test_robustness,1
+A156,Glucose,mg/dL,"95.64,95.24,93.22,94.06",4,79.67,70.0,99.0,Normal,cross_test_robustness,1
+A157,Creatinine,mg/dL,"0.96,0.97,0.94,0.97,0.93,0.97",6,1.14,0.6,1.3,Normal,cross_test_robustness,1
+A158,Total Cholesterol,mg/dL,"221.53,219.98,221.4,217.69,225.02,219.81",6,259.52,0.0,200.0,Abnormal,cross_test_robustness,1
+A159,Platelets,10^3/uL,"166.26,169.49,169.87,167.48,170.91,168.41",6,198.9,150.0,450.0,Normal,cross_test_robustness,1
+A160,WBC,10^3/uL,"7.01,6.86,6.91,6.87,6.98",5,7.79,4.0,11.0,Normal,cross_test_robustness,1

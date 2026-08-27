@@ -1,0 +1,161 @@
+case_id,test_name,historical_values,current_value,personal_average,percent_change,expected_alert,medilink_prediction,conventional_prediction,scenario,population_status,reason
+A001,Hb,"10.0,10.2,9.9,10.1",12.5,10.05,24.37810945273631,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A002,Hb,"13.0,13.2,12.9,13.1",13.3,13.05,1.9157088122605364,0,0,0,stable_normal,Normal,Change below 20%
+A003,Glucose,"78,80,79,81",102.0,79.5,28.30188679245283,1,1,1,in_range_large_personal_change,Abnormal,INCREASE >= 20%
+A004,Creatinine,"0.9,0.91,0.89,0.9",1.4,0.9,55.55555555555555,1,1,1,out_of_range_large_change,Abnormal,INCREASE >= 20%
+A005,Platelets,"166.42,168.24,171.09,173.28,168.82",167.48,169.57,-1.2325293389160838,0,0,0,stable_normal,Normal,Change below 20%
+A006,Glucose,"76.94,77.18,76.36,76.96,76.44,77.13",77.25,76.835,0.5401184356087803,0,0,0,stable_normal,Normal,Change below 20%
+A007,TSH,"1.49,1.51,1.52,1.51,1.47",1.51,1.5,0.6666666666666672,0,0,0,stable_normal,Normal,Change below 20%
+A008,Total Cholesterol,"173.95,179.28,176.22,175.5,176.62",178.73,176.314,1.3702825640618426,0,0,0,stable_normal,Normal,Change below 20%
+A009,Hb,"11.17,10.95,10.76,11.23",11.06,11.0275,0.2947177510768591,0,0,1,stable_normal,Abnormal,Change below 20%
+A010,TSH,"1.5,1.53,1.51,1.47,1.47,1.52",1.5,1.5,0.0,0,0,0,stable_normal,Normal,Change below 20%
+A011,WBC,"10.35,10.76,10.51,10.29,10.26",10.27,10.434,-1.5717845505079522,0,0,0,stable_normal,Normal,Change below 20%
+A012,Creatinine,"1.32,1.34,1.38,1.35,1.38,1.37",1.33,1.3566666666666667,-1.9656019656019617,0,0,1,stable_normal,Abnormal,Change below 20%
+A013,Glucose,"116.54,114.08,113.81,113.03,112.14",114.93,113.92,0.8865870786516898,0,0,1,stable_normal,Abnormal,Change below 20%
+A014,ALT,"35.72,35.65,34.65,35.24,35.19,34.39",35.51,35.14,1.0529311326124002,0,0,0,stable_normal,Normal,Change below 20%
+A015,Hb,"13.18,13.79,13.76,13.72,13.37",13.32,13.564,-1.7988793866116175,0,0,0,stable_normal,Normal,Change below 20%
+A016,Glucose,"77.95,76.32,79.02,79.04,76.55,77.9",77.95,77.79666666666667,0.19709499121642227,0,0,0,stable_normal,Normal,Change below 20%
+A017,ALT,"61.29,60.77,60.57,60.64",60.57,60.8175,-0.4069552349241621,0,0,1,stable_normal,Abnormal,Change below 20%
+A018,TSH,"3.79,3.75,3.72,3.71,3.81,3.82",3.69,3.7666666666666666,-2.0353982300884956,0,0,0,stable_normal,Normal,Change below 20%
+A019,Hb,"11.22,11.2,10.76,10.86",11.08,11.01,0.6357856494096302,0,0,1,stable_normal,Abnormal,Change below 20%
+A020,Total Cholesterol,"178.81,175.62,174.76,177.49,177.69,172.29",173.27,176.11,-1.6126284708420893,0,0,0,stable_normal,Normal,Change below 20%
+A021,WBC,"9.46,9.67,9.29,9.57,9.57",9.34,9.512,-1.8082422203532442,0,0,0,stable_normal,Normal,Change below 20%
+A022,TSH,"0.79,0.8,0.79,0.79",0.79,0.7925,-0.3154574132492046,0,0,0,stable_normal,Normal,Change below 20%
+A023,Glucose,"102.89,105.8,105.21,102.45,102.86,106.33",103.16,104.25666666666666,-1.0518911660325454,0,0,1,stable_normal,Abnormal,Change below 20%
+A024,WBC,"10.35,10.45,10.27,10.44,10.75",10.35,10.452,-0.9758897818599341,0,0,0,stable_normal,Normal,Change below 20%
+A025,Platelets,"302.95,303.46,304.25,302.43,299.8",298.82,302.578,-1.241993799945793,0,0,0,stable_normal,Normal,Change below 20%
+A026,Total Cholesterol,"146.71,141.82,143.65,141.74,144.83,148.04",234.06,144.465,62.018481985255946,1,1,1,out_of_range_large_change,Abnormal,INCREASE >= 20%
+A027,Hb,"9.78,9.78,10.18,9.95",19.84,9.9225,99.94960947341902,1,1,1,out_of_range_large_change,Abnormal,INCREASE >= 20%
+A028,Total Cholesterol,"141.97,146.14,145.47,143.67,143.27,146.23",226.68,144.45833333333331,56.917219498125206,1,1,1,out_of_range_large_change,Abnormal,INCREASE >= 20%
+A029,ALT,"60.52,59.4,59.45,60.76",4.68,60.0325,-92.20422271269729,1,1,1,out_of_range_large_change,Abnormal,DECREASE >= 20%
+A030,Platelets,"170.32,170.05,166.88,168.72",491.26,168.9925,190.69929138867107,1,1,1,out_of_range_large_change,Abnormal,INCREASE >= 20%
+A031,Total Cholesterol,"191.66,198.25,196.98,196.09,199.75",238.24,196.546,21.21335463453849,1,1,1,out_of_range_large_change,Abnormal,INCREASE >= 20%
+A032,Hb,"13.23,13.76,13.34,13.76,13.66,13.27",18.05,13.503333333333334,33.67069859294001,1,1,1,out_of_range_large_change,Abnormal,INCREASE >= 20%
+A033,Total Cholesterol,"196.83,198.44,195.05,192.57",246.88,195.7225,26.13777158987853,1,1,1,out_of_range_large_change,Abnormal,INCREASE >= 20%
+A034,Hb,"9.96,9.89,9.75,10.14,10.07,9.88",19.3,9.948333333333334,94.00234545149941,1,1,1,out_of_range_large_change,Abnormal,INCREASE >= 20%
+A035,WBC,"4.89,5.1,5.1,5.01",13.44,5.0249999999999995,167.46268656716418,1,1,1,out_of_range_large_change,Abnormal,INCREASE >= 20%
+A036,Creatinine,"1.32,1.34,1.38,1.38",0.4,1.355,-70.47970479704797,1,1,1,out_of_range_large_change,Abnormal,DECREASE >= 20%
+A037,TSH,"1.48,1.47,1.52,1.53,1.49,1.51",4.43,1.5,195.33333333333331,1,1,1,out_of_range_large_change,Abnormal,INCREASE >= 20%
+A038,Total Cholesterol,"178.34,170.84,177.07,173.53",247.65,174.945,41.558775615193355,1,1,1,out_of_range_large_change,Abnormal,INCREASE >= 20%
+A039,Total Cholesterol,"197.8,191.18,198.63,198.5",223.56,196.5275,13.755072445332079,1,0,1,out_of_range_large_change,Abnormal,Change below 20%
+A040,Platelets,"304.81,305.57,295.84,302.4,298.48",507.31,301.42,68.3066817065888,1,1,1,out_of_range_large_change,Abnormal,INCREASE >= 20%
+A041,Glucose,"95.67,94.52,97.29,95.17,97.09",108.86,95.94800000000001,13.45728936507274,1,0,1,out_of_range_large_change,Abnormal,Change below 20%
+A042,ALT,"35.81,34.59,34.31,34.89,35.4,34.67",66.25,34.945,89.58363142080412,1,1,1,out_of_range_large_change,Abnormal,INCREASE >= 20%
+A043,Glucose,"103.37,102.61,104.66,105.1,106.61,105.98",61.95,104.72166666666666,-40.84318749701589,1,1,1,out_of_range_large_change,Abnormal,DECREASE >= 20%
+A044,Total Cholesterol,"190.81,196.6,193.34,193.19,198.39",240.47,194.466,23.65657749940863,1,1,1,out_of_range_large_change,Abnormal,INCREASE >= 20%
+A045,ALT,"49.77,49.76,49.49,49.07,49.8,51.1",66.93,49.83166666666666,34.312184353991796,1,1,1,out_of_range_large_change,Abnormal,INCREASE >= 20%
+A046,Creatinine,"1.15,1.12,1.14,1.15,1.15",1.55,1.142,35.726795096322256,1,1,1,out_of_range_large_change,Abnormal,INCREASE >= 20%
+A047,Platelets,"403.51,400.22,405.87,409.2,404.72",536.4,404.704,32.541314145647185,1,1,1,out_of_range_large_change,Abnormal,INCREASE >= 20%
+A048,ALT,"50.8,50.63,50.43,49.31",62.38,50.292500000000004,24.034398767211805,1,1,1,out_of_range_large_change,Abnormal,INCREASE >= 20%
+A049,Hb,"10.24,10.06,10.13,9.98",19.69,10.102500000000001,94.90225191784212,1,1,1,out_of_range_large_change,Abnormal,INCREASE >= 20%
+A050,Total Cholesterol,"218.9,216.12,222.06,224.32,223.96",0.0,221.072,-100.0,1,1,0,out_of_range_large_change,Normal,DECREASE >= 20%
+A051,WBC,"6.19,6.19,6.27,6.29",8.06,6.235,29.27024859663192,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A052,TSH,"1.82,1.84,1.85,1.81,1.84,1.82",2.29,1.83,25.136612021857918,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A053,Platelets,"243.22,237.02,240.34,241.64,240.42,238.4",306.13,240.17333333333335,27.46211069782934,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A054,Hb,"10.79,10.7,10.72,10.56,10.56",13.62,10.666,27.69548096756046,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A055,Hb,"11.88,12.05,11.9,11.94,11.66",15.16,11.886000000000001,27.545010937237073,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A056,Platelets,"247.37,254.09,248.8,252.93",321.31,250.7975,28.115312154228008,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A057,Hb,"11.65,11.57,11.63,11.62",15.18,11.6175,30.664945125887673,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A058,Total Cholesterol,"71.91,72.68,73.7,72.68,73.64,72.1",97.71,72.785,34.24469327471319,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A059,Total Cholesterol,"73.21,72.63,71.38,71.61,71.44,71.83",91.05,72.01666666666667,26.42906734552187,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A060,WBC,"5.35,5.43,5.45,5.45",7.26,5.42,33.94833948339483,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A061,Platelets,"222.11,224.78,223.17,224.05,221.1",286.44,223.042,28.42424296769218,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A062,TSH,"1.6,1.66,1.6,1.65,1.63",2.15,1.628,32.06388206388206,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A063,Platelets,"235.92,236.46,235.47,238.49,234.57",309.72,236.182,31.136157708885538,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A064,ALT,"25.0,25.55,25.08,25.4,25.57",32.85,25.32,29.739336492891,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A065,Glucose,"71.65,72.06,70.43,72.55,71.47",95.52,71.632,33.34822425731515,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A066,ALT,"25.83,25.49,26.07,25.47,25.57",33.22,25.686,29.33115315736198,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A067,ALT,"23.14,23.07,23.06,23.45",31.26,23.18,34.85763589301122,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A068,ALT,"23.23,22.86,23.1,23.36,23.16,22.75",29.02,23.076666666666668,25.75473060811786,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A069,ALT,"25.61,25.1,25.22,25.32",33.87,25.3125,33.807407407407396,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A070,Creatinine,"0.7,0.71,0.71,0.72",0.91,0.71,28.169014084507054,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A071,Platelets,"208.87,212.64,214.21,211.9",259.1,211.905,22.27177272834526,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A072,ALT,"24.95,24.81,24.41,24.66",31.21,24.7075,26.317919660022266,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A073,Glucose,"58.63,59.02,58.7,60.27,60.49",78.87,59.422000000000004,32.72861902998889,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A074,Hb,"9.82,9.76,9.82,10.06,9.9",12.08,9.872,22.366288492706648,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A075,Total Cholesterol,"75.74,77.94,76.92,77.59,76.95",96.71,77.028,25.551747416523845,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A076,Platelets,"240.04,239.39,246.24,247.04",307.42,243.1775,26.41794573922341,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A077,ALT,"24.14,24.0,24.41,24.04,24.58",32.31,24.233999999999998,33.32508046546177,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A078,Total Cholesterol,"83.3,85.34,84.68,84.21",104.62,84.3825,23.983053358220026,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A079,Hb,"9.69,9.98,10.02,9.67,9.94,9.74",12.8,9.84,30.081300813008138,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A080,WBC,"6.2,5.99,6.0,6.14,6.21",8.24,6.108,34.90504256712509,1,1,0,in_range_large_personal_change,Normal,INCREASE >= 20%
+A081,Glucose,"100.41,101.65,101.94,101.18",101.51,101.295,0.21225134508120183,0,0,1,out_of_range_personally_stable,Abnormal,Change below 20%
+A082,WBC,"11.97,11.89,11.99,12.1",11.78,11.9875,-1.7309697601668517,0,0,1,out_of_range_personally_stable,Abnormal,Change below 20%
+A083,Platelets,"128.73,127.99,124.22,125.61,125.49,125.17",125.21,126.20166666666667,-0.7857793742819092,0,0,1,out_of_range_personally_stable,Abnormal,Change below 20%
+A084,ALT,"6.49,6.35,6.49,6.34,6.34,6.35",6.52,6.3933333333333335,1.981230448383723,0,0,1,out_of_range_personally_stable,Abnormal,Change below 20%
+A085,Creatinine,"1.41,1.43,1.45,1.43,1.45,1.45",1.41,1.4366666666666665,-1.8561484918793472,0,0,1,out_of_range_personally_stable,Abnormal,Change below 20%
+A086,ALT,"6.58,6.57,6.53,6.42,6.53",6.51,6.526,-0.2451731535396876,0,0,1,out_of_range_personally_stable,Abnormal,Change below 20%
+A087,Hb,"17.54,17.76,17.33,17.53,17.55,17.55",17.43,17.543333333333333,-0.6460193805814172,0,0,1,out_of_range_personally_stable,Abnormal,Change below 20%
+A088,Platelets,"117.36,117.7,118.65,116.19,117.7,114.96",116.35,117.09333333333333,-0.6348212252334372,0,0,1,out_of_range_personally_stable,Abnormal,Change below 20%
+A089,WBC,"11.79,11.5,11.75,11.63,11.36",11.5,11.606,-0.9133206961916239,0,0,1,out_of_range_personally_stable,Abnormal,Change below 20%
+A090,ALT,"6.57,6.74,6.69,6.53",6.49,6.6325,-2.148511119487374,0,0,1,out_of_range_personally_stable,Abnormal,Change below 20%
+A091,Total Cholesterol,"0.0,0.0,0.0,0.0",0.0,0.0,,0,0,0,out_of_range_personally_stable,Normal,Baseline is zero
+A092,Hb,"16.61,16.55,16.71,16.61",16.35,16.62,-1.6245487364620912,0,0,1,out_of_range_personally_stable,Abnormal,Change below 20%
+A093,Total Cholesterol,"213.15,216.72,209.59,209.65,214.15,209.52",214.82,212.13,1.2680903219723745,0,0,1,out_of_range_personally_stable,Abnormal,Change below 20%
+A094,ALT,"6.51,6.5,6.37,6.43,6.37",6.48,6.436,0.683654443753892,0,0,1,out_of_range_personally_stable,Abnormal,Change below 20%
+A095,TSH,"4.51,4.38,4.38,4.49,4.51",4.38,4.454,-1.6614279299506027,0,0,1,out_of_range_personally_stable,Abnormal,Change below 20%
+A096,Hb,"13.25,13.4,13.61,13.67,13.75,13.65",15.15,13.555,11.76687569162671,0,0,0,small_personal_change,Normal,Change below 20%
+A097,ALT,"50.19,49.28,50.39,49.31",52.66,49.792500000000004,5.758899432645463,0,0,0,small_personal_change,Normal,Change below 20%
+A098,TSH,"0.8,0.81,0.81,0.82,0.81",0.89,0.81,9.876543209876537,0,0,0,small_personal_change,Normal,Change below 20%
+A099,Hb,"13.28,13.64,13.37,13.39",14.1,13.42,5.067064083457524,0,0,0,small_personal_change,Normal,Change below 20%
+A100,Creatinine,"1.33,1.36,1.32,1.37",1.43,1.3450000000000002,6.319702602230463,0,0,1,small_personal_change,Abnormal,Change below 20%
+A101,WBC,"10.32,10.4,10.41,10.73,10.55",11.65,10.482000000000001,11.14291165808051,0,0,1,small_personal_change,Abnormal,Change below 20%
+A102,Creatinine,"0.93,0.93,0.95,0.95,0.96,0.95",1.01,0.945,6.878306878306885,0,0,0,small_personal_change,Normal,Change below 20%
+A103,Glucose,"93.15,95.85,95.44,95.13,94.09",100.93,94.732,6.542667736350976,0,0,1,small_personal_change,Abnormal,Change below 20%
+A104,Hb,"9.9,9.86,9.82,9.88",10.58,9.865,7.247845919918904,0,0,1,small_personal_change,Abnormal,Change below 20%
+A105,Hb,"14.95,14.72,15.02,14.8,15.04,15.13",16.06,14.943333333333333,7.472674548293545,0,0,1,small_personal_change,Abnormal,Change below 20%
+A106,WBC,"4.88,5.11,5.09,5.02,5.02",5.52,5.024,9.872611464968143,0,0,0,small_personal_change,Normal,Change below 20%
+A107,WBC,"9.45,9.72,9.34,9.71",10.34,9.555,8.215593929879645,0,0,0,small_personal_change,Normal,Change below 20%
+A108,TSH,"0.81,0.79,0.8,0.8,0.8",0.86,0.8,7.499999999999993,0,0,0,small_personal_change,Normal,Change below 20%
+A109,TSH,"1.52,1.47,1.51,1.5,1.48",1.65,1.496,10.294117647058817,0,0,0,small_personal_change,Normal,Change below 20%
+A110,TSH,"1.47,1.48,1.48,1.47",1.63,1.475,10.508474576271173,0,0,0,small_personal_change,Normal,Change below 20%
+A111,Glucose,"87.97,89.12,89.14,87.78,89.87,88.28",97.07,88.69333333333333,9.444527961515332,0,0,0,small_personal_change,Normal,Change below 20%
+A112,TSH,"2.49,2.5,2.52,2.54",2.74,2.5125,9.054726368159205,0,0,0,small_personal_change,Normal,Change below 20%
+A113,TSH,"0.8,0.78,0.79,0.79,0.81",0.89,0.794,12.090680100755662,0,0,0,small_personal_change,Normal,Change below 20%
+A114,Glucose,"115.04,114.79,115.31,116.68,117.28,114.71",127.97,115.635,10.667185540709987,0,0,1,small_personal_change,Abnormal,Change below 20%
+A115,Total Cholesterol,"194.76,191.6,190.73,191.13,198.89,193.47",212.77,193.43,9.998449051336403,0,0,1,small_personal_change,Abnormal,Change below 20%
+A116,Creatinine,"0.76,0.77,0.75,0.75",1.09,0.7575000000000001,43.89438943894389,1,1,0,very_large_personal_change,Normal,INCREASE >= 20%
+A117,ALT,"60.82,60.54,58.66,60.39,59.5",82.39,59.982,37.35787402887533,1,1,1,very_large_personal_change,Abnormal,INCREASE >= 20%
+A118,WBC,"9.61,9.57,9.69,9.68,9.42",4.04,9.594,-57.890348134250566,1,1,0,very_large_personal_change,Normal,DECREASE >= 20%
+A119,ALT,"60.29,61.31,59.43,59.63",93.45,60.165,55.32286212914486,1,1,1,very_large_personal_change,Abnormal,INCREASE >= 20%
+A120,Glucose,"104.27,104.28,103.32,103.5,107.35,104.93",41.84,104.60833333333333,-60.00318648928543,1,1,1,very_large_personal_change,Abnormal,DECREASE >= 20%
+A121,Creatinine,"0.76,0.74,0.76,0.76,0.76",0.37,0.756,-51.05820105820106,1,1,1,very_large_personal_change,Abnormal,DECREASE >= 20%
+A122,Creatinine,"1.33,1.37,1.37,1.37",0.64,1.36,-52.94117647058824,1,1,0,very_large_personal_change,Normal,DECREASE >= 20%
+A123,Hb,"15.13,14.8,14.96,14.84,15.19",21.1,14.984,40.816871329418056,1,1,1,very_large_personal_change,Abnormal,INCREASE >= 20%
+A124,Total Cholesterol,"198.94,192.02,196.74,195.69,194.42",302.05,195.562,54.452296458412164,1,1,1,very_large_personal_change,Abnormal,INCREASE >= 20%
+A125,WBC,"7.11,6.87,6.91,7.05",10.4,6.985,48.89047959914101,1,1,0,very_large_personal_change,Normal,INCREASE >= 20%
+A126,Glucose,"113.76,116.51,113.69,117.33",51.0,115.3225,-55.776192850484506,1,1,1,very_large_personal_change,Abnormal,DECREASE >= 20%
+A127,Glucose,"89.69,89.89,87.63,87.54,87.45",141.38,88.44,59.859791949344185,1,1,1,very_large_personal_change,Abnormal,INCREASE >= 20%
+A128,TSH,"1.49,1.47,1.52,1.49",0.92,1.4925,-38.35845896147403,1,1,0,very_large_personal_change,Normal,DECREASE >= 20%
+A129,ALT,"60.99,60.78,59.91,60.35,61.22,58.56",26.61,60.30166666666667,-55.87186644924132,1,1,0,very_large_personal_change,Normal,DECREASE >= 20%
+A130,WBC,"4.93,4.91,4.93,5.03,5.03",3.09,4.966,-37.776882803060815,1,1,1,very_large_personal_change,Abnormal,DECREASE >= 20%
+A131,Platelets,"170.13,167.81,166.97,169.4,170.98,167.79",235.85,168.84666666666666,39.682947052552606,1,1,0,very_large_personal_change,Normal,INCREASE >= 20%
+A132,Glucose,"112.51,115.15,115.04,117.81,115.31",180.62,115.164,56.83720607134174,1,1,1,very_large_personal_change,Abnormal,INCREASE >= 20%
+A133,Hb,"14.82,14.64,15.22,14.88,15.17",6.83,14.946,-54.302154422587975,1,1,1,very_large_personal_change,Abnormal,DECREASE >= 20%
+A134,TSH,"1.49,1.49,1.51,1.52",2.4,1.5025,59.73377703826955,1,1,0,very_large_personal_change,Normal,INCREASE >= 20%
+A135,Platelets,"215.19,223.04,219.53,217.73",98.98,218.8725,-54.777324698169025,1,1,1,very_large_personal_change,Abnormal,DECREASE >= 20%
+A136,Hb,13.51,18.88,,,0,0,1,insufficient_history,Abnormal,Insufficient history
+A137,Platelets,nan,408.9,,,0,0,0,insufficient_history,Normal,Insufficient history
+A138,Total Cholesterol,197.82,245.15,,,0,0,1,insufficient_history,Abnormal,Insufficient history
+A139,TSH,nan,3.42,,,0,0,0,insufficient_history,Normal,Insufficient history
+A140,WBC,"10.47,10.69",13.66,10.58,29.111531190926275,0,1,1,insufficient_history,Abnormal,INCREASE >= 20%
+A141,Creatinine,"1.35,1.37",1.79,1.36,31.617647058823522,0,1,1,insufficient_history,Abnormal,INCREASE >= 20%
+A142,Glucose,nan,138.03,,,0,0,1,insufficient_history,Abnormal,Insufficient history
+A143,Creatinine,1.13,1.49,,,0,0,1,insufficient_history,Abnormal,Insufficient history
+A144,ALT,50.21,65.7,,,0,0,1,insufficient_history,Abnormal,Insufficient history
+A145,Platelets,294.51,414.15,,,0,0,0,insufficient_history,Normal,Insufficient history
+A146,TSH,"3.83,3.86,3.72,3.83,3.78",3.2,3.804,-15.878023133543628,1,0,0,cross_test_robustness,Normal,Change below 20%
+A147,Hb,"11.1,10.97,10.79,10.85,11.08,10.92",9.59,10.951666666666666,-12.433419570841574,1,0,1,cross_test_robustness,Abnormal,Change below 20%
+A148,Platelets,"299.16,293.65,294.57,298.0,297.22",243.83,296.52,-17.76945905841089,1,0,0,cross_test_robustness,Normal,Change below 20%
+A149,Creatinine,"1.34,1.35,1.33,1.33,1.35,1.38",1.61,1.3466666666666667,19.554455445544562,1,0,1,cross_test_robustness,Abnormal,Change below 20%
+A150,Total Cholesterol,"147.56,144.65,147.89,144.6",171.69,146.175,17.455105182144678,1,0,0,cross_test_robustness,Normal,Change below 20%
+A151,TSH,"0.8,0.82,0.81,0.81,0.82,0.81",0.7,0.8116666666666666,-13.757700205338812,1,0,0,cross_test_robustness,Normal,Change below 20%
+A152,Total Cholesterol,"177.54,170.85,175.47,173.85",150.76,174.4275,-13.568674664258799,1,0,0,cross_test_robustness,Normal,Change below 20%
+A153,Glucose,"97.37,96.04,95.12,96.28,96.54",77.58,96.27000000000001,-19.414147709566855,1,0,0,cross_test_robustness,Normal,Change below 20%
+A154,Platelets,"400.35,392.57,406.58,401.03,401.76,405.36",325.16,401.275,-18.96828858015076,1,0,0,cross_test_robustness,Normal,Change below 20%
+A155,Glucose,"113.87,113.06,117.5,113.42",132.95,114.4625,16.151578027738324,1,0,1,cross_test_robustness,Abnormal,Change below 20%
+A156,Glucose,"95.64,95.24,93.22,94.06",79.67,94.53999999999999,-15.728792045694934,1,0,0,cross_test_robustness,Normal,Change below 20%
+A157,Creatinine,"0.96,0.97,0.94,0.97,0.93,0.97",1.14,0.9566666666666667,19.16376306620208,1,0,0,cross_test_robustness,Normal,Change below 20%
+A158,Total Cholesterol,"221.53,219.98,221.4,217.69,225.02,219.81",259.52,220.905,17.480364862723786,1,0,1,cross_test_robustness,Abnormal,Change below 20%
+A159,Platelets,"166.26,169.49,169.87,167.48,170.91,168.41",198.9,168.73666666666668,17.875980324371305,1,0,0,cross_test_robustness,Normal,Change below 20%
+A160,WBC,"7.01,6.86,6.91,6.87,6.98",7.79,6.926,12.474732890557318,1,0,0,cross_test_robustness,Normal,Change below 20%
