@@ -1,8 +1,8 @@
 import json
 
-from scripts.chunking.chunk_router import build_chunks
-from scripts.embedding import embed_chunks
-from scripts.vector_store import insert_chunks
+from chunking.chunk_router import build_chunks
+from embedding import embed_chunks
+from vector_store import insert_chunks
 
 
 def ingest_rag_only(json_path):
@@ -229,11 +229,58 @@ def ingest_rag_only(json_path):
 
 
 # ============================================================
-# RUN
+# RUN ALL C*.JSON FILES
 # ============================================================
+
+import glob
+
 
 if __name__ == "__main__":
 
-    ingest_rag_only(
-        "corpus/user002/c01.json"
+    json_files = sorted(
+        glob.glob(
+            "corpus/user007/c*.json"
+        )
     )
+
+    print(
+        f"\nFound {len(json_files)} clinical note JSON files"
+    )
+
+    for json_path in json_files:
+
+        print("\n" + "=" * 100)
+
+        print(
+            "PROCESSING:",
+            json_path
+        )
+
+        print("=" * 100)
+
+        try:
+
+            ingest_rag_only(
+                json_path
+            )
+
+        except Exception as e:
+
+            print(
+                f"\n❌ Failed to process:"
+            )
+
+            print(
+                json_path
+            )
+
+            print(
+                "Error:",
+                e
+            )
+
+            continue
+
+    print("\n" + "=" * 100)
+    print("ALL CLINICAL NOTE FILES PROCESSED")
+    print("=" * 100)

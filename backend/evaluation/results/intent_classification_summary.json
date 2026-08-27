@@ -1,0 +1,155 @@
+{
+    "total_queries": 200,
+    "correct": 185,
+    "incorrect": 15,
+    "accuracy": 0.925,
+    "macro_f1": 0.9484640746250653,
+    "per_class": {
+        "LATEST_VALUE": {
+            "true_positive": 37,
+            "false_positive": 0,
+            "false_negative": 3,
+            "precision": 1.0,
+            "recall": 0.925,
+            "f1": 0.961038961038961
+        },
+        "TREND": {
+            "true_positive": 37,
+            "false_positive": 0,
+            "false_negative": 3,
+            "precision": 1.0,
+            "recall": 0.925,
+            "f1": 0.961038961038961
+        },
+        "ABNORMAL_LABS": {
+            "true_positive": 40,
+            "false_positive": 15,
+            "false_negative": 0,
+            "precision": 0.7272727272727273,
+            "recall": 1.0,
+            "f1": 0.8421052631578948
+        },
+        "MEDICAL_DEFINITION": {
+            "true_positive": 40,
+            "false_positive": 0,
+            "false_negative": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+        },
+        "GENERAL_RAG": {
+            "true_positive": 21,
+            "false_positive": 0,
+            "false_negative": 9,
+            "precision": 1.0,
+            "recall": 0.7,
+            "f1": 0.8235294117647058
+        },
+        "GREETING": {
+            "true_positive": 5,
+            "false_positive": 0,
+            "false_negative": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+        },
+        "THANKS": {
+            "true_positive": 3,
+            "false_positive": 0,
+            "false_negative": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+        },
+        "GOODBYE": {
+            "true_positive": 2,
+            "false_positive": 0,
+            "false_negative": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+        }
+    },
+    "confusion_matrix": {
+        "LATEST_VALUE": {
+            "LATEST_VALUE": 37,
+            "TREND": 0,
+            "ABNORMAL_LABS": 3,
+            "MEDICAL_DEFINITION": 0,
+            "GENERAL_RAG": 0,
+            "GREETING": 0,
+            "THANKS": 0,
+            "GOODBYE": 0
+        },
+        "TREND": {
+            "LATEST_VALUE": 0,
+            "TREND": 37,
+            "ABNORMAL_LABS": 3,
+            "MEDICAL_DEFINITION": 0,
+            "GENERAL_RAG": 0,
+            "GREETING": 0,
+            "THANKS": 0,
+            "GOODBYE": 0
+        },
+        "ABNORMAL_LABS": {
+            "LATEST_VALUE": 0,
+            "TREND": 0,
+            "ABNORMAL_LABS": 40,
+            "MEDICAL_DEFINITION": 0,
+            "GENERAL_RAG": 0,
+            "GREETING": 0,
+            "THANKS": 0,
+            "GOODBYE": 0
+        },
+        "MEDICAL_DEFINITION": {
+            "LATEST_VALUE": 0,
+            "TREND": 0,
+            "ABNORMAL_LABS": 0,
+            "MEDICAL_DEFINITION": 40,
+            "GENERAL_RAG": 0,
+            "GREETING": 0,
+            "THANKS": 0,
+            "GOODBYE": 0
+        },
+        "GENERAL_RAG": {
+            "LATEST_VALUE": 0,
+            "TREND": 0,
+            "ABNORMAL_LABS": 9,
+            "MEDICAL_DEFINITION": 0,
+            "GENERAL_RAG": 21,
+            "GREETING": 0,
+            "THANKS": 0,
+            "GOODBYE": 0
+        },
+        "GREETING": {
+            "LATEST_VALUE": 0,
+            "TREND": 0,
+            "ABNORMAL_LABS": 0,
+            "MEDICAL_DEFINITION": 0,
+            "GENERAL_RAG": 0,
+            "GREETING": 5,
+            "THANKS": 0,
+            "GOODBYE": 0
+        },
+        "THANKS": {
+            "LATEST_VALUE": 0,
+            "TREND": 0,
+            "ABNORMAL_LABS": 0,
+            "MEDICAL_DEFINITION": 0,
+            "GENERAL_RAG": 0,
+            "GREETING": 0,
+            "THANKS": 3,
+            "GOODBYE": 0
+        },
+        "GOODBYE": {
+            "LATEST_VALUE": 0,
+            "TREND": 0,
+            "ABNORMAL_LABS": 0,
+            "MEDICAL_DEFINITION": 0,
+            "GENERAL_RAG": 0,
+            "GREETING": 0,
+            "THANKS": 0,
+            "GOODBYE": 2
+        }
+    }
+}

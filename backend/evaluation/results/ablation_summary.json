@@ -1,0 +1,72 @@
+{
+    "DENSE_ONLY": {
+        "queries": 200,
+        "precision@1": 0.445,
+        "precision@3": 0.23166666666666658,
+        "precision@5": 0.1439999999999999,
+        "recall@1": 0.3975,
+        "recall@3": 0.57,
+        "recall@5": 0.585,
+        "hit@1": 0.445,
+        "hit@3": 0.54,
+        "hit@5": 0.55,
+        "MRR": 0.4864743867243868,
+        "mean_latency_seconds": 0.017113584165044812
+    },
+    "KEYWORD_ONLY": {
+        "queries": 200,
+        "precision@1": 0.17,
+        "precision@3": 0.11,
+        "precision@5": 0.09099999999999996,
+        "recall@1": 0.1375,
+        "recall@3": 0.2575,
+        "recall@5": 0.345,
+        "hit@1": 0.17,
+        "hit@3": 0.29,
+        "hit@5": 0.34,
+        "MRR": 0.23775167887667895,
+        "mean_latency_seconds": 0.024191895274962006
+    },
+    "HYBRID_RRF": {
+        "queries": 200,
+        "precision@1": 0.425,
+        "precision@3": 0.21666666666666665,
+        "precision@5": 0.14199999999999988,
+        "recall@1": 0.365,
+        "recall@3": 0.5275,
+        "recall@5": 0.5775,
+        "hit@1": 0.425,
+        "hit@3": 0.52,
+        "hit@5": 0.545,
+        "MRR": 0.47664105339105345,
+        "mean_latency_seconds": 0.04211112015501385
+    },
+    "HYBRID_RRF_RECENCY": {
+        "queries": 200,
+        "precision@1": 0.345,
+        "precision@3": 0.1566666666666665,
+        "precision@5": 0.10099999999999984,
+        "recall@1": 0.29,
+        "recall@3": 0.4025,
+        "recall@5": 0.43,
+        "hit@1": 0.345,
+        "hit@3": 0.455,
+        "hit@5": 0.47,
+        "MRR": 0.41100847763347764,
+        "mean_latency_seconds": 0.04265106312504031
+    },
+    "FULL_SYSTEM": {
+        "queries": 200,
+        "precision@1": 0.43,
+        "precision@3": 0.23499999999999996,
+        "precision@5": 0.14599999999999988,
+        "recall@1": 0.38,
+        "recall@3": 0.5775,
+        "recall@5": 0.595,
+        "hit@1": 0.43,
+        "hit@3": 0.555,
+        "hit@5": 0.56,
+        "MRR": 0.48458333333333337,
+        "mean_latency_seconds": 0.19164659365997977
+    }
+}

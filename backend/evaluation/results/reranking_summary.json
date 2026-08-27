@@ -1,0 +1,72 @@
+{
+    "total_queries": 200,
+    "successful_queries": 200,
+    "failed_queries": 0,
+    "retrieval_k": 20,
+    "reranking_k": 5,
+    "before_precision@1": 0.275,
+    "after_precision@1": 0.43,
+    "before_recall@1": 0.2425,
+    "after_recall@1": 0.38,
+    "before_hit@1": 0.275,
+    "after_hit@1": 0.43,
+    "before_precision@3": 0.13333333333333325,
+    "after_precision@3": 0.23499999999999996,
+    "before_recall@3": 0.355,
+    "after_recall@3": 0.5775,
+    "before_hit@3": 0.385,
+    "after_hit@3": 0.555,
+    "before_precision@5": 0.10099999999999984,
+    "after_precision@5": 0.14599999999999988,
+    "before_recall@5": 0.43,
+    "after_recall@5": 0.595,
+    "before_hit@5": 0.47,
+    "after_hit@5": 0.56,
+    "before_MRR": 0.3562584776334778,
+    "after_MRR": 0.48458333333333337,
+    "mean_retrieval_latency_seconds": 0.042771636615034365,
+    "mean_reranking_latency_seconds": 0.14149118033009472,
+    "mean_total_latency_seconds": 0.18426281694512908,
+    "MRR_improvement": 0.12832485569985558,
+    "MRR_improvement_percent": 36.02015495947789,
+    "recall@5_improvement": 0.16499999999999998,
+    "precision@5_improvement": 0.04500000000000004,
+    "by_intent": {
+        "ABNORMAL_LABS": {
+            "queries": 14,
+            "before_MRR": 0.383078231292517,
+            "after_MRR": 0.5833333333333333,
+            "before_recall@5": 0.6428571428571429,
+            "after_recall@5": 1.1428571428571428,
+            "before_precision@5": 0.12857142857142856,
+            "after_precision@5": 0.22857142857142865
+        },
+        "GENERAL_RAG": {
+            "queries": 3,
+            "before_MRR": 0.5666666666666667,
+            "after_MRR": 0.6666666666666666,
+            "before_recall@5": 1.0,
+            "after_recall@5": 1.0,
+            "before_precision@5": 0.20000000000000004,
+            "after_precision@5": 0.20000000000000004
+        },
+        "LATEST_VALUE": {
+            "queries": 148,
+            "before_MRR": 0.3262743262743263,
+            "after_MRR": 0.4375000000000001,
+            "before_recall@5": 0.39864864864864863,
+            "after_recall@5": 0.49324324324324326,
+            "before_precision@5": 0.07972972972972966,
+            "after_precision@5": 0.09864864864864852
+        },
+        "TREND": {
+            "queries": 35,
+            "before_MRR": 0.45428571428571435,
+            "after_MRR": 0.6285714285714286,
+            "before_recall@5": 0.42857142857142855,
+            "after_recall@5": 0.7714285714285715,
+            "before_precision@5": 0.1714285714285715,
+            "after_precision@5": 0.3085714285714285
+        }
+    }
+}

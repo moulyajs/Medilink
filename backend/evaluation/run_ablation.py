@@ -7,18 +7,18 @@ import time
 
 from chatbot.rag.embeddings import get_embedding
 
-from chatbot.vector_store import (
+from chatbot.rag.vector_store import (
     search_qdrant,
     keyword_search_qdrant,
 )
 
-from chatbot.keyword_search import extract_keywords
+from chatbot.rag.keyword_search import extract_keywords
 
-from chatbot.rrf import rrf_fusion
+from chatbot.rag.rrf import rrf_fusion
 
-from chatbot.hybrid_search import apply_recency
+from chatbot.rag.hybrid_search import apply_recency
 
-from chatbot.reranker import rerank
+from chatbot.rag.reranker import rerank
 
 from evaluation.evaluation_utils import (
     parse_expected_chunks,

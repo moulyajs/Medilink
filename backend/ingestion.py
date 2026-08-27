@@ -216,11 +216,54 @@ def ingest_verified_record(json_path):
 
 
 # ============================================================
-# RUN
+# RUN ALL R*.JSON FILES
 # ============================================================
+
+import glob
+
 
 if __name__ == "__main__":
 
-    ingest_verified_record(
-        "corpus/user001/r01.json"
+    json_files = sorted(
+        glob.glob(
+            "corpus/user009/r*.json"
+        )
     )
+
+    print(
+        f"\nFound {len(json_files)} JSON files"
+    )
+
+    for json_path in json_files:
+
+        print("\n" + "=" * 100)
+
+        print(
+            "PROCESSING:",
+            json_path
+        )
+
+        print("=" * 100)
+
+        try:
+
+            ingest_verified_record(
+                json_path
+            )
+
+        except Exception as e:
+
+            print(
+                f"\n❌ Failed to process {json_path}"
+            )
+
+            print(
+                "Error:",
+                e
+            )
+
+            continue
+
+    print("\n" + "=" * 100)
+    print("ALL JSON FILES PROCESSED")
+    print("=" * 100)

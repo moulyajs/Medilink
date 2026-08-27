@@ -1,0 +1,8 @@
+{
+    "total_queries": 100,
+    "successful_queries": 100,
+    "failed_queries": 0,
+    "mean_parse_latency_seconds": 0.926078204550031,
+    "mean_answer_latency_seconds": 1.4222592081400216,
+    "mean_total_latency_seconds": 2.3483374126900527
+}

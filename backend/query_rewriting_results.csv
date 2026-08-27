@@ -1,0 +1,201 @@
+query_id,category,follow_up_query,expected,predicted
+QR_001,Pronoun resolution,Was it normal?,Was my haemoglobin value normal?,What is considered normal for haemoglobin levels?
+QR_002,Pronoun resolution,Was it within range?,Was my glucose value within the reference range?,What is the current range of my glucose levels?
+QR_003,Pronoun resolution,Is that high?,Is my creatinine value high?,"What is the value of your creatinine? (If known, is it high?)"
+QR_004,Pronoun resolution,Can you explain it?,Can you explain my HbA1c result?,What is an explanation of HbA1c?
+QR_005,Pronoun resolution,Is this normal?,Is my TSH value normal?,What is the normal range for TSH levels?
+QR_006,Pronoun resolution,Is it improving?,Is my haemoglobin improving over time?,Has my haemoglobin improved?
+QR_007,Pronoun resolution,Is it getting worse?,Is my glucose getting worse over time?,What is the current status of your glucose levels?
+QR_008,Pronoun resolution,What does that mean?,What does my creatinine trend mean?,What does the trend in my creatinine mean?
+QR_009,Pronoun resolution,Can you explain them?,Can you explain my abnormal laboratory results?,What are the details of the abnormal results?
+QR_010,Pronoun resolution,Why are they abnormal?,Why are my abnormal laboratory test results abnormal?,What is the reason for the abnormal test results?
+QR_011,Pronoun resolution,Can you summarize them?,Can you summarize my medical records?,What is the summary of my medical records?
+QR_012,Pronoun resolution,Can you explain that?,Can you explain the information in my medical reports?,"What does ""Can you explain that"" mean in the context of ""What is in my reports""?"
+QR_013,Pronoun resolution,What does it do?,What does haemoglobin do?,What does haemoglobin do?
+QR_014,Pronoun resolution,Why is it measured?,Why is HbA1c measured?,Why is HbA1c measured? (user's intent preserved)
+QR_015,Pronoun resolution,Why is it tested?,Why is creatinine tested?,Why is creatinine tested?
+QR_016,Pronoun resolution,What does it measure?,What does a sodium test measure?,What does sodium measure?
+QR_017,Pronoun resolution,Was it low?,Was my platelet count low?,Was the platelet count low?
+QR_018,Pronoun resolution,Was it elevated?,Was my WBC elevated?,Was my WBC elevated?
+QR_019,Pronoun resolution,Was it low?,Was my vitamin D value low?,Was my vitamin D level low?
+QR_020,Pronoun resolution,Is it stable?,Is my calcium stable over time?,"What is the current status of your calcium levels? (Stable, increased, or decreased?)"
+QR_021,Pronoun resolution,Is it rising?,Is my ALT rising over time?,Is the trend of the ALT level increasing?
+QR_022,Pronoun resolution,Which ones are high?,Which of my abnormal laboratory results are high?,What lab results are high for me?
+QR_023,Pronoun resolution,Can you explain them?,Can you explain the main findings in my medical reports?,What are the details in the reports?
+QR_024,Pronoun resolution,What does it indicate?,What does CRP indicate?,What does CRP indicate?
+QR_025,Pronoun resolution,Why is it measured?,Why is albumin measured?,"Why is albumin measured? (Follow-up question to ""What is albumin?"")"
+QR_026,Temporal reference,What was the previous one?,What was my previous haemoglobin value?,What was the most recent haemoglobin level?
+QR_027,Temporal reference,What was the one before that?,What was my previous glucose value?,What was the previous glucose reading?
+QR_028,Temporal reference,What was it before the latest result?,What was my creatinine value before the latest result?,What was the previous creatinine result?
+QR_029,Temporal reference,What was the earlier result?,What was my earlier HbA1c result?,What was the previous HbA1c result?
+QR_030,Temporal reference,What did I have before that?,What was my previous TSH value?,What was my previous TSH level?
+QR_031,Temporal reference,And the earlier one?,What was my earlier sodium result?,What was the previous sodium level?
+QR_032,Temporal reference,What about the prior test?,What was my previous potassium test result?,What was the result of the previous potassium test?
+QR_033,Temporal reference,What was the result before it?,What was my previous calcium result?,What was the previous calcium level result?
+QR_034,Temporal reference,What did the earlier test show?,What did my earlier ALT test show?,What was the result of the most recent ALT test?
+QR_035,Temporal reference,What was the prior value?,What was my previous AST value?,What was the prior value?
+QR_036,Temporal reference,What about earlier results?,How did my haemoglobin change in earlier results?,What were the earlier results of my haemoglobin?
+QR_037,Temporal reference,What about before the latest test?,How did my glucose change before the latest test?,What was my previous glucose level?
+QR_038,Temporal reference,What was the earlier trend?,What was the earlier trend in my creatinine?,What was the previous level of my creatinine?
+QR_039,Temporal reference,How was it previously?,How was my HbA1c trending previously?,What was the previous HbA1c reading?
+QR_040,Temporal reference,What about before that period?,What was my TSH trend before that period?,What was my TSH trend before the mentioned period?
+QR_041,Temporal reference,What about the previous report?,What were my abnormal laboratory results in the previous report?,What is the information about the previous report regarding abnormal results?
+QR_042,Temporal reference,What about my last report?,Which tests were abnormal in my last report?,What is the status of the results from the most recent report?
+QR_043,Temporal reference,What about the earlier report?,What were the main findings in my earlier medical report?,What was the content of the earlier report?
+QR_044,Temporal reference,What about the one before it?,Summarize the medical report before my latest report.,What was the content of the report prior to the latest one?
+QR_045,Temporal reference,What was it in the earlier test?,What was my haemoglobin value in the earlier test?,What was the result of the most recent haemoglobin test?
+QR_046,Temporal reference,What was it in the previous test?,What was my glucose value in the previous test?,What was the result of the most recent glucose test?
+QR_047,Temporal reference,What was it in the last test?,What was my platelet count in the last test?,What was the latest platelet count in a previous test?
+QR_048,Temporal reference,What was it in the earlier report?,What was my vitamin D value in the earlier report?,What was the value of my vitamin D in the most recent laboratory report?
+QR_049,Temporal reference,How was it before the latest test?,How did my cholesterol compare with the latest test?,What was the previous level of the user's cholesterol?
+QR_050,Temporal reference,What was the trend before that?,What was my CRP trend before that period?,What was the previous trend of the user's CRP?
+QR_051,Ellipsis,And glucose?,What is my latest glucose value?,And glucose?
+QR_052,Ellipsis,And haemoglobin?,What is my latest haemoglobin value?,And haemoglobin?
+QR_053,Ellipsis,And urea?,What is my latest urea value?,And urea?
+QR_054,Ellipsis,And potassium?,What is my latest potassium value?,And potassium?
+QR_055,Ellipsis,And vitamin D?,What is my latest vitamin D value?,And vitamin D?
+QR_056,Ellipsis,And AST?,What is my latest AST value?,And AST?
+QR_057,Ellipsis,And RBC?,What is my latest RBC value?,And RBC?
+QR_058,Ellipsis,And TSH?,What is my latest TSH value?,And TSH?
+QR_059,Ellipsis,And glucose?,How is my glucose trending?,And glucose?
+QR_060,Ellipsis,And HbA1c?,How is my HbA1c trending?,And HbA1c?
+QR_061,Ellipsis,And urea?,How is my urea trending?,And urea?
+QR_062,Ellipsis,And potassium?,How is my potassium trending?,And potassium?
+QR_063,Ellipsis,And vitamin D?,How is my vitamin D trending?,And vitamin D?
+QR_064,Ellipsis,And AST?,What is the trend in AST?,And AST?
+QR_065,Ellipsis,And RBC?,What is the trend in RBC?,And RBC?
+QR_066,Ellipsis,And HbA1c?,What is HbA1c?,And HbA1c?
+QR_067,Ellipsis,And urea?,What is urea?,And urea?
+QR_068,Ellipsis,And potassium?,What is potassium?,And potassium?
+QR_069,Ellipsis,And vitamin D?,What is vitamin D?,And vitamin D?
+QR_070,Ellipsis,And AST?,What is AST?,And AST?
+QR_071,Ellipsis,And the normal ones?,What are the normal laboratory results in my records?,What are the normal results?
+QR_072,Ellipsis,And the clinical notes?,What information is in my clinical notes?,And the clinical notes?
+QR_073,Ellipsis,And medications?,What medications are mentioned in my medical reports?,And medications?
+QR_074,Ellipsis,And the high ones?,Which of my abnormal laboratory results are high?,What are the high abnormal findings?
+QR_075,Ellipsis,And the low ones?,Which of my abnormal laboratory results are low?,Which tests are low?
+QR_076,Multi-turn reference,Was it normal?,Was my latest haemoglobin value normal?,What is the normal range for hemoglobin levels in adults?
+QR_077,Multi-turn reference,What about the previous result?,Was my previous haemoglobin result normal?,What was the result of the previous haemoglobin test?
+QR_078,Multi-turn reference,And before that?,What was my haemoglobin value before the previous result?,What was my previous haemoglobin level?
+QR_079,Multi-turn reference,Was it high?,Was my latest glucose value high?,What is the current or most recent level of the user's glucose?
+QR_080,Multi-turn reference,What about the previous test?,Was my glucose value high in the previous test?,What was the result of the previous glucose test?
+QR_081,Multi-turn reference,Is that the current one?,Is that my latest HbA1c value?,What is the current user's latest HbA1c?
+QR_082,Multi-turn reference,Was it higher than before?,Was my latest creatinine higher than my previous result?,What was the most recent creatinine level compared to the previous one?
+QR_083,Multi-turn reference,When did it start increasing?,When did my glucose start increasing?,When did my glucose level start increasing?
+QR_084,Multi-turn reference,When was the lowest?,When was my haemoglobin at its lowest?,When was the lowest?
+QR_085,Multi-turn reference,Has it been stable recently?,Has my HbA1c been stable recently?,What has been the recent trend of the user's HbA1c levels?
+QR_086,Multi-turn reference,Was it improving before?,Was my creatinine improving previously?,Was my creatinine trend improving before?
+QR_087,Multi-turn reference,Which one is the most recent?,Which abnormal laboratory result is the most recent?,What is the most recent lab result for the user?
+QR_088,Multi-turn reference,Which one is the oldest?,Which abnormal laboratory result is the oldest?,Which test was conducted first?
+QR_089,Multi-turn reference,Were any of them repeated?,Were any of my abnormal laboratory findings repeated?,Were any of the abnormal findings repeated?
+QR_090,Multi-turn reference,Which report is the latest?,Which medical report is the latest?,Which report is the latest?
+QR_091,Multi-turn reference,What about the previous one?,Which medical report came before the latest report?,What is the most recent report compared to the prior one?
+QR_092,Multi-turn reference,When was the latest one mentioned?,When was a medication most recently mentioned in my medical records?,What is the date of the latest medication mentioned in my records?
+QR_093,Multi-turn reference,What about earlier notes?,What diagnoses were mentioned in earlier clinical notes?,What earlier notes contain diagnoses in my records?
+QR_094,Multi-turn reference,How is it measured?,How is haemoglobin measured?,How is haemoglobin measured?
+QR_095,Multi-turn reference,Why is it useful?,Why is haemoglobin measurement useful?,What is the utility of haemoglobin measurement?
+QR_096,Multi-turn reference,How often is it measured?,How often is HbA1c measured?,How often is HbA1c measured?
+QR_097,Multi-turn reference,Where does it come from?,Where does creatinine come from?,Where does creatinine originate from?
+QR_098,Multi-turn reference,When is it usually tested?,When is CRP usually tested?,When is CRP (C-Reactive Protein) usually tested?
+QR_099,Multi-turn reference,Why is it checked?,Why is TSH checked?,Why is TSH (Thyroid-stimulating hormone) checked?
+QR_100,Multi-turn reference,Why is it important?,Why is vitamin D important?,Why is vitamin D important?
+QR_101,Entity switching,What about glucose?,What is my latest glucose value?,What is the latest glucose level?
+QR_102,Entity switching,What about creatinine?,What is my latest creatinine value?,What is my latest creatinine level?
+QR_103,Entity switching,What about HbA1c?,What is my latest HbA1c value?,What is the user's latest HbA1c?
+QR_104,Entity switching,What about TSH?,What is my latest TSH value?,What is the most recent TSH level?
+QR_105,Entity switching,What about vitamin D?,What is my latest vitamin D value?,What is the current level of vitamin D for the user?
+QR_106,Entity switching,What about potassium?,What is my latest potassium value?,What is the user's latest potassium level?
+QR_107,Entity switching,What about albumin?,What is my latest albumin value?,What is the user's latest albumin level?
+QR_108,Entity switching,What about AST?,What is my latest AST value?,What is the latest AST level for the user?
+QR_109,Entity switching,What about creatinine?,How is my creatinine trending?,What is the trend of my creatinine levels?
+QR_110,Entity switching,What about HbA1c?,How is my HbA1c trending?,What is the current HbA1c level?
+QR_111,Entity switching,What about vitamin D?,How is my vitamin D trending?,What is the status of your vitamin D levels?
+QR_112,Entity switching,What about potassium?,How is my potassium trending?,What is the trend of the user's potassium level?
+QR_113,Entity switching,What about platelets?,What are platelets?,What are platelets?
+QR_114,Entity switching,What about HbA1c?,What is HbA1c?,What is HbA1c?
+QR_115,Entity switching,What about urea?,What is urea?,What is urea?
+QR_116,Entity switching,What about my glucose?,Is my glucose result abnormal?,What is the abnormal result for my glucose?
+QR_117,Entity switching,What about haemoglobin?,Is my haemoglobin result abnormal?,What is the result of the haemoglobin test?
+QR_118,Entity switching,What about medications?,What medications are mentioned in my medical reports?,What are the details about the medications in my reports?
+QR_119,Entity switching,What about diagnoses?,What diagnoses are mentioned in my medical records?,What are the diagnoses from my reports?
+QR_120,Entity switching,What about my latest result?,What is my latest HbA1c result?,What is the result of the latest HbA1c test?
+QR_121,Intent preservation/shift,What about my haemoglobin?,What is my latest haemoglobin value?,What is the information regarding your haemoglobin?
+QR_122,Intent preservation/shift,What about my glucose?,What is my latest glucose value?,What is the glucose level in this context?
+QR_123,Intent preservation/shift,What about my result?,What is my latest HbA1c result?,What is the result of the HbA1c test?
+QR_124,Intent preservation/shift,What about my latest result?,What is my latest creatinine result?,What is your latest creatinine result?
+QR_125,Intent preservation/shift,How has it changed?,How has my haemoglobin changed over time?,What is the current status of your haemoglobin levels?
+QR_126,Intent preservation/shift,How has it changed?,How has my glucose changed over time?,What is the current status of my glucose level?
+QR_127,Intent preservation/shift,Has it been stable?,Has my HbA1c been stable over time?,What has been the stability of the user's HbA1c?
+QR_128,Intent preservation/shift,Is it increasing?,Is my creatinine increasing over time?,Is the creatinine level increasing?
+QR_129,Intent preservation/shift,What is the most recent one?,What is my most recent abnormal laboratory result?,What is the most recent abnormal result for the user?
+QR_130,Intent preservation/shift,What about the latest report?,Which tests are abnormal in my latest report?,What is the information about the latest report regarding the test results?
+QR_131,Intent preservation/shift,What is the latest report?,What is the latest medical report?,What is the latest report?
+QR_132,Intent preservation/shift,What medications are listed?,What medications are listed in my medical records?,What medications are listed?
+QR_133,Intent preservation/shift,Why is it important?,Why is haemoglobin important?,What is the importance of haemoglobin?
+QR_134,Intent preservation/shift,Why is it measured?,Why is glucose measured?,Why is glucose measured? (Regarding the context of the previous question: What is glucose?)
+QR_135,Intent preservation/shift,What does a high value mean?,What does a high creatinine value generally mean?,What does a high value mean?
+QR_136,Intent preservation/shift,What do high values generally indicate?,What do high HbA1c values generally indicate?,What do high values generally indicate?
+QR_137,Intent preservation/shift,What does a high value mean?,What does a high haemoglobin value generally mean?,What does a high value mean?
+QR_138,Intent preservation/shift,What does a high value mean?,What does a high glucose value generally mean?,What does a high value mean?
+QR_139,Intent preservation/shift,What does abnormal mean?,What does an abnormal laboratory result mean?,What does abnormal mean?
+QR_140,Intent preservation/shift,What is haemoglobin?,What is haemoglobin?,What is haemoglobin?
+QR_141,Context-dependent,What does that result mean?,What does my latest haemoglobin result mean?,What is the meaning of the latest haemoglobin result?
+QR_142,Context-dependent,What was the latest value?,What was my latest glucose value?,What was the latest value?
+QR_143,Context-dependent,What is the latest value?,What is my latest HbA1c value?,What is the latest value?
+QR_144,Context-dependent,What was the previous result?,What was my previous creatinine result?,What was the previous result of the creatinine test?
+QR_145,Context-dependent,What was the latest count?,What was my latest platelet count?,What was the latest count?
+QR_146,Context-dependent,Is it improving?,Is my haemoglobin improving over time?,What is the current state or trend of the user's haemoglobin history?
+QR_147,Context-dependent,Is the trend stable?,Is my glucose trend stable?,Is the trend stable?
+QR_148,Context-dependent,Has it changed much?,Has my creatinine changed much over time?,What is the current status of the changes in your creatinine history?
+QR_149,Context-dependent,Which were low?,Which of my abnormal laboratory results were low?,Which were low?
+QR_150,Context-dependent,Which one was most recent?,Which abnormal laboratory test result was most recent?,What was the most recent abnormal test?
+QR_151,Context-dependent,What was the main finding?,What was the main finding in my medical records?,What was the main finding?
+QR_152,Context-dependent,What about medications?,What medications were mentioned in my medical reports?,What are the details about the medications in my reports?
+QR_153,Context-dependent,What exactly is it?,What is haemoglobin?,What is haemoglobin?
+QR_154,Context-dependent,Why is it useful?,Why is HbA1c useful?,What is the usefulness of HbA1c?
+QR_155,Context-dependent,Why do doctors measure it?,Why do doctors measure creatinine?,What is the purpose of doctors measuring creatinine?
+QR_156,Context-dependent,What does the test measure?,What does a glucose test measure?,What does the test measure?
+QR_157,Context-dependent,What was the haemoglobin value?,What was my haemoglobin value in my latest blood test?,What was the haemoglobin value?
+QR_158,Context-dependent,Which results were abnormal?,Which results were abnormal in my latest blood test?,Which results were abnormal?
+QR_159,Context-dependent,How has haemoglobin changed?,How has my haemoglobin changed over time?,How has haemoglobin changed?
+QR_160,Context-dependent,What diagnoses were mentioned?,What diagnoses were mentioned in my medical history?,What diagnoses were mentioned?
+QR_161,Robustness/varied wording,What about before that?,What was my previous haemoglobin value?,What is the value of the user's previous Hb (hemoglobin)?
+QR_162,Robustness/varied wording,And the earlier one?,What was my previous glucose value?,What was the previous glucose reading?
+QR_163,Robustness/varied wording,How about the prior reading?,What was my previous creatinine value?,What was the previous reading of creatinine?
+QR_164,Robustness/varied wording,What came before it?,What was my previous HbA1c result?,What was the previous HbA1c result?
+QR_165,Robustness/varied wording,And the older one?,What was my previous TSH result?,What is the historical value of my TSH?
+QR_166,Robustness/varied wording,And glucose?,How has my glucose changed over time?,And glucose?
+QR_167,Robustness/varied wording,What about creatinine?,Is my creatinine going up or down?,What is the current status of the user's creatinine level?
+QR_168,Robustness/varied wording,And TSH?,Show the trend for TSH.,And TSH?
+QR_169,Robustness/varied wording,Which ones?,Which laboratory tests are flagged as abnormal?,Which tests are flagged?
+QR_170,Robustness/varied wording,Which tests?,Which laboratory tests are outside the normal range?,Which tests?
+QR_171,Robustness/varied wording,What about the lab reports?,What information is in my laboratory reports?,What are the details of the lab reports?
+QR_172,Robustness/varied wording,What about clinical notes?,What information is in my clinical notes?,What are the clinical notes in my medical records?
+QR_173,Robustness/varied wording,And HbA1c?,What is HbA1c?,And HbA1c?
+QR_174,Robustness/varied wording,And creatinine?,What is creatinine?,And creatinine?
+QR_175,Robustness/varied wording,And vitamin D?,What is vitamin D?,And vitamin D?
+QR_176,Robustness/varied wording,Can you give me the earlier one?,What was my previous haemoglobin value?,What was the previous Hb value?
+QR_177,Robustness/varied wording,Has it improved?,Has my haemoglobin improved over time?,What is the current trend of my Hb levels?
+QR_178,Robustness/varied wording,Can you explain them?,Can you explain my abnormal laboratory results?,What are the abnormal lab results?
+QR_179,Robustness/varied wording,Can you summarize the important parts?,Can you summarize the important information in my medical reports?,Can you summarize the important parts?
+QR_180,Robustness/varied wording,What is it used for?,What is HbA1c used for?,What is the use of HbA1c?
+QR_181,No-context/boundary,What is haemoglobin?,What is haemoglobin?,What is haemoglobin?
+QR_182,No-context/boundary,What is HbA1c?,What is HbA1c?,What is HbA1c?
+QR_183,No-context/boundary,What is my latest haemoglobin?,What is my latest haemoglobin?,What is my latest haemoglobin?
+QR_184,No-context/boundary,How has my glucose changed?,How has my glucose changed?,How has my glucose changed?
+QR_185,No-context/boundary,What are my abnormal lab results?,What are my abnormal lab results?,What are my abnormal lab results?
+QR_186,No-context/boundary,Tell me about my records.,Tell me about my medical records.,Tell me about my records.
+QR_187,No-context/boundary,What is creatinine?,What is creatinine?,What is creatinine?
+QR_188,No-context/boundary,What is my latest glucose?,What is my latest glucose?,What is my latest glucose?
+QR_189,No-context/boundary,Is my haemoglobin increasing?,Is my haemoglobin increasing?,Is my haemoglobin increasing?
+QR_190,No-context/boundary,Which tests are abnormal?,Which tests are abnormal?,Which tests are abnormal?
+QR_191,No-context/boundary,What is in my reports?,What is in my medical reports?,What is in my reports?
+QR_192,No-context/boundary,What does CRP mean?,What does CRP mean?,What does CRP mean?
+QR_193,No-context/boundary,What was my latest TSH?,What was my latest TSH?,What was my latest TSH?
+QR_194,No-context/boundary,What is my vitamin D trend?,What is my vitamin D trend?,What is my vitamin D trend?
+QR_195,No-context/boundary,Do I have abnormal results?,Do I have abnormal laboratory results?,Do I have abnormal results?
+QR_196,No-context/boundary,Summarize my records.,Summarize my medical records.,Summarize my records.
+QR_197,No-context/boundary,Why is sodium measured?,Why is sodium measured?,Why is sodium measured?
+QR_198,No-context/boundary,What is my latest platelet count?,What is my latest platelet count?,What is my latest platelet count?
+QR_199,No-context/boundary,Has my creatinine changed?,Has my creatinine changed?,Has my creatinine changed?
+QR_200,No-context/boundary,What are the main findings in my records?,What are the main findings in my medical records?,What are the main findings in my records?
