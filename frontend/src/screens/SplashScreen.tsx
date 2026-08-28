@@ -170,13 +170,13 @@ navigation.replace("Dashboard");
           <View style={styles.statsContainer}>
 
             <View style={styles.statCard}>
-              <Text style={styles.statNumber}>12M+</Text>
+              <Text style={styles.statNumber}>Medical</Text>
               <Text style={styles.statLabel}>Records</Text>
             </View>
 
             <View style={styles.statCard}>
-              <Text style={styles.statNumber}>98.9%</Text>
-              <Text style={styles.statLabel}>Accuracy</Text>
+              <Text style={styles.statNumber}>Analysis</Text>
+              <Text style={styles.statLabel}>And alerts</Text>
             </View>
 
             <View style={styles.statCard}>
