@@ -37,7 +37,7 @@ import UploadReportScreen from "../screens/upload/UploadReportScreen";
 import UploadProgressScreen from "../screens/upload/UploadProgressScreen";
 import OCRPreviewScreen from "../screens/upload/OCRPreviewScreen";
 import UploadCompletedScreen from "../screens/upload/UploadCompletedScreen";
-
+import DicomViewerScreen from "../screens/reports/DicomViewerScreen";
 // Reports
 import ReportsList from "../screens/reports/ReportsList";
 import ReportDetails from "../screens/reports/ReportDetails";
@@ -194,7 +194,10 @@ export default function AppNavigator() {
         name="ReportDetails"
         component={ReportDetails}
       />
-
+      <Stack.Screen
+        name="DicomViewer"
+        component={DicomViewerScreen}
+      />
       {/* Chatbot */}
       <Stack.Screen
         name="ChatHome"

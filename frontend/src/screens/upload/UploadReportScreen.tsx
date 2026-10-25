@@ -118,7 +118,22 @@ const openGallery = async () => {
   />
   <Text style={styles.optionText}>PDF</Text>
 </TouchableOpacity>
+
+      {/* DICOM Scan */}
+      <TouchableOpacity
+        style={styles.option}
+        onPress={() => navigation.navigate("DicomViewer")}
+      >
+        <Ionicons
+          name="scan-outline"
+          size={28}
+          color="#2563EB"
+        />
+        <Text style={styles.optionText}>DICOM Scan</Text>
+      </TouchableOpacity>
+
     </SafeAreaView>
+    
   );
 }
 

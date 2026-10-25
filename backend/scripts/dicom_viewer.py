@@ -10,15 +10,19 @@ def load_dicom(file_path):
     ds = pydicom.dcmread(file_path)
     return ds
 
-
 def normalize_image(img):
-    """
-    Normalize image for display (0–255)
-    """
+    """Normalize image pixels to 0–255 safely."""
     img = img.astype(np.float32)
-    img -= np.min(img)
-    img /= np.max(img)
+
+    img_min = np.min(img)
+    img_max = np.max(img)
+
+    if img_max == img_min:
+        return np.zeros(img.shape, dtype=np.uint8)
+
+    img = (img - img_min) / (img_max - img_min)
     img *= 255.0
+
     return img.astype(np.uint8)
 
 

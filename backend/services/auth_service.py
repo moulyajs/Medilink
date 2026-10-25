@@ -124,7 +124,6 @@ def login_service(
 
     db.add(device)
     db.commit()
-
     access_token = create_access_token(
         patient_id=str(patient.patient_id),
         email=patient.email,

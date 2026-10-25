@@ -37,6 +37,7 @@ from models.notification_settings import NotificationSettings
 from routers.notification_history import (
     router as notification_history_router,
 )
+from routers.dicom_router import router as dicom_router
 # Create database tables
 Base.metadata.create_all(bind=engine)
 app = FastAPI(
@@ -242,3 +243,4 @@ app.include_router(trend_router)
 app.include_router(anomaly.router)
 app.include_router(notification_history_router)
 app.include_router(timeline_router)
+app.include_router(dicom_router)

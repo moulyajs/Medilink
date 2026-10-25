@@ -23,6 +23,7 @@ import {
   ReportListItem,
 } from "../../services/reportService";
 
+
 // -----------------------------
 // Types
 // -----------------------------
@@ -129,6 +130,14 @@ export default function ReportsList() {
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity
+  style={styles.dicomButton}
+  onPress={() => navigation.navigate("DicomViewer")}
+>
+  <Text style={styles.dicomButtonText}>
+    Open DICOM Viewer
+  </Text>
+</TouchableOpacity>
       {/* Search */}
       <Searchbar
         placeholder="Search reports"
@@ -392,4 +401,17 @@ const styles = StyleSheet.create({
     color: Colors.textSecondary,
     textAlign: "center",
   },
+  dicomButton: {
+  backgroundColor: Colors.primary,
+  padding: 14,
+  borderRadius: 12,
+  alignItems: "center",
+  marginBottom: Spacing.md,
+},
+
+dicomButtonText: {
+  color: Colors.white,
+  fontWeight: "600",
+  fontSize: 15,
+},
 });
