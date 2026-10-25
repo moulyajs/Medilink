@@ -131,7 +131,6 @@ const openGallery = async () => {
         />
         <Text style={styles.optionText}>DICOM Scan</Text>
       </TouchableOpacity>
-
     </SafeAreaView>
     
   );

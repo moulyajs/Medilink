@@ -1,9 +1,12 @@
 import base64
 import io
-
+import uuid
 import numpy as np
 import pydicom
 
+from sqlalchemy import text
+from storage import client, BUCKET
+from database import SessionLocal
 from fastapi import APIRouter, File, HTTPException, UploadFile
 from PIL import Image
 from pydicom.errors import InvalidDicomError
@@ -109,4 +112,104 @@ async def view_dicom(
         )
 
     finally:
+        await file.close()
+    
+@router.post("/save")
+async def save_dicom(
+    file: UploadFile = File(...),
+    current_patient: Patient = Depends(get_current_patient),
+):
+    if not file.filename:
+        raise HTTPException(
+            status_code=400,
+            detail="No file selected.",
+        )
+
+    contents = await file.read()
+
+    if not contents:
+        raise HTTPException(
+            status_code=400,
+            detail="The uploaded file is empty.",
+        )
+
+    # Validate that the file is a readable DICOM image.
+    try:
+        ds = pydicom.dcmread(
+            io.BytesIO(contents),
+            force=False,
+        )
+
+        if "PixelData" not in ds:
+            raise HTTPException(
+                status_code=400,
+                detail="The DICOM file contains no pixel data.",
+            )
+
+    except HTTPException:
+        raise
+    except Exception:
+        raise HTTPException(
+            status_code=400,
+            detail="Invalid or unreadable DICOM file.",
+        )
+
+    # Generate a unique storage filename.
+    file_id = str(uuid.uuid4())
+    stored_filename = f"{file_id}.dcm"
+
+    db = SessionLocal()
+
+    try:
+        # Save the original DICOM file to MinIO.
+        client.put_object(
+            BUCKET,
+            stored_filename,
+            io.BytesIO(contents),
+            length=len(contents),
+            content_type="application/dicom",
+        )
+
+        # Associate the file with the authenticated patient.
+        db.execute(
+            text("""
+                INSERT INTO documents
+                (
+                    patient_id,
+                    document_type,
+                    upload_date,
+                    file_path
+                )
+                VALUES
+                (
+                    :pid,
+                    :dtype,
+                    NOW(),
+                    :path
+                )
+            """),
+            {
+                "pid": str(current_patient.patient_id),
+                "dtype": "application/dicom",
+                "path": stored_filename,
+            },
+        )
+
+        db.commit()
+
+        return {
+            "success": True,
+            "message": "DICOM scan saved successfully.",
+            "file_name": stored_filename,
+        }
+
+    except Exception:
+        db.rollback()
+        raise HTTPException(
+            status_code=500,
+            detail="Unable to save the DICOM scan.",
+        )
+
+    finally:
+        db.close()
         await file.close()

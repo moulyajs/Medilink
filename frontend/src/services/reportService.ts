@@ -85,3 +85,32 @@ export async function confirmReport(
 
   return response.data;
 }
+
+/* -----------------------------
+   Upload DICOM Report
+------------------------------ */
+
+export async function uploadDicomReport(file: any) {
+  const formData = new FormData();
+
+  formData.append(
+    "file",
+    {
+      uri: file.uri,
+      name: file.name || "scan.dcm",
+      type: file.mimeType || "application/dicom",
+    } as any
+  );
+
+  const response = await api.post(
+    "/dicom/view",
+    formData,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+
+  return response.data;
+}
