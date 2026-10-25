@@ -38,7 +38,7 @@ from routers.notification_history import (
     router as notification_history_router,
 )
 # Create database tables
-Base.metadata.create_all(bind=engine)
+
 app = FastAPI(
     title="Medilink API",
     description="Backend API for Medilink",

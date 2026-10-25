@@ -35,7 +35,7 @@ export default function TrendChart({
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <LineChart
           data={{
-            labels: history.map(item => item.date.substring(5)),
+            labels: history.map(item => item.date),
             datasets: [
               {
                 data: history.map(item => item.value),
